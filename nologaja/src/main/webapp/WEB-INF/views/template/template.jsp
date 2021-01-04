@@ -7,5 +7,13 @@
 	
 	메인내용	
 	메인내용
+	4
+	4
+	4
+	4
+	4
+	4
+	4
+	
 	</div>
 <%@ include file="../footer.jsp" %>
