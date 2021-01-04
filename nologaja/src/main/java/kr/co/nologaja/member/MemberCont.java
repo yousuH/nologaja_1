@@ -139,56 +139,62 @@ public class MemberCont {
 
 //---------------------------------------------------------------------------------------------------------------------------------------------
 	//로그인페이지로 이동
-	@RequestMapping("/login.do")
-	   public ModelAndView login() {
-	      ModelAndView mav = new ModelAndView();
-	      mav.setViewName("member/login");
-	      return mav;
-   }
-	
+		@RequestMapping("/login.do")
+		   public ModelAndView login() {
+		      ModelAndView mav = new ModelAndView();
+		      mav.setViewName("member/login");
+		      return mav;
+	   }
+		
 
-	//구매자 로그인처리
-	@RequestMapping("/blogin.do")
-	public ModelAndView blogin(String uid, String upw, HttpServletRequest request) {
-		boolean result = bdao.blogin(uid, upw);
-		ModelAndView mav = new ModelAndView();
-		if(result==true) {
-			mav.setViewName("index");
+		//구매자 로그인처리
+		@RequestMapping("/blogin.do")
+		public ModelAndView blogin(String uid, String upw, HttpServletRequest request) {
+			boolean result = bdao.blogin(uid, upw);
+			ModelAndView mav = new ModelAndView();
+			if(result==true) {
+				String ugrd=bdao.read_bgrd(uid, upw);
+				mav.setViewName("index");
+				HttpSession session=request.getSession();
+				session.setAttribute("uid", uid);
+				session.setAttribute("ugrd", ugrd);
+				session.setMaxInactiveInterval(20*60*24);
+			}else {
+				mav.setViewName("member/login");
+			}
+			return mav;
+		}//blogin() end
+		
+		
+		//판매자 로그인처리
+		@RequestMapping("/slogin.do")
+		public ModelAndView slogin(String suid, String supw, HttpServletRequest request) {
+			boolean result = sdao.slogin(suid, supw);
+			ModelAndView mav = new ModelAndView();
+			if(result==true) {
+				String ugrd=sdao.read_sgrd(suid, supw);
+				mav.setViewName("index");
+				HttpSession session=request.getSession();
+				session.setAttribute("suid", suid);
+				session.setAttribute("ugrd", ugrd);
+				session.setMaxInactiveInterval(20*60*24);
+			}else {
+				mav.setViewName("member/login");
+			}
+			return mav;
+		}//slogin() end
+		
+		//로그아웃
+		@RequestMapping("/logout.do")
+	    public ModelAndView logout(HttpServletRequest request) {
 			HttpSession session=request.getSession();
-			session.setAttribute("uid", uid);
-			session.setMaxInactiveInterval(20*60*24);
-		}else {
-			mav.setViewName("member/login");
+			session.removeAttribute("suid");
+			session.removeAttribute("uid");
+			ModelAndView mav = new ModelAndView();
+		    mav.setViewName("member/login");
+		    return mav;
 		}
-		return mav;
-	}//blogin() end
-	
-	//판매자 로그인처리
-	@RequestMapping("/slogin.do")
-	public ModelAndView slogin(String suid, String supw, HttpServletRequest request) {
-		boolean result = sdao.slogin(suid, supw);
-		ModelAndView mav = new ModelAndView();
-		if(result==true) {
-			mav.setViewName("index");
-			HttpSession session=request.getSession();
-			session.setAttribute("suid", suid);
-			session.setMaxInactiveInterval(20*60*24);
-		}else {
-			mav.setViewName("member/login");
-		}
-		return mav;
-	}//slogin() end
-	
-	//로그아웃
-	@RequestMapping("/logout.do")
-    public ModelAndView logout(HttpServletRequest request) {
-		HttpSession session=request.getSession();
-		session.removeAttribute("suid");
-		session.removeAttribute("uid");
-		ModelAndView mav = new ModelAndView();
-	    mav.setViewName("member/login");
-	    return mav;
-	}
+		
 	
 //------------------------------------------------------------------------------------------------------------------------------
 

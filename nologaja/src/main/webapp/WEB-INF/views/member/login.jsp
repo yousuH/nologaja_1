@@ -45,12 +45,12 @@
                 y.style.left = "50px";
                 z.style.left = "110px";   
             }
-
+//-------쿠키--------------------------------------------------------------------------------------------------------------------
         window.onload = function() {
         	 
        	
-           	if(getCookie("uid") != null ){
-            	document.login_buyer.uid.value = getCookie("uid"); //input 이름이 id인곳에 getCookie("id")값을 넣어줌
+           	if(getCookie("buid") != null ){
+            	document.login_buyer.uid.value = getCookie("buid"); //input 이름이 id인곳에 getCookie("id")값을 넣어줌
                 document.login_buyer.uidsave.checked = true; // 체크는 체크됨으로            	
            	}
            	
@@ -61,11 +61,19 @@
      
         }
      
-        function setCookie(name, value, expiredays) //쿠키 저장함수
+        function setCookie_s(name, value, expiredays) //쿠키 저장함수
         {
             var todayDate = new Date();
             todayDate.setDate(todayDate.getDate() + expiredays);
             document.cookie = name + "=" + escape(value) + "; path=/; expires="
+                    + todayDate.toGMTString() + ";"
+        }
+        
+        function setCookie_b(name, value, expiredays) //쿠키 저장함수
+        {
+            var todayDate = new Date();
+            todayDate.setDate(todayDate.getDate() + expiredays);
+            document.cookie = "b" + name + "=" + escape(value) + "; path=/; expires="
                     + todayDate.toGMTString() + ";"
         }
      
@@ -86,26 +94,26 @@
      
         function senditb() {
             if (document.login_buyer.uidsave.checked == true) { // 아이디 저장을 체크 하였을때
-                setCookie("uid", document.login_buyer.uid.value, 7); //쿠키이름을 id로 아이디입력필드값을 7일동안 저장
+                setCookie_b("uid", document.login_buyer.uid.value, 7)	; //쿠키이름을 id로 아이디입력필드값을 7일동안 저장
             } else { // 아이디 저장을 체크 하지 않았을때
-                setCookie("uid", document.login_buyer.uid.value, 0); //날짜를 0으로 저장하여 쿠키삭제
+                setCookie_b("uid", document.login_buyer.uid.value, 0); //날짜를 0으로 저장하여 쿠키삭제
 
             }
-            document.login_seller.submit(); //유효성 검사가 통과되면 서버로 전송.
+            document.login_seller.submit();
         }
         </script>
         <script>
 
         function sendits() {
             if (document.login_seller.suidsave.checked == true) { // 아이디 저장을 체크 하였을때
-                setCookie("suid", document.login_seller.suid.value, 7); //쿠키이름을 id로 아이디입력필드값을 7일동안 저장
+                setCookie_s("suid", document.login_seller.suid.value, 7); //쿠키이름을 id로 아이디입력필드값을 7일동안 저장
             } else { // 아이디 저장을 체크 하지 않았을때
-                setCookie("suid", document.login_seller.suid.value, 0); //날짜를 0으로 저장하여 쿠키삭제
+                setCookie_s("suid", document.login_seller.suid.value, 0); //날짜를 0으로 저장하여 쿠키삭제
 
             }
      
      
-            document.login_seller.submit(); //유효성 검사가 통과되면 서버로 전송.
+            document.login_seller.submit(); 
         }
         </script>
 

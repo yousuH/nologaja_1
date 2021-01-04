@@ -81,13 +81,25 @@ public class BuyerDAO implements IBuyerDAO{
 		
 		int count = sqlSession.selectOne("member.blogin", map);
 		if(count==1) {
-			result = true;
-			
-		}
-		
+			result = true;	
+		}		
 		return result;
-
 	}
+	
+	//등급가져오기
+
+	@Override
+	public String read_bgrd(String uid, String upw) {
+		String bgrd="";
+		
+		Map<String, String> map1 = new HashMap<String, String>();
+		map1.put("bgrd_uid", uid);
+		map1.put("bgrd_upw", upw);
+		bgrd = sqlSession.selectOne("member.read_bgrd", map1);
+		
+		return bgrd;
+	}
+
 
 
 }
