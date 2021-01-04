@@ -16,12 +16,14 @@
                     <input type="text"     class="login_input-field" name="uid" id="uid" placeholder="아이디를 입력하세요" value="${cookie.uid }" required>
                     <input type="password" class="login_input-field" name="upw" id="upw" placeholder="비밀번호를 입력하세요" required>
                     <input type="checkbox" class="login_checkbox"    name="uidsave" id="uidsave" ><span>아이디 기억하기</span>
+                    <span><a onclick="findIdpw()">아이디/비번찾기</a></span>   
                     <button class="login_submit" onclick="senditb()">로그인</button>
                 </form>
                 <form id="login_seller" name="login_seller" action="slogin.do" class="login_input-group" method="post">
                     <input type="text"     class="login_input-field" name="suid" id="suid" placeholder="아이디를 입력하세요" value="${cookie.suid }"required>
                     <input type="password" class="login_input-field" name="supw" id="supw" placeholder="비밀번호를 입력하세요" required>
                     <input type="checkbox" class="login_checkbox"    name="suidsave" id="suidsave" ><span>아이디 기억하기</span>
+                    <span><a onclick="findIdpw()">아이디/비번찾기</a></span>   
                     <button class="login_submit" onclick="sendits()">로그인</button>
                 </form>
             </div>
@@ -45,12 +47,20 @@
                 y.style.left = "50px";
                 z.style.left = "110px";   
             }
-
+            
+            
+            function findIdpw(){  
+            	window.open("findidpw.do", "아이디/비밀번호 찾기", "width=550, height=550");
+            }//findIdpw()end
+            
+            
+            
+//-------쿠키--------------------------------------------------------------------------------------------------------------------
         window.onload = function() {
         	 
        	
-           	if(getCookie("uid") != null ){
-            	document.login_buyer.uid.value = getCookie("uid"); //input 이름이 id인곳에 getCookie("id")값을 넣어줌
+           	if(getCookie("buid") != null ){
+            	document.login_buyer.uid.value = getCookie("buid"); //input 이름이 id인곳에 getCookie("id")값을 넣어줌
                 document.login_buyer.uidsave.checked = true; // 체크는 체크됨으로            	
            	}
            	
@@ -61,11 +71,19 @@
      
         }
      
-        function setCookie(name, value, expiredays) //쿠키 저장함수
+        function setCookie_s(name, value, expiredays) //쿠키 저장함수
         {
             var todayDate = new Date();
             todayDate.setDate(todayDate.getDate() + expiredays);
             document.cookie = name + "=" + escape(value) + "; path=/; expires="
+                    + todayDate.toGMTString() + ";"
+        }
+        
+        function setCookie_b(name, value, expiredays) //쿠키 저장함수
+        {
+            var todayDate = new Date();
+            todayDate.setDate(todayDate.getDate() + expiredays);
+            document.cookie = "b" + name + "=" + escape(value) + "; path=/; expires="
                     + todayDate.toGMTString() + ";"
         }
      
@@ -86,26 +104,26 @@
      
         function senditb() {
             if (document.login_buyer.uidsave.checked == true) { // 아이디 저장을 체크 하였을때
-                setCookie("uid", document.login_buyer.uid.value, 7); //쿠키이름을 id로 아이디입력필드값을 7일동안 저장
+                setCookie_b("uid", document.login_buyer.uid.value, 7)	; //쿠키이름을 id로 아이디입력필드값을 7일동안 저장
             } else { // 아이디 저장을 체크 하지 않았을때
-                setCookie("uid", document.login_buyer.uid.value, 0); //날짜를 0으로 저장하여 쿠키삭제
+                setCookie_b("uid", document.login_buyer.uid.value, 0); //날짜를 0으로 저장하여 쿠키삭제
 
             }
-            document.login_seller.submit(); //유효성 검사가 통과되면 서버로 전송.
+            document.login_seller.submit();
         }
         </script>
         <script>
 
         function sendits() {
             if (document.login_seller.suidsave.checked == true) { // 아이디 저장을 체크 하였을때
-                setCookie("suid", document.login_seller.suid.value, 7); //쿠키이름을 id로 아이디입력필드값을 7일동안 저장
+                setCookie_s("suid", document.login_seller.suid.value, 7); //쿠키이름을 id로 아이디입력필드값을 7일동안 저장
             } else { // 아이디 저장을 체크 하지 않았을때
-                setCookie("suid", document.login_seller.suid.value, 0); //날짜를 0으로 저장하여 쿠키삭제
+                setCookie_s("suid", document.login_seller.suid.value, 0); //날짜를 0으로 저장하여 쿠키삭제
 
             }
      
      
-            document.login_seller.submit(); //유효성 검사가 통과되면 서버로 전송.
+            document.login_seller.submit(); 
         }
         </script>
 

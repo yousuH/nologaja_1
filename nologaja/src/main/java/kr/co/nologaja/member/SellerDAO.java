@@ -86,5 +86,26 @@ public class SellerDAO implements ISellerDAO{
 		return result;
 
 	}
+	
+	//등급가져오기
+	@Override
+	public String read_sgrd(String suid, String supw) {
+		String sgrd="";
+		
+		Map<String, String> map1 = new HashMap<String, String>();
+		map1.put("sgrd_suid", suid);
+		map1.put("sgrd_supw", supw);
+		sgrd = sqlSession.selectOne("member.read_sgrd", map1);
+		
+		return sgrd;
+	}
+	
+	
+
+	@Override
+	public SellerDTO sfindid(SellerDTO dto) {
+		return sqlSession.selectOne("member.sfindid", dto);
+	}
+
 
 }

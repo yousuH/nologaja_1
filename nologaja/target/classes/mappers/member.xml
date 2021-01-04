@@ -79,6 +79,24 @@
 			WHERE uid=#{one} AND upw=#{two}
 		]]>
 	</select>
+	
+	<select id="read_bgrd" resultType="String" parameterType="HashMap">
+		<![CDATA[
+		SELECT ugrd
+		FROM user_buyer
+		WHERE uid = #{bgrd_uid} AND upw=#{bgrd_upw}
+		]]>
+	</select>
+	
+	<select id="bfindid" resultType="kr.co.nologaja.member.BuyerDTO">
+		<![CDATA[
+		SELECT uid, upw
+		FROM user_buyer
+		WHERE uname = #{uname} AND uemail = #{uemail}
+		]]>
+	</select>
+	
+	
 		 
 	<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 	
@@ -162,4 +180,22 @@
 			WHERE suid=#{one} AND supw=#{two}
 		]]>
 	</select>
+	
+	<select id="read_sgrd" resultType="String" parameterType="HashMap">
+		<![CDATA[
+		SELECT ugrd
+		FROM user_seller
+		WHERE suid = #{sgrd_suid} AND supw=#{sgrd_supw}
+		]]>
+	</select>
+	
+	
+	<select id="sfindid" resultType="kr.co.nologaja.member.SellerDTO">
+		<![CDATA[
+		SELECT suid, supw
+		FROM user_seller
+		WHERE uname = #{uname} AND uemail = #{uemail}
+		]]>
+	</select>
+	
 </mapper>

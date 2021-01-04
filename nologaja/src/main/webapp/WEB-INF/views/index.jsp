@@ -67,11 +67,11 @@
                                     <c:choose>  
                                     	<c:when test="${sessionScope.uid != null}">
                                     	<li class="nav-item">
-                                    		<span>${sessionScope.uid }님이 로그인 중 입니다.</span>
+                                    		<span>${sessionScope.uid }님이 로그인 중 입니다. 등급:${sessionScope.ugrd }</span>
                               			</c:when>
                               			<c:otherwise>
                               			<li class="nav-item">
-                                    		<span>${sessionScope.suid }님이 로그인 중 입니다.</span>
+                                    		<span>${sessionScope.suid }님이 로그인 중 입니다.등급:${sessionScope.ugrd }</span>
                               			</c:otherwise>
                               		</c:choose>
                                     	<li class="nav-item">

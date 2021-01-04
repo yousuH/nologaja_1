@@ -6,7 +6,6 @@
 .login_wrap {
     height: 100%;
     width: 100%;
-    background-image: url(../img/background.jpg);
     background-position: center;
     background-size: cover;
     position: relative;
@@ -86,8 +85,14 @@
     color: #777;
     font-size: 12px;
     bottom: 68px;
-    position: absolute;
 }
+
+.login_wrap .login_form-wrap span a:hover {
+  text-decoration: underline;
+}
+
+
+
 #login_buyer {
     left: 50px;
 }
