@@ -194,7 +194,50 @@ public class MemberCont {
 		    mav.setViewName("member/login");
 		    return mav;
 		}
+		//회원정보수정 폼 불러오기
+		@RequestMapping(value = "updateform.do")
+		public ModelAndView update(HttpServletRequest req) {
+			HttpSession session = req.getSession();
+			String ugrd = (String)session.getAttribute("ugrd");
+			System.out.println(ugrd);
+		//B1은 판매회원, C1는 일반회원
+			if(ugrd.equals("B1")) {
+				ModelAndView mav = new ModelAndView();
+				mav.setViewName("member/s_updateform");
+				String suid = (String)session.getAttribute("suid");
+				mav.addObject("dto", sdao.detail(suid));
+				mav.addObject("ugrd",ugrd);
+				return mav;
+			} else if(ugrd.equals("C1")) {
+				ModelAndView mav = new ModelAndView();
+				mav.setViewName("member/b_updateform");
+				String uid = (String)session.getAttribute("uid");
+				mav.addObject("dto", bdao.detail(uid));
+				mav.addObject("ugrd",ugrd);
+				return mav;
+			}
+			return null;
+		}
 		
+		//회원정보수정하기
+		@RequestMapping(value = "updateproc.do")
+		public ModelAndView update(@ModelAttribute BuyerDTO bdto, SellerDTO sdto, HttpServletRequest req) {
+			HttpSession session = req.getSession();
+			String ugrd = (String)session.getAttribute("ugrd");
+		//B1은 판매회원, C1는 일반회원
+			if(ugrd.equals("B1")) {
+				ModelAndView mav = new ModelAndView();
+				mav.setViewName("index");
+				sdao.update(sdto);
+				return mav;
+			} else if(ugrd.equals("C1")) {
+				ModelAndView mav = new ModelAndView();
+				mav.setViewName("index");
+				bdao.update(bdto);
+				return mav;
+			}
+			return null;
+		}
 	
 //------------------------------------------------------------------------------------------------------------------------------
 
