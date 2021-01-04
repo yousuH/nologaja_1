@@ -6,6 +6,6 @@
 	<div>
 	
 	메인내용	
-	
+	메인내용
 	</div>
 <%@ include file="../footer.jsp" %>
