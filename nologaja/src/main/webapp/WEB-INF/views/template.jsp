@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
 
-    <!-- 메인내용 -->
+    <!-- 메인내용234 -->
 	<div>
 		   
    	</div>
