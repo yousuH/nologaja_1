@@ -17,5 +17,6 @@ public interface IBuyerDAO {
     public int duplecateEmail(String uemail);
 	public boolean blogin(String uid , String upw);
 	String read_bgrd(String uid, String upw);
+	BuyerDTO bfindid(BuyerDTO dto);
 
 }

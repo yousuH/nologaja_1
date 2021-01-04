@@ -14,4 +14,5 @@ public interface ISellerDAO {
     public int duplecateEmail(String suid);
     public boolean slogin(String suid , String supw);
 	String read_sgrd(String suid, String supw);
+	SellerDTO sfindid(SellerDTO dto);
 }
