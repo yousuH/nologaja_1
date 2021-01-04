@@ -16,12 +16,14 @@
                     <input type="text"     class="login_input-field" name="uid" id="uid" placeholder="아이디를 입력하세요" value="${cookie.uid }" required>
                     <input type="password" class="login_input-field" name="upw" id="upw" placeholder="비밀번호를 입력하세요" required>
                     <input type="checkbox" class="login_checkbox"    name="uidsave" id="uidsave" ><span>아이디 기억하기</span>
+                    <span><a onclick="findIdpw()">아이디/비번찾기</a></span>   
                     <button class="login_submit" onclick="senditb()">로그인</button>
                 </form>
                 <form id="login_seller" name="login_seller" action="slogin.do" class="login_input-group" method="post">
                     <input type="text"     class="login_input-field" name="suid" id="suid" placeholder="아이디를 입력하세요" value="${cookie.suid }"required>
                     <input type="password" class="login_input-field" name="supw" id="supw" placeholder="비밀번호를 입력하세요" required>
                     <input type="checkbox" class="login_checkbox"    name="suidsave" id="suidsave" ><span>아이디 기억하기</span>
+                    <span><a onclick="findIdpw()">아이디/비번찾기</a></span>   
                     <button class="login_submit" onclick="sendits()">로그인</button>
                 </form>
             </div>
@@ -45,6 +47,14 @@
                 y.style.left = "50px";
                 z.style.left = "110px";   
             }
+            
+            
+            function findIdpw(){  
+            	window.open("findidpw.do", "아이디/비밀번호 찾기", "width=550, height=550");
+            }//findIdpw()end
+            
+            
+            
 //-------쿠키--------------------------------------------------------------------------------------------------------------------
         window.onload = function() {
         	 

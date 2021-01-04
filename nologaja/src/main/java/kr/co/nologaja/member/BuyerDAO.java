@@ -99,6 +99,11 @@ public class BuyerDAO implements IBuyerDAO{
 		
 		return bgrd;
 	}
+	
+	@Override
+	public BuyerDTO bfindid(BuyerDTO dto) {
+		return sqlSession.selectOne("member.bfindid", dto);
+	}
 
 
 

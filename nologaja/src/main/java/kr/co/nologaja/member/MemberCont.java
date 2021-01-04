@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import jdk.jfr.MetadataDefinition;
+import kr.co.nologaja.member.BuyerDTO;
+import net.utility.mail;
 
 
 @Controller
@@ -25,6 +27,12 @@ public class MemberCont {
 	
 	@Inject
 	SellerDAO sdao;
+	
+	@Inject
+	mail mailSending;
+	
+	@Inject
+	mail mailSending2;
 	
 	public MemberCont() {
 		System.out.println("==MemberCont()==");
@@ -198,4 +206,64 @@ public class MemberCont {
 	
 //------------------------------------------------------------------------------------------------------------------------------
 
+		
+		// 아이디 비밀번호 찾기 페이지
+		@RequestMapping(value = "/findidpw.do")
+		public ModelAndView findidpw() {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("member/findidpw");
+			return mav;
+		}
+		
+
+
+		
+		
+		
+		
+
+		// 아이디 비밀번호 찾기 결과(일반회원)
+		@RequestMapping(value = "/buyerfindid.do")
+		public ModelAndView buyerfindid(@ModelAttribute BuyerDTO dto) {
+		      ModelAndView mav = new ModelAndView();
+		      BuyerDTO result = bdao.bfindid(dto);
+		      
+		      if(result==null) {
+		    	  mav.addObject("msg2", "<p>일치하는 계정을 찾을 수 없습니다.</p>");
+		    	  mav.setViewName("member/findidpwresult");
+		      }else { 
+		    	  mailSending.mailSending(dto, result);
+		    	  
+		    	  mav.addObject("msg1", "<table><tr><th>이름</th><td>"+dto.getUname()+"</td></tr><tr><th>이메일</th><td>"+dto.getUemail()+"</td></tr></table>");
+		    	  mav.addObject("msg2", "<p>"+ dto.getUemail() +"로 아이디와 비밀번호를 전송하였습니다.</p>");
+		    	  mav.setViewName("member/findidpwresult");
+		    	  mav.addObject("dto", dto);
+		      }
+		      return mav;
+		}
+		
+		
+		// 아이디 비밀번호 찾기 결과(판매회원)
+			@RequestMapping(value = "/sellerfindid.do")
+		public ModelAndView sellerfindid(@ModelAttribute SellerDTO dto) {
+		      ModelAndView mav = new ModelAndView();
+		      SellerDTO result = sdao.sfindid(dto);
+		      
+		      if(result==null) {
+		    	  mav.addObject("msg2", "<p>일치하는 계정을 찾을 수 없습니다.</p>");
+		    	  mav.setViewName("member/findidpwresult");
+		      }else { 
+		    	  mailSending.mailSending2(dto, result);
+		    	  
+		    	  mav.addObject("msg1", "<table><tr><th>이름</th><td>"+dto.getUname()+"</td></tr><tr><th>이메일</th><td>"+dto.getUemail()+"</td></tr></table>");
+		    	  mav.addObject("msg2", "<p>"+ dto.getUemail() +"로 아이디와 비밀번호를 전송하였습니다.</p>");
+		    	  mav.setViewName("member/findidpwresult");
+		    	  mav.addObject("dto", dto);
+		      }
+		      return mav;
+		}
+		
+		
+		
+		
 }//class end
