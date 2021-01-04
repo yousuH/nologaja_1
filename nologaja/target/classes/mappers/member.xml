@@ -87,6 +87,16 @@
 		WHERE uid = #{bgrd_uid} AND upw=#{bgrd_upw}
 		]]>
 	</select>
+	
+	<select id="bfindid" resultType="kr.co.nologaja.member.BuyerDTO">
+		<![CDATA[
+		SELECT uid, upw
+		FROM user_buyer
+		WHERE uname = #{uname} AND uemail = #{uemail}
+		]]>
+	</select>
+	
+	
 		 
 	<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 	
@@ -178,4 +188,14 @@
 		WHERE suid = #{sgrd_suid} AND supw=#{sgrd_supw}
 		]]>
 	</select>
+	
+	
+	<select id="sfindid" resultType="kr.co.nologaja.member.SellerDTO">
+		<![CDATA[
+		SELECT suid, supw
+		FROM user_seller
+		WHERE uname = #{uname} AND uemail = #{uemail}
+		]]>
+	</select>
+	
 </mapper>

@@ -99,6 +99,13 @@ public class SellerDAO implements ISellerDAO{
 		
 		return sgrd;
 	}
+	
+	
+
+	@Override
+	public SellerDTO sfindid(SellerDTO dto) {
+		return sqlSession.selectOne("member.sfindid", dto);
+	}
 
 
 }
