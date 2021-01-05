@@ -1,7 +1,5 @@
 package kr.co.nologaja.hotel;
 
-import java.util.Date;
-
 public class HotelDTO {
 
 	private String hotelNumber;

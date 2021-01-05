@@ -28,5 +28,18 @@ public class HotelCont {
 		mav.addObject("dto", dto);
 		return mav;
 	}
+	
+	
+	// 마이페이지 내 룸등록
+		@RequestMapping(value = "/hotellist.do")
+		public ModelAndView hotellist(@ModelAttribute HotelDTO dto) {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("hotel/roomins");
+			mav.addObject("dto", dto);
+			return mav;
+		}
+	
+	
+	
 
 }// class end

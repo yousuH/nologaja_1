@@ -53,130 +53,119 @@ body {
 </div>
 
 <div class="main">
-	<form name="hotelinsform" method="post" action=".do"
+	<form name="hotelinsform" method="post" action="hotellist.do"
 		enctype="multipart/form-data">
 		<h2>방등록</h2>
-		
-		
+
+
 		<br>
 		<table>
-
-
-
-방이미지 (최소3장)
-방정보
-최대인원
-편의시설 (선택할 수 있게 )
-주중가격
-주말가격
-장기숙박가격
-
-
 
 			<tr>
 				<td><label for="hotelName">숙소이름</label></td>
 				<td><input type="text" name="hotelName" id="hotelName"
-					value="${dto.hotelName}" readonly><br><br>
-				</td>
+					value="${dto.hotelName}" readonly><br> <br></td>
 			</tr>
-			
+
 			<tr>
-				<td><label for=roomName">방이름</label></td>
+				<td><label for="roomName">방이름</label></td>
 				<td><input type="text" name="roomName" id="roomName"
-					placeholder="방이름을 입력해주세요." readonly><br><br>
-				</td>
+					placeholder="방이름을 입력해주세요." readonly><br> <br></td>
 			</tr>
 
 			<tr>
-				<td><label for="hotelIMG">대표이미지</label></td>
-				<td><input type="file" id="hotelIMG" name="hotelIMG" required><br><br>
-				</td>
+				<td><label for="roomInform">방소개</label></td>
+				<td><textarea rows="9" cols="50"></textarea></td>
 			</tr>
 
 			<tr>
-				<td><label for="zipcode">우편번호</label></td>
-				<td><input type="text" id="sample6_postcode" name="zipcode"
-					placeholder="우편번호" required><br><br>
-				</td>
-			</tr>
-
-			<tr>
-				<td><label for="addr1">주소 </label></td>
-				<td><input type="text" id="sample6_address" name="addr1"
-					placeholder="주소를 입력해주세요." required> <input type="button"
-					onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br><br>
-				</td>
-			</tr>
-
-			<tr>
-				<td><label for="addr2">상세주소</label></td>
-				<td><input type="text" name="addr2" id="addr2"
-					placeholder="상세주소를 입력해주세요." required><br><br>
-				</td>
-			</tr>
-
-			<tr>
-				<td><label for="bdgType">건물유형</label></td>
+				<td><label for="maxGuest">최대인원</label></td>
 				<td>
-					<div class="bdgType">
+					<div class="maxGuest">
 						<select class="nc_select">
-							<option selected>건물유형을 선택하세요</option>
-							<option value="AP">아파트</option>
-							<option value="PN">펜션</option>
-							<option value="HS">주택</option>
-							<option value="SH">상가</option>
+							<option selected>최대숙박인원</option>
+							<option value="2">2명</option>
+							<option value="3">3명</option>
+							<option value="4">4명</option>
+							<option value="5">5명</option>
+							<option value="6">6명</option>
 						</select>
-					</div><br><br>
+					</div> <br> <br>
 				</td>
 			</tr>
 
 			<tr>
-				<td><label for="hotelInform">숙소설명</label></td>
-				<td><input type="text" name="hotelInform" id="hotelInform"
-					placeholder="숙소설명문을 입력해주세요." required><br><br>
-				</td>
+				<td><label for="conv">편의시설</label></td>
+				<td><input type="checkbox" name="conv" value="KC">주방 <input
+					type="checkbox" name="conv" value="HT">난방 <input
+					type="checkbox" name="conv" value="WS">세탁기
+			</tr>
+
+
+			<tr>
+				<td><label for="baseCost">평일가격</label></td>
+				<td><input type="text" name="baseCost" id="baseCost"
+					placeholder="평일가격을 입력해주세요." onkeypress="inNumber();" required><br>
+					<br></td>
+			</tr>
+
+			<tr>
+				<td><label for="weekCost">주말가격</label></td>
+				<td><input type="text" name="weekCost" id="weekCost"
+					placeholder="주말가격을 입력해주세요." required><br> <br></td>
+			</tr>
+
+			<tr>
+				<td><label for="longCost">장기숙박가격</label></td>
+				<td><input type="text" name="longCost" id="longCost"
+					placeholder="장기숙박 할인 가격을 입력해주세요." required><br> <br></td>
 			</tr>
 
 
 
 		</table>
 
-		<input type="submit" value="다음">
+		<input type="submit" value="등록">
 
 
 	</form>
 </div>
 
 
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-        <script>
-	        function sample6_execDaumPostcode() {
-	            new daum.Postcode({
-	                oncomplete: function(data) {
-	                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-	
-	                    // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-	                    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-	                    var addr = ''; // 주소 변수
-	                    var extraAddr = ''; // 참고항목 변수
-	
-	                    //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-	                    if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-	                        addr = data.roadAddress;
-	                    } else { // 사용자가 지번 주소를 선택했을 경우(J)
-	                        addr = data.jibunAddress;
-	                    }
-	
-	                   
-	
-	                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
-	                    document.getElementById('sample6_postcode').value = data.zonecode;
-	                    document.getElementById('sample6_address').value = addr;
-	                    // 커서를 상세주소 필드로 이동한다.
-	                    document.getElementById('addr2').focus();
-	                }
-	            }).open();
-	        }
-             
-        </script>
+<script
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+	function sample6_execDaumPostcode() {
+		new daum.Postcode(
+				{
+					oncomplete : function(data) {
+						// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+						// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+						var addr = ''; // 주소 변수
+						var extraAddr = ''; // 참고항목 변수
+
+						//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+						if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+							addr = data.roadAddress;
+						} else { // 사용자가 지번 주소를 선택했을 경우(J)
+							addr = data.jibunAddress;
+						}
+
+						// 우편번호와 주소 정보를 해당 필드에 넣는다.
+						document.getElementById('sample6_postcode').value = data.zonecode;
+						document.getElementById('sample6_address').value = addr;
+						// 커서를 상세주소 필드로 이동한다.
+						document.getElementById('addr2').focus();
+					}
+				}).open();
+	}
+
+	function inNumber() {
+		if (event.keyCode<48 || event.keyCode>57) {
+			event.returnValue = false;
+		}
+	}
+</script>
 <%@ include file="../footer.jsp"%>
