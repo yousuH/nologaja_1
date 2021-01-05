@@ -203,7 +203,7 @@ public class MemberCont {
 		    return mav;
 		}
 		//회원정보수정 폼 불러오기
-		@RequestMapping(value = "updateform.do")
+		@RequestMapping(value = "/updateform.do")
 		public ModelAndView update(HttpServletRequest req) {
 			HttpSession session = req.getSession();
 			String ugrd = (String)session.getAttribute("ugrd");
@@ -228,7 +228,7 @@ public class MemberCont {
 		}
 		
 		//회원정보수정하기
-		@RequestMapping(value = "updateproc.do")
+		@RequestMapping(value = "/updateproc.do")
 		public ModelAndView update(@ModelAttribute BuyerDTO bdto, SellerDTO sdto, HttpServletRequest req) {
 			HttpSession session = req.getSession();
 			String ugrd = (String)session.getAttribute("ugrd");

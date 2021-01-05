@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import kr.co.nologaja.member.*;
 
 public interface IBuyerDAO {
 	public List<BuyerDTO> list();

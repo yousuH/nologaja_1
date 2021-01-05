@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="inquiry">
+	<!-- 문의사항 작성 -->
+	<insert id="insert" parameterType="kr.co.nologaja.cs.InquiryDTO">
+		<![CDATA[
+		INSERT INTO inquiry_admin (title, content, id, grpno)
+		VALUES (#{title}, #{content}, #{id}, (SELECT IFNULL(max(inquiryno), 0) from inquiry_admin a)+1)
+		]]>
+	</insert>
+	
+	<!-- 문의사항 리스트 -->
+	<select id="list" resultType="kr.co.nologaja.cs.InquiryDTO">
+        <![CDATA[
+            SELECT inquiryno, id, title, wdate
+            FROM inquiry_admin
+            ORDER BY inquiryno
+        ]]>
+    </select>
+</mapper>
