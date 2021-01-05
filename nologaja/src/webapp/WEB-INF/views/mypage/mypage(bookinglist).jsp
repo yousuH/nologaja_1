@@ -43,12 +43,12 @@ body {
 
     <!-- 메인내용 -->
 	<div class="sidenav">
-	  <a href="bookinglist.do">About</a>
-	  <a href="hotelins.do">Services</a>
-	  <a href="hotellist.do">Clients</a>
-	  <a href="updateform.do">Contact</a>
-	  <a href="delete.do">Contact</a>
-	  <a href="inquirylist.do">Contact</a>
+	  <a href="mypage.do">예약목록</a>
+	  <a href="hotelins.do">숙소등록</a>
+	  <a href="hotellist.do">숙소목록</a>
+	  <a href="updateform.do">회원정보수정</a>
+	  <a href="delete.do">회원탈퇴</a>
+	  <a href="inquirylist.do">문의내역</a>
 	</div>
 	
 	<div class="main">

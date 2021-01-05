@@ -15,16 +15,9 @@ public class MypageCont {
 	@RequestMapping(value = "/mypage.do")
 	public ModelAndView form() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("mypage/mypage");
+		mav.setViewName("mypage/mypage(bookinglist)");
 		return mav;
 	}
 	
-	//마이페이지(배너 상의 마이페이지 버튼)
-	@RequestMapping(value = "/bookinglist.do")
-	public ModelAndView form() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("mypage/mypage");
-		return mav;
-	}
 		
 }
