@@ -18,10 +18,10 @@
                         <h4>주요 기능</h4>
                         <ul>
                             <li><a href="member.do">회원가입</a></li>
-                            <li><a href="find.do">아이디·비밀번호 찾기</a></li>
+                            <li><a href="find.do">아이디·비밀번호 찾기</a></li>
                             <li><a href="booking.do">숙소예약</a></li>
                             <li><a href="cart.do">장바구니</a></li>
-                            <li><a href="cancel.do">예약취소</a></li>
+                            <li><a href="cancel.do">예약취소</a></li>
                             <li><a href="bookinglist.do">예약내역</a></li>
                         </ul>
                     </div>
