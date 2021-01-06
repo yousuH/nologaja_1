@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 
+
 @Controller
 public class CsCont {
 	
@@ -50,11 +51,10 @@ public class CsCont {
 		String uid = (String)session.getAttribute("uid");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("cs/inquiry_form");
-		mav.addObject("ugrd", ugrd);
 		//일반회원, 판매회원 구분해서 id값 저장
-		if (suid==null) {
+		if (ugrd.equals("C1")) {
 			mav.addObject("id", uid);
-		} else if(uid==null){
+		} else if(ugrd.equals("B1")){
 			mav.addObject("id", suid);
 		}
 		return mav;
@@ -69,7 +69,92 @@ public class CsCont {
 		return mav;
 	}//insert() end
 	
+	//문의사항 상세보기
+	@RequestMapping(value = "/inquiry_detail.do")
+	public ModelAndView inquiry_detail(int inquiryno) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("cs/inquiry_detail");
+		InquiryDTO dto = idao.detail(inquiryno);
+		mav.addObject("title", dto.getTitle());
+		mav.addObject("inquiryno", dto.getInquiryno());
+		mav.addObject("wdate", dto.getWdate());
+		
+		//content에 담겨져 있는 내용 변환
+		String content = dto.getContent();
+		content = content.replaceAll(" ", "&nbsp;");//공백
+		content = content.replaceAll("\"", "&quot;");
+		content = content.replaceAll("'", "&apos;");
+		content = content.replaceAll("<", "&lt;");
+		content = content.replaceAll(">", "&gt;");
+		content = content.replaceAll("\r\n", "<br>");//줄바꿈
+		mav.addObject("content", content);
+		return mav;
+	}//insert() end
 	
+	//문의사항 수정 폼 불러오기
+	@RequestMapping(value = "/inquiry_update.do")
+	public ModelAndView inquiry_update(int inquiryno) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("cs/inquiry_update");
+		InquiryDTO dto = idao.detail(inquiryno);
+		mav.addObject("title", dto.getTitle());
+		mav.addObject("inquiryno", dto.getInquiryno());
+		mav.addObject("id", dto.getId());
+		//content에 담겨져 있는 내용 변환
+		String content = dto.getContent();
+		content = content.replaceAll(" ", "&nbsp;");//공백
+		content = content.replaceAll("\"", "&quot;");
+		content = content.replaceAll("'", "&apos;");
+		content = content.replaceAll("<", "&lt;");
+		content = content.replaceAll(">", "&gt;");
+		content = content.replaceAll("\r\n", "<br>");//줄바꿈
+		mav.addObject("content", content);
+		return mav;
+		}//insert() end
+		
+	//문의사항 수정하기
+	@RequestMapping(value = "/inquiry_updateproc.do")
+	public ModelAndView inquiry_updateproc(@ModelAttribute InquiryDTO dto) {
+		ModelAndView mav = new ModelAndView();
+		idao.update(dto);
+		mav.setViewName("cs/inquiry_list");
+		return mav;
+	}//insert() end
+	
+	//문의사항 삭제하기
+	@RequestMapping(value = "/inquiry_delete.do")
+	public ModelAndView inquiry_delete(int inquiryno) {
+		ModelAndView mav = new ModelAndView();
+		idao.delete(inquiryno);
+		mav.setViewName("cs/inquiry_list");
+		return mav;
+	}//insert() end
+	
+	//문의사항 댓글폼 불러오기
+	@RequestMapping(value="/inquiry_reply")
+	public ModelAndView inquiry_reply(int inquiryno) {
+		ModelAndView mav = new ModelAndView();
+		//부모글의 grpno, depth값 가져옴
+		InquiryDTO dto = idao.reply(inquiryno);
+		int grpno = dto.getGrpno();
+		int depth = dto.getDepth();
+		String title = dto.getTitle();
+		depth = depth+1;
+		mav.setViewName("cs/inquiry_reply");
+		mav.addObject("grpno", grpno);
+		mav.addObject("depth", depth);
+		mav.addObject("title", title);
+		return mav;
+	}
+	
+	//문의사항 댓글달기
+	@RequestMapping(value = "/inquiry_replyproc")
+	public ModelAndView inquiry_replyproc(InquiryDTO dto) {
+		ModelAndView mav = new ModelAndView();
+		idao.replyproc(dto);
+		mav.setViewName("cs/inquiry_list");
+		return mav;
+	}
 	
 	//공지사항 폼 가져오기
 	@RequestMapping(value = "/notice_form.do")
@@ -118,7 +203,7 @@ public class CsCont {
 	
 	//공지사항 수정 폼 불러오기
 	@RequestMapping(value = "/notice_update.do")
-	public ModelAndView notice_updateproc(int noticeno) {
+	public ModelAndView notice_update(int noticeno) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("cs/notice_update");
 		NoticeDTO dto = ndao.detail(noticeno);
@@ -136,6 +221,15 @@ public class CsCont {
 		mav.addObject("content", content);
 		return mav;
 		}//insert() end
+	
+	//공지사항 수정하기
+	@RequestMapping(value = "/notice_updateproc.do")
+	public ModelAndView notice_updateproc(@ModelAttribute NoticeDTO dto) {
+		ModelAndView mav = new ModelAndView();
+		ndao.update(dto);
+		mav.setViewName("cs/notice_list");
+		return mav;
+	}//insert() end
 	
 	//공지사항 삭제하기
 	@RequestMapping(value = "/notice_delete.do")
