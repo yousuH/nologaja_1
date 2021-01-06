@@ -34,12 +34,12 @@
             WHERE faqno=#{faqno}
         ]]>
 	</update>
-	
+
 	<!-- FAQ 삭제 -->
 	<delete id="delete" parameterType="kr.co.nologaja.cs.FaqDTO">
         <![CDATA[
             DELETE FROM faq
             WHERE faqno=#{faqno}
         ]]>
-    </delete>
+	</delete>
 </mapper>
