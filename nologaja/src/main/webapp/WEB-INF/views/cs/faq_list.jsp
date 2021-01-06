@@ -12,7 +12,7 @@
 		href="notice_form.do">공지사항작성</a> <a href="faq_form.do">FAQ작성</a>
 </div>
 </div>
-<h3>공지사항리스트</h3>
+<h3>FAQ리스트</h3>
 <div class="container">
 	<div class="col-lg-2"></div>
 	<div class="col-lg-8">

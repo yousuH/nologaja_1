@@ -12,17 +12,19 @@
    	
    	<h3>문의사항 작성</h3>
 	<div class="container">
-  		<form class="form-horizontal" name="inquiryForm" action="inquiry_insert.do">
+  		<form class="form-horizontal" name="inquiryForm" action="inquiry_replyproc.do" method="post">
+  			<input type="hidden" name="grpno" value="${grpno}">
+  			<input type="hidden" name="depth" value="${depth}">
     		<div class="form-group">
       			<label class="control-label col-sm-2" for="id">작성자 : </label>
       			<div class="col-sm-10">
-					<input type="text" class="form-control ms-1" id="id" name="id" value="${id}" readonly="readonly">
+					<input type="text" class="form-control ms-1" id="id" name="id" value="${sessionScope.uid}" readonly="readonly">
       			</div>
     		</div>
     		<div class="form-group">
       			<label class="control-label col-sm-2" for="title">제목 : </label>
       			<div class="col-sm-10">
-        			<input type="text" class="form-control" id="title" name="title" placeholder="Enter subject">
+        			<input type="text" class="form-control" id="title" name="title" value="RE : ${title}" readonly="readonly">
       			</div>
     		</div>
     		<div class="form-group">

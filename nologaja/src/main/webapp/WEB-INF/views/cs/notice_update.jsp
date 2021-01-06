@@ -11,8 +11,8 @@
    	
    	<h3>공지사항 작성</h3>
    	<div class="container">
-   		<input type="hidden" name="noticeno" value="${noticeno}"
-  		<form class="form-horizontal" name="noticeForm" action="notice_update.do" method="post">
+  		<form class="form-horizontal" name="noticeForm" action="notice_updateproc.do" method="post">
+  		<input type="hidden" name="noticeno" value="${noticeno}">
     		<div class="form-group">
       			<label class="control-label col-sm-2" for="subject">제목 : </label>
       			<div class="col-sm-10">

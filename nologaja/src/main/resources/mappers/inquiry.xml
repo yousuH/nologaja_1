@@ -14,7 +14,49 @@
         <![CDATA[
             SELECT inquiryno, id, title, wdate
             FROM inquiry_admin
-            ORDER BY inquiryno
+            ORDER BY grpno desc
         ]]>
     </select>
+    
+    <!-- 문의사항 상세보기 -->
+	<select id="detail" resultType="kr.co.nologaja.cs.InquiryDTO">
+        <![CDATA[
+            SELECT inquiryno, id, title, wdate, content
+            FROM inquiry_admin
+            WHERE inquiryno=#{inquiryno}
+        ]]>
+	</select>
+
+	<!-- 문의사항 수정 -->
+	<update id="update" parameterType="kr.co.nologaja.cs.InquiryDTO">
+        <![CDATA[
+            UPDATE inquiry_admin SET title=#{title}, content=#{content}
+            WHERE inquiryno=#{inquiryno}
+        ]]>
+	</update>
+	
+	<!-- 문의사항 삭제 -->
+	<delete id="delete" parameterType="kr.co.nologaja.cs.InquiryDTO">
+        <![CDATA[
+            DELETE FROM inquiry_admin
+            WHERE inquiryno=#{inquiryno}
+        ]]>
+    </delete>
+    
+    <!-- 부모글 정보가져오기 -->
+    <select id="reply" resultType="kr.co.nologaja.cs.InquiryDTO">
+        <![CDATA[
+            SELECT title ,grpno, depth
+            FROM inquiry_admin
+            WHERE inquiryno=#{inquiryno}
+        ]]>
+	</select>
+    
+    <!-- 문의사항 답변 -->
+    <insert id="replyproc" parameterType="kr.co.nologaja.cs.InquiryDTO">
+		<![CDATA[
+		INSERT INTO inquiry_admin (title, content, id, grpno, depth)
+		VALUES (#{title}, #{content}, #{id}, #{grpno}, #{depth} )
+		]]>
+	</insert>
 </mapper>

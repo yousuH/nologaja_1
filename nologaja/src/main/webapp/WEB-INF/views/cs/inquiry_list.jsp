@@ -11,7 +11,7 @@
 		href="faq_list.do">FAQ</a> <a href="inquiry_form.do">문의사항작성</a> <a
 		href="notice_form.do">공지사항작성</a> <a href="faq_form.do">FAQ작성</a>
 </div>
-<h3>공지사항리스트</h3>
+<h3>문의사항리스트</h3>
 <div class="container">
 	<div class="col-lg-2"></div>
 	<div class="col-lg-8">
@@ -20,14 +20,14 @@
 			<table class="table table-bordered">
 				<tr class="head">
 					<td style="width: 12%">번호</td>
-					<td style="width: 43%">제목</td>
+					<td style="width: 43%">제목</a></td>
 					<td style="width: 25%">작성자</td>
 					<td style="width: 20%">작성일</td>
 				</tr>
 				<c:forEach var="dto" items="${list}">
 					<tr>
 						<td>${dto.inquiryno}</td>
-						<td>${dto.title}</td>
+						<td><a href="inquiry_detail.do?inquiryno=${dto.inquiryno}">${dto.title}</a></td>
 						<td>${dto.id}</td>
 						<td><fmt:formatDate value="${dto.wdate}"
 								pattern="yyyy-MM-dd HH:mm" /></td>

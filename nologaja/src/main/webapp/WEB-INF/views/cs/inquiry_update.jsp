@@ -12,7 +12,8 @@
    	
    	<h3>문의사항 작성</h3>
 	<div class="container">
-  		<form class="form-horizontal" name="inquiryForm" action="inquiry_insert.do">
+  		<form class="form-horizontal" name="inquiryForm" action="inquiry_updateproc.do">
+  			<input type="hidden" name="inquiryno" value="${inquiryno}">
     		<div class="form-group">
       			<label class="control-label col-sm-2" for="id">작성자 : </label>
       			<div class="col-sm-10">
@@ -22,13 +23,13 @@
     		<div class="form-group">
       			<label class="control-label col-sm-2" for="title">제목 : </label>
       			<div class="col-sm-10">
-        			<input type="text" class="form-control" id="title" name="title" placeholder="Enter subject">
+        			<input type="text" class="form-control" id="title" name="title" value="${title}">
       			</div>
     		</div>
     		<div class="form-group">
       			<label class="control-label col-sm-2" for="content">내용: </label>
       			<div class="col-sm-10">
-        			<textarea class="form-control" id="content" name="content" rows="5" cols="30" placeholder="Enter content"></textarea>
+        			<textarea class="form-control" id="content" name="content" rows="5" cols="30">${content}</textarea>
       			</div>
     		</div>
     		<div class="form-group">        
