@@ -1,5 +1,6 @@
 package kr.co.nologaja.member;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.inject.Inject;
@@ -157,7 +158,7 @@ public class MemberCont {
 
 		//구매자 로그인처리
 		@RequestMapping("/blogin.do")
-		public ModelAndView blogin(String uid, String upw, HttpServletRequest request) {
+		public ModelAndView blogin(String uid, String upw, HttpServletRequest request, HttpServletResponse resp) throws Exception {
 			boolean result = bdao.blogin(uid, upw);
 			ModelAndView mav = new ModelAndView();
 			if(result==true) {
@@ -168,6 +169,10 @@ public class MemberCont {
 				session.setAttribute("ugrd", ugrd);
 				session.setMaxInactiveInterval(20*60*24);
 			}else {
+		        resp.setContentType("text/html; charset=UTF-8");
+		        PrintWriter out = resp.getWriter();
+		        out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+		        out.flush();
 				mav.setViewName("member/login");
 			}
 			return mav;
@@ -176,7 +181,7 @@ public class MemberCont {
 		
 		//판매자 로그인처리
 		@RequestMapping("/slogin.do")
-		public ModelAndView slogin(String suid, String supw, HttpServletRequest request) {
+		public ModelAndView slogin(String suid, String supw, HttpServletRequest request, HttpServletResponse resp) throws Exception {
 			boolean result = sdao.slogin(suid, supw);
 			ModelAndView mav = new ModelAndView();
 			if(result==true) {
@@ -187,6 +192,10 @@ public class MemberCont {
 				session.setAttribute("ugrd", ugrd);
 				session.setMaxInactiveInterval(20*60*24);
 			}else {
+		        resp.setContentType("text/html; charset=UTF-8");
+		        PrintWriter out = resp.getWriter();
+		        out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+		        out.flush();
 				mav.setViewName("member/login");
 			}
 			return mav;
