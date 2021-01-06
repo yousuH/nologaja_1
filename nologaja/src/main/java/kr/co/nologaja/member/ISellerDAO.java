@@ -13,6 +13,8 @@ public interface ISellerDAO {
     public int duplecateID(String suid);
     public int duplecateEmail(String suid);
     public boolean slogin(String suid , String supw);
-	String read_sgrd(String suid, String supw);
-	SellerDTO sfindid(SellerDTO dto);
+    public String read_sgrd(String suid, String supw);
+	public SellerDTO sfindid(SellerDTO dto);
+	public SellerDTO sdelete(String suid);
+
 }

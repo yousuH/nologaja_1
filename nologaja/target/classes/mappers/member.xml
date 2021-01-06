@@ -37,15 +37,6 @@
 	</update>
 	
 	
-	
-	<delete id="bdelete" parameterType="String">
-		<![CDATA[
-		DELETE FROM user_buyer
-		WHERE uid = #{uid}
-		]]>
-	</delete>
-	
-	
 	<select id="bcheck_upw" resultType="int" parameterType="HashMap">
 		<![CDATA[
 		SELECT COUNT(*)
@@ -137,16 +128,7 @@
 		]]>
 	</update>
 	
-	
-	
-	<delete id="sdelete" parameterType="String">
-		<![CDATA[
-		DELETE FROM user_seller
-		WHERE suid = #{suid}
-		]]>
-	</delete>
-	
-	
+		
 	<select id="scheck_upw" resultType="int" parameterType="HashMap">
 		<![CDATA[
 		SELECT COUNT(*)
@@ -197,5 +179,22 @@
 		WHERE uname = #{uname} AND uemail = #{uemail}
 		]]>
 	</select>
+	
+    <update id="bdelete" parameterType="String">
+        <![CDATA[
+        UPDATE user_buyer
+        SET ugrd='F1'
+        WHERE uid = #{uid}
+        ]]>
+    </update> 
+
+
+    <update id="sdelete" parameterType="String">
+        <![CDATA[
+        UPDATE user_seller
+        SET ugrd='F1'
+        WHERE suid = #{suid}
+        ]]>
+    </update>
 	
 </mapper>
