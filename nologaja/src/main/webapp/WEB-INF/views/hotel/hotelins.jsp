@@ -53,9 +53,11 @@ body {
 </div>
 
 <div class="main">
-	<form name="hotelinsform" action="roomins.do" method="post"
+	<form name="hotelinsform" action="roomins.do" method="get"
 		enctype="multipart/form-data">
 		<input type="hidden" name="id" id="id" value="${sessionScope.suid}">
+		<input type="text" name="wido" id="wido">
+		<input type="text" name="kyengdo" id="kyengdo">
 		<h2>숙소등록</h2>
 		<br>
 		<table>
@@ -97,7 +99,7 @@ body {
 				<td><label for="bdgType">건물유형</label></td>
 				<td>
 					<div class="bdgType">
-						<select class="nc_select">
+						<select class="nc_select" required>
 							<option selected>건물유형을 선택하세요</option>
 							<option value="AP">아파트</option>
 							<option value="PN">펜션</option>
@@ -118,7 +120,7 @@ body {
 
 		</table>
 		
-		<div id="map" name="map" style="width:100%;height:350px;"></div>
+		<div id="map" style="width:100%;height:350px;"></div>
 
 		<input type="submit" value="다음">
 
@@ -129,7 +131,7 @@ body {
 
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e17caeb73a6defc5fc28f9e0e2c27306&libraries=services"></script>
+<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=e17caeb73a6defc5fc28f9e0e2c27306&libraries=services"></script>
 
 <script>
 	function sample6_execDaumPostcode() {
@@ -172,6 +174,8 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 // 주소-좌표 변환 객체를 생성합니다
 var geocoder = new kakao.maps.services.Geocoder();
 
+var addr1 = document.getElementById('addr1');
+
 // 주소로 좌표를 검색합니다
 geocoder.addressSearch(addr1, function(result, status) {
 
@@ -179,23 +183,17 @@ geocoder.addressSearch(addr1, function(result, status) {
      if (status === kakao.maps.services.Status.OK) {
 
         var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-        // 결과값으로 받은 위치를 마커로 표시합니다
-        var marker = new kakao.maps.Marker({
-            map: map,
-            position: coords
-        });
-
-        // 인포윈도우로 장소에 대한 설명을 표시합니다
-        var infowindow = new kakao.maps.InfoWindow({
-            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
-        });
-        infowindow.open(map, marker);
-
-        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-        map.setCenter(coords);
+        alert(result[0].y);
+        alert(result[0].x);
     } 
+    
 });    
 	
+var wido;
+document.getElementById('wido').value=wido;
+var kyengdo;
+document.getElementById('kyengdo').value=kyengdo;
+
+
 </script>
 <%@ include file="../footer.jsp"%>

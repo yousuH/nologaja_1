@@ -53,10 +53,9 @@ body {
 </div>
 
 <div class="main">
-	<form name="hotelinsform" method="post" action="hotelroominspro.do"
+	<form name="hotelinsform" method="get" action="hotelroominspro.do"
 		enctype="multipart/form-data">
 		<h2>방등록</h2>
-
 
 		<br>
 		<table>
@@ -64,25 +63,25 @@ body {
 			<tr>
 				<td><label for="hotelName">숙소이름</label></td>
 				<td><input type="text" name="hotelName" id="hotelName"
-					value="${dto.hotelName}" readonly><br> <br></td>
+					value="${hoteldto.hotelName}" readonly><br> <br></td>
 			</tr>
 
 			<tr>
 				<td><label for="roomName">방이름</label></td>
 				<td><input type="text" name="roomName" id="roomName"
-					placeholder="방이름을 입력해주세요." readonly><br> <br></td>
+					placeholder="방이름을 입력해주세요." required><br> <br></td>
 			</tr>
 
 			<tr>
 				<td><label for="roomInform">방소개</label></td>
-				<td><textarea rows="9" cols="50"></textarea></td>
+				<td><textarea rows="9" cols="50" required></textarea></td>
 			</tr>
 
 			<tr>
 				<td><label for="maxGuest">최대인원</label></td>
 				<td>
 					<div class="maxGuest">
-						<select class="nc_select">
+						<select class="nc_select" required>
 							<option selected>최대숙박인원</option>
 							<option value="2">2명</option>
 							<option value="3">3명</option>
@@ -104,21 +103,21 @@ body {
 
 			<tr>
 				<td><label for="baseCost">평일가격</label></td>
-				<td><input type="text" name="baseCost" id="baseCost"
-					placeholder="평일가격을 입력해주세요." onkeypress="inNumber();" required><br>
+				<td><input type="number" name="baseCost" id="baseCost"
+					placeholder="평일가격을 입력해주세요." required>원<br>
 					<br></td>
 			</tr>
 
 			<tr>
 				<td><label for="weekCost">주말가격</label></td>
-				<td><input type="text" name="weekCost" id="weekCost"
-					placeholder="주말가격을 입력해주세요." required><br> <br></td>
+				<td><input type="number" name="weekCost" id="weekCost"
+					placeholder="주말가격을 입력해주세요." required>원<br> <br></td>
 			</tr>
 
 			<tr>
 				<td><label for="longCost">장기숙박가격</label></td>
-				<td><input type="text" name="longCost" id="longCost"
-					placeholder="장기숙박 할인 가격을 입력해주세요." required><br> <br></td>
+				<td><input type="number" name="longCost" id="longCost"
+					placeholder="장기숙박 할인 가격을 입력해주세요." required>원<br> <br></td>
 			</tr>
 
 
@@ -162,10 +161,6 @@ body {
 				}).open();
 	}
 
-	function inNumber() {
-		if (event.keyCode<48 || event.keyCode>57) {
-			event.returnValue = false;
-		}
-	}
+	
 </script>
 <%@ include file="../footer.jsp"%>
