@@ -26,6 +26,8 @@
 	<context:component-scan base-package="net.utility" />
 	<context:component-scan base-package="kr.co.nologaja.member"></context:component-scan>
 	<context:component-scan base-package="kr.co.nologaja.cs"></context:component-scan>
+	<context:component-scan base-package="kr.co.nologaja.mypage"></context:component-scan>
+	<context:component-scan base-package="kr.co.nologaja.hotel"></context:component-scan>
 	
 	<!-- Gmail -->
 

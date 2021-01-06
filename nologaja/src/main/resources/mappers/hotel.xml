@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hotel">
+
+
+
+
+	<insert id="hotelins"
+		parameterType="kr.co.nologaja.hotel.HotelDTO">
+		<![CDATA[
+		INSERT INTO hotelTable (hotelNumber, wido, kyengdo, hotelName, cityCode, zipcode, addr1, addr2, bdgType, hotelIMG, hotelInform, id)
+		VALUES (#{hotelNumber}, #{wido}, #{kyengdo}, #{hotelName}, #{cityCode}, #{zipcode}, #{addr1}, #{addr2}, #{bdgType}, #{hotelIMG}, #{hotelInform}, #{id})
+		]]>
+	</insert>
+	
+	
+	
+	<insert id="roomins"
+		parameterType="kr.co.nologaja.hotel.RoomDTO">
+		<![CDATA[
+		INSERT INTO roomTable (roomNumber, roomName, hotelNumber, roomImg, roomInform, maxGuest, conv, baseCost, weekCost, longCost)
+		VALUES (#{roomNumber}, #{roomName}, #{hotelNumber}, #{roomImg}, #{roomInform}, #{maxGuest}, #{conv}, #{baseCost}, #{weekCost}, #{longCost})
+		]]>
+	</insert> 
+
+</mapper>
