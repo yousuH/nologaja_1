@@ -48,8 +48,8 @@ public class HotelCont {
 			
 			mav.addObject("roomdto", roomdto);
 			
-			hdao.hotelins(hoteldto);
-			rdao.roomins(roomdto);
+			//hdao.hotelins(hoteldto);
+			//rdao.roomins(roomdto);
 			
 			
 			mav.setViewName("mypage/hotellist");
