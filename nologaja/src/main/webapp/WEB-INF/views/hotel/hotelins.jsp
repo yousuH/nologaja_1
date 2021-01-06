@@ -53,11 +53,11 @@ body {
 </div>
 
 <div class="main">
-	<form name="hotelinsform" action="roomins.do" method="get"
+	<form name="hotelinsform" action="roomins.do" method="post"
 		enctype="multipart/form-data">
 		<input type="hidden" name="id" id="id" value="${sessionScope.suid}">
-		<input type="text" name="wido" id="wido">
-		<input type="text" name="kyengdo" id="kyengdo">
+		<input type="hidden" name="wido" id="wido" value="">
+		<input type="hidden" name="kyeongdo" id="kyeongdo" value="">
 		<h2>숙소등록</h2>
 		<br>
 		<table>
@@ -116,12 +116,7 @@ body {
 					placeholder="숙소설명문을 입력해주세요." required><br> <br></td>
 			</tr>
 
-
-
 		</table>
-		
-		<div id="map" style="width:100%;height:350px;"></div>
-
 		<input type="submit" value="다음">
 
 
@@ -144,7 +139,9 @@ body {
 						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
 						var addr = ''; // 주소 변수
 						var extraAddr = ''; // 참고항목 변수
-
+						var geocoder = new daum.maps.services.Geocoder();
+						var y= '';
+						var x= '';
 						//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
 						if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
 							addr = data.roadAddress;
@@ -155,44 +152,24 @@ body {
 						// 우편번호와 주소 정보를 해당 필드에 넣는다.
 						document.getElementById('sample6_postcode').value = data.zonecode;
 						document.getElementById('sample6_address').value = addr;
+						geocoder.addressSearch(addr, function(results, status) {
+		                    // 정상적으로 검색이 완료됐으면
+		                    if (status === daum.maps.services.Status.OK) {
+
+		                        var result = results[0]; //첫번째 결과의 값을 활용
+
+		                        // 해당 주소에 대한 좌표를 받아서
+		                        var coords = new daum.maps.LatLng(result.y, result.x);
+		                        // 지도를 보여준다.
+		                        document.getElementById('wido').value =  result.y;
+		                        document.getElementById('kyeongdo').value = result.x;
+		                    }
+		                });
 						// 커서를 상세주소 필드로 이동한다.
 						document.getElementById('addr2').focus();
 					}
 				}).open();
 	}
-	
-	
-	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };  
-
-// 지도를 생성합니다    
-var map = new kakao.maps.Map(mapContainer, mapOption); 
-
-// 주소-좌표 변환 객체를 생성합니다
-var geocoder = new kakao.maps.services.Geocoder();
-
-var addr1 = document.getElementById('addr1');
-
-// 주소로 좌표를 검색합니다
-geocoder.addressSearch(addr1, function(result, status) {
-
-    // 정상적으로 검색이 완료됐으면 
-     if (status === kakao.maps.services.Status.OK) {
-
-        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-        alert(result[0].y);
-        alert(result[0].x);
-    } 
-    
-});    
-	
-var wido;
-document.getElementById('wido').value=wido;
-var kyengdo;
-document.getElementById('kyengdo').value=kyengdo;
 
 
 </script>
