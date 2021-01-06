@@ -2,6 +2,6 @@ package kr.co.nologaja.hotel;
 
 public interface IRoomDAO {
 
-	void roomins(RoomDTO dto);
+	public void roomins(RoomDTO dto);
 
 }

@@ -11,10 +11,10 @@ import kr.co.nologaja.member.BuyerDAO;
 
 @Controller
 public class HotelCont {
-	
+
 	@Inject
 	HotelDAO hdao;
-	
+
 	@Inject
 	RoomDAO rdao;
 
@@ -38,26 +38,20 @@ public class HotelCont {
 		mav.addObject("hoteldto", hoteldto);
 		return mav;
 	}
-	
-	
-	
-	//숙소, 룸 인서트
-		@RequestMapping(value = "/hotelroominspro.do")
-		public ModelAndView hotelroominspro(@ModelAttribute RoomDTO roomdto, HotelDTO hoteldto) {
-			ModelAndView mav = new ModelAndView();
-			
-			mav.addObject("roomdto", roomdto);
-			
-			//hdao.hotelins(hoteldto);
-			//rdao.roomins(roomdto);
-			
-			
-			mav.setViewName("mypage/hotellist");
-			
-			
-			return mav;
-		}
-	
-	
+
+	// 숙소, 룸 인서트
+	@RequestMapping(value = "/hotelroominspro.do")
+	public ModelAndView hotelroominspro(@ModelAttribute RoomDTO roomdto, HotelDTO hoteldto) {
+		ModelAndView mav = new ModelAndView();
+
+		mav.addObject("roomdto", roomdto);
+
+		// hdao.hotelins(hoteldto);
+		// rdao.roomins(roomdto);
+
+		mav.setViewName("mypage/hotellist");
+
+		return mav;
+	}
 
 }// class end
