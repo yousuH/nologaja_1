@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -56,10 +57,34 @@
 								class="collapse navbar-collapse main-menu-item justify-content-end"
 								id="navbarSupportedContent">
 								<ul class="navbar-nav">
-									<li class="nav-item"><a class="nav-link" href="login.do">로그인</a>
-									</li>
-									<li class="nav-item"><a class="nav-link"
-										href="memberform.do">회원가입</a></li>
+									<c:choose>
+										<c:when
+											test="${sessionScope.uid == null && sessionScope.suid ==null }">
+											<li class="nav-item"><a class="nav-link" href="login.do">로그인</a>
+											</li>
+											<li class="nav-item"><a class="nav-link"
+												href="memberform.do">회원가입</a></li>
+										</c:when>
+
+										<c:otherwise>
+											<c:choose>
+												<c:when test="${sessionScope.uid != null}">
+													<li class="nav-item"><span>${sessionScope.uid }님이
+															로그인 중 입니다. 등급:${sessionScope.ugrd }</span>
+												</c:when>
+												<c:otherwise>
+													<li class="nav-item"><span>${sessionScope.suid }님이
+															로그인 중 입니다.등급:${sessionScope.ugrd }</span>
+												</c:otherwise>
+											</c:choose>
+											<li class="nav-item"><a class="nav-link"
+												href="logout.do">로그아웃</a></li>
+											<li class="nav-item"><a class="nav-link"
+												href="member.do">마이페이지</a></li>
+											<li class="nav-item"><a class="nav-link"
+												href="updateform.do">회원정보수정</a></li>
+										</c:otherwise>
+									</c:choose>
 									<li class="nav-item"><a class="nav-link"
 										href="inquiry_list.do">고객센터</a></li>
 								</ul>
