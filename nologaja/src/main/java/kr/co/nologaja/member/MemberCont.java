@@ -338,8 +338,7 @@ public class MemberCont {
 		// 세션영역에 있는 세션변수값 가져오기
 		// session.setAttribute("uid", uid);
 		String uid = (String) session.getAttribute("uid");
-		String upw = (String) session.getAttribute("upw");
-		bdao.bdelete(uid,upw);
+		bdao.bdelete(uid);
 
 		// 회원탈퇴가 성공되었다면...세션에 있는 모든 변수가 삭제
 		session.removeAttribute("uid");
@@ -355,8 +354,7 @@ public class MemberCont {
 	public ModelAndView sdelete(HttpSession session) {
 
 		String suid = (String) session.getAttribute("suid");
-		String supw = (String) session.getAttribute("supw");
-		sdao.sdelete(suid,supw);
+		sdao.sdelete(suid);
 				
 		session.removeAttribute("suid");
 		session.removeAttribute("ugrd");

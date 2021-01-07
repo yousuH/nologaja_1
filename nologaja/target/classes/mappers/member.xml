@@ -101,7 +101,7 @@
       <![CDATA[
       UPDATE user_buyer
       SET ugrd='F1'
-      WHERE uid = #{uid} AND upw =${upw}
+      WHERE uid = #{uid}
       ]]>
 	</update>
 
@@ -205,7 +205,7 @@
         <![CDATA[
         UPDATE user_seller
         SET ugrd='F1'
-        WHERE suid = #{suid} AND supw = ${supw}
+        WHERE suid = #{suid}
         ]]>
 	</update>
 
