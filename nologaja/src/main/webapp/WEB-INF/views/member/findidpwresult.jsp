@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="../header.jsp"%>
+<link rel="stylesheet" href="./resources/css/mypage.css">
 
 <!-- 메인내용 -->
 
