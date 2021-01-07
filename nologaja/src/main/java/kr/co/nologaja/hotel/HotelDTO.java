@@ -4,7 +4,7 @@ public class HotelDTO {
 
 	private String hotelNumber;
 	private String wido;
-	private String kyengdo;
+	private String gyengdo;
 	private String hotelName;
 	private String cityCode;
 	private String zipcode;
@@ -35,12 +35,12 @@ public class HotelDTO {
 		this.wido = wido;
 	}
 
-	public String getKyengdo() {
-		return kyengdo;
+	public String getGyengdo() {
+		return gyengdo;
 	}
 
-	public void setKyengdo(String kyengdo) {
-		this.kyengdo = kyengdo;
+	public void setGyengdo(String gyengdo) {
+		this.gyengdo = gyengdo;
 	}
 
 	public String getHotelName() {
@@ -117,7 +117,7 @@ public class HotelDTO {
 
 	@Override
 	public String toString() {
-		return "HotelDTO [hotelNumber=" + hotelNumber + ", wido=" + wido + ", kyengdo=" + kyengdo + ", hotelName="
+		return "HotelDTO [hotelNumber=" + hotelNumber + ", wido=" + wido + ", gyengdo=" + gyengdo + ", hotelName="
 				+ hotelName + ", cityCode=" + cityCode + ", zipcode=" + zipcode + ", addr1=" + addr1 + ", addr2="
 				+ addr2 + ", bdgType=" + bdgType + ", hotelIMG=" + hotelIMG + ", hotelInform=" + hotelInform + ", id="
 				+ id + "]";

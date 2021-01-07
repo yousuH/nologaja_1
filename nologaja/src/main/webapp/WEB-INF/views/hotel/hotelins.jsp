@@ -56,7 +56,7 @@ body {
 	<form name="hotelinsform" action="roomins.do" enctype="multipart/form-data" method="post">
 		<input type="hidden" name="id" id="id" value="${sessionScope.suid}">
 		<input type="hidden" name="wido" id="wido" value="">
-		<input type="hidden" name="kyeongdo" id="kyeongdo" value="">
+		<input type="hidden" name="gyengdo" id="gyengdo" value="">
 		<h2>숙소등록</h2>
 		<br>
 		<table>
@@ -161,7 +161,7 @@ body {
 		                        var coords = new daum.maps.LatLng(result.y, result.x);
 		                        // 지도를 보여준다.
 		                        document.getElementById('wido').value =  result.y;
-		                        document.getElementById('kyeongdo').value = result.x;
+		                        document.getElementById('gyengdo').value = result.x;
 		                    }
 		                });
 						// 커서를 상세주소 필드로 이동한다.

@@ -9,8 +9,8 @@
 	<insert id="hotelins"
 		parameterType="kr.co.nologaja.hotel.HotelDTO">
 		<![CDATA[
-		INSERT INTO hotelTable (hotelNumber, wido, kyengdo, hotelName, cityCode, zipcode, addr1, addr2, bdgType, hotelIMG, hotelInform, id)
-		VALUES (#{hotelNumber}, #{wido}, #{kyengdo}, #{hotelName}, #{cityCode}, #{zipcode}, #{addr1}, #{addr2}, #{bdgType}, #{hotelIMG}, #{hotelInform}, #{id})
+		INSERT INTO hotelTable (hotelNumber, wido, gyengdo, hotelName, cityCode, zipcode, addr1, addr2, bdgType, hotelIMG, hotelInform, id)
+		VALUES (#{hotelNumber}, #{wido}, #{gyengdo}, #{hotelName}, #{cityCode}, #{zipcode}, #{addr1}, #{addr2}, #{bdgType}, #{hotelIMG}, #{hotelInform}, #{id})
 		]]>
 	</insert>
 	
