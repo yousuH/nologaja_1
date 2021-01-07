@@ -11,12 +11,11 @@ public class HotelDTO {
 	private String addr1;
 	private String addr2;
 	private String bdgType;
-	private String hotelIMG;
 	private String hotelInform;
 	private String id;
-	
+
 	public HotelDTO() {
-		
+
 	}
 
 	public String getHotelNumber() {
@@ -91,14 +90,6 @@ public class HotelDTO {
 		this.bdgType = bdgType;
 	}
 
-	public String getHotelIMG() {
-		return hotelIMG;
-	}
-
-	public void setHotelIMG(String hotelIMG) {
-		this.hotelIMG = hotelIMG;
-	}
-
 	public String getHotelInform() {
 		return hotelInform;
 	}
@@ -119,10 +110,7 @@ public class HotelDTO {
 	public String toString() {
 		return "HotelDTO [hotelNumber=" + hotelNumber + ", wido=" + wido + ", gyengdo=" + gyengdo + ", hotelName="
 				+ hotelName + ", cityCode=" + cityCode + ", zipcode=" + zipcode + ", addr1=" + addr1 + ", addr2="
-				+ addr2 + ", bdgType=" + bdgType + ", hotelIMG=" + hotelIMG + ", hotelInform=" + hotelInform + ", id="
-				+ id + "]";
+				+ addr2 + ", bdgType=" + bdgType + ", hotelInform=" + hotelInform + ", id=" + id + "]";
 	}
-	
-	
-	
-}//class end 
+
+}// class end

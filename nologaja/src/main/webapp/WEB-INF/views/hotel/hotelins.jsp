@@ -25,6 +25,7 @@
 		<input type="hidden" name="wido" id="wido" value="">
 		<input type="hidden" name="gyengdo" id="gyengdo" value="">
 		<input type="hidden" name="CityCode" id="CityCode" value="">
+		<input type="hidden" name="hotelNumber" id="hotelNumber" value="1234">
 		<h2>숙소등록</h2>
 		<br>
 		<table>
@@ -128,8 +129,11 @@
 						    case '부산' :
 						    	CityCode='BU';
 						        break;
+						    case '세종' :    
+						    	CityCode='SJ';
+						    	break;
 						    case '제주' :
-						    	CityCode='JJ';;
+						    	CityCode='JJ';
 						        break;
 						    case '인천' :
 						    	CityCode='IN';

@@ -20,8 +20,7 @@
 	</div>
 
 <div class="mp_main">
-	<form name="hotelinsform" method="get" action="hotelroominspro.do"
-		enctype="multipart/form-data">
+	<form name="hotelinsform" method="get" action="hotelroominspro.do" enctype="multipart/form-data">
 		<h2>방등록</h2>
 
 		<br>
