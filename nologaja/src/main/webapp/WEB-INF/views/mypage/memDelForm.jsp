@@ -1,58 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
+<link rel="stylesheet" href="./resources/css/mypage.css">
 
-<style>
-body {
-	font-family: "Lato", sans-serif;
-}
+    <!-- 메인내용 -->
+	<div class="mp_sidenav">
+	  <a href="mypage.do">예약목록</a>
+	  <c:if test="${sessionScope.uid != null }">
+	  <a href="bookingcart.do">장바구니</a>
+	  </c:if>
+	  <c:if test="${sessionScope.suid != null }">
+	  <a href="hotelins.do">숙소등록</a>
+	  <a href="hotellist.do">숙소목록</a>
+	  </c:if>
+	  <a href="updateform.do">회원정보수정</a>
+	  <a href="delete.do"><strong>회원탈퇴</strong></a>
+	  <a href="inquirylist.do">문의내역</a>
+	</div>
 
-.sidenav {
-	width: 160px;
-	position: absolute;
-	z-index: 5;
-	top: 70px;
-	left: 0;
-	overflow-x: hidden;
-	padding-top: 20px;
-}
-
-.sidenav a {
-	padding: 6px 8px 6px 16px;
-	text-decoration: none;
-	font-size: 25px;
-	color: #818181;
-	display: block;
-}
-
-.sidenav a:hover {
-	color: #f1f1f1;
-}
-
-.main {
-	margin-left: 160px; /* Same as the width of the sidenav */
-	font-size: 28px; /* Increased text to enable scrolling */
-	padding: 0px 10px;
-}
-
-@media screen and (max-height: 450px) {
-	.sidenav {
-		padding-top: 15px;
-	}
-	.sidenav a {
-		font-size: 18px;
-	}
-}
-</style>
-
-<!-- 메인내용 -->
-<div class="sidenav">
-	<a href="mypage.do">예약목록</a> <a href="hotelins.do">숙소등록</a> <a
-		href="hotellist.do">숙소목록</a> <a href="updateform.do">회원정보수정</a> <a
-		href="delete.do">회원탈퇴</a> <a href="inquirylist.do">문의내역</a>
-</div>
-
-<div class="main">
+<div class="mp_main">
 	<div style="height: 400px">
 	<h2>회원탈퇴</h2>
 	<p>비밀번호를 입력해주세요</p>

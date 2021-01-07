@@ -5,7 +5,7 @@
 
     <!-- 메인내용 -->
 	<div class="mp_sidenav">
-	  <a href="mypage.do"><strong>예약목록</strong></a>
+	  <a href="mypage.do">예약목록</a>
 	  <c:if test="${sessionScope.uid != null }">
 	  <a href="bookingcart.do">장바구니</a>
 	  </c:if>
@@ -15,7 +15,7 @@
 	  </c:if>
 	  <a href="updateform.do">회원정보수정</a>
 	  <a href="delete.do">회원탈퇴</a>
-	  <a href="inquirylist.do">문의내역</a>
+	  <a href="inquirylist.do"><strong>문의내역</strong></a>
 	</div>
 	
 	<div class="mp_main">
