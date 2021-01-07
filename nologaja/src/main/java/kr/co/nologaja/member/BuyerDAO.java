@@ -106,7 +106,7 @@ public class BuyerDAO implements IBuyerDAO{
 	}
 
 	@Override
-	public BuyerDTO bdelete(String uid) {
+	public BuyerDTO bdelete(String uid, String upw) {
 		return sqlSession.selectOne("member.bdelete", uid);
 	}
 

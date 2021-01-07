@@ -35,7 +35,8 @@
 		<!-- 비밂번호 일치하면 submit 되게 
 		<input type="password" id="pw" name="pw" required>
 		-->
-		<input type="submit" value="회원탈퇴">
+		<input type="password" name="upw" id="upw" placeholder="비밀번호" required>
+		<input type="submit" value="회원탈퇴" onclick="if( confirm('정말 회원탈퇴를하시겠습니까?') ){ href='bdelete.do?uid=${bdao.uid }'}">	
 	</form>
 	</div>
 </div>

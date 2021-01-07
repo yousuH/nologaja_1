@@ -338,28 +338,30 @@ public class MemberCont {
 		// 세션영역에 있는 세션변수값 가져오기
 		// session.setAttribute("uid", uid);
 		String uid = (String) session.getAttribute("uid");
-		bdao.bdelete(uid);
+		String upw = (String) session.getAttribute("upw");
+		bdao.bdelete(uid,upw);
 
 		// 회원탈퇴가 성공되었다면...세션에 있는 모든 변수가 삭제
 		session.removeAttribute("uid");
 		session.removeAttribute("ugrd");
 		session.setMaxInactiveInterval(0);
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView();			
 		mav.setViewName("index");
 		return mav;
 	}// ndelete() end
-
+			
 	// 판매자 회원탈퇴
 	@RequestMapping("/sdelete.do")
 	public ModelAndView sdelete(HttpSession session) {
 
-		String suid = (String)session.getAttribute("suid");
-		sdao.sdelete(suid);
-
+		String suid = (String) session.getAttribute("suid");
+		String supw = (String) session.getAttribute("supw");
+		sdao.sdelete(suid,supw);
+				
 		session.removeAttribute("suid");
 		session.removeAttribute("ugrd");
 		session.setMaxInactiveInterval(0);
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView();			
 		mav.setViewName("index");
 		return mav;
 	}// sdelete() end

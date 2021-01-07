@@ -107,7 +107,7 @@ public class SellerDAO implements ISellerDAO{
 	}
 
     @Override
-    public SellerDTO sdelete(String suid) {
+    public SellerDTO sdelete(String suid, String supw) {
         return sqlSession.selectOne("member.sdelete", suid);
     }
 
