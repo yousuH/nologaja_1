@@ -56,7 +56,7 @@ body {
 	<form name="hotelinsform" method="get" action="hotelroominspro.do"
 		enctype="multipart/form-data">
 		<h2>방등록</h2>
-
+		<input multiple="multiple" type="file" name="roomIMG" />
 		<br>
 		<table>
 
