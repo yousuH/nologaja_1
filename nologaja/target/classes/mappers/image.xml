@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="image">
+	<!-- 호텔 이미지  삽입 -->
+	<insert id="hotel_insert" parameterType="net.utility.HotelImageDTO">
+		<![CDATA[
+		INSERT INTO image (hotelNumber ,saveFile)
+		VALUES (#{hotelNumber}, #{saveFile})
+		]]>
+	</insert>
+	
+	<!-- 룸 이미지  삽입 -->
+	<insert id="room_insert" parameterType="net.utility.RoomImageDTO">
+		<![CDATA[
+		INSERT INTO image (roomNumber ,saveFile)
+		VALUES (#{roomNumber}, #{saveFile})
+		]]>
+	</insert>
+    
+    
+</mapper>
