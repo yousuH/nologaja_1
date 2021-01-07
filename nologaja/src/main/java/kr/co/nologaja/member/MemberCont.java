@@ -344,22 +344,22 @@ public class MemberCont {
 		session.removeAttribute("uid");
 		session.removeAttribute("ugrd");
 		session.setMaxInactiveInterval(0);
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView();			
 		mav.setViewName("index");
 		return mav;
 	}// ndelete() end
-
+			
 	// 판매자 회원탈퇴
 	@RequestMapping("/sdelete.do")
 	public ModelAndView sdelete(HttpSession session) {
 
-		String suid = (String)session.getAttribute("suid");
+		String suid = (String) session.getAttribute("suid");
 		sdao.sdelete(suid);
-
+				
 		session.removeAttribute("suid");
 		session.removeAttribute("ugrd");
 		session.setMaxInactiveInterval(0);
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView();			
 		mav.setViewName("index");
 		return mav;
 	}// sdelete() end
