@@ -163,11 +163,19 @@ public class MemberCont {
 			ModelAndView mav = new ModelAndView();
 			if(result==true) {
 				String ugrd=bdao.read_bgrd(uid, upw);
-				mav.setViewName("index");
-				HttpSession session=request.getSession();
-				session.setAttribute("uid", uid);
-				session.setAttribute("ugrd", ugrd);
-				session.setMaxInactiveInterval(20*60*24);
+				if(!ugrd.equals("F1")) {
+					mav.setViewName("index");
+					HttpSession session=request.getSession();
+					session.setAttribute("uid", uid);
+					session.setAttribute("ugrd", ugrd);
+					session.setMaxInactiveInterval(20*60*24);
+				}else {
+			        resp.setContentType("text/html; charset=UTF-8");
+			        PrintWriter out = resp.getWriter();
+			        out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+			        out.flush();
+					mav.setViewName("member/login");
+				}
 			}else {
 		        resp.setContentType("text/html; charset=UTF-8");
 		        PrintWriter out = resp.getWriter();
@@ -186,11 +194,19 @@ public class MemberCont {
 			ModelAndView mav = new ModelAndView();
 			if(result==true) {
 				String ugrd=sdao.read_sgrd(suid, supw);
-				mav.setViewName("index");
-				HttpSession session=request.getSession();
-				session.setAttribute("suid", suid);
-				session.setAttribute("ugrd", ugrd);
-				session.setMaxInactiveInterval(20*60*24);
+				if(!ugrd.equals("F1")) {
+					mav.setViewName("index");
+					HttpSession session=request.getSession();
+					session.setAttribute("suid", suid);
+					session.setAttribute("ugrd", ugrd);
+					session.setMaxInactiveInterval(20*60*24);
+				}else {
+			        resp.setContentType("text/html; charset=UTF-8");
+			        PrintWriter out = resp.getWriter();
+			        out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+			        out.flush();
+					mav.setViewName("member/login");
+				}//if end
 			}else {
 		        resp.setContentType("text/html; charset=UTF-8");
 		        PrintWriter out = resp.getWriter();

@@ -1,0 +1,55 @@
+-- 구매자 테이블
+
+CREATE TABLE user_buyer (
+    uid       VARCHAR(20)    NOT NULL -- 일반회원ID
+    ,upw      VARCHAR(20)    NOT NULL -- 일반회원 비밀번호
+    ,uemail   VARCHAR(100)   NOT NULL -- 이메일
+    ,uname    VARCHAR(50)    NOT NULL -- 이름
+    ,upnb     VARCHAR(20)    NOT NULL -- 핸드폰 번호
+    ,ugrd     VARCHAR(5)     DEFAULT 'C1' NOT NULL -- 등급
+    ,ugender  CHAR(1)        NOT NULL -- 성별
+    ,wdate    DATETIME       DEFAULT NOW() NOT NULL -- 가입일
+    ,PRIMARY KEY (uid)
+);
+
+-- 판매자 테이블
+
+CREATE TABLE user_seller (
+    suid       VARCHAR(20)    NOT NULL -- 일반회원ID
+    ,supw      VARCHAR(20)    NOT NULL -- 일반회원 비밀번호
+    ,uemail    VARCHAR(100)   NOT NULL -- 이메일
+    ,uname     VARCHAR(50)    NOT NULL -- 이름
+    ,upnb      VARCHAR(20)    NOT NULL -- 핸드폰 번호
+    ,ugrd      VARCHAR(5)     DEFAULT 'B1' NOT NULL -- 등급
+    ,wdate     DATETIME       DEFAULT NOW() NOT NULL -- 가입일
+    ,bsnb      VARCHAR(50)    NOT NULL -- 사업자 번호
+    ,zipcode   VARCHAR(5)     NOT NULL   -- 우편주소
+    ,bsaddr1   VARCHAR(255)   NOT NULL -- 사업자 주소
+    ,bsaddr2   VARCHAR(30)    NOT NULL -- 사업자 주소 상세
+    ,bspnb     VARCHAR(20)    NOT NULL -- 사업자대표 번호
+    ,PRIMARY KEY (suid)
+);
+
+-- 지역 대분류 테이블
+
+create table CityCode(
+        cityCode CHAR(2) NOT NULL ,
+        cityCode_kr VARCHAR(20) NOT NULL,
+        PRIMARY KEY(cityCode)
+);
+
+-- 건물 유형 테이블
+
+create table buildingType(
+        bdgType CHAR(2) NOT NULL,
+        bdgType_kr VARCHAR(20) NOT NULL,
+        PRIMARY KEY(bdgType)
+);
+
+-- 편의시설 테이블
+
+create table convenience(
+        conv CHAR(2) NOT NULL,
+        conv_kr VARCHAR(20) NOT NULL,
+        PRIMARY KEY(conv)
+);
