@@ -83,8 +83,6 @@
 												href="logout.do">로그아웃</a></li>
 											<li class="nav-item"><a class="nav-link"
 												href="mypage.do">마이페이지</a></li>
-											<li class="nav-item"><a class="nav-link"
-												href="updateform.do">회원정보수정</a></li>
 										</c:otherwise>
 									</c:choose>
 									<li class="nav-item"><a class="nav-link"

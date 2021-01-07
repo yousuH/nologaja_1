@@ -268,12 +268,6 @@ public class MemberCont {
 		}
 		
 
-
-		
-		
-		
-		
-
 		// 아이디 비밀번호 찾기 결과(일반회원)
 		@RequestMapping(value = "/buyerfindid.do")
 		public ModelAndView buyerfindid(@ModelAttribute BuyerDTO dto) {
@@ -296,26 +290,65 @@ public class MemberCont {
 		
 		
 		// 아이디 비밀번호 찾기 결과(판매회원)
-			@RequestMapping(value = "/sellerfindid.do")
+		@RequestMapping(value = "/sellerfindid.do")
 		public ModelAndView sellerfindid(@ModelAttribute SellerDTO dto) {
-		      ModelAndView mav = new ModelAndView();
-		      SellerDTO result = sdao.sfindid(dto);
-		      
-		      if(result==null) {
-		    	  mav.addObject("msg2", "<p>일치하는 계정을 찾을 수 없습니다.</p>");
-		    	  mav.setViewName("member/findidpwresult");
-		      }else { 
-		    	  mailSending.mailSending2(dto, result);
-		    	  
-		    	  mav.addObject("msg1", "<table><tr><th>이름</th><td>"+dto.getUname()+"</td></tr><tr><th>이메일</th><td>"+dto.getUemail()+"</td></tr></table>");
-		    	  mav.addObject("msg2", "<p>"+ dto.getUemail() +"로 아이디와 비밀번호를 전송하였습니다.</p>");
-		    	  mav.setViewName("member/findidpwresult");
-		    	  mav.addObject("dto", dto);
-		      }
-		      return mav;
+			ModelAndView mav = new ModelAndView();
+			SellerDTO result = sdao.sfindid(dto);
+
+			if (result == null) {
+				mav.addObject("msg2", "<p>일치하는 계정을 찾을 수 없습니다.</p>");
+				mav.setViewName("member/findidpwresult");
+			} else {
+				mailSending.mailSending2(dto, result);
+
+				mav.addObject("msg1", "<table><tr><th>이름</th><td>" + dto.getUname() + "</td></tr><tr><th>이메일</th><td>"
+						+ dto.getUemail() + "</td></tr></table>");
+				mav.addObject("msg2", "<p>" + dto.getUemail() + "로 아이디와 비밀번호를 전송하였습니다.</p>");
+				mav.setViewName("member/findidpwresult");
+				mav.addObject("dto", dto);
+			}
+			return mav;
+		}
+
+		// 회원탈퇴페이지로 이동
+		@RequestMapping("/delete.do")
+		public ModelAndView delete() {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("mypage/memDelForm");
+			return mav;
 		}
 		
-		
-		
-		
+		// 구매자 회원 탈퇴
+		@RequestMapping("/bdelete.do")
+		public ModelAndView bdelete(HttpSession session) {
+
+			// 세션영역에 있는 세션변수값 가져오기
+			// session.setAttribute("uid", uid);
+			String uid = (String) session.getAttribute("uid");
+			bdao.bdelete(uid);
+
+			// 회원탈퇴가 성공되었다면...세션에 있는 모든 변수가 삭제
+			session.removeAttribute("uid");
+			session.removeAttribute("ugrd");
+			session.setMaxInactiveInterval(0);
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("index");
+			return mav;
+		}// ndelete() end
+
+		// 판매자 회원탈퇴
+		@RequestMapping("/sdelete.do")
+		public ModelAndView sdelete(HttpSession session) {
+
+			String suid = (String) session.getAttribute("suid");
+			sdao.sdelete(suid);
+
+			session.removeAttribute("suid");
+			session.removeAttribute("ugrd");
+			session.setMaxInactiveInterval(0);
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("index");
+			return mav;
+		}// sdelete() end
+
 }//class end
