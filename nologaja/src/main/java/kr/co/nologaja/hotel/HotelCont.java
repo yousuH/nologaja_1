@@ -44,6 +44,8 @@ public class HotelCont {
 	// 마이페이지 내 룸등록
 	@RequestMapping(value = "/roomins.do")
 	public ModelAndView roomins(@ModelAttribute HotelDTO hoteldto, MultipartHttpServletRequest mtfRequest) {
+		System.out.println("------"+hoteldto);
+
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("hotel/roomins");
 		mav.addObject("hoteldto", hoteldto);

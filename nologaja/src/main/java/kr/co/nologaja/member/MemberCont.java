@@ -153,51 +153,67 @@ public class MemberCont {
 		return mav;
 	}
 
-	// 구매자 로그인처리
+	
+	//구매자 로그인처리
 	@RequestMapping("/blogin.do")
-	public ModelAndView blogin(String uid, String upw, HttpServletRequest request, HttpServletResponse resp)
-			throws Exception {
+	public ModelAndView blogin(String uid, String upw, HttpServletRequest request, HttpServletResponse resp) throws Exception {
 		boolean result = bdao.blogin(uid, upw);
 		ModelAndView mav = new ModelAndView();
-		if (result == true) {
-			String ugrd = bdao.read_bgrd(uid, upw);
-			mav.setViewName("index");
-			HttpSession session = request.getSession();
-			session.setAttribute("uid", uid);
-			session.setAttribute("ugrd", ugrd);
-			session.setMaxInactiveInterval(20 * 60 * 24);
-		} else {
-			resp.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = resp.getWriter();
-			out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
-			out.flush();
+		if(result==true) {
+			String ugrd=bdao.read_bgrd(uid, upw);
+			if(!ugrd.equals("F1")) {
+				mav.setViewName("index");
+				HttpSession session=request.getSession();
+				session.setAttribute("uid", uid);
+				session.setAttribute("ugrd", ugrd);
+				session.setMaxInactiveInterval(20*60*24);
+			}else {
+		        resp.setContentType("text/html; charset=UTF-8");
+		        PrintWriter out = resp.getWriter();
+		        out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+		        out.flush();
+				mav.setViewName("member/login");
+			}
+		}else {
+	        resp.setContentType("text/html; charset=UTF-8");
+	        PrintWriter out = resp.getWriter();
+	        out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+	        out.flush();
 			mav.setViewName("member/login");
 		}
 		return mav;
-	}// blogin() end
-
-	// 판매자 로그인처리
+	}//blogin() end
+	
+	
+	//판매자 로그인처리
 	@RequestMapping("/slogin.do")
-	public ModelAndView slogin(String suid, String supw, HttpServletRequest request, HttpServletResponse resp)
-			throws Exception {
+	public ModelAndView slogin(String suid, String supw, HttpServletRequest request, HttpServletResponse resp) throws Exception {
 		boolean result = sdao.slogin(suid, supw);
 		ModelAndView mav = new ModelAndView();
-		if (result == true) {
-			String ugrd = sdao.read_sgrd(suid, supw);
-			mav.setViewName("index");
-			HttpSession session = request.getSession();
-			session.setAttribute("suid", suid);
-			session.setAttribute("ugrd", ugrd);
-			session.setMaxInactiveInterval(20 * 60 * 24);
-		} else {
-			resp.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = resp.getWriter();
-			out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
-			out.flush();
+		if(result==true) {
+			String ugrd=sdao.read_sgrd(suid, supw);
+			if(!ugrd.equals("F1")) {
+				mav.setViewName("index");
+				HttpSession session=request.getSession();
+				session.setAttribute("suid", suid);
+				session.setAttribute("ugrd", ugrd);
+				session.setMaxInactiveInterval(20*60*24);
+			}else {
+		        resp.setContentType("text/html; charset=UTF-8");
+		        PrintWriter out = resp.getWriter();
+		        out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+		        out.flush();
+				mav.setViewName("member/login");
+			}//if end
+		}else {
+	        resp.setContentType("text/html; charset=UTF-8");
+	        PrintWriter out = resp.getWriter();
+	        out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+	        out.flush();
 			mav.setViewName("member/login");
 		}
 		return mav;
-	}// slogin() end
+	}//slogin() end
 
 	// 로그아웃
 	@RequestMapping("/logout.do")
