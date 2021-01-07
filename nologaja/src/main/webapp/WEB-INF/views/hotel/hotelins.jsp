@@ -1,20 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
+<link rel="stylesheet" href="./resources/css/mypage.css">
 
 <!-- 메인내용 -->
-<div class="sidenav">
-	<a href="mypage.do">예약목록</a> <a href="hotelins.do"><strong>숙소등록</strong></a>
-	<a href="hotellist.do">숙소목록</a> <a href="updateform.do">회원정보수정</a> <a
-		href="delete.do">회원탈퇴</a> <a href="inquirylist.do">문의내역</a>
-</div>
+<!-- 메인내용 -->
+	<div class="mp_sidenav">
+	  <a href="mypage.do">예약목록</a>
+	  <c:if test="${sessionScope.uid != null }">
+	  <a href="bookingcart.do">장바구니</a>
+	  </c:if>
+	  <c:if test="${sessionScope.suid != null }">
+	  <a href="hotelins.do"><strong>숙소등록</strong></a>
+	  <a href="hotellist.do">숙소목록</a>
+	  </c:if>
+	  <a href="updateform.do">회원정보수정</a>
+	  <a href="delete.do">회원탈퇴</a>
+	  <a href="inquirylist.do">문의내역</a>
+	</div>
 
-<div class="main">
+<div class="mp_main">
 	<form name="hotelinsform" action="roomins.do" enctype="multipart/form-data" method="post">
 		<input type="hidden" name="id" id="id" value="${sessionScope.suid}">
 		<input type="hidden" name="wido" id="wido" value="">
 		<input type="hidden" name="gyengdo" id="gyengdo" value="">
-		<input type="text" name="CityCode" id="CityCode" value="">
+		<input type="hidden" name="CityCode" id="CityCode" value="">
 		<h2>숙소등록</h2>
 		<br>
 		<table>

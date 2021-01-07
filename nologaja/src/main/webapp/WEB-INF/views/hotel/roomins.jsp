@@ -3,6 +3,7 @@
 <%@ include file="../header.jsp"%>
 <link rel="stylesheet" href="./resources/css/mypage.css">
 
+
     <!-- 메인내용 -->
 	<div class="mp_sidenav">
 	  <a href="mypage.do">예약목록</a>
