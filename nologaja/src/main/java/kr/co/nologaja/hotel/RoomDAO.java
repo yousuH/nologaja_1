@@ -16,5 +16,14 @@ public class RoomDAO implements IRoomDAO {
 		sqlSession.insert("hotel.roomins",dto);
 	}
 	
+	@Override
+	public int roomnumFind(String roomNumber) {
+		int cnt = sqlSession.selectOne("hotel.roomnumFind", roomNumber);
+		
+		return cnt;
+		
+	}
+
+	
 	
 }//class end 

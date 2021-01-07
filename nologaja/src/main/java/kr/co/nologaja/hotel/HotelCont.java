@@ -49,13 +49,26 @@ public class HotelCont {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("hotel/roomins");
 		mav.addObject("hoteldto", hoteldto);
-		
+	      
+		//호텔넘버생성
+        String hotelNumber = hoteldto.getCityCode() + hoteldto.getBdgType() + String.format("%04d", 1); 
+        if(hdao.hotelnumFind(hotelNumber)==1) {
+        	for (int i = 2; i < 9999; i++) {
+				hotelNumber = hoteldto.getCityCode() + hoteldto.getBdgType() + String.format("%04d", i);
+				if(hdao.hotelnumFind(hotelNumber)==0) {
+					break;	
+				};
+			}
+        }
+        //호텔넘버 hoteldto에 삽입
+        hoteldto.setHotelNumber(hotelNumber);
+        
 		//호텔이미지 정보담아두기
 		MultipartFile mf = mtfRequest.getFile("hotelIMG");
 		
 		//경로는 각자 변경해줘야됨
 		//ctrl+h 개인작업 ex)조씨
-        String path = "C:/Users/조씨/git/nologaja_1/nologaja/src/main/webapp/resources/img/hotel/";
+        String path = "C:/Users/yousu/git/nologaja_1/nologaja/src/main/webapp/resources/img/hotel/";
         String originFileName = mf.getOriginalFilename(); // 원본 파일 명
         String safeFile = path + System.currentTimeMillis() + originFileName;
         	//저장 될 파일 명
@@ -67,7 +80,9 @@ public class HotelCont {
         
         mav.addObject("hotelimagedto", hotelimagedto);
         System.out.println("------"+hotelimagedto);
-
+        
+ 
+        
         try {
             mf.transferTo(new File(safeFile));
         } catch (IllegalStateException e) {
@@ -83,18 +98,33 @@ public class HotelCont {
 
 	// 숙소, 룸 인서트
 	@RequestMapping(value = "/hotelroominspro.do")
-	public ModelAndView hotelroominspro(@ModelAttribute RoomDTO roomdto, HotelDTO hoteldto, MultipartHttpServletRequest mtfRequest ) {
+	public ModelAndView hotelroominspro(@ModelAttribute RoomDTO roomdto, HotelDTO hoteldto, HotelImageDTO dto, MultipartHttpServletRequest mtfRequest) {
 		ModelAndView mav = new ModelAndView();
+		//숙소등록
+		hdao.hotelins(hoteldto);
+//		
 		
-		mav.addObject("roomdto", roomdto);
-//		//정보삽입
-//		hdao.hotelins(hoteldto);
-//		rdao.roomins(roomdto);
+		//룸넘버 생성하기
+        String roomNumber = hoteldto.getHotelNumber() + "_01";
+        
+        roomdto.setRoomNumber(roomNumber);
+        /*
+          if(rdao.roomnumFind(roomNumber)==1) {
+         
+        	for (int i = 2; i < 99; i++) {
+				roomNumber = hoteldto.getHotelNumber() + "_" + String.format("%02d", 1); 
+				if(rdao.roomnumFind(roomNumber)==0) {
+					break;	
+				};
+			}
+        }
+        */
+		
 		
 		List<MultipartFile> fileList = mtfRequest.getFiles("roomIMG");
 
 		//ctrl+h 개인작업 ex)조씨
-        String path = "C:/Users/조씨/git/nologaja_1/nologaja/src/main/webapp/resources/img/room/";
+        String path = "C:/Users/yousu/git/nologaja_1/nologaja/src/main/webapp/resources/img/room/";
 
         for (MultipartFile mf : fileList) {
             String originFileName = mf.getOriginalFilename(); // 원본 파일 명
@@ -102,7 +132,7 @@ public class HotelCont {
             String safeFile = path + System.currentTimeMillis() + originFileName;
             String saveFIle = safeFile.substring(safeFile.lastIndexOf("/")+1);
             
-            RoomImageDTO roomimagedto = null;
+            RoomImageDTO roomimagedto = new RoomImageDTO();
             roomimagedto.setRoomNumber(roomdto.getRoomNumber());
             roomimagedto.setSaveFile(saveFIle);
             
@@ -116,6 +146,8 @@ public class HotelCont {
                 e.printStackTrace();
             }
         }
+
+        rdao.roomins(roomdto);
 		
 		mav.setViewName("mypage/hotellist");
 
