@@ -12,7 +12,7 @@ public class HotelDTO {
 	private String addr2;
 	private String bdgType;
 	private String hotelInform;
-	private String id;
+	private String suid;
 
 	public HotelDTO() {
 
@@ -98,19 +98,21 @@ public class HotelDTO {
 		this.hotelInform = hotelInform;
 	}
 
-	public String getId() {
-		return id;
+
+
+	public String getSuid() {
+		return suid;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setSuid(String suid) {
+		this.suid = suid;
 	}
 
 	@Override
 	public String toString() {
 		return "HotelDTO [hotelNumber=" + hotelNumber + ", wido=" + wido + ", gyengdo=" + gyengdo + ", hotelName="
 				+ hotelName + ", cityCode=" + cityCode + ", zipcode=" + zipcode + ", addr1=" + addr1 + ", addr2="
-				+ addr2 + ", bdgType=" + bdgType + ", hotelInform=" + hotelInform + ", id=" + id + "]";
+				+ addr2 + ", bdgType=" + bdgType + ", hotelInform=" + hotelInform + ", suid=" + suid + "]";
 	}
 
 }// class end

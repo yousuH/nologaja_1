@@ -20,9 +20,21 @@
 	</div>
 
 <div class="mp_main">
-	<form name="hotelinsform" method="get" action="hotelroominspro.do" enctype="multipart/form-data">
+	<form name="hotelinsform" method="post" action="hotelroominspro.do" enctype="multipart/form-data">
 		<h2>방등록</h2>
-
+		<input type="file" multiple="multiple" name="roomIMG" id="roomIMG">
+		<input type="hidden" name="hotelpath" id="hotelpath" value="${hotelimagedto.saveFile}">
+		<input type="hidden" name="hotelNumber" id="hotelNumber" value="${hoteldto.hotelNumber}">
+		<input type="hidden" name="wido" id="wido" value="${hoteldto.wido}">
+		<input type="hidden" name="gyengdo" id="gyengdo" value="${hoteldto.gyengdo}">
+		<input type="hidden" name="cityCode" id="cityCode" value="${hoteldto.cityCode}">
+		<input type="hidden" name="zipcode" id="zipcode" value="${hoteldto.zipcode}">
+		<input type="hidden" name="addr1" id="addr1" value="${hoteldto.addr1}">
+		<input type="hidden" name="addr2" id="addr2" value="${hoteldto.addr2}">
+		<input type="hidden" name="bdgType" id="bdgType" value="${hoteldto.bdgType}">
+		<input type="hidden" name="hotelInform" id="hotelInform" value="${hoteldto.hotelInform}">
+		<input type="hidden" name="suid" id="suid" value="${hoteldto.suid}">
+		<p>${hotelimagedto.saveFile}</p>
 		<br>
 		<table>
 
@@ -40,14 +52,14 @@
 
 			<tr>
 				<td><label for="roomInform">방소개</label></td>
-				<td><textarea rows="9" cols="50" required></textarea></td>
+				<td><textarea name="roomInform" id="roomInform" rows="9" cols="50" required></textarea></td>
 			</tr>
 
 			<tr>
 				<td><label for="maxGuest">최대인원</label></td>
 				<td>
 					<div class="maxGuest">
-						<select class="nc_select" required>
+						<select class="nc_select" name="maxGuest" id="maxGuest" required>
 							<option selected>최대숙박인원</option>
 							<option value="2">2명</option>
 							<option value="3">3명</option>

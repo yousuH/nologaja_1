@@ -21,7 +21,7 @@
 
 <div class="mp_main">
 	<form name="hotelinsform" action="roomins.do" enctype="multipart/form-data" method="post">
-		<input type="hidden" name="id" id="id" value="${sessionScope.suid}">
+		<input type="hidden" name="suid" id="suid" value="${sessionScope.suid}">
 		<input type="hidden" name="wido" id="wido" value="">
 		<input type="hidden" name="gyengdo" id="gyengdo" value="">
 		<input type="hidden" name="CityCode" id="CityCode" value="">

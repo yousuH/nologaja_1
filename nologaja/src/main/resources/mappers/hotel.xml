@@ -9,8 +9,8 @@
 	<insert id="hotelins"
 		parameterType="kr.co.nologaja.hotel.HotelDTO">
 		<![CDATA[
-		INSERT INTO hotelTable (hotelNumber, wido, gyengdo, hotelName, cityCode, zipcode, addr1, addr2, bdgType, hotelIMG, hotelInform, id)
-		VALUES (#{hotelNumber}, #{wido}, #{gyengdo}, #{hotelName}, #{cityCode}, #{zipcode}, #{addr1}, #{addr2}, #{bdgType}, #{hotelIMG}, #{hotelInform}, #{id})
+		INSERT INTO hotelTable (hotelNumber, wido, gyengdo, hotelName, cityCode, zipcode, addr1, addr2, bdgType, hotelInform, suid)
+		VALUES (#{hotelNumber}, #{wido}, #{gyengdo}, #{hotelName}, #{cityCode}, #{zipcode}, #{addr1}, #{addr2}, #{bdgType}, #{hotelInform}, #{suid})
 		]]>
 	</insert>
 	
@@ -19,9 +19,25 @@
 	<insert id="roomins"
 		parameterType="kr.co.nologaja.hotel.RoomDTO">
 		<![CDATA[
-		INSERT INTO roomTable (roomNumber, roomName, hotelNumber, roomImg, roomInform, maxGuest, conv, baseCost, weekCost, longCost)
-		VALUES (#{roomNumber}, #{roomName}, #{hotelNumber}, #{roomImg}, #{roomInform}, #{maxGuest}, #{conv}, #{baseCost}, #{weekCost}, #{longCost})
+		INSERT INTO roomTable (roomNumber, roomName, hotelNumber, roomInform, maxGuest, conv, baseCost, weekCost, longCost)
+		VALUES (#{roomNumber}, #{roomName}, #{hotelNumber}, #{roomInform}, #{maxGuest}, #{conv}, #{baseCost}, #{weekCost}, #{longCost})
 		]]>
-	</insert> 
+	</insert>
+	
+	<select id="hotelnumFind" resultType="int" parameterType="String">
+		<![CDATA[
+		SELECT COUNT(*)
+		FROM hotelTable
+		WHERE hotelNumber = #{hotelNumber}
+		]]>
+	</select> 
+	
+	<select id="roomnumFind" resultType="int" parameterType="String">
+		<![CDATA[
+		SELECT COUNT(*)
+		FROM roomTable
+		WHERE roomNumber = #{roomNumber}
+		]]>
+	</select> 
 
 </mapper>

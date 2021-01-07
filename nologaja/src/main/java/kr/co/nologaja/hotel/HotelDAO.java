@@ -16,5 +16,12 @@ public class HotelDAO implements IHotelDAO{
 		sqlSession.insert("hotel.hotelins", dto);
 	}
 	
+	@Override
+	public int hotelnumFind(String hotelNumber) {
+		int cnt = sqlSession.selectOne("hotel.hotelnumFind", hotelNumber);
+		
+		return cnt;
+		
+	}
 
 }// class end 
