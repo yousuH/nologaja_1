@@ -68,7 +68,7 @@ public class HotelCont {
 		
 		//경로는 각자 변경해줘야됨
 		//ctrl+h 개인작업 ex)조씨
-        String path = "C:/Users/yousu/git/nologaja_1/nologaja/src/main/webapp/resources/img/hotel/";
+        String path = "/Users/moon/git/nologaja_1/nologaja/src/main/webapp/resources/img/hotel/";
         String originFileName = mf.getOriginalFilename(); // 원본 파일 명
         String safeFile = path + System.currentTimeMillis() + originFileName;
         	//저장 될 파일 명
@@ -81,8 +81,8 @@ public class HotelCont {
         mav.addObject("hotelimagedto", hotelimagedto);
         System.out.println("------"+hotelimagedto);
         
- 
         
+   
         try {
             mf.transferTo(new File(safeFile));
         } catch (IllegalStateException e) {
@@ -92,16 +92,16 @@ public class HotelCont {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
 		return mav;
 	}
 
 	// 숙소, 룸 인서트
 	@RequestMapping(value = "/hotelroominspro.do")
-	public ModelAndView hotelroominspro(@ModelAttribute RoomDTO roomdto, HotelDTO hoteldto, HotelImageDTO dto, MultipartHttpServletRequest mtfRequest) {
+	public ModelAndView hotelroominspro(@ModelAttribute RoomDTO roomdto, HotelDTO hoteldto, HotelImageDTO hotelimagedto, MultipartHttpServletRequest mtfRequest) {
 		ModelAndView mav = new ModelAndView();
+		RoomImageDTO roomimagedto = new RoomImageDTO();
 		//숙소등록
-		hdao.hotelins(hoteldto);
+		
 //		
 		
 		//룸넘버 생성하기
@@ -124,7 +124,7 @@ public class HotelCont {
 		List<MultipartFile> fileList = mtfRequest.getFiles("roomIMG");
 
 		//ctrl+h 개인작업 ex)조씨
-        String path = "C:/Users/yousu/git/nologaja_1/nologaja/src/main/webapp/resources/img/room/";
+        String path = "/Users/moon/git/nologaja_1/nologaja/src/main/webapp/resources/img/room/";
 
         for (MultipartFile mf : fileList) {
             String originFileName = mf.getOriginalFilename(); // 원본 파일 명
@@ -132,10 +132,10 @@ public class HotelCont {
             String safeFile = path + System.currentTimeMillis() + originFileName;
             String saveFIle = safeFile.substring(safeFile.lastIndexOf("/")+1);
             
-            RoomImageDTO roomimagedto = new RoomImageDTO();
+            
             roomimagedto.setRoomNumber(roomdto.getRoomNumber());
             roomimagedto.setSaveFile(saveFIle);
-            
+            imdao.room_insert(roomimagedto);
             try {
                 mf.transferTo(new File(safeFile));
             } catch (IllegalStateException e) {
@@ -147,10 +147,13 @@ public class HotelCont {
             }
         }
 
-        rdao.roomins(roomdto);
+//        
 		
 		mav.setViewName("mypage/hotellist");
-
+		hdao.hotelins(hoteldto);
+		rdao.roomins(roomdto);
+		imdao.hotel_insert(hotelimagedto);
+		
 		return mav;
 	}
 

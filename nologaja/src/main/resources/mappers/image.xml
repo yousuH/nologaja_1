@@ -4,7 +4,7 @@
 	<!-- 호텔 이미지  삽입 -->
 	<insert id="hotel_insert" parameterType="net.utility.HotelImageDTO">
 		<![CDATA[
-		INSERT INTO image (hotelNumber ,saveFile)
+		INSERT INTO hotelimage (hotelNumber ,saveFile)
 		VALUES (#{hotelNumber}, #{saveFile})
 		]]>
 	</insert>
@@ -12,7 +12,7 @@
 	<!-- 룸 이미지  삽입 -->
 	<insert id="room_insert" parameterType="net.utility.RoomImageDTO">
 		<![CDATA[
-		INSERT INTO image (roomNumber ,saveFile)
+		INSERT INTO roomimage (roomNumber ,saveFile)
 		VALUES (#{roomNumber}, #{saveFile})
 		]]>
 	</insert>

@@ -23,7 +23,8 @@
 	<form name="hotelinsform" method="post" action="hotelroominspro.do" enctype="multipart/form-data">
 		<h2>방등록</h2>
 		<input type="file" multiple="multiple" name="roomIMG" id="roomIMG">
-		<input type="hidden" name="hotelpath" id="hotelpath" value="${hotelimagedto.saveFile}">
+		
+		<input type="hidden" name="saveFile" id="saveFile" value="${hotelimagedto.saveFile}">
 		<input type="hidden" name="hotelNumber" id="hotelNumber" value="${hoteldto.hotelNumber}">
 		<input type="hidden" name="wido" id="wido" value="${hoteldto.wido}">
 		<input type="hidden" name="gyengdo" id="gyengdo" value="${hoteldto.gyengdo}">
@@ -34,7 +35,6 @@
 		<input type="hidden" name="bdgType" id="bdgType" value="${hoteldto.bdgType}">
 		<input type="hidden" name="hotelInform" id="hotelInform" value="${hoteldto.hotelInform}">
 		<input type="hidden" name="suid" id="suid" value="${hoteldto.suid}">
-		<p>${hotelimagedto.saveFile}</p>
 		<br>
 		<table>
 
