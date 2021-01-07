@@ -1,28 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
-<link rel="stylesheet" href="./resources/css/mypage.css">
 
-    <!-- 메인내용 -->
-	<div class="mp_sidenav">
-	  <a href="mypage.do">예약목록</a>
-	  <c:if test="${sessionScope.uid != null }">
-	  <a href="bookingcart.do">장바구니</a>
-	  </c:if>
-	  <c:if test="${sessionScope.suid != null }">
-	  <a href="hotelins.do"><strong>숙소등록</strong></a>
-	  <a href="hotellist.do">숙소목록</a>
-	  </c:if>
-	  <a href="updateform.do">회원정보수정</a>
-	  <a href="delete.do">회원탈퇴</a>
-	  <a href="inquirylist.do">문의내역</a>
-	</div>
+<!-- 메인내용 -->
+<div class="sidenav">
+	<a href="mypage.do">예약목록</a> <a href="hotelins.do"><strong>숙소등록</strong></a>
+	<a href="hotellist.do">숙소목록</a> <a href="updateform.do">회원정보수정</a> <a
+		href="delete.do">회원탈퇴</a> <a href="inquirylist.do">문의내역</a>
+</div>
 
-<div class="mp_main">
+<div class="main">
 	<form name="hotelinsform" action="roomins.do" enctype="multipart/form-data" method="post">
 		<input type="hidden" name="id" id="id" value="${sessionScope.suid}">
 		<input type="hidden" name="wido" id="wido" value="">
 		<input type="hidden" name="gyengdo" id="gyengdo" value="">
+		<input type="text" name="CityCode" id="CityCode" value="">
 		<h2>숙소등록</h2>
 		<br>
 		<table>
@@ -117,6 +109,60 @@
 						// 우편번호와 주소 정보를 해당 필드에 넣는다.
 						document.getElementById('sample6_postcode').value = data.zonecode;
 						document.getElementById('sample6_address').value = addr;
+						var arr=addr.substr(0, 2);;
+						var CityCode='';
+						switch (arr){
+						    case '서울' :
+						        CityCode='SE';
+						        break;
+						    case '부산' :
+						    	CityCode='BU';
+						        break;
+						    case '제주' :
+						    	CityCode='JJ';;
+						        break;
+						    case '인천' :
+						    	CityCode='IN';
+						        break;
+						    case '대구' :
+						    	CityCode='DG';
+						        break;
+						    case '대전' :
+						    	CityCode='DJ';
+						        break;
+						    case '광주' :
+						    	CityCode='GJ';
+						        break;
+						    case '울산' :
+						    	CityCode='UL';
+						        break;
+						    case '경기' :
+						    	CityCode='GG';
+						        break;
+						    case '강원' :
+						    	CityCode='GW';
+						        break;
+						    case '충북' :
+						    	CityCode='CB';
+						        break;
+						    case '충남' :
+						    	CityCode='CN';
+						        break;
+						    case '경북' :
+						    	CityCode='GB';
+						        break;
+						    case '경남' :
+						    	CityCode='GN';
+						        break;
+						    case '전북' :
+						    	CityCode='JB';
+						        break;
+						    case '전남' :
+						    	CityCode='JN';
+						        break;
+					        
+						}
+						document.getElementById('CityCode').value = CityCode;
 						geocoder.addressSearch(addr, function(results, status) {
 		                    // 정상적으로 검색이 완료됐으면
 		                    if (status === daum.maps.services.Status.OK) {
@@ -130,12 +176,13 @@
 		                        document.getElementById('gyengdo').value = result.x;
 		                    }
 		                });
-						// 커서를 상세주소 필드로 이동한다.
+						// 커서를 상세주소필드로 이동한다.
 						document.getElementById('addr2').focus();
 					}
-				}).open();
+		}).open();
 	}
 
 
 </script>
+
 <%@ include file="../footer.jsp"%>
