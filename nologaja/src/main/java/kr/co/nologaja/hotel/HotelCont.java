@@ -49,22 +49,24 @@ public class HotelCont {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("hotel/roomins");
 		mav.addObject("hoteldto", hoteldto);
+		
 		//호텔이미지 정보담아두기
 		MultipartFile mf = mtfRequest.getFile("hotelIMG");
-			//경로는 각자 변경해줘야됨
-        String path = "/Users/moon/git/nologaja_1/nologaja/src/main/webapp/resources/img/hotel/";
+		
+		//경로는 각자 변경해줘야됨
+		//ctrl+h 개인작업 ex)조씨
+        String path = "C:/Users/조씨/git/nologaja_1/nologaja/src/main/webapp/resources/img/hotel/";
         String originFileName = mf.getOriginalFilename(); // 원본 파일 명
         String safeFile = path + System.currentTimeMillis() + originFileName;
         	//저장 될 파일 명
         String saveFIle = safeFile.substring(safeFile.lastIndexOf("/")+1);
-        HotelImageDTO hotelimagedto = null;
+        HotelImageDTO hotelimagedto = new HotelImageDTO();
         //호텔넘버값 가져와서 hotel이미지테이블에 삽입
         hotelimagedto.setHotelNumber(hoteldto.getHotelNumber());
         hotelimagedto.setSaveFile(saveFIle);
         
         mav.addObject("hotelimagedto", hotelimagedto);
-        
-        
+        System.out.println("------"+hotelimagedto);
 
         try {
             mf.transferTo(new File(safeFile));
@@ -89,9 +91,10 @@ public class HotelCont {
 //		hdao.hotelins(hoteldto);
 //		rdao.roomins(roomdto);
 		
-		List<MultipartFile> fileList = mtfRequest.getFiles("hotelIMG");
+		List<MultipartFile> fileList = mtfRequest.getFiles("roomIMG");
 
-        String path = "/Users/moon/git/nologaja_1/nologaja/src/main/webapp/resources/img/room/";
+		//ctrl+h 개인작업 ex)조씨
+        String path = "C:/Users/조씨/git/nologaja_1/nologaja/src/main/webapp/resources/img/room/";
 
         for (MultipartFile mf : fileList) {
             String originFileName = mf.getOriginalFilename(); // 원본 파일 명
