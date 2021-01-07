@@ -9,8 +9,8 @@
 		ORDER BY wdate DESC
 		]]>
 	</select>
-	
-	
+
+
 	<select id="bdetail" resultType="kr.co.nologaja.member.BuyerDTO">
 		<![CDATA[
 		SELECT uid, upw, uemail, uname, upnb, ugrd, ugender, wdate
@@ -20,23 +20,25 @@
 	</select>
 
 
-	<insert id="binsert" parameterType="kr.co.nologaja.member.BuyerDTO">
+	<insert id="binsert"
+		parameterType="kr.co.nologaja.member.BuyerDTO">
 		<![CDATA[
 		INSERT INTO user_buyer (uid, upw, uemail, uname, upnb, ugender)
 		VALUES (#{uid}, #{upw}, #{uemail}, #{uname}, #{upnb}, #{ugender})
 		]]>
 	</insert>
-	
-	
-	<update id="bupdate" parameterType="kr.co.nologaja.member.BuyerDTO">
+
+
+	<update id="bupdate"
+		parameterType="kr.co.nologaja.member.BuyerDTO">
 		<![CDATA[
 		UPDATE user_buyer 
 		SET upw = #{upw} , uname =#{uname} , uemail = #{uemail}, upnb = #{upnb}
 		WHERE uid = #{uid}
 		]]>
 	</update>
-	
-	
+
+
 	<select id="bcheck_upw" resultType="int" parameterType="HashMap">
 		<![CDATA[
 		SELECT COUNT(*)
@@ -44,25 +46,29 @@
 		WHERE uid = #{one} AND upw = #{two}
 		]]>
 	</select>
-	
-	
-	
-	<select id="bduplicateID" resultType="int" parameterType="String">
+
+
+
+	<select id="bduplicateID" resultType="int"
+		parameterType="String">
 		<![CDATA[
 		SELECT COUNT(*)
 		FROM user_buyer
 		WHERE uid = #{uid}
 		]]>
 	</select>
-	
-	<select id="bduplicateEmail" resultType="int" parameterType="String">
+
+
+	<select id="bduplicateEmail" resultType="int"
+		parameterType="String">
 		<![CDATA[
 		SELECT COUNT(*)
 		FROM user_buyer
 		WHERE uemail = #{uemail}
 		]]>
 	</select>
-	
+
+
 	<select id="blogin" resultType="int" parameterType="HashMap">
 		<![CDATA[
 			SELECT COUNT(*)
@@ -70,15 +76,18 @@
 			WHERE uid=#{one} AND upw=#{two}
 		]]>
 	</select>
-	
-	<select id="read_bgrd" resultType="String" parameterType="HashMap">
+
+
+	<select id="read_bgrd" resultType="String"
+		parameterType="HashMap">
 		<![CDATA[
 		SELECT ugrd
 		FROM user_buyer
 		WHERE uid = #{bgrd_uid} AND upw=#{bgrd_upw}
 		]]>
 	</select>
-	
+
+
 	<select id="bfindid" resultType="kr.co.nologaja.member.BuyerDTO">
 		<![CDATA[
 		SELECT uid, upw
@@ -86,17 +95,26 @@
 		WHERE uname = #{uname} AND uemail = #{uemail}
 		]]>
 	</select>
-	
-	
-		 
-	<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
-	
-	
-	
-	
+
+
+	<update id="bdelete" parameterType="String">
+      <![CDATA[
+      UPDATE user_buyer
+      SET ugrd='F1'
+      WHERE uid = #{uid}
+      ]]>
+	</update>
+
+
+
+	<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+
+
 	<select id="slist" resultType="kr.co.nologaja.member.SellerDTO">
 		<![CDATA[
-		SELECT suid, supw, uemail, uname, upnb, ugrd, wdate, bsnb, bsaddr1, bsaddr2, bspnb
+		SELECT suid, supw, uemail, uname, upnb, ugrd, wdate, bsnb, zipcode, bsaddr1, bsaddr2, bspnb
 		FROM user_seller
 		ORDER BY wdate DESC
 		]]>
@@ -105,7 +123,7 @@
 	
 	<select id="sdetail" resultType="kr.co.nologaja.member.SellerDTO">
 		<![CDATA[
-		SELECT suid, supw, uemail, uname, upnb, ugrd, wdate, bsnb, bsaddr1, bsaddr2, bspnb
+		SELECT suid, supw, uemail, uname, upnb, ugrd, wdate, bsnb, zipcode, bsaddr1, bsaddr2, bspnb
 		FROM user_seller
 		WHERE suid = #{suid}
 		]]>
@@ -114,8 +132,8 @@
 
 	<insert id="sinsert" parameterType="kr.co.nologaja.member.SellerDTO">
 		<![CDATA[
-		INSERT INTO user_seller (suid, supw, uemail, uname, upnb, bsnb, bsaddr1, bsaddr2, bspnb)
-		VALUES (#{suid}, #{supw}, #{uemail}, #{uname}, #{upnb}, #{bsnb}, #{bsaddr1}, #{bsaddr2}, #{bspnb})
+		INSERT INTO user_seller (suid, supw, uemail, uname, upnb, bsnb, zipcode, bsaddr1, bsaddr2, bspnb)
+		VALUES (#{suid}, #{supw}, #{uemail}, #{uname}, #{upnb}, #{bsnb}, #{zipcode}, #{bsaddr1}, #{bsaddr2}, #{bspnb})
 		]]>
 	</insert>
 	
@@ -123,12 +141,12 @@
 	<update id="supdate" parameterType="kr.co.nologaja.member.SellerDTO">
 		<![CDATA[
 		UPDATE user_seller 
-		SET supw = #{supw} , uname =#{uname} , uemail = #{uemail}, upnb = #{upnb}, bspnb = #{bspnb}
+		SET supw = #{supw}, uemail = #{uemail}, uname = #{uname}, upnb = #{upnb}, bspnb = #{bspnb}
 		WHERE suid = #{suid}
 		]]>
 	</update>
 	
-		
+	
 	<select id="scheck_upw" resultType="int" parameterType="HashMap">
 		<![CDATA[
 		SELECT COUNT(*)
@@ -136,7 +154,6 @@
 		WHERE suid = #{one} AND supw = #{two}
 		]]>
 	</select>
-	
 	
 	
 	<select id="sduplicateID" resultType="int" parameterType="String">
@@ -147,6 +164,7 @@
 		]]>
 	</select>
 	
+	
 	<select id="sduplicateEmail" resultType="int" parameterType="String">
 		<![CDATA[
 		SELECT COUNT(*)
@@ -155,19 +173,21 @@
 		]]>
 	</select>
 	
+	
 	<select id="slogin" resultType="int" parameterType="HashMap">
 		<![CDATA[
 			SELECT COUNT(*)
 			FROM user_seller
-			WHERE suid=#{one} AND supw=#{two}
+			WHERE suid = #{one} AND supw = #{two}
 		]]>
 	</select>
+	
 	
 	<select id="read_sgrd" resultType="String" parameterType="HashMap">
 		<![CDATA[
 		SELECT ugrd
 		FROM user_seller
-		WHERE suid = #{sgrd_suid} AND supw=#{sgrd_supw}
+		WHERE suid = #{sgrd_suid} AND supw = #{sgrd_supw}
 		]]>
 	</select>
 	
@@ -179,22 +199,14 @@
 		WHERE uname = #{uname} AND uemail = #{uemail}
 		]]>
 	</select>
-	
-    <update id="bdelete" parameterType="String">
-        <![CDATA[
-        UPDATE user_buyer
-        SET ugrd='F1'
-        WHERE uid = #{uid}
-        ]]>
-    </update> 
 
 
-    <update id="sdelete" parameterType="String">
+	<update id="sdelete" parameterType="String">
         <![CDATA[
         UPDATE user_seller
         SET ugrd='F1'
         WHERE suid = #{suid}
         ]]>
-    </update>
-	
+	</update>
+
 </mapper>

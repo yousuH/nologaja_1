@@ -12,54 +12,53 @@
                 </div>
                 <form name="mj_buyer" id="mj_buyer" method="post" action="buyerjoin.do" class="mj_input-group" onsubmit="return b_send()">
                     <div>
-                    	<input type="text" class="mj_input-field" name="uid" id="uid" placeholder="Enter ID" required>
+                    	<input type="text" class="mj_input-field" name="uid" id="uid" placeholder="아이디를 입력하세요" required>
                     	<input type="button" class="mj_input-field" value="ID중복확인" id="btn_uid"><br>
                     	<div id="panel_uid"></div> <!-- 아이디 중복 관련 메세지 -->
                     </div>
                     <div>
-                    	<input type="password" class="mj_input-field" name="upw" id="upw" placeholder="Enter Password" required>
-                    	<input type="password" class="mj_input-field" name="reupw" id="reupw" placeholder="Check Password" required>
-                    	<div class="alert alert-success" id="alert-success">비밀번호가 일치합니다</div>
-                    	<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다</div>
+                    	<input type="password" class="mj_input-field" name="upw" id="upw" placeholder="비밀번호를 입력하세요" required>
+                    	<input type="password" class="mj_input-field" name="reupw" id="reupw" placeholder="비밀번호를 다시 입력하세요" required>
+                    	<div class="alert alert-success" id="b_alert-success">비밀번호가 일치합니다</div>
+                    	<div class="alert alert-danger" id="b_alert-danger">비밀번호가 일치하지 않습니다</div>
                     </div>
-                    <input type="text" class="mj_input-field" name="uname" id="uname" placeholder="Enter Name" required>
+                    <input type="text" class="mj_input-field" name="uname" id="uname" placeholder="이름을 입력하세요" required>
                     <div>
-                    	<input type="email" class="mj_input-field" name="uemail" id="uemail" placeholder="Enter Email" required>
-                    	<input type="button" class="mj_input-field" value="Email중복확인" id="btn_uemail"><br>
-                    	<div id="panel_uemail"></div> <!-- 아이디 중복 관련 메세지 -->
+                    	<input type="email" class="mj_input-field" name="uemail" id="uemail" placeholder="이메일을 입력하세요" required>
+                    	<input type="button" class="mj_input-field" value="Email중복확인" id="b_btn_uemail"><br>
+                    	<div id="b_panel_uemail"></div> <!-- 아이디 중복 관련 메세지 -->
                     </div>
-                    <input type="text" class="mj_input-field" name="upnb" id="upnb" placeholder="Enter PhoneNumber" required>
+                    <input type="text" class="mj_input-field" name="upnb" id="upnb" placeholder="핸드폰번호를 입력하세요" required>
                     <input type="radio" name="ugender" id="ugender" value="M" checked>남자
                     <input type="radio" name="ugender" id="ugender" value="F">여자
                     <button class="mj_submit">회원가입</button>
                 </form>
                 <form name="mj_seller" id="mj_seller" method="post" action="sellerjoin.do" class="mj_input-group" onsubmit="return s_send()">
                 	<div>
-                    	<input type="text" class="mj_input-field" name="suid" placeholder="Enter ID" required>
+                    	<input type="text" class="mj_input-field" name="suid" id="suid" placeholder="아이디를 입력하세요" required>
                     	<input type="button" class="mj_input-field" value="ID중복확인" id="btn_suid"><br>
                     	<div id="panel_suid"></div> <!-- 아이디 중복 관련 메세지 -->
                     </div>
                     <div>
-                    	<input type="password" class="mj_input-field" name="supw" placeholder="Enter Password" required>
-                    	<input type="password" class="mj_input-field" name="sreupw" placeholder="Check Password" required>
-                    	<div class="alert alert-success" id="alert-success">비밀번호가 일치합니다</div>
-                    	<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다</div>
+                    	<input type="password" class="mj_input-field" name="supw" id="supw" placeholder="비밀번호를 입력하세요" required>
+                    	<input type="password" class="mj_input-field" name="sreupw" id="sreupw" placeholder="비밀번호를 다시 입력하세요" required>
+                    	<div class="alert alert-success" id="s_alert-success">비밀번호가 일치합니다</div>
+                    	<div class="alert alert-danger" id="s_alert-danger">비밀번호가 일치하지 않습니다</div>
                     </div>
-	                    <input type="email" class="mj_input-field" name="uemail" placeholder="Enter Email" required>
-	                    <input type="button" class="mj_input-field" value="Email중복확인" id="btn_uemail"><br>
-                    	<div id="panel_uemail"></div> <!-- 아이디 중복 관련 메세지 -->
+                    <input type="text" class="mj_input-field" name="uname" id="uname" placeholder="이름을 입력하세요" required>
                     <div>
-                    	<input type="text" class="mj_input-field" name="uname" placeholder="Enter Name" required>
-                    </div>
-                    <input type="text" class="mj_input-field" name="bspnb" placeholder="Enter PhoneNumber" required>
-                    <input type="text" class="mj_input-field" id="sample6_postcode"name="zipcode" placeholder="zipcode">
-					<input type="text" class="mj_input-field" id="sample6_address" name="bsaddr1" placeholder="Enter Address">
+	                    <input type="email" class="mj_input-field" name="uemail" id="uemail" placeholder="이메일을 입력하세요" required>
+	                    <input type="button" class="mj_input-field" value="Email중복확인" id="s_btn_uemail"><br>
+                    	<div id="s_panel_uemail"></div> <!-- 아이디 중복 관련 메세지 -->
+                    </div> 
+                    <input type="text" class="mj_input-field" name="upnb" id="upnb" placeholder="핸드폰번호을 입력하세요">
+                    <input type="text" class="mj_input-field" name="bsnb" id="bsnb" placeholder="사업자번호를 입력하세요">
+                    <input type="text" class="mj_input-field" name="zipcode" id="zipcode" placeholder="사업자주소 우편번호" readonly>
+					<input type="text" class="mj_input-field" name="bsaddr1" id="bsaddr1" placeholder="사업자주소" readonly>
 					<input type="button" class="mj_input-field" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-					<input type="text"  class="mj_input-field"id="sample6_detailAddress" name="bsaddr2"  placeholder="Detail Address">
-					<input type="text"  class="mj_input-field"id="bspnb" name="bspnb"  placeholder="사업자 번호">
-					<input type="text"  class="mj_input-field"id="upnb" name="upnb"  placeholder="핸드폰번호">
-                    <input type="checkbox" class="mj_checkbox"><span>Terms and conditions</span>
-                    <button class="mj_submit" >회원가입</button>
+					<input type="text" class="mj_input-field" name="bsaddr2" id="bsaddr2" placeholder="사업자상세주소를 입력하세요">
+					<input type="text" class="mj_input-field" name="bspnb" id="bspnb" placeholder="사업자 대표번호를 입력하세요">
+                    <button class="mj_submit">회원가입</button>
                 </form>
             </div>
         </div>
@@ -82,13 +81,11 @@
 	                        addr = data.jibunAddress;
 	                    }
 	
-	                   
-	
 	                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
-	                    document.getElementById('sample6_postcode').value = data.zonecode;
-	                    document.getElementById("sample6_address").value = addr;
+	                    document.getElementById("zipcode").value = data.zonecode;
+	                    document.getElementById("bsaddr1").value = addr;
 	                    // 커서를 상세주소 필드로 이동한다.
-	                    document.getElementById("sample6_detailAddress").focus();
+	                    document.getElementById("bsaddr2").focus();
 	                }
 	            }).open();
 	        }
@@ -109,6 +106,7 @@
                 y.style.left = "50px";
                 z.style.left = "110px";
             }
+            
 
         </script>
 <%@ include file="../footer.jsp" %>

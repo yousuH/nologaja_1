@@ -33,8 +33,7 @@ public class SellerDAO implements ISellerDAO{
 
 	@Override
 	public void delete(String suid) {
-		sqlSession.delete("member.sdelete",suid);
-		
+		sqlSession.delete("member.sdelete", suid);
 	}
 
 	@Override

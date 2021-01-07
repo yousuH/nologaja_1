@@ -11,7 +11,7 @@ public interface ISellerDAO {
     public void update(SellerDTO dto);
     public boolean checkpasswd(String suid, String supw);
     public int duplecateID(String suid);
-    public int duplecateEmail(String suid);
+    public int duplecateEmail(String uemail);
     public boolean slogin(String suid , String supw);
     public String read_sgrd(String suid, String supw);
 	public SellerDTO sfindid(SellerDTO dto);
