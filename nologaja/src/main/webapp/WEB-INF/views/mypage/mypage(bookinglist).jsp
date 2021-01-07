@@ -44,8 +44,10 @@ body {
     <!-- 메인내용 -->
 	<div class="sidenav">
 	  <a href="mypage.do">예약목록</a>
+	  <c:if test="${sessionScope.suid != null }">
 	  <a href="hotelins.do">숙소등록</a>
 	  <a href="hotellist.do">숙소목록</a>
+	  </c:if>
 	  <a href="updateform.do">회원정보수정</a>
 	  <a href="delete.do">회원탈퇴</a>
 	  <a href="inquirylist.do">문의내역</a>
