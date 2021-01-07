@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.nologaja.member.BuyerDAO;
@@ -31,8 +32,9 @@ public class HotelCont {
 	}
 
 	// 마이페이지 내 룸등록
-	@RequestMapping(value = "/roomins.do")
+	@RequestMapping(value = "/roomins.do", method = RequestMethod.POST)
 	public ModelAndView roomins(@ModelAttribute HotelDTO hoteldto) {
+		System.out.println("------"+hoteldto);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("hotel/roomins");
 		mav.addObject("hoteldto", hoteldto);

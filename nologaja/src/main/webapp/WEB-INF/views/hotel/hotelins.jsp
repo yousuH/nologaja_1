@@ -53,8 +53,7 @@ body {
 </div>
 
 <div class="main">
-	<form name="hotelinsform" action="roomins.do" method="post"
-		enctype="multipart/form-data">
+	<form name="hotelinsform" action="roomins.do" enctype="multipart/form-data" method="post">
 		<input type="hidden" name="id" id="id" value="${sessionScope.suid}">
 		<input type="hidden" name="wido" id="wido" value="">
 		<input type="hidden" name="kyeongdo" id="kyeongdo" value="">
@@ -99,7 +98,7 @@ body {
 				<td><label for="bdgType">건물유형</label></td>
 				<td>
 					<div class="bdgType">
-						<select class="nc_select" required>
+						<select class="nc_select" id="bdgType" name="bdgType" required>
 							<option selected>건물유형을 선택하세요</option>
 							<option value="AP">아파트</option>
 							<option value="PN">펜션</option>
