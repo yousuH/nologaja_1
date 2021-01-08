@@ -15,6 +15,6 @@ public interface ISellerDAO {
     public boolean slogin(String suid , String supw);
     public String read_sgrd(String suid, String supw);
 	public SellerDTO sfindid(SellerDTO dto);
-	public SellerDTO sdelete(String suid);
+	public int sdelete(String suid, String supw);
 
 }

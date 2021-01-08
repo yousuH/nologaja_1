@@ -17,5 +17,5 @@ public interface IBuyerDAO {
 	public boolean blogin(String uid , String upw);
 	public String read_bgrd(String uid, String upw);
 	public BuyerDTO bfindid(BuyerDTO dto);
-	public BuyerDTO bdelete(String uid);
+	public int bdelete(String uid, String upw);
 }

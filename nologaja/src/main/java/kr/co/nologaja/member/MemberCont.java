@@ -332,36 +332,50 @@ public class MemberCont {
 	}
 
 	// 구매자 회원 탈퇴
-	@RequestMapping("/bdelete.do")
-	public ModelAndView bdelete(HttpSession session) {
+		@RequestMapping("/bdelete.do")
+		public ModelAndView bdelete(HttpServletRequest req, HttpSession session) {
+			ModelAndView mav = new ModelAndView();			
 
-		// 세션영역에 있는 세션변수값 가져오기
-		// session.setAttribute("uid", uid);
-		String uid = (String) session.getAttribute("uid");
-		bdao.bdelete(uid);
-
-		// 회원탈퇴가 성공되었다면...세션에 있는 모든 변수가 삭제
-		session.removeAttribute("uid");
-		session.removeAttribute("ugrd");
-		session.setMaxInactiveInterval(0);
-		ModelAndView mav = new ModelAndView();			
-		mav.setViewName("index");
-		return mav;
-	}// ndelete() end
+			// 세션영역에 있는 세션변수값 가져오기
+			// session.setAttribute("uid", uid);
+			String uid = (String) session.getAttribute("uid");
+			String upw = (String) req.getParameter("upw");
 			
-	// 판매자 회원탈퇴
-	@RequestMapping("/sdelete.do")
-	public ModelAndView sdelete(HttpSession session) {
-
-		String suid = (String) session.getAttribute("suid");
-		sdao.sdelete(suid);
-				
-		session.removeAttribute("suid");
-		session.removeAttribute("ugrd");
-		session.setMaxInactiveInterval(0);
-		ModelAndView mav = new ModelAndView();			
-		mav.setViewName("index");
-		return mav;
-	}// sdelete() end
+			int cnt=bdao.bdelete(uid, upw); //회원탈퇴성공 1, 실패0
+			if(cnt==0) {
+				//회원탈퇴가 성공하지 못했다면
+				mav.setViewName("mypage/memDelForm");
+				mav.addObject("cnt", cnt);
+			}else {
+				// 회원탈퇴가 성공되었다면...세션에 있는 모든 변수가 삭제
+				session.removeAttribute("uid");
+				session.removeAttribute("ugrd");
+				session.setMaxInactiveInterval(0);
+				mav.setViewName("index");
+			}//if end
+			return mav;
+		}// ndelete() end
+		
+		// 판매자 회원탈퇴
+		@RequestMapping("/sdelete.do")
+		public ModelAndView sdelete(HttpServletRequest req,HttpSession session) {
+			ModelAndView mav = new ModelAndView();
+			
+			String suid = (String) session.getAttribute("suid");
+			String supw = (String) req.getParameter("supw");
+			
+			int cnt=sdao.sdelete(suid,supw);
+			if(cnt==0) {
+				//회원탈퇴가 성공하지 못했다면
+				mav.setViewName("mypage/memDelForm");
+				mav.addObject("cnt", cnt);
+			}else {				
+			session.removeAttribute("suid");
+			session.removeAttribute("ugrd");
+			session.setMaxInactiveInterval(0);			
+			mav.setViewName("index");
+			}
+			return mav;
+		}// sdelete() end
 
 }// class end
