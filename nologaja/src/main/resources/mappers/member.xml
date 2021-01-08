@@ -97,20 +97,15 @@
 	</select>
 
 
-	<update id="bdelete" parameterType="String">
-      <![CDATA[
-      UPDATE user_buyer
-      SET ugrd='F1'
-      WHERE uid = #{uid}
-      ]]>
-	</update>
-
-
+	<update id="bdelete" parameterType="HashMap">
+     <![CDATA[
+	     UPDATE user_buyer
+	     SET ugrd='F1'
+	     WHERE uid=#{uid} AND upw=#{upw}
+     ]]>
+    </update>
 
 	<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-
-
-
 
 	<select id="slist" resultType="kr.co.nologaja.member.SellerDTO">
 		<![CDATA[
@@ -201,12 +196,12 @@
 	</select>
 
 
-	<update id="sdelete" parameterType="String">
-        <![CDATA[
-        UPDATE user_seller
-        SET ugrd='F1'
-        WHERE suid = #{suid}
-        ]]>
-	</update>
+	  <update id="sdelete" parameterType="HashMap">
+     <![CDATA[
+	     UPDATE user_seller
+	     SET ugrd='F1'
+	     WHERE suid=#{suid} AND supw=#{supw}
+     ]]>
+    </update>
 
 </mapper>

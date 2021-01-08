@@ -106,8 +106,18 @@ public class BuyerDAO implements IBuyerDAO{
 	}
 
 	@Override
-	public BuyerDTO bdelete(String uid) {
-		return sqlSession.selectOne("member.bdelete", uid);
+	public int bdelete(String uid, String upw) {
+		//회원탈퇴 성공하면 1, 실패하면 0 반환
+		
+		//아이디와 비번을 map담아서 member.xml에 전달
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("uid", uid);
+		map.put("upw", upw);		
+		int cnt=sqlSession.update("member.bdelete", map);
+		System.out.println("----" + uid);
+		System.out.println("----" + upw);
+		System.out.println("----" + cnt);
+		return cnt;	
 	}
 
 }

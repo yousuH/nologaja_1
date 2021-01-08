@@ -106,9 +106,19 @@ public class SellerDAO implements ISellerDAO{
 		return sqlSession.selectOne("member.sfindid", dto);
 	}
 
-    @Override
-    public SellerDTO sdelete(String suid) {
-        return sqlSession.selectOne("member.sdelete", suid);
+	@Override
+    public int sdelete(String suid, String supw) {
+    	//회원탈퇴 성공하면 1, 실패하면 0 반환
+		
+    	//아이디와 비번을 map담아서 member.xml에 전달
+    	HashMap<String, String> map = new HashMap<String, String>();
+    	map.put("suid", suid);
+    	map.put("supw", supw);		
+    	int cnt=sqlSession.update("member.sdelete", map);
+    	System.out.println("----" + suid);
+    	System.out.println("----" + supw);
+    	System.out.println("----" + cnt);
+        return cnt;	
     }
 
 
