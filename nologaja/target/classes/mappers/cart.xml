@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cart">
+
+	
+	
+	
+	
+	<select id="getcartFolders" resultType="kr.co.nologaja.cart.CartFolderDTO" parameterType="String">
+		<![CDATA[
+		SELECT ctFolder_name, ctFolder_num
+		FROM cartFolder
+		WHERE uid= #{uid} 
+		]]>
+	</select>
+	
+	
+	<select id="getcartitems" resultType="kr.co.nologaja.cart.CartDTO" parameterType="int">
+		<![CDATA[
+		SELECT ct_num, roomNumber, guests, ck_in, ck_out, night, totalFee, ctFolder_name, ctFolder_num
+		FROM cartTable
+		WHERE ctFolder_num= #{ctFolder_num} 
+		]]>
+	</select>
+	
+	
+	
+	<insert id="addcartfolder" parameterType="kr.co.nologaja.cart.CartFolderDTO">
+		<![CDATA[
+		INSERT INTO cartFolder (ctFolder_name, uid)
+		VALUES (#{ctFolder_name}, #{uid})
+		]]>
+	</insert>
+	
+
+</mapper>

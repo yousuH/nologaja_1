@@ -7,7 +7,7 @@
 	<div class="mp_sidenav">
 	  <a href="mypage.do"><strong>예약목록</strong></a>
 	  <c:if test="${sessionScope.uid != null }">
-	  <a href="bookingcart.do">장바구니</a>
+	  <a href="cartfolderlist.do">장바구니</a>
 	  </c:if>
 	  <c:if test="${sessionScope.suid != null }">
 	  <a href="hotelins.do">숙소등록</a>
