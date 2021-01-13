@@ -5,10 +5,11 @@ public class BkDTO {
 	private String bk_num;
 	private String ck_in;
 	private String ck_out;
+	private int night;
 	private String hotelName;
 	private String roomNumber;
-	private String roonName;
-	private int guests;
+	private String roomName;
+	private int maxGuest;
 	private int fee;
 	private String uid;
 	private String request;
@@ -19,10 +20,6 @@ public class BkDTO {
 
 	public String getBk_num() {
 		return bk_num;
-	}
-
-	public void setBk_num(String bk_num) {
-		this.bk_num = bk_num;
 	}
 
 	public String getCk_in() {
@@ -41,6 +38,14 @@ public class BkDTO {
 		this.ck_out = ck_out;
 	}
 
+	public int getNight() {
+		return night;
+	}
+
+	public void setNight(int night) {
+		this.night = night;
+	}
+
 	public String getHotelName() {
 		return hotelName;
 	}
@@ -57,20 +62,20 @@ public class BkDTO {
 		this.roomNumber = roomNumber;
 	}
 
-	public String getRoonName() {
-		return roonName;
+	public String getRoomName() {
+		return roomName;
 	}
 
-	public void setRoonName(String roonName) {
-		this.roonName = roonName;
+	public void setRoomName(String roomName) {
+		this.roomName = roomName;
 	}
 
-	public int getGuests() {
-		return guests;
+	public int getMaxGuest() {
+		return maxGuest;
 	}
 
-	public void setGuests(int guests) {
-		this.guests = guests;
+	public void setMaxGuest(int maxGuest) {
+		this.maxGuest = maxGuest;
 	}
 
 	public int getFee() {
@@ -113,11 +118,16 @@ public class BkDTO {
 		this.pay_st = pay_st;
 	}
 
-	@Override
-	public String toString() {
-		return "BkRoomDTO [bk_num=" + bk_num + ", ck_in=" + ck_in + ", ck_out=" + ck_out + ", hotelName=" + hotelName
-				+ ", roomNumber=" + roomNumber + ", roonName=" + roonName + ", guests=" + guests + ", fee=" + fee
-				+ ", uid=" + uid + ", request=" + request + ", pay=" + pay + ", pay_st=" + pay_st + "]";
+	public void setBk_num(String bk_num) {
+		this.bk_num = bk_num;
 	}
 
+	@Override
+	public String toString() {
+		return "BkDTO [bk_num=" + bk_num + ", ck_in=" + ck_in + ", ck_out=" + ck_out + ", night=" + night
+				+ ", hotelName=" + hotelName + ", roomNumber=" + roomNumber + ", roomName=" + roomName + ", maxGuest="
+				+ maxGuest + ", fee=" + fee + ", uid=" + uid + ", request=" + request + ", pay=" + pay + ", pay_st="
+				+ pay_st + "]";
+	}
+	
 }

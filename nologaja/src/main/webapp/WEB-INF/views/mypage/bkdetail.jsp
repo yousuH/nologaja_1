@@ -21,37 +21,41 @@
 	<div class="mp_main">
 		<h2>예약목록</h2>
 		<form name="bklist" id="bklist" method="post" action="bklist.do">
-			<input type="hidden" name="roomNumber" id="roomNumber" value="${roomdto.roomNumber}">
+			<input type="hidden" name="roomNumber" id="roomNumber" value="${BkDTO.roomNumber}">
 			<input type="hidden" name="uid" id="uid" value="${sessionScope.uid}">
 			
-			<table class="table table-hover text-center">
-				<thead>
+			<table class="table table-hover text-center">			
+				
 					<tr>
 						<th>예약번호</th>
-						<th class="text-center">숙소명/방이름</th>
-						<th class="text-center">인원수</th>
-						<th class="text-center">체크인</th>
-						<th class="text-center">체크아웃</th>
-						<th class="text-center">총가격</th>
-						<th class="text-center">결제수단</th>
+						<td>${dto.bk_num}</td>
 					</tr>
-				</thead>
+					<tr>
+						<th class="text-center">숙소명/방이름</th>
+						<td>${dto.hotelName}/${dto.roomName}</td>
+					</tr>
+					<tr>
+						<th class="text-center">인원수</th>
+						<td>${dto.maxGuest}</td>
+					</tr>
+					<tr>
+						<th class="text-center">체크인</th>
+						<td>${dto.ck_in}</td>
+					</tr>
+					<tr>
+						<th class="text-center">체크아웃</th>
+						<td>${dto.ck_out}</td>
+					</tr>
+					<tr>
+						<th class="text-center">총가격</th>
+						<td>${dto.fee}</td>
+					</tr>
+					<tr>
+						<th class="text-center">결제수단</th>
+						<td>${dto.pay}</td>
+					</tr>
 				
-				<tbody>
-					<c:forEach var="BkDTO" items="${bklist}">
-						<tr>
-							<td>
-								<input type="text" name="hotelName" id="hotelName" value="${BkDTO.hotelName}">/
-								<input type="text" name="roomName" id="roomName" value="${BkDTO.roomName}">
-							</td>
-							<td><input type="number" name="guests" id="guests" value="${BkDTO.guests}"></td>
-							<td><input type="number" name="ck_in" id="ck_in" value="${BkDTO.ck_in}"></td>
-							<td><input type="number" name="ck_out" id="ck_out" value="${BkDTO.ck_out}"></td>
-							<td><input type="number" name="fee" id="fee" value="${BkDTO.fee}"></td>
-							<td><input type="text" name="pay" id="pay" value="${BkDTO.pay}"></td>
-						</tr>
-					</c:forEach>
-				</tbody>
+				
 			</table>
 			<input type="button" value="예약취소">
 			

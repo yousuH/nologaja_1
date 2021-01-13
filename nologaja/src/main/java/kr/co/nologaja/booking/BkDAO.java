@@ -20,25 +20,27 @@ public class BkDAO implements IBkDAO {
 
 	@Override
 	public void insert(BkDTO dto) {
-		sqlSession.insert("booking.bkinsert",dto);
-		
+		sqlSession.insert("booking.bkinsert", dto);
 	}
 
 	@Override
-	public BkDTO detail(BkDTO bk_num) {
+	public BkDTO detail(String bk_num) {
 		return sqlSession.selectOne("booking.bkdetail", bk_num);
+	}
+	
+	@Override
+	public List<BkDTO> bklist(String bk_num) {
+		return sqlSession.selectList("booking.bklist");
 	}
 
 	@Override
 	public void delete(String bk_num) {
 		sqlSession.delete("member.bkdelete", bk_num);
-		
 	}
 
 	@Override
 	public void update(BkDTO dto) {
 		sqlSession.update("member.bkupdate", dto);
-		
 	}
 	
 }

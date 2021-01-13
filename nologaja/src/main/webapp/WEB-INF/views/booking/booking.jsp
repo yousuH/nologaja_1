@@ -98,11 +98,11 @@
 								<div class="tab-pane fade show active" id="hotel"
 									role="tabpanel" aria-labelledby="hotel-tab">
 									<div class="booking_form">
-										<form action="hotellist.do">
+										<form action="search.do">
 											<div class="form-row">
 												<div class="form_colum" >
 													<select class="nc_select" name="cityCode" id="cityCode">
-														<option value="" selected>${Hoteldto.cityCode}</option>
+														<option value="${param.cityCode }" selected></option>
 														<option value="SE">서울</option>
 														<option value="BU">부산</option>
 														<option value="IN">인천</option>
@@ -122,14 +122,14 @@
 													</select>
 												</div>
 												<div class="form_colum">
-													<input name="ck_in" id="datepicker_1" placeholder="Check in date">
+													<input name="ck_in" id="datepicker_1" placeholder="Check in date" value="${param.ck_in }">
 												</div>
 												<div class="form_colum">
-													<input name= "ck_out" id="datepicker_2" placeholder="Check out date">
+													<input name= "ck_out" id="datepicker_2" placeholder="Check out date" value="${param.ck_out }">
 												</div>
 												<div class="form_colum">
 													<select class="nc_select" name="maxGuest" id="maxGuest">
-														<option value="" selected>Person</option>
+														<option value="${param.maxGuest }" selected>Person</option>
 														<option value="1">1명</option>
 														<option value="2">2명</option>
 														<option value="3">3명</option>
@@ -156,34 +156,38 @@
 	<!-- 메인내용 -->
 	<%-- 왼쪽 sidebar 상세검색 정도 나와야 하는건가? --%>
 	<h2>예약정보</h2>
+	<br>
 	<p>다음 정보를 확인해 주세요</p>
 	<form name="booking" id="booking" method="post" action="bookingproc.do">
-		<input type="hidden" name="roomNumber" id="roomNumber" value="${roomNumber}">
-		<input type="hidden" name="uid" id="uid" value="${sessionScope.uid}">
+		방번호 : <input type="text" name="roomNumber" id="roomNumber" value="SEAP0001_01">
+		아이디 : <input type="text" name="uid" id="uid" value="${sessionScope.uid}">
+		박수 : <input type="text" name="night" id="night">
 		
 		<table class="center">
 			<tr>
 				<th>숙소명/방이름</th>
 				<td>
-					<input type="text" name="hotelName" id="hotelName" readonly>${hotelName}/
-					<input type="text" name="roomName" id="roomName" readonly>${roomName}
+					<input type="text" name="hotelName" id="hotelName">
+				</td>
+				<td>
+					<input type="text" name="roomName" id="roomName">
 				</td>
 			</tr>
 			<tr>
 				<th>인원수</th>
-				<td><input type="number" name="guests" id="guests" readonly>${guests}</td>
+				<td><input type="number" name="maxGuest" id="maxGuest"></td>
 			</tr>
 			<tr>
 				<th>체크인</th>
-				<td><input type="number" name="checkin" id="ck_in" readonly>${ck_in}</td>
+				<td><input type="text" name="ck_in" id="ck_in"></td>
 			</tr>
 			<tr>
 				<th>체크아웃</th>
-				<td><input type="number" name="checkout" id="ck_out" readonly>${ck_out}</td>
+				<td><input type="text" name="ck_out" id="ck_out"></td>
 			</tr>
 			<tr>
 				<th>총합계</th>
-				<td><input type="number" name="fee" id="fee" readonly>${fee}</td>
+				<td><input type="number" name="fee" id="fee"></td>
 			</tr>
 			<tr>
 				<th>결제수단</th>
@@ -197,14 +201,62 @@
 			</tr>
 			<tr>
 				<th>요청사항</th>
-				<td><textarea type="text" name="request" id="request" rows="9" cols="50" required></textarea></td>
+				<td><textarea type="text" name="request" id="request" rows="9" cols="50"></textarea></td>
 			</tr>
 		</table>
 		<input type="submit" value="예약완료">
 		
 	</form>
 	
-	
+	<!-- 
+	<form name="booking" id="booking" method="post" action="bookingproc.do">
+		<input type="hidden" name="roomNumber" id="roomNumber" value="${param.roomNumber}">
+		<input type="hidden" name="uid" id="uid" value="${sessionScope.uid}">
+		<input type="hidden" name="night" id="night" value="${night}">
+		
+		<table class="center">
+			<tr>
+				<th>숙소명/방이름</th>
+				<td>
+					<input type="text" name="hotelName" id="hotelName" value="${param.hotelName}" readonly>/
+					<input type="text" name="roomName" id="roomName" value="${param.roomName}" readonly>
+				</td>
+			</tr>
+			<tr>
+				<th>인원수</th>
+				<td><input type="number" name="maxGuest" id="maxGuest" value="${param.maxGuest}" readonly></td>
+			</tr>
+			<tr>
+				<th>체크인</th>
+				<td><input type="number" name="ck_in" id="ck_in" value="${param.ck_in}" readonly></td>
+			</tr>
+			<tr>
+				<th>체크아웃</th>
+				<td><input type="number" name="ck_out" id="ck_out" value="${param.ck_out}" readonly></td>
+			</tr>
+			<tr>
+				<th>총합계</th>
+				<td><input type="number" name="fee" id="fee" value="${param.fee}" readonly></td>
+			</tr>
+			<tr>
+				<th>결제수단</th>
+				<td>
+					<select name="pay" id="pay" onclick="pay_send()">
+						<option value="" selected>결제수단을 선택하세요</option>
+						<option value="1">무통장입금</option>
+						<option value="2">카드결제</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>요청사항</th>
+				<td><textarea type="text" name="request" id="request" rows="9" cols="50"></textarea></td>
+			</tr>
+		</table>
+		<input type="submit" value="예약완료">
+		
+	</form>
+	 -->
 	<script>
 	
 	</script>
