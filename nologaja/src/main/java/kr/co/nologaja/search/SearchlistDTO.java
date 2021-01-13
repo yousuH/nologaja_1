@@ -11,7 +11,8 @@ public class SearchlistDTO {
 	private int weekcost;
 	private int longcost;
 	private String hotelNumber;
-	private long fee;
+	private String fee;
+	private String savefile;
 
 	public SearchlistDTO() {
 
@@ -89,19 +90,27 @@ public class SearchlistDTO {
 		this.hotelNumber = hotelNumber;
 	}
 
-	public long getFee() {
+	public String getFee() {
 		return fee;
 	}
 
-	public void setFee(long fee) {
+	public void setFee(String fee) {
 		this.fee = fee;
+	}
+
+	public String getSavefile() {
+		return savefile;
+	}
+
+	public void setSavefile(String savefile) {
+		this.savefile = savefile;
 	}
 
 	@Override
 	public String toString() {
 		return "SearchlistDTO [roomNumber=" + roomNumber + ", roomName=" + roomName + ", starAvg=" + starAvg + ", cnt="
 				+ cnt + ", addr1=" + addr1 + ", basecost=" + basecost + ", weekcost=" + weekcost + ", longcost="
-				+ longcost + ", hotelNumber=" + hotelNumber + ", fee=" + fee + "]";
+				+ longcost + ", hotelNumber=" + hotelNumber + ", fee=" + fee + ", savefile=" + savefile + "]";
 	}
 
 

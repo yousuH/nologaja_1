@@ -1,6 +1,7 @@
 package kr.co.nologaja.search;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -61,7 +62,8 @@ public class SearchCont {
 			}//if end
 		}
 		System.out.println("== 예약가능한 방" + ableRN);
-
+		
+		DecimalFormat fomatter = new DecimalFormat("###,###");
 		long fee=0;
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		Date ckin=df.parse(sdto.getCk_in());
@@ -154,7 +156,7 @@ public class SearchCont {
 					break;
 				}//switch end
 			}//if end
-			list.get(i).setFee(fee);
+			list.get(i).setFee(fomatter.format(fee));
 		}
 		System.out.println(list);
 		//[RoomDTO [roomNumber=SEAP0005_01, roomName=방2, hotelNumber=SEAP0005, roomImg=, roomInform=방방방방바아, maxGuest=6, conv=KC,WS, baseCost=40000, weekCost=40000, longCost=40000]]

@@ -35,10 +35,11 @@
 	
 	<select id="ablelist" resultType="kr.co.nologaja.search.SearchlistDTO">
 		<![CDATA[
-		SELECT r.roomNumber, r.roomName, avg(v.stars_avg)as starAvg, count(v.title) as cnt, h.hotelNumber, h.addr1, r.baseCost, r.weekCost, r.longCost 
+		SELECT r.roomNumber, r.roomName, avg(v.stars_avg)as starAvg, count(v.title) as cnt, h.hotelNumber, h.addr1, r.baseCost, r.weekCost, r.longCost, ri.savefile 
 		from roomTable r
 			left outer join review v on r.roomNumber = v.roomNumber
-			left outer join hotelTable h on r.hotelNumber = h.hotelNumber 
+			left outer join hotelTable h on r.hotelNumber = h.hotelNumber
+			left outer join roomimage ri on r.roomNumber = ri.savefile 
 		where
 			r.roomNumber = #{roomNumber}
 		]]>

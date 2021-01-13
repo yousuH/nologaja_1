@@ -175,6 +175,406 @@ input[id*="popup2"] + label + div > label {
 	z-index: 1;
 }
 
+.incontents_area{
+	position:relative;
+	left:50%;
+	margin-left:-300px;
+	width:900px;
+	height:auto;
+	float:left;
+}
+.sub_list_hotellist{
+	width:100%;
+	height:auto;
+}
+.hotellist{
+	position:relative;
+	width:900px;
+	height:auto;
+}
+.hotel{
+	position:relative;
+	width:100%;
+	height:auto;
+}
+.hotellist_box{
+	position:relative;
+	width:100%;
+	height:176px;
+	background-color:#FFF;
+	border-top:dotted 1px #d7d7d7;
+	color:#444444;
+}
+.listbox_img{
+	position:absolute;
+	left:0;
+	width:216px;
+	height:156.5px;
+	padding-top:19.5px;
+}
+.listbox_title{
+	position:absolute;
+	left:216px;
+	width:454px;
+	height:156.5px;
+	padding-top:19.5px;
+}
+.list_name{
+	width: 430px;
+	height: 30px;
+	font-size: 20px;
+	letter-spacing: -0.5px;
+	cursor: pointer;
+}
+.list_name p{
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	font-weight:700;
+	padding-top: 2px;
+}
+/* 2018.08.24 kang 호텔등급 변경 시작 */
+
+.list_grade{
+	position: relative;
+	top: 0;
+	display: inline-block;
+	width: auto;
+	height: 22px;
+	margin-top: 2px;
+}
+.list_grade span{
+	position: relative;
+	top: 0;
+	left: 0;
+	line-height: 22px;
+	font-size: 13px;
+	margin-right: 3px;
+}
+.hotelgrade{
+	position: relative;
+	top: 0;
+	padding: 0;
+	margin: 0;
+	vertical-align: middle;
+	margin-right: 10px;
+}
+.list_icon{
+	position: relative;
+	top: 0;
+	display: inline-block;
+	width: auto;
+	height: 22px;
+	font-size: 12px;
+	line-height: 22px;
+	color: #fff;
+	margin-top: 2px;
+	font-family: 'NanumSquareRound', sans-serif;
+}
+/* ico style */
+
+.list_ico01{
+	width: auto;
+	background-color:#3cb878;
+	border:solid 1px #3cb878;
+	padding:0px 3px;
+	margin-right:2px;
+	font-weight: 600;
+}
+.list_ico02{
+	width: auto;
+	background-color:#b53735;
+	border:solid 1px #b53735;
+	padding:0px 3px;
+	margin-right:2px;
+	font-weight: 600;
+}
+
+.list_ico03{
+	width: auto;
+	background-color:#173390;
+	border:solid 1px #173390;
+	padding:0px 3px;
+	margin-right:2px;
+	font-weight: 600;
+}
+
+.list_ico04{
+	width: auto;
+	/*border:solid 1px #4c3188; 2019041811069 kay */
+	background-color:#fff;
+	color:#444444;
+	padding:0px 3px;
+	margin-right:2px;
+	font-weight: 600;
+}
+
+
+/**/
+
+.list_adrs{
+	position:relative;
+	left:0;
+	width:400px;
+	height:22px;
+	font-size:13px;
+}
+
+.list_adrs p{
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+
+/* 2018.08.24 kang 호텔등급 변경 끝 */
+
+.list_review{
+	position:absolute;
+	left:0;
+	bottom:14px;
+	width:auto;
+	height:14px;
+	padding:4px 6px;
+	border-radius:3px;
+	font-size:10.5px;
+	color:#09af89;
+	float:right;
+}
+.list_review img{
+	float:left;
+	margin-right:5px;
+}
+.list_info{
+	position:absolute;
+	left:170px;
+	bottom:15px;
+	width:auto;
+	height:22px;
+	text-align:center;
+}
+.list_imgview{
+	position:absolute;
+	left:260px;
+	bottom:15px;
+	width:auto;
+	height:22px;
+	text-align:center;
+}
+.list_map{
+	position:absolute;
+	left:355px;
+	bottom:15px;
+	width:auto;
+	height:22px;
+	text-align:center;
+}
+.list_info p,.list_imgview p,.list_map p{
+	font-size:13px;
+	font-weight:500;
+	padding:2px 6px;
+	border-radius:3px;
+}
+.listbox_price{
+	position:absolute;
+	top:0;
+	left:500px;
+	width:180px;
+	height:176px;
+	color:#d11717;
+	padding:20px 25px;
+	background-color:#f5f5f5;
+	cursor:pointer;
+}
+
+.listbox_price p{
+	position:relative;
+	top:0;
+	font-size:14px;
+	text-align:right;
+}
+.listbox_price .current_coin{
+	font-size:16px;
+	font-weight:500;
+}
+
+/* 2018.08.24 kang 가격 폰트 수정 시작 */
+.listbox_price .pricevalue{
+	font-size:22px;
+	font-weight:600;
+	font-family: Tahoma, Verdana, sans-serif;
+	letter-spacing: -0.5px;
+}
+
+.hotelpage{
+	margin-top:55px;
+	margin-bottom:150px;
+	position:relative;
+	width:900px;
+	height:60px;
+}
+
+/* 2018.08.24 kang 페이지 네비 레이아웃 수정 시작 */
+.page_navi{
+	position:relative;
+	left: 50%;
+	transform: translate(-50%,0);
+	bottom:0px;
+	width:auto;
+	height:22px;
+	font-weight:500;
+	color:#444444;
+	text-align: center;
+}
+/* 2018.08.24 kang 페이지 네비 레이아웃 수정 끝 */
+
+.page_navi td{
+	width:20px;
+	padding:0px 2px 0px 2px;
+	text-align:center;
+}
+.page_navi td img{
+	cursor:pointer;
+}
+.page_navi td span{
+	display:block;
+	width:20px;
+	height:20px;
+	float:left;
+	border-radius:3px;
+	cursor:pointer;
+}
+.pagenumber.active{
+	background-color:#e6e6e6;
+}
+
+.no_result{
+	position:relative;
+	width:100%;
+	height:103px;
+	text-align:center;
+	border-top:solid 1px #d8d8d8;
+	border-bottom:solid 1px #d8d8d8;
+	font-size:15px;
+	margin-bottom:1300px;
+	padding-top:70px;
+}
+
+.filter_area{
+	position:relative;
+	left:50%;
+	margin-left:-600px;
+	width:300px;
+	height:1410px;
+	float:left;
+}
+
+.filter_origin{
+	position:relative;
+	top:0;
+	left:0;
+}
+.sub_list_filter_result{
+	width:100%;
+	height:156px;
+}
+.sub_list_filter_title{
+	width:240px;
+	height:48px;
+	border-top:solid 1px #d7d7d7;
+}
+.sub_list_filter_name{
+	width:240px;
+	height:81px;
+	padding-top:10px;
+}
+.sub_list_filter_location{
+	width:240px;
+	height:76px;
+	padding-top:10px;
+	border-top:dotted 1px #d7d7d7;
+}
+.sub_list_filter_price{
+	width:240px;
+	height:180px;
+	padding-top:10px;
+	border-top:dotted 1px #d7d7d7;
+}
+.sub_list_filter_grade{
+	width:240px;
+	height:118px;
+	padding-top:10px;
+	border-top:dotted 1px #d7d7d7;
+}
+.sub_list_filter_convention{
+	width:240px;
+	height:293px;
+	padding-top:10px;
+	border-top:dotted 1px #d7d7d7;
+}
+.sub_list_filter_banner{
+	width:240px;
+	height:372px;
+	border-top:solid 1px #d7d7d7;
+}
+.sub_list_filter_nav{
+	display:none;
+	position:fixed;
+	top:80px;
+	left:50%;
+	margin-left:-600px;
+	width:200px;
+	height:30px;
+	background-color:#f4b225;
+	border:0;
+	border-radius:5px;
+	color:#fff;
+	text-align:center;
+	line-height:30px;
+	cursor:pointer;
+	box-shadow:0 3px 3px #d3d3d3;
+}
+.fitfixed{
+	position:fixed;
+	top:110px;
+	left:50%;
+	margin-left:-600px;
+	animation: fadein .5s;
+    -moz-animation: fadein .5s;
+    -webkit-animation: fadein .5s; 
+    -o-animation: fadein .5s;
+}
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-moz-keyframes fadein { 
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-o-keyframes fadein { 
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 
 </style>
 </head>
@@ -196,7 +596,7 @@ input[id*="popup2"] + label + div > label {
 								<span class="navbar-toggler-icon"></span>
 							</button>
 							<div class="collapse navbar-collapse main-menu-item justify-content-end"
-								 id="navbarSupportedContent">
+								 id="navbarSupportedContent" style="">
 								<ul class="navbar-nav">
 									<c:choose>
 										<c:when test="${sessionScope.uid == null && sessionScope.suid ==null}">
@@ -224,20 +624,19 @@ input[id*="popup2"] + label + div > label {
 									</c:choose>
 									<li class="nav-item"><a class="nav-link" href="inquiry_list.do">고객센터</a></li>
 								</ul>
+								
 							</div>
+
 						</nav>
-					</div>
-				</div>
-			</div>
-		</div>		
-		<section class="list_booking_part">
+						<nav class="navbar navbar-expand-lg navbar-light justify-content-between">
+													<section class="list_booking_part" style="width: 1000px; margin: aut">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="booking_content">
 							<div class="tab-content" id="myTabContent">
 								<div class="tab-pane fade show active" id="hotel"
-									role="tabpanel" aria-labelledby="hotel-tab">
+									role="tabpanel" aria-labelledby="hotel-tab">	
 									<div class="booking_form">
 										<form action="search.do">
 											<div class="form-row">
@@ -292,86 +691,170 @@ input[id*="popup2"] + label + div > label {
 				</div>
 			</div>
 		</section>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>		
+		
 	</header>
 
 <!-- 메인내용 -->
 
+<main style="min-height: 1400px">
 
 
+<h3 align="center" style="padding-top: 15px; padding-bottom: 15px;">검색 결과</h3>
+		<div class="filter_area">
+			<div class="sub_list_filter_result" style="height: auto;">
+				<p>
+					<span class="result_num">${fn:length(list) }</span>개의 호텔이 검색되었습니다.
+				</p>
 
-<h3>검색 결과</h3>
-<div style="width: 12%; height: 1000px; position: absolute; " >hello</div>
-	<!-- 호텔 반복 s-->
-	<div style="right:12%; position: static;">
-	<c:forEach var="dto" items="${list}">
-		<div class="room">
-			<div class="roomlist_box">
-				<div class="listbox_img">
-					<div class="list_img">
-						<!-- 이미지 불러오기 -->
-						<img>
-
-					</div>
-				</div>
-				<!-- 방 이름 -->
-				<div class="listbox_title">
-					<div class="list_name">
-						<p title="${dto.roomName}" class="hotelname" onclick=""><a href="">${dto.roomName }</a></p>
-					</div>
-
-					<!-- 별표 이미지 + 총 리뷰점수 + 총리뷰 갯수-->
-					<div class="list_grade">
-						<img>
-						<p>${dto.starAvg}(${dto.cnt })
-						<p>
-					</div>
-
-					<!-- 전체주소 -->
-					<div class="list_adrs">
-						<p class="hoteladdress">${dto.addr1 }&nbsp;&nbsp;&nbsp;</p>
-					</div>
-
-					<!--  살릴지 안살릴지 모르겠음
-					<div class="list_review">
-						<img src="/img/sub_list/tripadvisor_logo.png"
-							alt="tripadvisorlogo"> Review
-					</div>
-					<div class="list_info" style="left: 140px;">
-						<p>
-							<i class="fas fa-info-circle"></i>&nbsp;호텔 정보
-						</p>
-					</div>
-					<div class="list_imgview" style="left: 245px;">
-						<p>
-							<i class="fas fa-image"></i>&nbsp;이미지 보기
-						</p>
-					</div>
-					<div class="list_map">
-						<p>
-							<i class="fas fa-map-marker-alt"></i>&nbsp;지도 보기
-						</p>
-					</div>
-				</div>
-				 -->
-
-					<!-- 가격 -->
-					<div class="listbox_price">
-						<p>Price</p>
-						<p class="current_coin">
-							KRW&nbsp;&nbsp;<span class="pricevalue">계산된 가격(${dto.fee })</span>
-						</p>
-					</div>
-				</div>
+				<script type="text/javascript">
+				<!--
+					// 맵 이미지가 없으면 공간은 잡혀있는 상태로 보여주기 때문에 auto 처리함.
+					$(".sub_list_filter_result").height("auto");
+				//-->
+				</script>
 
 			</div>
+			<div class="fixed_filter">
+				<div class="sub_list_filter_name">
+					<!-- 료칸일 경우 호텔명 료칸명으로 나오도록 수정 by Eli 2019.01.18 2019011415165-->
+					<p>
+						&nbsp;호텔명 검색
+					</p>
+					<div class="ft_inputbox active">
+
+						<input type="text" class="search_name" name="search_name"
+							onkeyup="javascript:$('#sHotelName').val(this.value);fnEnterSearch();"
+							placeholder="호텔명 검색" value="">
+					</div>
+				</div>
+				
+				<div class="sub_list_filter_price">
+					<form name="FrmPriceRAnge">
+						<p>
+							<span style="font-size: 15px;">₩</span>&nbsp;가격(1박)
+						</p>
+						<ul class="price_check">
+							<li><input class="pr_checkbox" id="priceRange1"
+								type="checkbox" onclick="fnHotelSearch('RATING','1');">
+								<label for="priceRange1">₩&nbsp;100,000 미만</label></li>
+							<li><input class="pr_checkbox" id="priceRange2"
+								type="checkbox" onclick="fnHotelSearch('RATING','1');">
+								<label for="priceRange2">₩&nbsp;100,000~149,999</label></li>
+							<li><input class="pr_checkbox" id="priceRange3"
+								type="checkbox" onclick="fnHotelSearch('RATING','1');">
+								<label for="priceRange3">₩&nbsp;150,000~199,999</label></li>
+							<li><input class="pr_checkbox" id="priceRange4"
+								type="checkbox" onclick="fnHotelSearch('RATING','1');">
+								<label for="priceRange4">₩&nbsp;200,000~249,999</label></li>
+							<li><input class="pr_checkbox" id="priceRange5"
+								type="checkbox" onclick="fnHotelSearch('RATING','1');">
+								<label for="priceRange5">₩&nbsp;250,000 이상</label></li>
+						</ul>
+					</form>
+				</div>
+			</div>
 		</div>
-		<!-- 호텔 반복 e-->
-	</c:forEach>
-	</div>
+		<div class="incontents_area">
+			<div class="sub_list_hotellist">
+				<div class="hotellist" style="min-height: 1400px;">
+					
+					<!-- 호텔 반복 s-->
+					<c:forEach var="dto" items="${list}">
+
+						<div class="hotel">
+							<div class="hotellist_box">
+								<div class="listbox_img">
+									<div class="list_img">
+										<!-- 이미지 불러오기 -->
+										<img style="width: 15%" src="${pageContext.request.contextPath}/resources/img/hotel/${dto.savefile}"/>
+									</div>
+								</div>
+								<!-- 방 이름 -->
+								<div class="listbox_title">
+									<div class="list_name">
+										<p title="${dto.roomName}" class="hotelname" onclick="">
+											<a href="">${dto.roomName }</a>
+										</p>
+									</div>
+									<!-- 별표 이미지 + 총 리뷰점수 + 총리뷰 갯수-->
+									<div class="list_grade">
+										<img>
+										<p>${dto.starAvg}(${dto.cnt })
+										<p>
+									</div>
+
+									<!-- 전체주소 -->
+									<div class="list_adrs">
+										<p class="hoteladdress">${dto.addr1 }&nbsp;&nbsp;&nbsp;</p>
+									</div>
+
+									<!-- 가격 -->
+									<div class="listbox_price">
+										<p style="color: #d11717">Price</p>
+										<p class="current_coin" style="color: #d11717">
+											KRW&nbsp;&nbsp;<span class="pricevalue" style="color: #d11717">${dto.fee }</span>
+										</p>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</c:forEach>
+					<!-- 호텔 반복 끝-->
+					<div class="hotelpage">
+						<table class="page_navi">
+							<tr>
+
+								<td><span class="pagenumber active">1</span></td>
+
+								<td><span class="pagenumber"><a
+										style="display: inline-block; height: 20px; width: 20px;"
+										href="Javascript:fnHotelSearch('RATING','2','','','DESC');">2</a></span></td>
+
+								<td><span class="pagenumber"><a
+										style="display: inline-block; height: 20px; width: 20px;"
+										href="Javascript:fnHotelSearch('RATING','3','','','DESC');">3</a></span></td>
+
+								<td><span class="pagenumber"><a
+										style="display: inline-block; height: 20px; width: 20px;"
+										href="Javascript:fnHotelSearch('RATING','4','','','DESC');">4</a></span></td>
+
+								<td><span class="pagenumber"><a
+										style="display: inline-block; height: 20px; width: 20px;"
+										href="Javascript:fnHotelSearch('RATING','5','','','DESC');">5</a></span></td>
+
+								<td><span class="pagenumber"><a
+										style="display: inline-block; height: 20px; width: 20px;"
+										href="Javascript:fnHotelSearch('RATING','6','','','DESC');">6</a></span></td>
+
+								<td><span class="pagenumber"><a
+										style="display: inline-block; height: 20px; width: 20px;"
+										href="Javascript:fnHotelSearch('RATING','7','','','DESC');">7</a></span></td>
+
+								<td><span class="pagenumber"><a
+										style="display: inline-block; height: 20px; width: 20px;"
+										href="Javascript:fnHotelSearch('RATING','8','','','DESC');">8</a></span></td>
+
+								<td><span class="pagenumber"><a
+										style="display: inline-block; height: 20px; width: 20px;"
+										href="Javascript:fnHotelSearch('RATING','9','','','DESC');">9</a></span></td>
+
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
 
 
-
-<script>
+	</main>
+	<script>
 
 	function findIdpw(){  
 		window.open("findidpw.do", "아이디/비밀번호 찾기", "width=550, height=550");
