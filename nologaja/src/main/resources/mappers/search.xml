@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="search">
+
+	<select id="rnfind" resultType="String"
+		parameterType="kr.co.nologaja.booking.SearchDTO">
+		<![CDATA[
+		SELECT roomNumber
+		FROM roomTable
+		WHERE roomNumber like CONCAT('%',#{cityCode},'%')
+		AND maxGuest >= #{maxGuest} 
+		]]>
+	</select>
+
+	<select id="ablerN" resultType="int" parameterType="String">
+		SELECT
+		count(*)
+		FROM bookTable
+		WHERE roomNumber = #{roomNumber}
+	</select>
+
+	<select id="datecheck" resultType="int" parameterType="kr.co.nologaja.booking.SearchDTO">
+	    <![CDATA[
+	    select count(*)
+	    from (select #{ck_in} ck_in, #{ck_out} ck_out) i
+	    where exists (
+	                select 1 
+	            	from bookTable  
+	        		where bookTable.roomNumber = #{roomNumber} AND bookTable.pay_st != 'C'
+	        		AND bookTable.ck_in < i.ck_out 
+	        		AND bookTable.ck_out > i.ck_in
+	    			 )
+		  ]]>
+	</select>
+	
+	<select id="ablelist" resultType="kr.co.nologaja.booking.SearchlistDTO">
+		<![CDATA[
+		SELECT r.roomNumber, r.roomName, avg(v.stars_avg)as starAvg, count(v.title) as cnt, h.hotelNumber, h.addr1, r.baseCost, r.weekCost, r.longCost 
+		from roomTable r
+			left outer join review v on r.roomNumber = v.roomNumber
+			left outer join hotelTable h on r.hotelNumber = h.hotelNumber 
+		where
+			r.roomNumber = #{roomNumber}
+		]]>
+	</select>
+
+</mapper>
