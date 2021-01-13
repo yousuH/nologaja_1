@@ -1,9 +1,13 @@
 package kr.co.nologaja.hotel;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
+
+import net.utility.HotelListDTO;
 
 @Repository
 public class HotelDAO implements IHotelDAO{
@@ -19,9 +23,17 @@ public class HotelDAO implements IHotelDAO{
 	@Override
 	public int hotelnumFind(String hotelNumber) {
 		int cnt = sqlSession.selectOne("hotel.hotelnumFind", hotelNumber);
-		
 		return cnt;
-		
+	}
+	
+	@Override
+	public List<HotelListDTO> hotel_list(String suid) {
+		return sqlSession.selectList("hotel.hotel_list", suid);
 	}
 
+	@Override
+	public HotelDTO hotel_detail(String hotelNumber) {
+		return sqlSession.selectOne("hotel.hotel_detail", hotelNumber);
+	}
+	
 }// class end 

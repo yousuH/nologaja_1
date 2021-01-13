@@ -1,5 +1,7 @@
 package kr.co.nologaja.hotel;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -19,11 +21,17 @@ public class RoomDAO implements IRoomDAO {
 	@Override
 	public int roomnumFind(String roomNumber) {
 		int cnt = sqlSession.selectOne("hotel.roomnumFind", roomNumber);
-		
 		return cnt;
-		
 	}
 
-	
+	@Override
+	public List<RoomDTO> room_list(String hotelNumber) {
+		return sqlSession.selectList("hotel.room_list", hotelNumber);
+	}
+
+	@Override
+	public RoomDTO room_detail(String roomNumber) {
+		return sqlSession.selectOne("hotel.room_detail", roomNumber);
+	}
 	
 }//class end 
