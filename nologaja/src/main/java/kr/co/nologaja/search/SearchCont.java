@@ -155,27 +155,7 @@ public class SearchCont {
 				}//switch end
 			}//if end
 			list.get(i).setFee(fee);
-	
-			
-			
-			/*
-			 * int fee=0; if() list.get(i).setFee(fee);
-			 * 		    String inputDate = "2021-01-14";
-		    String outputDate = "2021-01-18";
-		      
-		    DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-		    Date date1 = df.parse(inputDate);
-		    Date date2 = df.parse(outputDate);
-		    
-		    long diff = date2.getTime() - date1.getTime();
-		    long diffDays = diff/(24*60*60*1000);
-		    
-		    System.out.println(diffDays);
-		    Calendar cld = Calendar.getInstance();
-		    cld.setTime(date1);
-		    System.out.println(cld.get(Calendar.DAY_OF_WEEK));
-			 */
-			}
+		}
 		System.out.println(list);
 		//[RoomDTO [roomNumber=SEAP0005_01, roomName=방2, hotelNumber=SEAP0005, roomImg=, roomInform=방방방방바아, maxGuest=6, conv=KC,WS, baseCost=40000, weekCost=40000, longCost=40000]]
 		

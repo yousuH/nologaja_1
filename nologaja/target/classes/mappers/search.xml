@@ -3,7 +3,7 @@
 <mapper namespace="search">
 
 	<select id="rnfind" resultType="String"
-		parameterType="kr.co.nologaja.booking.SearchDTO">
+		parameterType="kr.co.nologaja.search.SearchDTO">
 		<![CDATA[
 		SELECT roomNumber
 		FROM roomTable
@@ -19,7 +19,7 @@
 		WHERE roomNumber = #{roomNumber}
 	</select>
 
-	<select id="datecheck" resultType="int" parameterType="kr.co.nologaja.booking.SearchDTO">
+	<select id="datecheck" resultType="int" parameterType="kr.co.nologaja.search.SearchDTO">
 	    <![CDATA[
 	    select count(*)
 	    from (select #{ck_in} ck_in, #{ck_out} ck_out) i
@@ -33,7 +33,7 @@
 		  ]]>
 	</select>
 	
-	<select id="ablelist" resultType="kr.co.nologaja.booking.SearchlistDTO">
+	<select id="ablelist" resultType="kr.co.nologaja.search.SearchlistDTO">
 		<![CDATA[
 		SELECT r.roomNumber, r.roomName, avg(v.stars_avg)as starAvg, count(v.title) as cnt, h.hotelNumber, h.addr1, r.baseCost, r.weekCost, r.longCost 
 		from roomTable r

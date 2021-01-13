@@ -99,7 +99,7 @@
 							<div class="tab-content" id="myTabContent">
 								<div class="tab-pane fade show active" id="hotel" role="tabpanel" aria-labelledby="hotel-tab">
 									<div class="booking_form">
-										<form action="searchlist.do">
+										<form action="search.do">
 											<div class="form-row">
 												<div class="input-group input-group-sm mb-3">
 													<input style="border-radius: 0; height: 45px; border-color: #2493e0; background-color: transparent;"

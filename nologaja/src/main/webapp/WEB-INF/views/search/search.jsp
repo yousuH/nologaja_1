@@ -149,29 +149,6 @@ input[id*="popup2"] + label + div > label {
 
 <h3>검색 결과</h3>
 <div class="container">
-	<div class="col-lg-2"></div>
-	<div class="col-lg-8">
-		<div style="background: #f8f8f8 !important" class="jumbotron"
-			style="padding-top:20px;'">
-			<form>
-			<input type="hidden" name="ck_in" value="${param.ck_in}">
-			<input type="hidden" name="ck_out" value="${param.ck_out}">
-			<input type="hidden" name="uid" value="${sessionScope.uid}">
-				<table class="table table-bordered">
-					<tr class="head">
-						<td>roomNumber</td>
-						<td>roomName</td>
-						<td>hotelNumber</td>
-						<td>roomInform</td>
-						<td>maxGuest</td>
-						<td>conv</td>
-						<td>총금액</td>
-						<td>체크인</td>
-						<td>체크아웃</td>
-						<td>찜하기</td>
-					</tr>
-<h3>검색 결과</h3>
-<div class="container">
 	<!-- 호텔 반복 s-->
 	<c:forEach var="dto" items="${list}">
 		<div class="room">
@@ -238,7 +215,7 @@ input[id*="popup2"] + label + div > label {
 		<!-- 호텔 반복 e-->
 	</c:forEach>
 </div>
-</div>
+
 
 
 <script>
