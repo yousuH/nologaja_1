@@ -143,7 +143,7 @@
 													<input name= "ck_out" id="datepicker_2" placeholder="Check out date">
 												</div>
 												<div class="form_colum">
-													<select class="nc_select" name="guests" id="guests">
+													<select class="nc_select" name="maxGuest" id="maxGuest">
 														<option value="" selected>Person</option>
 														<option value="1">1</option>
 														<option value="2">2</option>
