@@ -32,12 +32,49 @@
 		]]>
 	</select> 
 	
-	<select id="roomnumFind" resultType="int" parameterType="String">
+	<select id="roomnumFind" resultType="int">
 		<![CDATA[
 		SELECT COUNT(*)
 		FROM roomTable
 		WHERE roomNumber = #{roomNumber}
 		]]>
 	</select> 
-
+	
+	<!--호텔 목록 리스트 -->
+	<select id="hotel_list" parameterType="String" resultType="net.utility.HotelListDTO">
+        <![CDATA[
+            select hotelimage.savefile, hotelimage.hotelNumber, hoteltable.hotelName
+			from hotelimage
+			join hoteltable
+			on hotelimage.hotelnumber = hoteltable.hotelnumber
+			where hoteltable.suid = #{suid}
+        ]]>
+	</select>
+	
+	<!-- 호텔 상세 정보 -->
+	<select id="hotel_detail" resultType="kr.co.nologaja.hotel.HotelDTO">
+        <![CDATA[
+            SELECT hotelNumber, hotelName, zipcode, addr1, addr2, bdgType, hotelInform
+            FROM hotelTable
+            WHERE hotelNumber=#{hotelNumber}
+        ]]>
+	</select>
+	
+	<select id="room_list" resultType="kr.co.nologaja.hotel.RoomDTO">
+        <![CDATA[
+            SELECT roomName, roomNumber
+            FROM roomTable
+            WHERE hotelNumber=#{hotelNumber}
+        ]]>
+	</select>
+	
+	<!-- 룸 상세 정보 -->
+	<select id="room_detail" resultType="kr.co.nologaja.hotel.RoomDTO">
+        <![CDATA[
+            SELECT roomNumber, roomName, roomInform, maxGuest, conv, baseCost, weekCost, longCost
+            FROM roomTable
+            WHERE roomNumber=#{roomNumber}
+        ]]>
+	</select>
+	
 </mapper>

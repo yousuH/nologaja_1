@@ -16,6 +16,14 @@
 		VALUES (#{roomNumber}, #{saveFile})
 		]]>
 	</insert>
-    
+	
+	<!-- 룸이미지 가져오기 -->
+	<select id="room_get_image" resultType="net.utility.RoomImageDTO">
+        <![CDATA[
+            SELECT roomNumber, savefile
+            FROM roomimage
+            WHERE roomNumber=#{roomNumber}
+        ]]>
+	</select>
     
 </mapper>

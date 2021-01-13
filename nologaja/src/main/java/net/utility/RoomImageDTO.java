@@ -1,6 +1,8 @@
 package net.utility;
 
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class RoomImageDTO {
 	private int imageno;
 	private String saveFile;
@@ -41,6 +43,10 @@ public class RoomImageDTO {
 		this.roomNumber = roomNumber;
 	}
 
+
+	
+
+	
 
 	
 	

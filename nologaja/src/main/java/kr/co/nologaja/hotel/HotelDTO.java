@@ -1,5 +1,8 @@
 package kr.co.nologaja.hotel;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class HotelDTO {
 
 	private String hotelNumber;
