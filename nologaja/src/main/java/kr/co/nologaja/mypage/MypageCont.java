@@ -9,12 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.nologaja.booking.BkDAO;
+import kr.co.nologaja.booking.BkDTO;
 import kr.co.nologaja.hotel.HotelDAO;
 import kr.co.nologaja.hotel.HotelDTO;
 import kr.co.nologaja.hotel.RoomDAO;
@@ -47,19 +50,20 @@ public class MypageCont {
 	@Inject
 	imageDAO imdao;
 	
+	@Inject
+	BkDAO dao;
+	
 	public MypageCont() {
 		System.out.println("==MypageCont()==");
 	}
 	
 	//마이페이지(배너 상의 마이페이지 버튼)
 	@RequestMapping(value = "/mypage.do")
-	public ModelAndView mypage() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("mypage/mypage(bookinglist)");
-		return mav;
+	public String list(Model model) {
+		List<BkDTO> list = dao.list();
+		model.addAttribute("list", list);
+		return "mypage/mypage(bookinglist)";
 	}
-	
-	
 	
 	// 방추가 폼 불러오기
 	@RequestMapping(value = "/add_room.do")

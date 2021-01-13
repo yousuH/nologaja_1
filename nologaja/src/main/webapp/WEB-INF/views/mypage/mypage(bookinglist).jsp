@@ -20,8 +20,9 @@
 	
 	<div class="mp_main">
 		<h2>예약목록</h2>
-		<form name="bkdetail" id="bkdetail" method="post" action="bkdetail.do">
-			<input type="hidden" name="roomNumber" id="roomNumber" value="${roomdto.roomNumber}">
+		<br>
+		<form name="bklist" id="bklist" method="post" action="bkdetail.do">
+			<input type="hidden" name="roomNumber" id="roomNumber" value="${BkDTO.roomNumber}">
 			<input type="hidden" name="uid" id="uid" value="${sessionScope.uid}">
 			
 			<table class="table table-hover text-center">
@@ -38,17 +39,17 @@
 				</thead>
 				
 				<tbody>
-					<c:forEach var="BkDTO" items="${bklist}">
+					<c:forEach var="BkDTO" items="${list}">
 						<tr>
+							<td><a href="bkdetail.do?bk_num=${BkDTO.bk_num}">${BkDTO.bk_num}</td>
 							<td>
-								<input type="text" name="hotelName" id="hotelName" value="${BkDTO.hotelName}">/
-								<input type="text" name="roomName" id="roomName" value="${BkDTO.roomName}">
+								${BkDTO.hotelName}/${BkDTO.roomName}
 							</td>
-							<td><input type="number" name="guests" id="guests" value="${BkDTO.guests}"></td>
-							<td><input type="number" name="ck_in" id="ck_in" value="${BkDTO.ck_in}"></td>
-							<td><input type="number" name="ck_out" id="ck_out" value="${BkDTO.ck_out}"></td>
-							<td><input type="number" name="fee" id="fee" value="${BkDTO.fee}"></td>
-							<td><input type="text" name="pay" id="pay" value="${BkDTO.pay}"></td>
+							<td>${BkDTO.maxGuest}</td>
+							<td>${BkDTO.ck_in}</td>
+							<td>${BkDTO.ck_out}</td>
+							<td>${BkDTO.fee}</td>
+							<td>${BkDTO.pay}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
