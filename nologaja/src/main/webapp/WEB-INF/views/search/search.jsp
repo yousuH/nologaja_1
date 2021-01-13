@@ -170,68 +170,74 @@ input[id*="popup2"] + label + div > label {
 						<td>체크아웃</td>
 						<td>찜하기</td>
 					</tr>
-					<c:forEach var="dto" items="${list}">
-						<tr>
-							<td><div id="roomNumber" name="roomNumber">${dto.roomNumber}</div></td>
-							<td>${dto.roomName}</td>
-							<td>${dto.hotelNumber}</td>
-							<td>${dto.roomInform}</td>
-							<td>${dto.maxGuest}</td>
-							<td>${dto.conv}</td>
-							<td>100000</td>
-							<td>${param.ck_in}</td>
-							<td>${param.ck_out}</td>
-							<td><!-- 찜한숙소 -->
-								<input type="checkbox" id="popup">
-								<label for="popup">♡</label>
-								<div>
-									<div>
-										<label for="popup"><strong>Ⅹ</strong></label>
-										
-										<span style="text-align: center;"><strong>목록에 저장하기</strong></span>
-										
-										<table>
-											<tr>
-												<td width="100%">숙소목록</td>
-											</tr>
-											<c:forEach var="cartFolder" items="${cartFolders}">
-												<tr>
-													<td><a href="cartdetail.do?${cartFolder.ctFolder_num}">${cartFolder.ctFolder_name}</a></tr>
-											</c:forEach>
-										</table>
-										
-										<div>
-											<input type="checkbox" id="popup2">
-											<label for="popup2">목록 추가하기</label>
-											<div>
-												<div>
-													<label for="popup2"><strong>Ⅹ</strong></label>
-													
-													<span style="text-align: center;"><strong>목록 이름 작성하기</strong></span>
-													
-													
-													
-													<br><input type="text" id="ctFolder_name" name="ctFolder_name" placeholder="이름">
-													<br><input type="submit" value="새로 만들기" formaction="addcartfolder">
-													
-												</div>
-												<label for="popup2"></label>
-											</div>	
-										</div>									
-										
-										
-										
-									</div>
-									<label for="popup"></label>
-								</div>
-							</td>
-						</tr>
-					</c:forEach>
-				</table>
-			</form>
+<h3>검색 결과</h3>
+<div class="container">
+	<!-- 호텔 반복 s-->
+	<c:forEach var="dto" items="${list}">
+		<div class="room">
+			<div class="roomlist_box">
+				<div class="listbox_img">
+					<div class="list_img">
+						<!-- 이미지 불러오기 -->
+						<img>
+
+					</div>
+				</div>
+				<!-- 방 이름 -->
+				<div class="listbox_title">
+					<div class="list_name">
+						<p title="${dto.roomName}" class="hotelname" onclick=""><a href="">${dto.roomName }</a></p>
+					</div>
+
+					<!-- 별표 이미지 + 총 리뷰점수 + 총리뷰 갯수-->
+					<div class="list_grade">
+						<img>
+						<p>${dto.starAvg}(${dto.cnt })
+						<p>
+					</div>
+
+					<!-- 전체주소 -->
+					<div class="list_adrs">
+						<p class="hoteladdress">${dto.addr1 }&nbsp;&nbsp;&nbsp;</p>
+					</div>
+
+					<!--  살릴지 안살릴지 모르겠음
+					<div class="list_review">
+						<img src="/img/sub_list/tripadvisor_logo.png"
+							alt="tripadvisorlogo"> Review
+					</div>
+					<div class="list_info" style="left: 140px;">
+						<p>
+							<i class="fas fa-info-circle"></i>&nbsp;호텔 정보
+						</p>
+					</div>
+					<div class="list_imgview" style="left: 245px;">
+						<p>
+							<i class="fas fa-image"></i>&nbsp;이미지 보기
+						</p>
+					</div>
+					<div class="list_map">
+						<p>
+							<i class="fas fa-map-marker-alt"></i>&nbsp;지도 보기
+						</p>
+					</div>
+				</div>
+				 -->
+
+					<!-- 가격 -->
+					<div class="listbox_price">
+						<p>Price</p>
+						<p class="current_coin">
+							KRW&nbsp;&nbsp;<span class="pricevalue">계산된 가격(${dto.fee })</span>
+						</p>
+					</div>
+				</div>
+
+			</div>
 		</div>
-	</div>
-	<div class="col-lg-2"></div>
+		<!-- 호텔 반복 e-->
+	</c:forEach>
+</div>
 </div>
 
 
@@ -242,6 +248,5 @@ input[id*="popup2"] + label + div > label {
 	}//findIdpw()end
 
 </script>
-
 
 <%@ include file="../footer.jsp"%>
