@@ -153,67 +153,67 @@ public class MemberCont {
 		return mav;
 	}
 
-	
-	//구매자 로그인처리
+	// 구매자 로그인처리
 	@RequestMapping("/blogin.do")
-	public ModelAndView blogin(String uid, String upw, HttpServletRequest request, HttpServletResponse resp) throws Exception {
+	public ModelAndView blogin(String uid, String upw, HttpServletRequest request, HttpServletResponse resp)
+			throws Exception {
 		boolean result = bdao.blogin(uid, upw);
 		ModelAndView mav = new ModelAndView();
-		if(result==true) {
-			String ugrd=bdao.read_bgrd(uid, upw);
-			if(!ugrd.equals("F1")) {
+		if (result == true) {
+			String ugrd = bdao.read_bgrd(uid, upw);
+			if (!ugrd.equals("F1")) {
 				mav.setViewName("index");
-				HttpSession session=request.getSession();
+				HttpSession session = request.getSession();
 				session.setAttribute("uid", uid);
 				session.setAttribute("ugrd", ugrd);
-				session.setMaxInactiveInterval(20*60*24);
-			}else {
-		        resp.setContentType("text/html; charset=UTF-8");
-		        PrintWriter out = resp.getWriter();
-		        out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
-		        out.flush();
+				session.setMaxInactiveInterval(20 * 60 * 24);
+			} else {
+				resp.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = resp.getWriter();
+				out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+				out.flush();
 				mav.setViewName("member/login");
 			}
-		}else {
-	        resp.setContentType("text/html; charset=UTF-8");
-	        PrintWriter out = resp.getWriter();
-	        out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
-	        out.flush();
+		} else {
+			resp.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = resp.getWriter();
+			out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+			out.flush();
 			mav.setViewName("member/login");
 		}
 		return mav;
-	}//blogin() end
-	
-	
-	//판매자 로그인처리
+	}// blogin() end
+
+	// 판매자 로그인처리
 	@RequestMapping("/slogin.do")
-	public ModelAndView slogin(String suid, String supw, HttpServletRequest request, HttpServletResponse resp) throws Exception {
+	public ModelAndView slogin(String suid, String supw, HttpServletRequest request, HttpServletResponse resp)
+			throws Exception {
 		boolean result = sdao.slogin(suid, supw);
 		ModelAndView mav = new ModelAndView();
-		if(result==true) {
-			String ugrd=sdao.read_sgrd(suid, supw);
-			if(!ugrd.equals("F1")) {
+		if (result == true) {
+			String ugrd = sdao.read_sgrd(suid, supw);
+			if (!ugrd.equals("F1")) {
 				mav.setViewName("index");
-				HttpSession session=request.getSession();
+				HttpSession session = request.getSession();
 				session.setAttribute("suid", suid);
 				session.setAttribute("ugrd", ugrd);
-				session.setMaxInactiveInterval(20*60*24);
-			}else {
-		        resp.setContentType("text/html; charset=UTF-8");
-		        PrintWriter out = resp.getWriter();
-		        out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
-		        out.flush();
+				session.setMaxInactiveInterval(20 * 60 * 24);
+			} else {
+				resp.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = resp.getWriter();
+				out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+				out.flush();
 				mav.setViewName("member/login");
-			}//if end
-		}else {
-	        resp.setContentType("text/html; charset=UTF-8");
-	        PrintWriter out = resp.getWriter();
-	        out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
-	        out.flush();
+			} // if end
+		} else {
+			resp.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = resp.getWriter();
+			out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+			out.flush();
 			mav.setViewName("member/login");
 		}
 		return mav;
-	}//slogin() end
+	}// slogin() end
 
 	// 로그아웃
 	@RequestMapping("/logout.do")
@@ -332,50 +332,50 @@ public class MemberCont {
 	}
 
 	// 구매자 회원 탈퇴
-		@RequestMapping("/bdelete.do")
-		public ModelAndView bdelete(HttpServletRequest req, HttpSession session) {
-			ModelAndView mav = new ModelAndView();			
+	@RequestMapping("/bdelete.do")
+	public ModelAndView bdelete(HttpServletRequest req, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
 
-			// 세션영역에 있는 세션변수값 가져오기
-			// session.setAttribute("uid", uid);
-			String uid = (String) session.getAttribute("uid");
-			String upw = (String) req.getParameter("upw");
-			
-			int cnt=bdao.bdelete(uid, upw); //회원탈퇴성공 1, 실패0
-			if(cnt==0) {
-				//회원탈퇴가 성공하지 못했다면
-				mav.setViewName("mypage/memDelForm");
-				mav.addObject("cnt", cnt);
-			}else {
-				// 회원탈퇴가 성공되었다면...세션에 있는 모든 변수가 삭제
-				session.removeAttribute("uid");
-				session.removeAttribute("ugrd");
-				session.setMaxInactiveInterval(0);
-				mav.setViewName("index");
-			}//if end
-			return mav;
-		}// ndelete() end
-		
-		// 판매자 회원탈퇴
-		@RequestMapping("/sdelete.do")
-		public ModelAndView sdelete(HttpServletRequest req,HttpSession session) {
-			ModelAndView mav = new ModelAndView();
-			
-			String suid = (String) session.getAttribute("suid");
-			String supw = (String) req.getParameter("supw");
-			
-			int cnt=sdao.sdelete(suid,supw);
-			if(cnt==0) {
-				//회원탈퇴가 성공하지 못했다면
-				mav.setViewName("mypage/memDelForm");
-				mav.addObject("cnt", cnt);
-			}else {				
+		// 세션영역에 있는 세션변수값 가져오기
+		// session.setAttribute("uid", uid);
+		String uid = (String) session.getAttribute("uid");
+		String upw = (String) req.getParameter("upw");
+
+		int cnt = bdao.bdelete(uid, upw); // 회원탈퇴성공 1, 실패0
+		if (cnt == 0) {
+			// 회원탈퇴가 성공하지 못했다면
+			mav.setViewName("mypage/memDelForm");
+			mav.addObject("cnt", cnt);
+		} else {
+			// 회원탈퇴가 성공되었다면...세션에 있는 모든 변수가 삭제
+			session.removeAttribute("uid");
+			session.removeAttribute("ugrd");
+			session.setMaxInactiveInterval(0);
+			mav.setViewName("index");
+		} // if end
+		return mav;
+	}// ndelete() end
+
+	// 판매자 회원탈퇴
+	@RequestMapping("/sdelete.do")
+	public ModelAndView sdelete(HttpServletRequest req, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+
+		String suid = (String) session.getAttribute("suid");
+		String supw = (String) req.getParameter("supw");
+
+		int cnt = sdao.sdelete(suid, supw);
+		if (cnt == 0) {
+			// 회원탈퇴가 성공하지 못했다면
+			mav.setViewName("mypage/memDelForm");
+			mav.addObject("cnt", cnt);
+		} else {
 			session.removeAttribute("suid");
 			session.removeAttribute("ugrd");
-			session.setMaxInactiveInterval(0);			
+			session.setMaxInactiveInterval(0);
 			mav.setViewName("index");
-			}
-			return mav;
-		}// sdelete() end
+		}
+		return mav;
+	}// sdelete() end
 
 }// class end

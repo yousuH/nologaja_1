@@ -20,7 +20,7 @@
 	
 	<div class="mp_main">
 		<h2>예약목록</h2>
-		<form name="bkdetail" id="bkdetail" method="post" action="bkdetail.do">
+		<form name="bklist" id="bklist" method="post" action="bklist.do">
 			<input type="hidden" name="roomNumber" id="roomNumber" value="${roomdto.roomNumber}">
 			<input type="hidden" name="uid" id="uid" value="${sessionScope.uid}">
 			
@@ -53,6 +53,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			<input type="button" value="예약취소">
 			
 		</form>
 	

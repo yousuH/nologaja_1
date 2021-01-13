@@ -13,7 +13,7 @@ public class MypageCont {
 	
 	//마이페이지(배너 상의 마이페이지 버튼)
 	@RequestMapping(value = "/mypage.do")
-	public ModelAndView form() {
+	public ModelAndView mypage() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("mypage/mypage(bookinglist)");
 		return mav;
