@@ -1,6 +1,8 @@
 package net.utility;
 
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -22,4 +24,7 @@ public class imageDAO {
 		
 	}
 	
+	public List<RoomImageDTO> room_get_image(String roomNumber) {
+		return sqlSession.selectList("image.room_get_image", roomNumber);
+	}
 }

@@ -19,15 +19,28 @@
 	</div>
 	
 	<div class="mp_main">
-	  <h2>예약목록</h2>
-	  <p>This sidebar is of full height (100%) and always shown.</p>
-	  <p>Scroll down the page to see the result.</p>
-	  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-	  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-	  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-	  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-	</div>
-   
+		<h2>숙소목록</h2>
+	  	<div class="container">
+			<div class="col-lg-1"></div>
+			<div class="col-lg-10">
+				<table class="table">
+					<tr>
+						<td></td>
+	           			<td>호텔이름</td>
+	           			<td>호텔넘버</td>		
+	           		</tr>
+					<c:forEach var="dto" items="${list}">
+						<tr>
+							<td><img style="width: 15%" src="${pageContext.request.contextPath}/resources/img/hotel/${dto.savefile}" onclick="big()" name="pic" id="pic" /></td>           			
+		                	<td><a href="hotel_detail.do?hotelNumber=${dto.hotelNumber}&savefile=${dto.savefile}">${dto.hotelName}</a></td>
+		                	<td><a href="hotel_detail.do?hotelNumber=${dto.hotelNumber}&savefile=${dto.savefile}">${dto.hotelNumber}</a></td>
+	           			</tr>
+					</c:forEach>
+				</table>
+			</div>
+			<div class="col-lg-1"></div>
+		</div>
+   	</div>
    
    <script>
 
