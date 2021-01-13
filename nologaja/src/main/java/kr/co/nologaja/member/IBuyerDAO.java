@@ -2,9 +2,6 @@ package kr.co.nologaja.member;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
-
 public interface IBuyerDAO {
 	public List<BuyerDTO> list();
     public void insert(BuyerDTO dto);

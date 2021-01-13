@@ -44,49 +44,42 @@
 			<div class="container">
 				<div class="row align-items-center ">
 					<div class="col-lg-12">
-						<nav
-							class="navbar navbar-expand-lg navbar-light justify-content-between">
-							<a class="navbar-brand" href="home.do"> <img
-								src="./resources/img/logo1.png" alt="logo">
+						<nav class="navbar navbar-expand-lg navbar-light justify-content-between">
+							<a class="navbar-brand" href="home.do">
+								<img src="./resources/img/logo1.png" alt="logo">
 							</a>
 							<button class="navbar-toggler" type="button"
-								data-toggle="collapse" data-target="#navbarSupportedContent"
-								aria-controls="navbarSupportedContent" aria-expanded="false"
-								aria-label="Toggle navigation">
+									data-toggle="collapse" data-target="#navbarSupportedContent"
+									aria-controls="navbarSupportedContent" aria-expanded="false"
+									aria-label="Toggle navigation">
 								<span class="navbar-toggler-icon"></span>
 							</button>
-							<div
-								class="collapse navbar-collapse main-menu-item justify-content-end"
-								id="navbarSupportedContent">
+							<div class="collapse navbar-collapse main-menu-item justify-content-end" id="navbarSupportedContent">
 								<ul class="navbar-nav">
 									<c:choose>
-										<c:when
-											test="${sessionScope.uid == null && sessionScope.suid ==null }">
-											<li class="nav-item"><a class="nav-link" href="login.do">로그인</a>
-											</li>
-											<li class="nav-item"><a class="nav-link"
-												href="memberform.do">회원가입</a></li>
+										<c:when test="${sessionScope.uid == null && sessionScope.suid ==null}">
+											<li class="nav-item"><a class="nav-link" href="login.do">로그인</a></li>
+											<li class="nav-item"><a class="nav-link" href="memberform.do">회원가입</a></li>
 										</c:when>
 
 										<c:otherwise>
 											<c:choose>
 												<c:when test="${sessionScope.uid != null}">
-													<li class="nav-item"><span>${sessionScope.uid }님이
-															로그인 중 입니다. 등급:${sessionScope.ugrd }</span>
+													<li class="nav-item">
+														<span>${sessionScope.uid}님이 로그인 중 입니다. 등급:${sessionScope.ugrd}</span>
+													</li>
 												</c:when>
 												<c:otherwise>
-													<li class="nav-item"><span>${sessionScope.suid }님이
-															로그인 중 입니다.등급:${sessionScope.ugrd }</span>
+													<li class="nav-item">
+														<span>${sessionScope.suid}님이 로그인 중 입니다.등급:${sessionScope.ugrd}</span>
+													</li>
 												</c:otherwise>
 											</c:choose>
-											<li class="nav-item"><a class="nav-link"
-												href="logout.do">로그아웃</a></li>
-											<li class="nav-item"><a class="nav-link"
-												href="mypage.do">마이페이지</a></li>
+											<li class="nav-item"><a class="nav-link" href="logout.do">로그아웃</a></li>
+											<li class="nav-item"><a class="nav-link" href="mypage.do">마이페이지</a></li>
 										</c:otherwise>
 									</c:choose>
-									<li class="nav-item"><a class="nav-link"
-										href="inquiry_list.do">고객센터</a></li>
+									<li class="nav-item"><a class="nav-link" href="inquiry_list.do">고객센터</a></li>
 								</ul>
 							</div>
 						</nav>
@@ -95,7 +88,6 @@
 			</div>
 		</div>
 	</header>
-
 	<!-- 메인내용 -->
 	<section class="banner_part">
 		<!-- booking part start-->
@@ -105,16 +97,13 @@
 					<div class="col-lg-12">
 						<div class="booking_content">
 							<div class="tab-content" id="myTabContent">
-								<div class="tab-pane fade show active" id="hotel"
-									role="tabpanel" aria-labelledby="hotel-tab">
+								<div class="tab-pane fade show active" id="hotel" role="tabpanel" aria-labelledby="hotel-tab">
 									<div class="booking_form">
-										<form action="#">
+										<form action="searchlist.do">
 											<div class="form-row">
-
 												<div class="input-group input-group-sm mb-3">
-													<input
-														style="border-radius: 0; height: 45px; border-color: #2493e0; background-color: transparent;"
-														type="text" class="form-control" placeholder="  상세지역">
+													<input style="border-radius: 0; height: 45px; border-color: #2493e0; background-color: transparent;"
+														   type="text" class="form-control" placeholder="   상세지역">
 												</div>
 
 												<!--
@@ -127,41 +116,45 @@
                                                 -->
 
 												<div class="form_colum">
-													<select class="nc_select">
-														<option selected>도시를 선택하세요</option>
-														<option value="1">서울</option>
-														<option value="2">부산</option>
-														<option value="3">제주</option>
-														<option value="4">강원</option>
-														<option value="5">대구</option>
-														<option value="6">광주</option>
-														<option value="1">서울</option>
-														<option value="2">부산</option>
-														<option value="3">제주</option>
-														<option value="4">강원</option>
-														<option value="5">대구</option>
-														<option value="6">광주</option>
+													<select class="nc_select" name="cityCode" id="cityCode">
+														<option value="" selected>도시를 선택하세요</option>
+														<option value="SE">서울</option>
+														<option value="BU">부산</option>
+														<option value="IN">인천</option>
+														<option value="SJ">세종</option>
+														<option value="DG">대구</option>
+														<option value="DJ">대전</option>
+														<option value="GJ">광주</option>
+														<option value="UL">울산</option>
+														<option value="GG">경기도</option>
+														<option value="GW">강원도</option>
+														<option value="CB">충청북도</option>
+														<option value="CN">충청남도</option>
+														<option value="GB">경상북도</option>
+														<option value="GN">경상남도</option>
+														<option value="JB">전라북도</option>
+														<option value="JB">전라남도</option>
 													</select>
 												</div>
 												<div class="form_colum">
-													<input id="datepicker_1" placeholder="Check in date">
+													<input name="ck_in" id="datepicker_1" placeholder="Check in date">
 												</div>
 												<div class="form_colum">
-													<input id="datepicker_2" placeholder="Check out date">
+													<input name= "ck_out" id="datepicker_2" placeholder="Check out date">
 												</div>
 												<div class="form_colum">
-													<select class="nc_select">
-														<option selected>Person</option>
+													<select class="nc_select" name="guests" id="guests">
+														<option value="" selected>Person</option>
 														<option value="1">1</option>
 														<option value="2">2</option>
 														<option value="3">3</option>
-														<option value="1">1</option>
-														<option value="2">2</option>
-														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+														<option value="6">6</option>
 													</select>
 												</div>
 												<div class="form_btn">
-													<a href="#" class="btn_1">search</a>
+													<button class="btn_1">search</button>
 												</div>
 											</div>
 										</form>
@@ -188,8 +181,7 @@
 				<div class="col-lg-6 col-md-6">
 					<div class="single_place">
 						<img src="./resources/img/single_place_1.png" alt="">
-						<div
-							class="hover_Text d-flex align-items-end justify-content-between">
+						<div class="hover_Text d-flex align-items-end justify-content-between">
 							<div class="hover_text_iner">
 								<a href="#" class="place_btn">제주</a>
 								<h3>Orange Guest House</h3>
@@ -211,18 +203,18 @@
 				<div class="col-lg-6 col-md-6">
 					<div class="single_place">
 						<img src="./resources/img/single_place_2.png" alt="">
-						<div
-							class="hover_Text d-flex align-items-end justify-content-between">
+						<div class="hover_Text d-flex align-items-end justify-content-between">
 							<div class="hover_text_iner">
 								<a href="#" class="place_btn">속초</a>
 								<h3>만석맨션</h3>
 								<p>침실에서 바라보는 오션뷰</p>
 								<div class="place_review">
-									<a href="#"><i class="fas fa-star"></i></a> <a href="#"><i
-										class="fas fa-star"></i></a> <a href="#"><i
-										class="fas fa-star"></i></a> <a href="#"><i
-										class="fas fa-star"></i></a> <a href="#"><i
-										class="fas fa-star"></i></a> <span>(210 review)</span>
+									<a href="#"><i class="fas fa-star"></i></a>
+									<a href="#"><i class="fas fa-star"></i></a>
+									<a href="#"><i class="fas fa-star"></i></a> 
+									<a href="#"><i class="fas fa-star"></i></a> 
+									<a href="#"><i class="fas fa-star"></i></a> 
+									<span>(210 review)</span>
 								</div>
 							</div>
 							<div class="details_icon text-right">
@@ -234,18 +226,18 @@
 				<div class="col-lg-6 col-md-6">
 					<div class="single_place">
 						<img src="./resources/img/single_place_3.png" alt="">
-						<div
-							class="hover_Text d-flex align-items-end justify-content-between">
+						<div class="hover_Text d-flex align-items-end justify-content-between">
 							<div class="hover_text_iner">
 								<a href="#" class="place_btn">부산</a>
 								<h3>갈매기 하우스</h3>
 								<p>파도를 찾는 서퍼들의 고향</p>
 								<div class="place_review">
-									<a href="#"><i class="fas fa-star"></i></a> <a href="#"><i
-										class="fas fa-star"></i></a> <a href="#"><i
-										class="fas fa-star"></i></a> <a href="#"><i
-										class="fas fa-star"></i></a> <a href="#"><i
-										class="fas fa-star"></i></a> <span>(210 review)</span>
+									<a href="#"><i class="fas fa-star"></i></a>
+									<a href="#"><i class="fas fa-star"></i></a>
+									<a href="#"><i class="fas fa-star"></i></a>
+									<a href="#"><i class="fas fa-star"></i></a>
+									<a href="#"><i class="fas fa-star"></i></a>
+									<span>(210 review)</span>
 								</div>
 							</div>
 							<div class="details_icon text-right">
@@ -257,18 +249,18 @@
 				<div class="col-lg-6 col-md-6">
 					<div class="single_place">
 						<img src="./resources/img/single_place_4.png" alt="">
-						<div
-							class="hover_Text d-flex align-items-end justify-content-between">
+						<div class="hover_Text d-flex align-items-end justify-content-between">
 							<div class="hover_text_iner">
 								<a href="#" class="place_btn">전주</a>
 								<h3>한옥빌리지</h3>
 								<p>전통이 살아숨쉬는 웅앵웅</p>
 								<div class="place_review">
-									<a href="#"><i class="fas fa-star"></i></a> <a href="#"><i
-										class="fas fa-star"></i></a> <a href="#"><i
-										class="fas fa-star"></i></a> <a href="#"><i
-										class="fas fa-star"></i></a> <a href="#"><i
-										class="fas fa-star"></i></a> <span>(210 review)</span>
+									<a href="#"><i class="fas fa-star"></i></a>
+									<a href="#"><i class="fas fa-star"></i></a>
+									<a href="#"><i class="fas fa-star"></i></a>
+									<a href="#"><i class="fas fa-star"></i></a>
+									<a href="#"><i class="fas fa-star"></i></a>
+									<span>(210 review)</span>
 								</div>
 							</div>
 							<div class="details_icon text-right">
@@ -295,7 +287,7 @@
 							<div class="case-studies-summary">
 								<h2>서울</h2>
 							</div>
-					</a>
+						</a>
 					</li>
 					<li class="one-forth text-center"
 						style="background-image: url(./resources/img/single_place_1.png);">
@@ -303,7 +295,7 @@
 							<div class="case-studies-summary">
 								<h2>제주</h2>
 							</div>
-					</a>
+						</a>
 					</li>
 					<li class="one-forth text-center"
 						style="background-image: url(./resources/img/single_place_2.png);">
@@ -311,7 +303,7 @@
 							<div class="case-studies-summary">
 								<h2>경상도</h2>
 							</div>
-					</a>
+						</a>
 					</li>
 					<li class="one-forth text-center"
 						style="background-image: url(./resources/img/single_place_3.png);">
@@ -319,7 +311,7 @@
 							<div class="case-studies-summary">
 								<h2>전라도</h2>
 							</div>
-					</a>
+						</a>
 					</li>
 
 					<li class="one-forth text-center"
@@ -328,7 +320,7 @@
 							<div class="case-studies-summary">
 								<h2>충청도</h2>
 							</div>
-					</a>
+						</a>
 					</li>
 					<li class="one-half text-center">
 						<div class="title-bg">
@@ -344,7 +336,7 @@
 							<div class="case-studies-summary">
 								<h2>강원도</h2>
 							</div>
-					</a>
+						</a>
 					</li>
 					<li class="one-forth text-center"
 						style="background-image: url(./resources/img/single_place_2.png);">
@@ -352,7 +344,7 @@
 							<div class="case-studies-summary">
 								<h2>경기도</h2>
 							</div>
-					</a>
+						</a>
 					</li>
 					<li class="one-forth text-center"
 						style="background-image: url(./resources/img/single_place_3.png);">
@@ -360,7 +352,7 @@
 							<div class="case-studies-summary">
 								<h2>부산</h2>
 							</div>
-					</a>
+						</a>
 					</li>
 					<li class="one-forth text-center"
 						style="background-image: url(./resources/img/single_place_4.png);">
@@ -368,7 +360,7 @@
 							<div class="case-studies-summary">
 								<h2>대구</h2>
 							</div>
-					</a>
+						</a>
 					</li>
 					<li class="one-forth text-center"
 						style="background-image: url(./resources/img/single_place_1.png);">
@@ -376,13 +368,13 @@
 							<div class="case-studies-summary">
 								<h2>광주</h2>
 							</div>
-					</a>
+						</a>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</div>
-	</div>
+	
 
 
 
