@@ -20,7 +20,7 @@
     <!-- 공지사항 상세보기 -->
 	<select id="detail" resultType="kr.co.nologaja.cs.NoticeDTO">
         <![CDATA[
-            SELECT noticeno, title, content
+            SELECT noticeno, title, content, wdate
             FROM notice
             WHERE noticeno=#{noticeno}
         ]]>

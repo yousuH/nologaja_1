@@ -62,11 +62,9 @@ public class CsCont {
 	
 	//문의사항 작성하기
 	@RequestMapping(value = "/inquiry_insert.do")
-	public ModelAndView inquiry_insert(@ModelAttribute InquiryDTO dto, HttpServletRequest req) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("cs/inquiry_list");
+	public String inquiry_insert(@ModelAttribute InquiryDTO dto, HttpServletRequest req) {
 		idao.insert(dto);
-		return mav;
+		return "redirect:/inquiry_list.do";
 	}//insert() end
 	
 	//문의사항 상세보기
@@ -75,6 +73,7 @@ public class CsCont {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("cs/inquiry_detail");
 		InquiryDTO dto = idao.detail(inquiryno);
+		mav.addObject("id", dto.getId());
 		mav.addObject("title", dto.getTitle());
 		mav.addObject("inquiryno", dto.getInquiryno());
 		mav.addObject("wdate", dto.getWdate());
@@ -123,11 +122,9 @@ public class CsCont {
 	
 	//문의사항 삭제하기
 	@RequestMapping(value = "/inquiry_delete.do")
-	public ModelAndView inquiry_delete(int inquiryno) {
-		ModelAndView mav = new ModelAndView();
+	public String inquiry_delete(int inquiryno) {
 		idao.delete(inquiryno);
-		mav.setViewName("cs/inquiry_list");
-		return mav;
+		return "redirect:/inquiry_list.do";
 	}//insert() end
 	
 	//문의사항 댓글폼 불러오기
@@ -149,11 +146,9 @@ public class CsCont {
 	
 	//문의사항 댓글달기
 	@RequestMapping(value = "/inquiry_replyproc")
-	public ModelAndView inquiry_replyproc(InquiryDTO dto) {
-		ModelAndView mav = new ModelAndView();
+	public String inquiry_replyproc(InquiryDTO dto) {
 		idao.replyproc(dto);
-		mav.setViewName("cs/inquiry_list");
-		return mav;
+		return "redirect:/inquiry_list.do";
 	}
 	
 	//공지사항 폼 가져오기
@@ -164,11 +159,9 @@ public class CsCont {
 	
 	//공지사항 작성하기
 	@RequestMapping(value = "/notice_insert.do")
-	public ModelAndView notice_insert(@ModelAttribute NoticeDTO dto, HttpServletRequest req) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("cs/notice_list");
+	public String notice_insert(@ModelAttribute NoticeDTO dto, HttpServletRequest req) {
 		ndao.insert(dto);
-		return mav;
+		return "redirect:/notice_list.do";
 	}//insert() end
 		
 	//공지사항 목록가져오기
@@ -224,20 +217,16 @@ public class CsCont {
 	
 	//공지사항 수정하기
 	@RequestMapping(value = "/notice_updateproc.do")
-	public ModelAndView notice_updateproc(@ModelAttribute NoticeDTO dto) {
-		ModelAndView mav = new ModelAndView();
+	public String notice_updateproc(@ModelAttribute NoticeDTO dto) {
 		ndao.update(dto);
-		mav.setViewName("cs/notice_list");
-		return mav;
+		return "redirect:/notice_list.do";
 	}//insert() end
 	
 	//공지사항 삭제하기
 	@RequestMapping(value = "/notice_delete.do")
-	public ModelAndView notice_delete(int noticeno) {
-			ModelAndView mav = new ModelAndView();
+	public String notice_delete(int noticeno) {
 			ndao.delete(noticeno);
-			mav.setViewName("cs/notice_list");
-			return mav;
+			return "redirect:/notice_list.do";
 		}//insert() end
 
 	//FAQ 이동
