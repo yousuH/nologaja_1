@@ -5,6 +5,8 @@ import java.util.List;
 public interface ICartDAO {
 
 	List<CartDTO> getcartitems(int ctFolder_num);
+
+	void cartinsert(CartDTO dto);
 	
 	
 

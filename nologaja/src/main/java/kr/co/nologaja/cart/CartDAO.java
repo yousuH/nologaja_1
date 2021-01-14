@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+
 @Repository
 public class CartDAO implements ICartDAO{
 
@@ -19,6 +20,14 @@ public class CartDAO implements ICartDAO{
 	public List<CartDTO> getcartitems(int ctFolder_num) {
 		List<CartDTO> cartitems = sqlSession.selectList("cart.getcartitems", ctFolder_num);
 		return cartitems;
+	}
+	
+	
+	
+	@Override
+	public void cartinsert(CartDTO dto) {
+		sqlSession.insert("cart.cartinsert", dto);
+		
 	}
 	
 
