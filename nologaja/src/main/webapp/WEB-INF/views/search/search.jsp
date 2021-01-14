@@ -703,8 +703,6 @@ input[id*="popup2"] + label + div > label {
 
 <main style="min-height: 1400px">
 
-
-<h3 align="center" style="padding-top: 15px; padding-bottom: 15px;">검색 결과</h3>
 		<div class="filter_area">
 			<div class="sub_list_filter_result" style="height: auto;">
 				<p>
@@ -771,14 +769,14 @@ input[id*="popup2"] + label + div > label {
 								<div class="listbox_img">
 									<div class="list_img">
 										<!-- 이미지 불러오기 -->
-										<img style="width: 15%" src="${pageContext.request.contextPath}/resources/img/hotel/${dto.savefile}"/>
+										<img style="width: 90%" src="${pageContext.request.contextPath}/resources/img/room/${dto.savefile}" width="100%"/>
 									</div>
 								</div>
 								<!-- 방 이름 -->
 								<div class="listbox_title">
 									<div class="list_name">
 										<p title="${dto.roomName}" class="hotelname" onclick="">
-											<a href="">${dto.roomName }</a>
+											<a href="searchdetail.do?roomNumber=${dto.roomNumber }">${dto.roomName }</a>
 										</p>
 									</div>
 									<!-- 별표 이미지 + 총 리뷰점수 + 총리뷰 갯수-->

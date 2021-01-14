@@ -39,7 +39,7 @@
 		from roomTable r
 			left outer join review v on r.roomNumber = v.roomNumber
 			left outer join hotelTable h on r.hotelNumber = h.hotelNumber
-			left outer join roomimage ri on r.roomNumber = ri.savefile 
+			left outer join roomimage ri on r.roomNumber = ri.roomNumber 
 		where
 			r.roomNumber = #{roomNumber}
 		]]>
