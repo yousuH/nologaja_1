@@ -18,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.nologaja.cart.CartFolderDAO;
 import kr.co.nologaja.cart.CartFolderDTO;
+import kr.co.nologaja.hotel.RoomDTO;
+
 
 @Controller
 public class SearchCont {
@@ -193,5 +195,15 @@ public class SearchCont {
 		mav.addObject("cartFolders", cartFolders);
 		return mav;
 	}// insert() end
-		
+	
+	@RequestMapping(value="/searchdetail.do")
+	public ModelAndView searchdetail(String roomNumber) {
+		ModelAndView mav = new ModelAndView();
+		RoomHotelDTO dto = sdao.searchdetail(roomNumber);
+		System.out.println(dto);
+		mav.addObject("dto", dto);
+		mav.setViewName("search/searchdetail");
+		return mav;
+	}
+	
 }

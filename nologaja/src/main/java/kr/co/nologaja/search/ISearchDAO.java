@@ -9,5 +9,6 @@ public interface ISearchDAO {
 	public int ablerN(String roomNumber);
 	public int datecheck(SearchDTO sdto);
 	public SearchlistDTO ableList(String roomNumber);
+	public RoomHotelDTO searchdetail(String roomNumber);
 
 }
