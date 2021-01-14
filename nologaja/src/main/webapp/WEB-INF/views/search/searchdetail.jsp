@@ -191,10 +191,9 @@ body {
 		</div>		
 		
 	</header>
+	
 	<div class="grid-container">
-
 		<div class="namenphoto">
-
 			<!--  방제목, 주소  -->
 			<div>
 				<div>
@@ -205,56 +204,42 @@ body {
 			<!--호텔이미지-->
 			<img class="" alt=""
 				src="${pageContext.request.contextPath}/resources/img/hotel/${dto.hsavefile}">
-
 		</div>
-
-
-
 		<div class="detail">
 			<!--호텔정보-->
 			<div>
 				<span>${dto.hotelInform}</span>
 			</div>
 			<br>
-
 			<!--편의시설-->
 			<div>
 				<span>${dto.conv} </span>
 			</div>
-
 		</div>
-
-
-
-
-
 		<div class="book">
-			<div
-				style="border: 1px solid black; border-radius: 5%; text-align: center;">
+			<div style="border: 1px solid black; border-radius: 5%; text-align: center;">
 				<table border="1px" width="300px" height="150px"
-					style="border: 1px; border-radius: 5%; padding: 5px;">
+					   style="border: 1px; border-radius: 5%; padding: 5px;">
 					<tr style="height: 75px;">
-						<th style="width: 150px;"><span>체크인</span><br> <span>${param.ck_in}</span>
+						<th style="width: 150px;">
+							<span>체크인</span><br><span>${param.ck_in}</span>
 						</th>
-						<th style="width: 150px;"><span>체크아웃</span><br> <span>${param.ck_out}</span>
+						<th style="width: 150px;">
+							<span>체크아웃</span><br><span>${param.ck_out}</span>
 						</th>
 					</tr>
 					<tr style="height: 75px;">
-						<td colspan="2"><span>인원수</span><br> <span>${param.maxGuest}</span>
+						<td colspan="2">
+							<span>인원수</span><br><span>${param.maxGuest}</span>
 						</td>
 					</tr>
 				</table>
-
-				<input type="submit" value="예약하기" style="width: 85%; padding: 10px;"><br>
-				<br> <span>총 합계</span><span>${param.fee}원</span>
+				<input type="submit" value="예약하기" style="width: 85%; padding: 10px;"
+					   onclick="location.href='booking.do?roomNumber=${dto.roomNumber}&night=${param.night}&hotelName=${dto.hotelName}&roomName=${dto.roomName}&maxGuest=${param.maxGuest}&ck_in=${param.ck_in}&ck_out=${param.ck_out}&fee=${param.fee}&pay=${param.pay}'"><br><br>
+				<span>총 합계</span><span>${param.fee}원</span>
 			</div>
-
 		</div>
-
-
-
 		<div class="review">review</div>
-
 	</div>
 </body>
 <%@ include file="../footer.jsp"%>
