@@ -159,60 +159,9 @@
 	<br>
 	<p>다음 정보를 확인해 주세요</p>
 	<form name="booking" id="booking" method="post" action="bookingproc.do">
-		방번호 : <input type="text" name="roomNumber" id="roomNumber" value="SEAP0001_01">
-		아이디 : <input type="text" name="uid" id="uid" value="${sessionScope.uid}">
-		박수 : <input type="text" name="night" id="night">
-		
-		<table class="center">
-			<tr>
-				<th>숙소명/방이름</th>
-				<td>
-					<input type="text" name="hotelName" id="hotelName">
-				</td>
-				<td>
-					<input type="text" name="roomName" id="roomName">
-				</td>
-			</tr>
-			<tr>
-				<th>인원수</th>
-				<td><input type="number" name="maxGuest" id="maxGuest"></td>
-			</tr>
-			<tr>
-				<th>체크인</th>
-				<td><input type="text" name="ck_in" id="ck_in"></td>
-			</tr>
-			<tr>
-				<th>체크아웃</th>
-				<td><input type="text" name="ck_out" id="ck_out"></td>
-			</tr>
-			<tr>
-				<th>총합계</th>
-				<td><input type="number" name="fee" id="fee"></td>
-			</tr>
-			<tr>
-				<th>결제수단</th>
-				<td>
-					<select name="pay" id="pay" onclick="pay_send()">
-						<option value="" selected>결제수단을 선택하세요</option>
-						<option value="1">무통장입금</option>
-						<option value="2">카드결제</option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<th>요청사항</th>
-				<td><textarea type="text" name="request" id="request" rows="9" cols="50"></textarea></td>
-			</tr>
-		</table>
-		<input type="submit" value="예약완료">
-		
-	</form>
-	
-	<!-- 
-	<form name="booking" id="booking" method="post" action="bookingproc.do">
-		<input type="hidden" name="roomNumber" id="roomNumber" value="${param.roomNumber}">
-		<input type="hidden" name="uid" id="uid" value="${sessionScope.uid}">
-		<input type="hidden" name="night" id="night" value="${night}">
+		<input type="text" name="roomNumber" id="roomNumber" value="${param.roomNumber}">
+		<input type="text" name="uid" id="uid" value="${sessionScope.uid}">
+		<input type="text" name="night" id="night" value="${param.night}">
 		
 		<table class="center">
 			<tr>
@@ -228,15 +177,15 @@
 			</tr>
 			<tr>
 				<th>체크인</th>
-				<td><input type="number" name="ck_in" id="ck_in" value="${param.ck_in}" readonly></td>
+				<td><input type="text" name="ck_in" id="ck_in" value="${param.ck_in}" readonly></td>
 			</tr>
 			<tr>
 				<th>체크아웃</th>
-				<td><input type="number" name="ck_out" id="ck_out" value="${param.ck_out}" readonly></td>
+				<td><input type="text" name="ck_out" id="ck_out" value="${param.ck_out}" readonly></td>
 			</tr>
 			<tr>
 				<th>총합계</th>
-				<td><input type="number" name="fee" id="fee" value="${param.fee}" readonly></td>
+				<td><input type="text" name="fee" id="fee" value="${param.fee}" readonly></td>
 			</tr>
 			<tr>
 				<th>결제수단</th>
@@ -256,7 +205,7 @@
 		<input type="submit" value="예약완료">
 		
 	</form>
-	 -->
+
 	<script>
 	
 	</script>

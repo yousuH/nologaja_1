@@ -5,6 +5,7 @@ public class RoomHotelDTO {
 	private String roomNumber;
 	private String roomName;
 	private String hotelNumber;
+	private String hotelName;
 	private String roomInform;
 	private int maxGuest;
 	private String zipcode;
@@ -21,6 +22,13 @@ public class RoomHotelDTO {
 	
 	public RoomHotelDTO() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public String getHotelName() {
+		return hotelName;
+	}
+	public void setHotelName(String hotelName) {
+		this.hotelName = hotelName;
 	}
 	public String getRoomNumber() {
 		return roomNumber;

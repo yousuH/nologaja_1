@@ -25,7 +25,7 @@
 		<![CDATA[
 		SELECT bk_num, ck_in, ck_out, night, hotelName, roomNumber, roomName, maxGuest, fee, uid, request, pay, pay_st
 		FROM bookTable
-		WHERE bk_num = #{bk_num}
+		WHERE bk_num = #{bk_num} AND uid = #{uid}
 		]]>
 	</select>
 
@@ -42,7 +42,7 @@
 		<![CDATA[
 		UPDATE bookTable
 	    SET pay_st='C'
-	    WHERE bk_num = #{bk_num} AND uid = #{uid}
+	    WHERE bk_num = #{bk_num}
 		]]>
 	</select>
 
