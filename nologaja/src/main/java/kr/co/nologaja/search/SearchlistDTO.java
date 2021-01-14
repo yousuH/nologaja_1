@@ -13,6 +13,7 @@ public class SearchlistDTO {
 	private String hotelNumber;
 	private String fee;
 	private String savefile;
+	private String hotelName;
 
 	public SearchlistDTO() {
 
@@ -105,12 +106,22 @@ public class SearchlistDTO {
 	public void setSavefile(String savefile) {
 		this.savefile = savefile;
 	}
+	
+
+	public String getHotelName() {
+		return hotelName;
+	}
+
+	public void setHotelName(String hotelName) {
+		this.hotelName = hotelName;
+	}
 
 	@Override
 	public String toString() {
 		return "SearchlistDTO [roomNumber=" + roomNumber + ", roomName=" + roomName + ", starAvg=" + starAvg + ", cnt="
 				+ cnt + ", addr1=" + addr1 + ", basecost=" + basecost + ", weekcost=" + weekcost + ", longcost="
-				+ longcost + ", hotelNumber=" + hotelNumber + ", fee=" + fee + ", savefile=" + savefile + "]";
+				+ longcost + ", hotelNumber=" + hotelNumber + ", fee=" + fee + ", savefile=" + savefile + ", hotelName="
+				+ hotelName + "]";
 	}
 
 

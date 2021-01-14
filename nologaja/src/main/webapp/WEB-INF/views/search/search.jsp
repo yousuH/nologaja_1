@@ -776,7 +776,7 @@ input[id*="popup2"] + label + div > label {
 								<div class="listbox_title">
 									<div class="list_name">
 										<p title="${dto.roomName}" class="hotelname" onclick="">
-											<a href="searchdetail.do?roomNumber=${dto.roomNumber }">${dto.roomName }</a>
+											<a href="searchdetail.do?roomNumber=${dto.roomNumber }&ck_in=${param.ck_in}&ck_out=${param.ck_out}&maxGuest=${param.maxGuest}&night=${night}&fee=${dto.fee}">${dto.roomName }</a>
 										</p>
 									</div>
 									<!-- 별표 이미지 + 총 리뷰점수 + 총리뷰 갯수-->
