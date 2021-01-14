@@ -10,18 +10,25 @@ import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.nologaja.cart.CartFolderDAO;
+import kr.co.nologaja.cart.CartFolderDTO;
 import kr.co.nologaja.hotel.RoomDTO;
+
 
 @Controller
 public class SearchCont {
 	
 	@Inject
 	SearchDAO sdao;
+	
+	@Inject
+	CartFolderDAO cartFolderdao;
 
 	public SearchCont() {
 		System.out.println("==bkCont객체생성==");
@@ -29,7 +36,7 @@ public class SearchCont {
 	
 	// 검색
 	@RequestMapping(value = "/search.do")
-	public ModelAndView search(SearchDTO sdto) throws ParseException {
+	public ModelAndView search(SearchDTO sdto, HttpSession session) throws ParseException {
 		//System.out.println(sdto.getCityCode());	// SE
 		//System.out.println(sdto.getMaxGuest()); // 1
 		//System.out.println(sdto.getCk_in());    // 2021-01-25 24 
@@ -164,6 +171,18 @@ public class SearchCont {
 		//[RoomDTO [roomNumber=SEAP0005_01, roomName=방2, hotelNumber=SEAP0005, roomImg=, roomInform=방방방방바아, maxGuest=6, conv=KC,WS, baseCost=40000, weekCost=40000, longCost=40000]]
 		
 		
+		
+		
+		//5. cartfolder 가져오기 
+		
+		String uid = (String) session.getAttribute("uid");
+		List<CartFolderDTO> cartFolders= new ArrayList<CartFolderDTO>();		
+		cartFolders.addAll(cartFolderdao.getcartFolders(uid));
+		
+		System.out.println(cartFolders);
+		
+		
+		
 		//수정 hotle 주소 조인, 리뷰점수, 리뷰 갯수 조인 
 		//점수 및 갯수는 없으면 조인 x? 0? 0넣고 인덱스 if문 써야할듯
 		//계산된 fee값은 어쩌지
@@ -172,6 +191,8 @@ public class SearchCont {
 		mav.setViewName("search/search");
 		mav.addObject("list", list);
 		mav.addObject("night", night);
+		mav.addObject("fee", fee);
+		mav.addObject("cartFolders", cartFolders);
 		return mav;
 	}// insert() end
 	

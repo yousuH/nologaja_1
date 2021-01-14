@@ -703,6 +703,8 @@ input[id*="popup2"] + label + div > label {
 
 <main style="min-height: 1400px">
 
+
+<h3 align="center" style="padding-top: 15px; padding-bottom: 15px;">검색 결과</h3>
 		<div class="filter_area">
 			<div class="sub_list_filter_result" style="height: auto;">
 				<p>
@@ -769,7 +771,7 @@ input[id*="popup2"] + label + div > label {
 								<div class="listbox_img">
 									<div class="list_img">
 										<!-- 이미지 불러오기 -->
-										<img style="width: 90%" src="${pageContext.request.contextPath}/resources/img/room/${dto.savefile}" width="100%"/>
+										<img style="width: 15%" src="${pageContext.request.contextPath}/resources/img/hotel/${dto.savefile}"/>
 									</div>
 								</div>
 								<!-- 방 이름 -->
@@ -778,6 +780,56 @@ input[id*="popup2"] + label + div > label {
 										<p title="${dto.roomName}" class="hotelname" onclick="">
 											<a href="searchdetail.do?roomNumber=${dto.roomNumber }&ck_in=${param.ck_in}&ck_out=${param.ck_out}&maxGuest=${param.maxGuest}&night=${night}&fee=${dto.fee}">${dto.roomName }</a>
 										</p>
+										<!-- 찜한숙소 -->
+										<form style="float: right;" method="post">											
+											<input type="hidden" id="roomNumber" name="roomNumber" value="${dto.roomNumber}">
+											<input type="hidden" id="guests" name="guests" value="${param.maxGuest}">
+											<input type="hidden" id="ck_in" name="ck_in" value="${param.ck_in}">
+											<input type="hidden" id="ck_out" name="ck_out" value="${param.ck_out}">
+											<input type="hidden" id="night" name="night" value="${night}">
+											<input type="hidden" id="fee" name="fee" value="${fee}">
+												
+											<input type="checkbox" id="popup">
+											<label for="popup">♡</label>
+											<div><!-- 모달창 시작(찜) -->
+												<div>
+													<label for="popup"><strong>Ⅹ</strong></label>													
+													
+													<span style="text-align: center;"><strong>목록에 저장하기</strong></span>
+													
+													<table>
+														<tr>
+															<td width="100%">숙소목록</td>
+														</tr>
+														<c:forEach var="cartFolder" items="${cartFolders}">
+															<tr>
+																<td><input type="button" id="btn_cartFolder" name="ctFolder_name" value="${cartFolder.ctFolder_name}">
+																<input type="hidden" id="ctFolder_num" name="ctFolder_num" value="${cartFolder.ctFolder_num}"></td></tr>
+														
+														</c:forEach>
+													</table>
+													
+													<div>
+														<input type="checkbox" id="popup2">
+														<label for="popup2">목록 추가하기</label>
+														<div>
+															<div>
+																<label for="popup2"><strong>Ⅹ</strong></label>
+																
+																<span style="text-align: center;"><strong>목록 이름 작성하기</strong></span>										
+																
+																
+																<br><input type="text" id="ctFolder_name" name="ctFolder_name" placeholder="이름" value="">
+																<br><input type="button" id="btn_ctFolder_name" value="새로 만들기">
+																
+															</div>
+															<label for="popup2"></label>
+														</div>	
+													</div>										
+												</div><!-- 모달창 끝(찜) -->
+												<label for="popup"></label>
+											</div>
+										</form>
 									</div>
 									<!-- 별표 이미지 + 총 리뷰점수 + 총리뷰 갯수-->
 									<div class="list_grade">
@@ -852,11 +904,63 @@ input[id*="popup2"] + label + div > label {
 
 
 	</main>
-	<script>
+<script src="./resources/js/jquery.js"></script>
+<script>
+$("#btn_ctFolder_name").click(function(){
+	var params="";
+	params += "ctFolder_name=" + $("#ctFolder_name").val();
+	params += "&guests=" + $("#maxGuest").val();
+	params += "&ck_in=" + $("#ck_in").val();
+	params += "&ck_out=" + $("#ck_out").val();
+	params += "&night=" + $("#night").val();
+	params += "&totalFee=" + $("#fee").val();
+	params += "&roomNumber=" + $("#roomNumber").val();  //전달값
+	//alert(params);
+	
+	$.post(
+		"addcartfolder_insert.do"  		   		  //요청명령어
+		,params 
+		, responseProc   				  //콜백함수 
+	); // post() end
 
-	function findIdpw(){  
-		window.open("findidpw.do", "아이디/비밀번호 찾기", "width=550, height=550");
-	}//findIdpw()end
+}); // click() end 
+
+
+function responseProc(){
+	
+	//팝업을 display:none 으로 바꿔야함
+	$("#popup2").css("display", "none");
+	$("#popup").css("display", "none");
+	
+}//responseProc() end 
+
+
+
+$("#btn_cartFolder").click(function(){
+	var params="";
+	params += "ctFolder_num=" + $("#ctFolder_num").val();
+	params += "&ctFolder_name=" + $("#btn_cartFolder").val();
+	params += "&guests=" + $("#maxGuest").val();
+	params += "&ck_in=" + $("#ck_in").val();
+	params += "&ck_out=" + $("#ck_out").val();
+	params += "&night=" + $("#night").val();
+	params += "&totalFee=" + $("#fee").val();
+	params += "&roomNumber=" + $("#roomNumber").val();  //전달값
+	alert(params);
+	
+	$.post(
+		"cartinsert.do"  		   		  //요청명령어
+		,params 
+		, responseProc   				  //콜백함수 
+	); // post() end
+
+}); // click() end 
+
+function responseProc2(){
+	
+	//팝업을 display:none 으로 바꿔야함
+	$("#popup").css("display", "none");
+}//responseProc() end 
 
 </script>
 

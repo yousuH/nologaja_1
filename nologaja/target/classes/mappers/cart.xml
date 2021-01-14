@@ -32,5 +32,32 @@
 		]]>
 	</insert>
 	
+	
+	
+	<select id="getctfoldernum" resultType="int" parameterType="kr.co.nologaja.cart.CartFolderDTO">
+		<![CDATA[
+		SELECT ctFolder_num 
+		FROM cartfolder 
+		WHERE uid = #{uid} AND ctFolder_name = #{ctFolder_name}
+		ORDER BY ctFolder_num DESC limit 1;
+		]]>
+	</select>
+	
+	
+	
+	<insert id="cartinsert" parameterType="kr.co.nologaja.cart.CartDTO">
+		<![CDATA[
+		INSERT INTO cartTable (uid, roomNumber, guests, ck_in, ck_out, night, totalFee, ctFolder_num, ctFolder_name)
+		VALUES (#{uid}, #{roomNumber},  #{guests}, #{ck_in}, #{ck_out}, #{night}, #{totalFee}, #{ctFolder_num},#{ctFolder_name})
+		
+		
+		
+		
+		
+		]]>
+	</insert>
+	
+	
+	
 
 </mapper>
