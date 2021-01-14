@@ -15,6 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.nologaja.hotel.RoomDTO;
+
 @Controller
 public class SearchCont {
 	
@@ -169,7 +171,18 @@ public class SearchCont {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("search/search");
 		mav.addObject("list", list);
+		mav.addObject("night", night);
 		return mav;
 	}// insert() end
-		
+	
+	@RequestMapping(value="/searchdetail.do")
+	public ModelAndView searchdetail(String roomNumber) {
+		ModelAndView mav = new ModelAndView();
+		RoomHotelDTO dto = sdao.searchdetail(roomNumber);
+		System.out.println(dto);
+		mav.addObject("dto", dto);
+		mav.setViewName("search/searchdetail");
+		return mav;
+	}
+	
 }
