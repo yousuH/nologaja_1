@@ -61,7 +61,7 @@ input[id*="popup"] + label + div {
 }
 
 input[id*="popup"] + label + div {
-	opacity: 0; visibility: hidden;transition:all 1s;
+	opacity: 0; visibility: hidden;
 }
 
 input[id*="popup"]:checked + label + div {
@@ -132,7 +132,7 @@ input[id*="popup2"] + label + div {
 }
 
 input[id*="popup2"] + label + div {
-	opacity: 0; visibility: hidden;transition:all 1s;
+	opacity: 0; visibility: hidden;
 }
 
 input[id*="popup2"]:checked + label + div {
@@ -407,7 +407,6 @@ input[id*="popup2"] + label + div > label {
 
 .hotelpage{
 	margin-top:55px;
-	margin-bottom:150px;
 	position:relative;
 	width:900px;
 	height:60px;
@@ -575,7 +574,44 @@ input[id*="popup2"] + label + div > label {
         opacity: 1;
     }
 }
+.sorting_text {
+	font-size:14px;
+	color:#444444;
+	font-weight:500;
+}
+#sortprice,#sortname,#sortgrade{
+	cursor:pointer;
+}
 
+.sorting_area{
+	position:relative;
+	max-width:1400px;
+	height:40px;
+}
+
+.sub_list_sort{
+	position:absolute;
+	top:10px;
+	right:0;
+}
+
+.sortcriteria{
+	color:#454545;
+}
+.sortcriteria.active{
+	color:#4c3188;
+	font-weight:700;
+}
+.sub_list_sort {
+    position: absolute;
+    top: 10px;
+    right: 0;
+}
+.middle1 {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 1400px;
 </style>
 </head>
 <body>
@@ -701,11 +737,28 @@ input[id*="popup2"] + label + div > label {
 
 <!-- 메인내용 -->
 
-<main style="min-height: 1400px">
+<main style="display: flow-root;">
 
-
-<h3 align="center" style="padding-top: 15px; padding-bottom: 15px;">검색 결과</h3>
-		<div class="filter_area">
+<div class="middle1">
+<div class="sorting_area">
+	<div class="sub_list_sort">
+		<ul class="sorting_text" style="display: inline-flex;">
+			<li class="sortcriteria " style="display: inline;" id="sortprice" onclick="/price.do">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;가격순&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</li>		
+			<li>|</li>
+			<li class="sortcriteria " style="display: inline;" id="sortname" onclick="">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이름순&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</li>
+			<li>|</li>
+			<li class="sortcriteria active" style="display: inline;" id="sortgrade" onclick="">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;등급순&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</li>
+			</ul>
+		</div>
+	</div>
+	</div>
+					<div class="filter_area">
 			<div class="sub_list_filter_result" style="height: auto;">
 				<p>
 					<span class="result_num">${fn:length(list) }</span>개의 호텔이 검색되었습니다.
@@ -771,7 +824,7 @@ input[id*="popup2"] + label + div > label {
 								<div class="listbox_img">
 									<div class="list_img">
 										<!-- 이미지 불러오기 -->
-										<img style="width: 15%" src="${pageContext.request.contextPath}/resources/img/hotel/${dto.savefile}"/>
+										<img style="width: 90%; height: -webkit-fill-available" src="${pageContext.request.contextPath}/resources/img/room/${dto.savefile}"/>
 									</div>
 								</div>
 								<!-- 방 이름 -->
@@ -857,51 +910,34 @@ input[id*="popup2"] + label + div > label {
 
 					</c:forEach>
 					<!-- 호텔 반복 끝-->
-					<div class="hotelpage">
-						<table class="page_navi">
-							<tr>
+		            <div class="hotelpage">
 
-								<td><span class="pagenumber active">1</span></td>
-
-								<td><span class="pagenumber"><a
-										style="display: inline-block; height: 20px; width: 20px;"
-										href="Javascript:fnHotelSearch('RATING','2','','','DESC');">2</a></span></td>
-
-								<td><span class="pagenumber"><a
-										style="display: inline-block; height: 20px; width: 20px;"
-										href="Javascript:fnHotelSearch('RATING','3','','','DESC');">3</a></span></td>
-
-								<td><span class="pagenumber"><a
-										style="display: inline-block; height: 20px; width: 20px;"
-										href="Javascript:fnHotelSearch('RATING','4','','','DESC');">4</a></span></td>
-
-								<td><span class="pagenumber"><a
-										style="display: inline-block; height: 20px; width: 20px;"
-										href="Javascript:fnHotelSearch('RATING','5','','','DESC');">5</a></span></td>
-
-								<td><span class="pagenumber"><a
-										style="display: inline-block; height: 20px; width: 20px;"
-										href="Javascript:fnHotelSearch('RATING','6','','','DESC');">6</a></span></td>
-
-								<td><span class="pagenumber"><a
-										style="display: inline-block; height: 20px; width: 20px;"
-										href="Javascript:fnHotelSearch('RATING','7','','','DESC');">7</a></span></td>
-
-								<td><span class="pagenumber"><a
-										style="display: inline-block; height: 20px; width: 20px;"
-										href="Javascript:fnHotelSearch('RATING','8','','','DESC');">8</a></span></td>
-
-								<td><span class="pagenumber"><a
-										style="display: inline-block; height: 20px; width: 20px;"
-										href="Javascript:fnHotelSearch('RATING','9','','','DESC');">9</a></span></td>
-
-							</tr>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-
+		                <c:if test="${pagination.curRange ne 1 }">
+		                    <a href="search.do?cityCode=${param.cityCode }&ck_in=${param.ck_in }&ck_out=${param.ck_out }&maxGuest=${param.maxGuest }#" onclick="fn_paging(1)">[처음]</a> 
+		                </c:if>
+		                <c:if test="${pagination.curPage ne 1}">
+		                    <a href="#" onclick="fn_paging('${pagination.prevPage }')">[이전]</a> 
+		                </c:if>
+		                <c:forEach var="pageNum" begin="${pagination.startPage }" end="${pagination.endPage }">
+		                    <c:choose>
+		                        <c:when test="${pageNum eq  pagination.curPage}">
+		                            <span style="font-weight: bold;"><a href="#" onclick="fn_paging('${pageNum }')">${pageNum }</a></span> 
+		                        </c:when>
+		                        <c:otherwise>
+		                            <a href="#" onclick="fn_paging('${pageNum }')">${pageNum }</a> 
+		                        </c:otherwise>
+		                    </c:choose>
+		                </c:forEach>
+		                <c:if test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
+		                    <a href="#" onclick="fn_paging('${pagination.nextPage }')">[다음]</a> 
+		                </c:if>
+		                <c:if test="${pagination.curRange ne pagination.rangeCnt && pagination.rangeCnt > 0}">
+		                    <a href="#" onclick="fn_paging('${pagination.pageCnt }')">[끝]</a> 
+		                </c:if>
+						</div>
+		            </div>
+	            </div>
+            </div>
 
 	</main>
 <script src="./resources/js/jquery.js"></script>
@@ -962,6 +998,15 @@ function responseProc2(){
 	$("#popup").css("display", "none");
 }//responseProc() end 
 
+//페이징
+function fn_paging(curPage) {
+	var param="";
+	param += "&cityCode=" + $("#cityCode").val();
+	param += "&maxGuest=" + $("#maxGuest").val();
+	param += "&ck_in=" + $("#ck_in").val();
+	param += "&ck_out=" + $("#ck_out").val();
+	location.href = "search.do?curPage=" + curPage + param;
+	}
 </script>
 
 <%@ include file="../footer.jsp"%>

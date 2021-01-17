@@ -234,12 +234,22 @@ body {
 						</td>
 					</tr>
 				</table>
-				<input type="submit" value="예약하기" style="width: 85%; padding: 10px;"
-					   onclick="location.href='booking.do?roomNumber=${dto.roomNumber}&night=${param.night}&hotelName=${dto.hotelName}&roomName=${dto.roomName}&maxGuest=${param.maxGuest}&ck_in=${param.ck_in}&ck_out=${param.ck_out}&fee=${param.fee}&pay=${param.pay}'"><br><br>
-				<span>총 합계</span><span>${param.fee}원</span>
-			</div>
-		</div>
-		<div class="review">review</div>
-	</div>
+				<c:if test="${sessionScope.uid != null }">
+	               <input type="submit" value="예약하기" style="width: 85%; padding: 10px;"
+	                        onclick="location.href='booking.do?roomNumber=${dto.roomNumber}&night=${param.night}&hotelName=${dto.hotelName}&roomName=${dto.roomName}&maxGuest=${param.maxGuest}&ck_in=${param.ck_in}&ck_out=${param.ck_out}&fee=${param.fee}&pay=${param.pay}'"><br><br>
+	            </c:if>
+	            <c:if test="${sessionScope.uid == null }">
+	               <input type="submit" value="예약하기" style="width: 85%; padding: 10px;"
+	                        onclick="location.href='login.do'"><br><br>
+	            </c:if>
+	            <c:if test="${sessionScope.suid != null }">
+	               <input type="submit" value="예약하기" style="width: 85%; padding: 10px;"
+	                        onclick="location.href='mypage.do'"><br><br>
+	            </c:if>
+	            <span>총 합계</span><span>${param.fee}원</span>
+         </div>
+      </div>
+      <div class="review">review</div>
+   </div>
 </body>
 <%@ include file="../footer.jsp"%>

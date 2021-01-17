@@ -173,7 +173,7 @@
 			<div class="row justify-content-center">
 				<div class="col-xl-6">
 					<div class="section_tittle text-center">
-						<h2>Top Destination</h2>
+						<h2>추천 숙소</h2>
 					</div>
 				</div>
 			</div>
@@ -418,9 +418,10 @@
 					<div class="single-footer-widget footer_icon">
 						<h4>Contact Us</h4>
 						<p>
-							강문수<br>
+							강문수 고현정
+							유수현 조유민
 						</p>
-						<span>contact@martine.com</span>
+						<span>nologaja@gmail.com</span>
 					</div>
 				</div>
 			</div>
