@@ -4,19 +4,33 @@ public class SearchlistDTO {
 
 	private String roomNumber;
 	private String roomName;
-	private double starAvg;
+	private double starAvg = 0;
 	private int cnt;
 	private String addr1;
-	private int basecost;
-	private int weekcost;
-	private int longcost;
 	private String hotelNumber;
-	private String fee;
 	private String savefile;
 	private String hotelName;
+	private long fee;
+	private String feestr;
 
 	public SearchlistDTO() {
 
+	}
+	
+	public String getFeestr() {
+		return feestr;
+	}
+
+	public void setFeestr(String feestr) {
+		this.feestr = feestr;
+	}
+
+	public long getFee() {
+		return fee;
+	}
+
+	public void setFee(long fee) {
+		this.fee = fee;
 	}
 
 	public String getRoomNumber() {
@@ -59,30 +73,6 @@ public class SearchlistDTO {
 		this.addr1 = addr1;
 	}
 
-	public int getBasecost() {
-		return basecost;
-	}
-
-	public void setBasecost(int basecost) {
-		this.basecost = basecost;
-	}
-
-	public int getWeekcost() {
-		return weekcost;
-	}
-
-	public void setWeekcost(int weekcost) {
-		this.weekcost = weekcost;
-	}
-
-	public int getLongcost() {
-		return longcost;
-	}
-
-	public void setLongcost(int longcost) {
-		this.longcost = longcost;
-	}
-
 	public String getHotelNumber() {
 		return hotelNumber;
 	}
@@ -91,13 +81,6 @@ public class SearchlistDTO {
 		this.hotelNumber = hotelNumber;
 	}
 
-	public String getFee() {
-		return fee;
-	}
-
-	public void setFee(String fee) {
-		this.fee = fee;
-	}
 
 	public String getSavefile() {
 		return savefile;
@@ -119,9 +102,8 @@ public class SearchlistDTO {
 	@Override
 	public String toString() {
 		return "SearchlistDTO [roomNumber=" + roomNumber + ", roomName=" + roomName + ", starAvg=" + starAvg + ", cnt="
-				+ cnt + ", addr1=" + addr1 + ", basecost=" + basecost + ", weekcost=" + weekcost + ", longcost="
-				+ longcost + ", hotelNumber=" + hotelNumber + ", fee=" + fee + ", savefile=" + savefile + ", hotelName="
-				+ hotelName + "]";
+				+ cnt + ", addr1=" + addr1 + ", hotelNumber=" + hotelNumber + ", savefile=" + savefile + ", hotelName="
+				+ hotelName + ", fee=" + fee + ", feestr=" + feestr + "]";
 	}
 
 

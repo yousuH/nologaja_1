@@ -44,4 +44,12 @@ public class SearchDAO implements ISearchDAO {
 		return dto;
 	}
 	
+	@Override
+	public FeeListDTO feeList(String roomNumber) {
+		// TODO Auto-generated method stub
+		FeeListDTO fdto=sqlSession.selectOne("search.feelist", roomNumber);
+		return fdto;
+	}
+
+	
 }//class end 

@@ -10,5 +10,7 @@ public interface ISearchDAO {
 	public int datecheck(SearchDTO sdto);
 	public SearchlistDTO ableList(String roomNumber);
 	public RoomHotelDTO searchdetail(String roomNumber);
+	public FeeListDTO feeList(String roomNumber);
+
 
 }

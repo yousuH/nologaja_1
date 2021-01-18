@@ -738,22 +738,52 @@ input[id*="popup2"] + label + div > label {
 <!-- 메인내용 -->
 
 <main style="display: flow-root;">
-
 <div class="middle1">
 <div class="sorting_area">
 	<div class="sub_list_sort">
 		<ul class="sorting_text" style="display: inline-flex;">
-			<li class="sortcriteria " style="display: inline;" id="sortprice" onclick="/price.do">
+		<c:if test="${sort != 'feeDESC' && sort != 'feeASC' }">
+			<li class="sortcriteria" style="display: inline;" id="sortprice" onclick="location.href='search.do?cityCode=${param.cityCode }&ck_in=${param.ck_in }&ck_out=${param.ck_out }&maxGuest=${param.maxGuest }&sort=feeASC'">
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;가격순&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			</li>		
+			</li>	
+		</c:if>
+		<c:if test="${sort == 'feeDESC' }">
+			<li class="sortcriteria active" style="display: inline;" id="sortprice" onclick="location.href='search.do?cityCode=${param.cityCode }&ck_in=${param.ck_in }&ck_out=${param.ck_out }&maxGuest=${param.maxGuest }&sort=feeASC'">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;가격순▼&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</li>	
+		</c:if>
+		<c:if test="${sort == 'feeASC' }">
+			<li class="sortcriteria active" style="display: inline;" id="sortprice" onclick="location.href='search.do?cityCode=${param.cityCode }&ck_in=${param.ck_in }&ck_out=${param.ck_out }&maxGuest=${param.maxGuest }&sort=feeDESC'">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;가격순▲&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</li>	
+		</c:if>		
 			<li>|</li>
-			<li class="sortcriteria " style="display: inline;" id="sortname" onclick="">
+		<c:if test="${sort != 'nameDESC' && sort != 'nameASC' }">
+			<li class="sortcriteria " style="display: inline;" id="sortname" onclick="location.href='search.do?cityCode=${param.cityCode }&ck_in=${param.ck_in }&ck_out=${param.ck_out }&maxGuest=${param.maxGuest }&sort=nameASC'">
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이름순&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			</li>
-			<li>|</li>
-			<li class="sortcriteria active" style="display: inline;" id="sortgrade" onclick="">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;등급순&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</c:if>
+		<c:if test="${sort == 'nameDESC' }">
+			<li class="sortcriteria active" style="display: inline;" id="sortname" onclick="location.href='search.do?cityCode=${param.cityCode }&ck_in=${param.ck_in }&ck_out=${param.ck_out }&maxGuest=${param.maxGuest }&sort=nameASC'">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이름순▼&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			</li>
+		</c:if>
+		<c:if test="${sort == 'nameASC' }">
+			<li class="sortcriteria active" style="display: inline;" id="sortname" onclick="location.href='search.do?cityCode=${param.cityCode }&ck_in=${param.ck_in }&ck_out=${param.ck_out }&maxGuest=${param.maxGuest }&sort=nameDESC'">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이름순▲&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</li>
+		</c:if>
+			<li>|</li>
+		<c:if test="${sort != 'review'}">
+			<li class="sortcriteria" style="display: inline;" id="sortgrade" onclick="location.href='search.do?cityCode=${param.cityCode }&ck_in=${param.ck_in }&ck_out=${param.ck_out }&maxGuest=${param.maxGuest }&sort=review'">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;리뷰순&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</li>
+		</c:if>
+		<c:if test="${sort == 'review' }">
+			<li class="sortcriteria active" style="display: inline;" id="sortgrade" onclick="location.href='search.do?cityCode=${param.cityCode }&ck_in=${param.ck_in }&ck_out=${param.ck_out }&maxGuest=${param.maxGuest }&sort=review'">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;리뷰순▼&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</li>
+		</c:if>
 			</ul>
 		</div>
 	</div>
@@ -817,21 +847,21 @@ input[id*="popup2"] + label + div > label {
 				<div class="hotellist" style="min-height: 1400px;">
 					
 					<!-- 호텔 반복 s-->
-					<c:forEach var="dto" items="${list}">
+					<c:forEach var="dto" items="${list}" begin="${start }" end="${end }">
 
 						<div class="hotel">
 							<div class="hotellist_box">
 								<div class="listbox_img">
 									<div class="list_img">
 										<!-- 이미지 불러오기 -->
-										<img style="width: 90%; height: -webkit-fill-available" src="${pageContext.request.contextPath}/resources/img/room/${dto.savefile}"/>
+										<img style="width: 90%; height: -webkit-fill-available" src="${pageContext.request.contextPath}/resources/img/hotel/${dto.savefile}"/>
 									</div>
 								</div>
 								<!-- 방 이름 -->
 								<div class="listbox_title">
 									<div class="list_name">
 										<p title="${dto.roomName}" class="hotelname" onclick="">
-											<a href="searchdetail.do?roomNumber=${dto.roomNumber }&ck_in=${param.ck_in}&ck_out=${param.ck_out}&maxGuest=${param.maxGuest}&night=${night}&fee=${dto.fee}">${dto.roomName }</a>
+											<a href="searchdetail.do?roomNumber=${dto.roomNumber }&ck_in=${param.ck_in}&ck_out=${param.ck_out}&maxGuest=${param.maxGuest}&night=${night}&fee=${fee[status.index].fee}">${dto.roomName }</a>
 										</p>
 										<!-- 찜한숙소 -->
 										<form style="float: right;" method="post">											
@@ -841,7 +871,7 @@ input[id*="popup2"] + label + div > label {
 											<input type="hidden" id="ck_in" name="ck_in" value="${param.ck_in}">
 											<input type="hidden" id="ck_out" name="ck_out" value="${param.ck_out}">
 											<input type="hidden" id="night" name="night" value="${night}">
-											<input type="hidden" id="fee" name="fee" value="${fee}">
+											<input type="hidden" id="fee" name="fee" value="${dto.fee}">
 												
 											<input type="checkbox" id="popup">
 											<label for="popup">♡</label>
@@ -888,7 +918,7 @@ input[id*="popup2"] + label + div > label {
 									<!-- 별표 이미지 + 총 리뷰점수 + 총리뷰 갯수-->
 									<div class="list_grade">
 										<img>
-										<p>${dto.starAvg}(${dto.cnt })
+										<p>${dto.starAvg}(${dto.cnt })${strat }
 										<p>
 									</div>
 
@@ -901,7 +931,7 @@ input[id*="popup2"] + label + div > label {
 									<div class="listbox_price">
 										<p style="color: #d11717">Price</p>
 										<p class="current_coin" style="color: #d11717">
-											KRW&nbsp;&nbsp;<span class="pricevalue" style="color: #d11717">${dto.fee }</span>
+											KRW&nbsp;&nbsp;<span class="pricevalue" style="color: #d11717">${dto.feestr}</span>
 										</p>
 									</div>
 								</div>
@@ -912,9 +942,8 @@ input[id*="popup2"] + label + div > label {
 					</c:forEach>
 					<!-- 호텔 반복 끝-->
 		            <div class="hotelpage">
-
 		                <c:if test="${pagination.curRange ne 1 }">
-		                    <a href="search.do?cityCode=${param.cityCode }&ck_in=${param.ck_in }&ck_out=${param.ck_out }&maxGuest=${param.maxGuest }#" onclick="fn_paging(1)">[처음]</a> 
+		                    <a href="#" onclick="fn_paging(1)">[처음]</a> 
 		                </c:if>
 		                <c:if test="${pagination.curPage ne 1}">
 		                    <a href="#" onclick="fn_paging('${pagination.prevPage }')">[이전]</a> 
@@ -1008,6 +1037,7 @@ function fn_paging(curPage) {
 	param += "&maxGuest=" + $("#maxGuest").val();
 	param += "&ck_in=" + $("#ck_in").val();
 	param += "&ck_out=" + $("#ck_out").val();
+	param += "&sort=${sort}";
 	location.href = "search.do?curPage=" + curPage + param;
 	}
 </script>

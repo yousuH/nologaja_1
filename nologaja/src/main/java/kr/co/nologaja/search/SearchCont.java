@@ -6,6 +6,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -33,17 +35,16 @@ public class SearchCont {
 	CartFolderDAO cartFolderdao;
 	
 	public SearchCont() {
-		System.out.println("==bkCont객체생성==");
+		System.out.println("==SearchCont객체생성==");
 	}
 	
 	// 검색
 	@RequestMapping(value = "/search.do")
-	public ModelAndView search(SearchDTO sdto, HttpSession session, @RequestParam(defaultValue="1") int curPage) throws ParseException {
+	public ModelAndView search(SearchDTO sdto, HttpSession session, @RequestParam(defaultValue="1") int curPage,
+			@RequestParam(defaultValue = "review") String sort) throws ParseException {
     
-		// 1. cityCode, maxGuest -> roomNumber list로 가져오기 a_1, a_2, a_3,,, c_3;
+		// 1. cityCode, maxGuest -> roomNumber list로
 		List<String> rNlist= sdao.rNfind(sdto);
-		//System.out.println(rNlist);             // [SEAP0003_01, SEAP0004_01, SEAP0005_01]
-		//System.out.println(rNlist.get(0).toString()); // SEAP0003_01
 		
 		// 2_1. booktable에 없는 roomnumber if == 0 -> 바로 예약 가능한 방으로 분류
 		// 2_2. booktable에 있는 roomnumber   else  -> 날짜 비교를 위한 방으루 분류
@@ -56,11 +57,7 @@ public class SearchCont {
 				checkRN.add(rNlist.get(i).toString());
 			}//if end
 		}//for end
-		
-		//System.out.println(ableRN); //[SEAP0005_01]
-		//System.out.println(checkRN); //[SEAP0003_01, SEAP0004_01]
-		
-		
+			
 		// 3. 날짜비교로 예약가능한방을 ableRN 리스트로 추가 == 0 인방 
 		for(int i=0; i<checkRN.size(); i++) {
 			sdto.setRoomNumber(checkRN.get(i).toString());
@@ -70,6 +67,7 @@ public class SearchCont {
 		}
 		System.out.println("== 예약가능한 방" + ableRN);
 		
+		//fee 계산시작
 		DecimalFormat fomatter = new DecimalFormat("###,###");
 		long fee=0;
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -82,21 +80,13 @@ public class SearchCont {
 		Calendar cld=Calendar.getInstance();
 		cld.setTime(ckin);
 		int DOW = cld.get(Calendar.DAY_OF_WEEK);//요일
-		//페이징
-		/*
-		 * int listCnt=ableRN.size();
-		 * 
-		 * Pagination pagination = new Pagination(listCnt, curPage); int
-		 * start=pagination.getStartIndex(); int end = pagination.getPageSize();
-		 */
-        
-		// 4. 예약가능한 방정보들 List로 불러와서 객체전달
-		List<SearchlistDTO> list = new ArrayList<SearchlistDTO>();
-		for(int i=0; i<ableRN.size(); i++) {
-			list.add(sdao.ableList(ableRN.get(i).toString()));
-			int longcost = list.get(i).getLongcost();
-			int basecost = list.get(i).getBasecost();
-			int weekcost = list.get(i).getWeekcost();
+		
+		List<FeeListDTO> feeList = new ArrayList<FeeListDTO>();
+		for(int i =0; i<ableRN.size(); i++) {
+			feeList.add(sdao.feeList(ableRN.get(i).toString()));
+			int longcost = feeList.get(i).getLongcost();
+			int weekcost = feeList.get(i).getWeekcost();
+			int basecost = feeList.get(i).getBasecost();
 			if(night >= 7) {
 				fee = longcost*night;
 			}else {
@@ -122,7 +112,7 @@ public class SearchCont {
 					
 				case 3:
 					if(night==4) {
-						fee=(weekcost)+(basecost*night-1);
+						fee=(weekcost)+(basecost*(night-1));
 					}else if(night==5) {
 						fee=(weekcost*2)+(basecost*(night-2));
 					}else {
@@ -132,7 +122,7 @@ public class SearchCont {
 					
 				case 4:
 					if(night==3) {
-						fee=(weekcost)+(basecost*night-1);
+						fee=(weekcost)+(basecost*(night-1));
 					}else if(night==4) {
 						fee=(weekcost*2)+(basecost*(night-2));
 					}else {
@@ -142,7 +132,7 @@ public class SearchCont {
 					
 				case 5:
 					if(night==2) {
-						fee=(weekcost)+(basecost*night-1);
+						fee=(weekcost)+(basecost*(night-1));
 					}else if(night==3) {
 						fee=(weekcost*2)+(basecost*(night-2));
 					}else {
@@ -156,7 +146,7 @@ public class SearchCont {
 					}else if(night==2) {
 						fee=(weekcost*2);
 					}else {
-						fee=(weekcost*2)+basecost*night-2;
+						fee=(weekcost*2)+(basecost*(night-2));
 					}
 					break;
 				
@@ -169,11 +159,130 @@ public class SearchCont {
 					break;
 				}//switch end
 			}//if end
-			list.get(i).setFee(fomatter.format(fee));
+			feeList.get(i).setFee(fee);
+			feeList.get(i).setFeestr(fomatter.format(fee));
+		}//fee 계산끝
+		
+		//조건에 맞는 검색 리스트 
+		List<SearchlistDTO> list = new ArrayList<SearchlistDTO>();
+		for(int i=0; i<ableRN.size(); i++) {
+			list.add(sdao.ableList(ableRN.get(i).toString()));
+			list.get(i).setFee(feeList.get(i).getFee());
+			list.get(i).setFeestr(feeList.get(i).getFeestr());
 		}
-		System.out.println(list.size());
 
+		//sort값에 따른 list정렬 시작
+		if(sort.equals("feeDESC")) { // 가격 내림차순 ~0
+			list.sort(new Comparator<SearchlistDTO>() {
+				@Override
+				public int compare(SearchlistDTO f1, SearchlistDTO f2) {
+					long fee1 = f1.getFee();
+					long fee2 = f2.getFee();
+					if(fee1 == fee2) {
+						return 0;
+					}else if(fee2 > fee1){
+						return 1;
+					}else {
+						return -1;
+					}
+				}
+			});
+			
+		}else if(sort.equals("feeASC")){ // 가격 오름차순 0~
+			list.sort(new Comparator<SearchlistDTO>() {
+				@Override
+				public int compare(SearchlistDTO f1, SearchlistDTO f2) {
+					long fee1 = f1.getFee();
+					long fee2 = f2.getFee();
+					if(fee1 == fee2) {
+						return 0;
+					}else if(fee2 < fee1){
+						return 1;
+					}else {
+						return -1;
+					}
+				}
+			});		
+		}else if(sort.equals("review")) { //리뷰 갯수 내림차순 갯수같을경우 평점 내림차순
+			list.sort(new Comparator<SearchlistDTO>() {
+				@Override
+				public int compare(SearchlistDTO s1, SearchlistDTO s2) {
+					int cnt1 = s1.getCnt();
+					int cnt2 = s2.getCnt();
+					double avg1 = s1.getStarAvg();
+					double avg2 = s2.getStarAvg();
+					if(cnt1 == cnt2) {
+						if(avg1 == avg2) {
+							return 0;
+						}else if(avg1 > avg2 ) {
+							return 1;
+						}else {
+							return -1;
+						}
+					}else if(cnt2 > cnt1){
+						return 1;
+					}else {
+						return -1;
+					}//if end
+				}
+			});
+
+		}else if(sort.equals("nameDESC")){ //이름내림차순 ㅎ~1
+			list.sort(new Comparator<SearchlistDTO>() {
+				@Override
+				public int compare(SearchlistDTO s1, SearchlistDTO s2) {
+			        String name1 = s1.getRoomName();
+			        String name2 = s2.getRoomName();
+			        return name2.compareTo(name1);
+				}
+			});
+	
+		}else if(sort.equals("nameASC")){	//이름 오름차순 1~ㅎ
+			list.sort(new Comparator<SearchlistDTO>() {
+				@Override
+				public int compare(SearchlistDTO s1, SearchlistDTO s2) {
+			        String name1 = s1.getRoomName();
+			        String name2 = s2.getRoomName();
+			        return name1.compareTo(name2);
+				}
+			});
+			
+		}else { //sort에 쓰레기값들어왔을 경우 review순
+			list.sort(new Comparator<SearchlistDTO>() {
+				@Override
+				public int compare(SearchlistDTO s1, SearchlistDTO s2) {
+					int cnt1 = s1.getCnt();
+					int cnt2 = s2.getCnt();
+					double avg1 = s1.getStarAvg();
+					double avg2 = s2.getStarAvg();
+					if(cnt1 == cnt2) {
+						if(avg1 == avg2) {
+							return 0;
+						}else if(avg1 > avg2 ) {
+							return 1;
+						}else {
+							return -1;
+						}
+					}else if(cnt2 > cnt1){
+						return 1;
+					}else {
+						return -1;
+					}//if end
+				}
+			});
+		}// 정렬끝
         
+
+		//curPage값에 따른 페이징 시작
+				
+		int listCnt=ableRN.size()+1;
+		  
+		Pagination pagination = new Pagination(listCnt, curPage);
+		int start=pagination.getStartIndex();
+		int end = pagination.getPageSize()*curPage;
+	 
+        System.out.println(start);
+        System.out.println(end);
 		//5. cartfolder 가져오기 
 		
 		String uid = (String) session.getAttribute("uid");
@@ -181,21 +290,18 @@ public class SearchCont {
 		cartFolders.addAll(cartFolderdao.getcartFolders(uid));
 		
 		System.out.println(cartFolders);
-		
-		
-		
-		//수정 hotle 주소 조인, 리뷰점수, 리뷰 갯수 조인 
-		//점수 및 갯수는 없으면 조인 x? 0? 0넣고 인덱스 if문 써야할듯
-		//계산된 fee값은 어쩌지
-		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("search/search");
 		mav.addObject("list", list);
 		mav.addObject("night", night);
-		mav.addObject("fee", fee);
 		mav.addObject("cartFolders", cartFolders);
+		mav.addObject("sort", sort);
+		mav.addObject("pagination", pagination);
+		mav.addObject("curPage",curPage);
+		mav.addObject("start", start);
+		mav.addObject("end", end-1);
 		return mav;
-	}// insert() end
+	}// search() end
 	
 	@RequestMapping(value="/searchdetail.do")
 	public ModelAndView searchdetail(String roomNumber) {
