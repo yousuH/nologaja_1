@@ -38,13 +38,8 @@ public class BkDAO implements IBkDAO {
 	}
 
 	@Override
-	public void delete(String bk_num) {
-		sqlSession.delete("member.bkdelete", bk_num);
-	}
-
-	@Override
 	public void update(BkDTO dto) {
-		sqlSession.update("member.bkupdate", dto);
+		sqlSession.update("booking.bkupdate", dto);
 	}
 	
 }

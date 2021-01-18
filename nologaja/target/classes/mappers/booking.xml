@@ -30,20 +30,13 @@
 	</select>
 
 
-	<select id="bkdelete" resultType="kr.co.nologaja.booking.BkDTO">
-		<![CDATA[
-		DELETE FROM bookTable
-        WHERE bk_num = #{bk_num}
-		]]>
-	</select>
-
-
-	<select id="bkupdate" resultType="kr.co.nologaja.booking.BkDTO">
+	<update id="bkupdate" 
+	        parameterType="kr.co.nologaja.booking.BkDTO">
 		<![CDATA[
 		UPDATE bookTable
 	    SET pay_st='C'
 	    WHERE bk_num = #{bk_num}
 		]]>
-	</select>
+	</update>
 
 </mapper>

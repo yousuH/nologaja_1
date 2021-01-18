@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
 <link rel="stylesheet" href="./resources/css/mypage.css">
-
+	
     <!-- 메인내용 -->
 	<div class="mp_sidenav">
 	  <a href="mypage.do"><strong>예약목록</strong></a>
@@ -35,6 +35,7 @@
 						<th class="text-center">체크아웃</th>
 						<th class="text-center">총가격</th>
 						<th class="text-center">결제수단</th>
+						<th class="text-center">결제상태</th>
 					</tr>
 				</thead>
 				
@@ -48,8 +49,26 @@
 							<td>${BkDTO.maxGuest}</td>
 							<td>${BkDTO.ck_in}</td>
 							<td>${BkDTO.ck_out}</td>
-							<td>${BkDTO.fee}</td>
-							<td>${BkDTO.pay}</td>
+							<td>${BkDTO.fee}원</td>
+							<c:choose>
+								<c:when test="${BkDTO.pay == '1'}">
+									<td>무통장입금</td>
+								</c:when>
+								<c:when test="${BkDTO.pay == '2'}">
+									<td>카드결제</td>
+								</c:when>
+							</c:choose>
+							<c:choose>
+								<c:when test="${BkDTO.pay_st == 'A'}">
+									<td>결제대기</td>
+								</c:when>
+								<c:when test="${BkDTO.pay_st == 'B'}">
+									<td>결제완료</td>
+								</c:when>
+								<c:when test="${BkDTO.pay_st == 'C'}">
+									<td>예약취소완료</td>
+								</c:when>
+							</c:choose>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -59,9 +78,4 @@
 	
 	</div>
    
-   
-   <script>
-
-   
-   </script>
 <%@ include file="../footer.jsp" %>
