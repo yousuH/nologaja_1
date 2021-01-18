@@ -2,10 +2,12 @@ package kr.co.nologaja.booking;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.request.SessionScope;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -35,11 +37,13 @@ public class BkCont {
 
 	// 마이페이지 예약 목록에서 예약번호의 상세페이지
 	@RequestMapping(value = "/bkdetail.do")
-	public ModelAndView detail(@ModelAttribute BkDTO dto) {
+	public ModelAndView detail(@ModelAttribute BkDTO dto, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("mypage/bkdetail");
 		
-		dto = dao.detail(dto.getBk_num());		
+		String uid = (String) session.getAttribute("uid");
+
+		dto = dao.detail(dto.getBk_num(), uid);		
 		mav.addObject("dto", dto);
 		mav.addObject("bk_num", dto.getBk_num());
 		mav.addObject("ck_in", dto.getCk_in());

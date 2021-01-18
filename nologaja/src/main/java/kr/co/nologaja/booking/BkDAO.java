@@ -1,5 +1,6 @@
 package kr.co.nologaja.booking;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -24,8 +25,11 @@ public class BkDAO implements IBkDAO {
 	}
 
 	@Override
-	public BkDTO detail(String bk_num) {
-		return sqlSession.selectOne("booking.bkdetail", bk_num);
+	public BkDTO detail(String bk_num, String uid) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("bk_num", bk_num);
+		map.put("uid", uid);
+		return sqlSession.selectOne("booking.bkdetail", map);
 	}
 	
 	@Override

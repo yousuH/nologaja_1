@@ -7,7 +7,7 @@
 	<div class="mp_sidenav">
 	  <a href="mypage.do"><strong>예약목록</strong></a>
 	  <c:if test="${sessionScope.uid != null }">
-	  <a href="cartfolderlist.do">장바구니</a>
+	  <a href="cartfolderlist.do">찜한숙소</a>
 	  </c:if>
 	  <c:if test="${sessionScope.suid != null }">
 	  <a href="hotelins.do">숙소등록</a>
@@ -18,7 +18,7 @@
 	  <a href="inquirylist.do">문의내역</a>
 	</div>
 	
-	<div class="mp_main">
+	<div class="mp_main" style="min-height: 500px" >
 		<h2>예약목록</h2>
 		<br>
 		<form name="bklist" id="bklist" method="post" action="bkdetail.do">

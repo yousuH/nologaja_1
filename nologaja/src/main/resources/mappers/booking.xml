@@ -21,7 +21,7 @@
 	</insert>
 
 
-	<select id="bkdetail" resultType="kr.co.nologaja.booking.BkDTO">
+	<select id="bkdetail" resultType="kr.co.nologaja.booking.BkDTO" parameterType="HashMap">
 		<![CDATA[
 		SELECT bk_num, ck_in, ck_out, night, hotelName, roomNumber, roomName, maxGuest, fee, uid, request, pay, pay_st
 		FROM bookTable

@@ -42,6 +42,8 @@
 			left outer join roomimage ri on r.roomNumber = ri.roomNumber 
 		where
 			r.roomNumber = #{roomNumber}
+		ORDER BY
+			count(v.title) DESC, avg(v.stars_avg) DESC
 		]]>
 	</select>
 
@@ -54,6 +56,7 @@
 			left outer join roomimage ri on r.roomNumber = ri.roomNumber
 			left outer join hotelimage hi on r.hotelNumber = hi.hotelNumber
 		WHERE r.roomNumber=#{roomNumber}
+		
 		]]>
 	</select>
 

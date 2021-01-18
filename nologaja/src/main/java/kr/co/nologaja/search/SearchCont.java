@@ -14,11 +14,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.nologaja.cart.CartFolderDAO;
 import kr.co.nologaja.cart.CartFolderDTO;
 import kr.co.nologaja.hotel.RoomDTO;
+import net.utility.Pagination;
 
 
 @Controller
@@ -29,19 +31,15 @@ public class SearchCont {
 	
 	@Inject
 	CartFolderDAO cartFolderdao;
-
+	
 	public SearchCont() {
 		System.out.println("==bkCont객체생성==");
 	}
 	
 	// 검색
 	@RequestMapping(value = "/search.do")
-	public ModelAndView search(SearchDTO sdto, HttpSession session) throws ParseException {
-		//System.out.println(sdto.getCityCode());	// SE
-		//System.out.println(sdto.getMaxGuest()); // 1
-		//System.out.println(sdto.getCk_in());    // 2021-01-25 24 
-		//System.out.println(sdto.getCk_out());   // 2021-01-29 29
-
+	public ModelAndView search(SearchDTO sdto, HttpSession session, @RequestParam(defaultValue="1") int curPage) throws ParseException {
+    
 		// 1. cityCode, maxGuest -> roomNumber list로 가져오기 a_1, a_2, a_3,,, c_3;
 		List<String> rNlist= sdao.rNfind(sdto);
 		//System.out.println(rNlist);             // [SEAP0003_01, SEAP0004_01, SEAP0005_01]
@@ -84,8 +82,14 @@ public class SearchCont {
 		Calendar cld=Calendar.getInstance();
 		cld.setTime(ckin);
 		int DOW = cld.get(Calendar.DAY_OF_WEEK);//요일
-		
-		
+		//페이징
+		/*
+		 * int listCnt=ableRN.size();
+		 * 
+		 * Pagination pagination = new Pagination(listCnt, curPage); int
+		 * start=pagination.getStartIndex(); int end = pagination.getPageSize();
+		 */
+        
 		// 4. 예약가능한 방정보들 List로 불러와서 객체전달
 		List<SearchlistDTO> list = new ArrayList<SearchlistDTO>();
 		for(int i=0; i<ableRN.size(); i++) {
@@ -167,12 +171,9 @@ public class SearchCont {
 			}//if end
 			list.get(i).setFee(fomatter.format(fee));
 		}
-		System.out.println(list);
-		//[RoomDTO [roomNumber=SEAP0005_01, roomName=방2, hotelNumber=SEAP0005, roomImg=, roomInform=방방방방바아, maxGuest=6, conv=KC,WS, baseCost=40000, weekCost=40000, longCost=40000]]
-		
-		
-		
-		
+		System.out.println(list.size());
+
+        
 		//5. cartfolder 가져오기 
 		
 		String uid = (String) session.getAttribute("uid");
