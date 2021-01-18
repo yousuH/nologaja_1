@@ -836,6 +836,7 @@ input[id*="popup2"] + label + div > label {
 										<!-- 찜한숙소 -->
 										<form style="float: right;" method="post">											
 											<input type="hidden" id="roomNumber" name="roomNumber" value="${dto.roomNumber}">
+											<input type="hidden" id="roomName" name="roomName" value="${dto.roomName}">
 											<input type="hidden" id="guests" name="guests" value="${param.maxGuest}">
 											<input type="hidden" id="ck_in" name="ck_in" value="${param.ck_in}">
 											<input type="hidden" id="ck_out" name="ck_out" value="${param.ck_out}">
@@ -950,7 +951,8 @@ $("#btn_ctFolder_name").click(function(){
 	params += "&ck_out=" + $("#ck_out").val();
 	params += "&night=" + $("#night").val();
 	params += "&totalFee=" + $("#fee").val();
-	params += "&roomNumber=" + $("#roomNumber").val();  //전달값
+	params += "&roomNumber=" + $("#roomNumber").val();
+	params += "&roomName=" + $("#roomName").val();//전달값
 	//alert(params);
 	
 	$.post(
@@ -981,8 +983,9 @@ $("#btn_cartFolder").click(function(){
 	params += "&ck_out=" + $("#ck_out").val();
 	params += "&night=" + $("#night").val();
 	params += "&totalFee=" + $("#fee").val();
-	params += "&roomNumber=" + $("#roomNumber").val();  //전달값
-	alert(params);
+	params += "&roomNumber=" + $("#roomNumber").val();
+	params += "&roomName=" + $("#roomName").val();//전달값
+	//alert(params);
 	
 	$.post(
 		"cartinsert.do"  		   		  //요청명령어

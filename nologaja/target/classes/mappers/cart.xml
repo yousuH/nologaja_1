@@ -17,7 +17,7 @@
 	
 	<select id="getcartitems" resultType="kr.co.nologaja.cart.CartDTO" parameterType="int">
 		<![CDATA[
-		SELECT ct_num, roomNumber, guests, ck_in, ck_out, night, totalFee, ctFolder_name, ctFolder_num
+		SELECT ct_num, roomNumber,roomName, guests, ck_in, ck_out, night, totalFee, ctFolder_name, ctFolder_num, uid
 		FROM cartTable
 		WHERE ctFolder_num= #{ctFolder_num} 
 		]]>
@@ -47,8 +47,8 @@
 	
 	<insert id="cartinsert" parameterType="kr.co.nologaja.cart.CartDTO">
 		<![CDATA[
-		INSERT INTO cartTable (uid, roomNumber, guests, ck_in, ck_out, night, totalFee, ctFolder_num, ctFolder_name)
-		VALUES (#{uid}, #{roomNumber},  #{guests}, #{ck_in}, #{ck_out}, #{night}, #{totalFee}, #{ctFolder_num},#{ctFolder_name})
+		INSERT INTO cartTable (uid, roomNumber, roomName, guests, ck_in, ck_out, night, totalFee, ctFolder_num, ctFolder_name)
+		VALUES (#{uid}, #{roomNumber}, #{roomName}, #{guests}, #{ck_in}, #{ck_out}, #{night}, #{totalFee}, #{ctFolder_num},#{ctFolder_name})
 		
 		
 		

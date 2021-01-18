@@ -5,6 +5,9 @@ public class CartDTO {
 	private int ct_num;
 	private String uid;
 	private String roomNumber;
+	private String roomName;
+	
+
 	private int guests;
 	private String ck_in;
 	private String ck_out;
@@ -37,6 +40,16 @@ public class CartDTO {
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
+	
+	public String getRoomName() {
+		return roomName;
+	}
+
+
+	public void setRoomName(String roomName) {
+		this.roomName = roomName;
+	}
+
 
 
 	public String getRoomNumber() {
@@ -121,10 +134,12 @@ public class CartDTO {
 
 	@Override
 	public String toString() {
-		return "CartDTO [ct_num=" + ct_num + ", uid=" + uid + ", roomNumber=" + roomNumber + ", guests=" + guests
-				+ ", ck_in=" + ck_in + ", ck_out=" + ck_out + ", night=" + night + ", totalFee=" + totalFee
-				+ ", ctFolder_num=" + ctFolder_num + ", ctFolder_name=" + ctFolder_name + "]";
+		return "CartDTO [ct_num=" + ct_num + ", uid=" + uid + ", roomNumber=" + roomNumber + ", roomName=" + roomName
+				+ ", guests=" + guests + ", ck_in=" + ck_in + ", ck_out=" + ck_out + ", night=" + night + ", totalFee="
+				+ totalFee + ", ctFolder_num=" + ctFolder_num + ", ctFolder_name=" + ctFolder_name + "]";
 	}
+
+
 	
 	
 	
