@@ -29,8 +29,19 @@ public class CartDAO implements ICartDAO{
 		sqlSession.insert("cart.cartinsert", dto);
 		
 	}
+
+
+
+	public void cartdelete(int ct_num) {
+		sqlSession.delete("cart.cartdelete", ct_num);
+		
+	}
 	
 
+	public void cartdeleteall(int ctFolder_num) {
+		sqlSession.delete("cart.cartdeleteall", ctFolder_num);
+		
+	}
 	
 	
 	

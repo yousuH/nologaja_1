@@ -39,7 +39,7 @@
 					<td>${cartitem.ck_out}</td>
 					<td>${cartitem.night}</td>
 					<td>${cartitem.totalFee}</td>
-					<td><input type="button" value="삭제"></td>
+					<td><input type="button" value="삭제" onclick="location.href='cartdelete.do?ct_num=${cartitem.ct_num}&ctFolder_num=${param.ctFolder_num}'"></td>
 				</tr>
 			</c:forEach>
 			

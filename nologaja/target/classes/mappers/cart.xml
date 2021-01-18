@@ -51,13 +51,35 @@
 		VALUES (#{uid}, #{roomNumber}, #{roomName}, #{guests}, #{ck_in}, #{ck_out}, #{night}, #{totalFee}, #{ctFolder_num},#{ctFolder_name})
 		
 		
-		
-		
-		
 		]]>
 	</insert>
 	
 	
+	<delete id="cartdelete" parameterType="int">
+        <![CDATA[
+            DELETE FROM cartTable
+            WHERE ct_num=#{ct_num}
+        ]]>
+	</delete>
+	
+	
+	
+	
+	<delete id="cartdeleteall" parameterType="int">
+        <![CDATA[
+            DELETE FROM cartTable
+            WHERE ctFolder_num=#{ctFolder_num}
+        ]]>
+	</delete>
+	
+	
+	
+	<delete id="cartfolderdel" parameterType="int">
+        <![CDATA[
+            DELETE FROM cartfolder
+            WHERE ctFolder_num=#{ctFolder_num}
+        ]]>
+	</delete>
 	
 
 </mapper>

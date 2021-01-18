@@ -67,56 +67,71 @@ public class CartCont {
 	@RequestMapping("/addcartfolder_insert.do")
 	public void idCheckProc(CartFolderDTO cartfolderdto, CartDTO cartdto, HttpServletRequest req, HttpSession session) {
 		try {
-			 
-			System.out.println("------"+cartfolderdto);
-			System.out.println("======"+cartdto);
-			
-				String uid=(String)session.getAttribute("uid");
-				int totalFee=Integer.parseInt(req.getParameter("totalFee"));
-				cartdto.setUid(uid);
-				cartdto.setTotalFee(totalFee);
-				//사용자가 요청한 값은 cartdto에 다 담아놓았습니다
-		
-				
-				//여기에 dao작업하면 됩니다 아래 다 되어있어욥! 에러가 안난다면....
-				
-				cartfolderdto.setUid(uid);
-				cartFolderdao.addcartfolder(cartfolderdto);
 
-				// 방금 생성한 cartfolder의 number를 알아와서 cartdto에 담아줘야 함 
-				int ctFolder_num = cartFolderdao.getctfoldernum(cartfolderdto);
-				cartdto.setCtFolder_num(ctFolder_num);
+			System.out.println("------" + cartfolderdto);
+			System.out.println("======" + cartdto);
 
-				cartdao.cartinsert(cartdto);				
-							
-			
+			String uid = (String) session.getAttribute("uid");
+			int totalFee = Integer.parseInt(req.getParameter("totalFee"));
+			cartdto.setUid(uid);
+			cartdto.setTotalFee(totalFee);
+			// 사용자가 요청한 값은 cartdto에 다 담아놓았습니다
+
+			// 여기에 dao작업하면 됩니다 아래 다 되어있어욥! 에러가 안난다면....
+
+			cartfolderdto.setUid(uid);
+			cartFolderdao.addcartfolder(cartfolderdto);
+
+			// 방금 생성한 cartfolder의 number를 알아와서 cartdto에 담아줘야 함
+			int ctFolder_num = cartFolderdao.getctfoldernum(cartfolderdto);
+			cartdto.setCtFolder_num(ctFolder_num);
+
+			cartdao.cartinsert(cartdto);
 
 		} catch (Exception e) {
 			System.out.println("addcartfolder+insert 실패 : " + e);
 		} // try catch end
 
 	}// idCheckProc() end
-	
-	
-	
-	
+
 	@RequestMapping("/cartinsert.do")
 	public void cartinsert(CartDTO cartdto, HttpServletRequest req, HttpSession session) {
 		try {
-			System.out.println("======"+cartdto);
-			
-			String uid=(String)session.getAttribute("uid");
-			int totalFee=Integer.parseInt(req.getParameter("totalFee"));
+			System.out.println("======" + cartdto);
+
+			String uid = (String) session.getAttribute("uid");
+			int totalFee = Integer.parseInt(req.getParameter("totalFee"));
 			cartdto.setUid(uid);
 			cartdto.setTotalFee(totalFee);
-			
-						
-			
+
 			cartdao.cartinsert(cartdto);
 		} catch (Exception e) {
 			System.out.println("cartinsert실패 : " + e);
 		} // try catch end
 
 	}// idCheckProc() end
+
+	@RequestMapping("/cartdelete.do")
+	public ModelAndView cartdelete(int ct_num, int ctFolder_num) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:/cartdetail.do?ctFolder_num=" + ctFolder_num);
+
+		cartdao.cartdelete(ct_num);
+
+		return mav;
+	}// insert() end
+
+	@RequestMapping("/cartfolderdel.do")
+	public ModelAndView cartfolderdel(int ctFolder_num) {
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("redirect:/cartfolderlist.do");
+
+		cartdao.cartdeleteall(ctFolder_num);
+		cartFolderdao.cartfolderdel(ctFolder_num);
+		
+
+		return mav;
+	}// insert() end
 
 }// class end
