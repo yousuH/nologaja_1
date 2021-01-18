@@ -32,6 +32,12 @@ public class CartFolderDAO implements ICartFolderDAO{
 		int ctFolder_num = sqlSession.selectOne("cart.getctfoldernum", cartfolderdto);
 		return ctFolder_num;
 	}
+
+
+	public void cartfolderdel(int ctFolder_num) {
+		sqlSession.delete("cart.cartfolderdel", ctFolder_num);
+		
+	}
 	
 	
 	

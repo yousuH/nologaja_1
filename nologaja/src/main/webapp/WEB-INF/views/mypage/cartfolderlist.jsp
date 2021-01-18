@@ -130,7 +130,7 @@ input[id*="popup"] + label + div > label {
 				<a href="cartdetail.do?ctFolder_num=${cartFolder.ctFolder_num}">${cartFolder.ctFolder_name}</a>
 				
 			</td>
-			<td><input type="button" value="삭제" ></td>
+			<td><input type="button" value="삭제" onclick="location.href='cartfolderdel.do?ctFolder_num=${cartFolder.ctFolder_num}'" ></td>
 			</tr>
 		</c:forEach>
 		</table>
