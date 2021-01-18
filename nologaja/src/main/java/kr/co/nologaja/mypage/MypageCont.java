@@ -99,7 +99,7 @@ public class MypageCont {
 		List<MultipartFile> fileList = mtfRequest.getFiles("roomIMG");
 
 		//ctrl+h 개인작업 ex)조씨
-        String path = "/Users/moon/git/nologaja_1/nologaja/src/main/webapp/resources/img/room/";
+        String path = "D:/java0812/git/nologaja_1/nologaja_1/nologaja/src/main/webapp/resources/img/room/";
 
         for (MultipartFile mf : fileList) {
             String originFileName = mf.getOriginalFilename(); // 원본 파일 명

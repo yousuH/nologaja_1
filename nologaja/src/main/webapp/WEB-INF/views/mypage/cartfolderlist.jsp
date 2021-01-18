@@ -116,13 +116,24 @@ input[id*="popup"] + label + div > label {
 				</div>
 		</form>
 
-
+		
+		<table class="table table-hover text-center">
+			<tr>
+				<td width="80%"><strong>숙소목록</strong></td>
+				<td width="20%">삭제</td>
+			</tr>
+		
+		
 		<c:forEach var="cartFolder" items="${cartFolders}">
-			<div>
+		<tr>
+			<td>
 				<a href="cartdetail.do?ctFolder_num=${cartFolder.ctFolder_num}">${cartFolder.ctFolder_name}</a>
-			</div>
+				
+			</td>
+			<td><input type="button" value="삭제" ></td>
+			</tr>
 		</c:forEach>
-
+		</table>
 
 	</div>
 </div>
