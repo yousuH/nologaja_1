@@ -8,7 +8,6 @@ public interface IBkDAO {
     public void insert(BkDTO dto);
     public BkDTO detail(String bk_num, String uid);
     public List<BkDTO> bklist(String bk_num);
-    public void delete(String bk_num);
     public void update(BkDTO dto);
     
 }

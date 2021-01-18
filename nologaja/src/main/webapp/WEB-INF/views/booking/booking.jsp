@@ -106,6 +106,7 @@
 														<option value="SE">서울</option>
 														<option value="BU">부산</option>
 														<option value="IN">인천</option>
+														<option value="JJ">제주</option>
 														<option value="SJ">세종</option>
 														<option value="DG">대구</option>
 														<option value="DJ">대전</option>
@@ -159,9 +160,9 @@
 	<br>
 	<p>다음 정보를 확인해 주세요</p>
 	<form name="booking" id="booking" method="post" action="bookingproc.do">
-		<input type="text" name="roomNumber" id="roomNumber" value="${param.roomNumber}">
-		<input type="text" name="uid" id="uid" value="${sessionScope.uid}">
-		<input type="text" name="night" id="night" value="${param.night}">
+		<input type="hidden" name="roomNumber" id="roomNumber" value="${param.roomNumber}">
+		<input type="hidden" name="uid" id="uid" value="${sessionScope.uid}">
+		<input type="hidden" name="night" id="night" value="${param.night}">
 		
 		<table class="center">
 			<tr>
