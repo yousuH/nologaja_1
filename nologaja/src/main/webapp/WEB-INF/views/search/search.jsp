@@ -27,6 +27,8 @@
 <link rel="stylesheet" href="./resources/css/gijgo.min.css">
 <!-- niceselect CSS -->
 <link rel="stylesheet" href="./resources/css/nice-select.css">
+<!-- searchlist CSS -->
+<link rel="stylesheet" href="./resources/css/searchlist.css">
 <!-- slick CSS -->
 <link rel="stylesheet" href="./resources/css/slick.css">
 <!-- style CSS -->
@@ -36,583 +38,6 @@
 <!-- memberjoin CSS -->
 <link rel="stylesheet" href="./resources/css/memberjoin.css">
 
-
-<style>
-
-input[id*="popup"]{
-	display:none;
-}
-
-input[id*="popup"] + label {
-	display: inline-block;
-	padding: 14px;
-	background: #ffcd41;
-	border-radius: 100%;
-	color: #fff;
-}
-
-input[id*="popup"] + label + div {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 100;
-}
-
-input[id*="popup"] + label + div {
-	opacity: 0; visibility: hidden;
-}
-
-input[id*="popup"]:checked + label + div {
-	opacity: 1;visibility: visible;
-}
-
-input[id*="popup"] + label + div > div {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform:translate(-50%, -50%);
-	width: 500px;
-	height: 300px;
-	background: #fff;
-	border-radius: 5%;
-	z-index: 2;
-	text-align: center;
-	align-content: center;
-}
-
-input[id*="popup"] + label + div > div > label {
-	position: absolute;
-	top: 0%;
-	left: 0%;
-	transform:translate(-40%,-40%);
-	padding: 12px;
-	color : #fff;
-	background: #dd5347;
-	border-radius: 100%;
-	z-index: 1;
-}
-
-input[id*="popup"] + label + div > label {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(0,0,0,.2);
-	z-index: 1;
-}
-
-
-
-
-
-
-
-input[id*="popup2"]{
-	display:none;
-}
-
-input[id*="popup2"] + label {
-	display: inline-block;
-	padding: 14px;
-	background: #ffcd41;
-	border-radius: 100%;
-	color: #fff;
-}
-
-input[id*="popup2"] + label + div {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 100;
-}
-
-input[id*="popup2"] + label + div {
-	opacity: 0; visibility: hidden;
-}
-
-input[id*="popup2"]:checked + label + div {
-	opacity: 1;visibility: visible;
-}
-
-input[id*="popup2"] + label + div > div {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform:translate(-50%, -50%);
-	width: 500px;
-	height: 300px;
-	background: #fff;
-	border-radius: 5%;
-	z-index: 2;
-	text-align: center;
-	align-content: center;
-}
-
-input[id*="popup2"] + label + div > div > label {
-	position: absolute;
-	top: 0%;
-	left: 0%;
-	transform:translate(-40%,-40%);
-	padding: 12px;
-	color : #fff;
-	background: #dd5347;
-	border-radius: 100%;
-	z-index: 1;
-}
-
-input[id*="popup2"] + label + div > label {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(0,0,0,.2);
-	z-index: 1;
-}
-
-.incontents_area{
-	position:relative;
-	left:50%;
-	margin-left:-300px;
-	width:900px;
-	height:auto;
-	float:left;
-}
-.sub_list_hotellist{
-	width:100%;
-	height:auto;
-}
-.hotellist{
-	position:relative;
-	width:900px;
-	height:auto;
-}
-.hotel{
-	position:relative;
-	width:100%;
-	height:auto;
-}
-.hotellist_box{
-	position:relative;
-	width:100%;
-	height:176px;
-	background-color:#FFF;
-	border-top:dotted 1px #d7d7d7;
-	color:#444444;
-}
-.listbox_img{
-	position:absolute;
-	left:0;
-	width:216px;
-	height:156.5px;
-	padding-top:19.5px;
-}
-.listbox_title{
-	position:absolute;
-	left:216px;
-	width:454px;
-	height:156.5px;
-	padding-top:19.5px;
-}
-.list_name{
-	width: 430px;
-	height: 30px;
-	font-size: 20px;
-	letter-spacing: -0.5px;
-	cursor: pointer;
-}
-.list_name p{
-	white-space:nowrap;
-	overflow:hidden;
-	text-overflow:ellipsis;
-	font-weight:700;
-	padding-top: 2px;
-}
-/* 2018.08.24 kang 호텔등급 변경 시작 */
-
-.list_grade{
-	position: relative;
-	top: 0;
-	display: inline-block;
-	width: auto;
-	height: 22px;
-	margin-top: 2px;
-}
-.list_grade span{
-	position: relative;
-	top: 0;
-	left: 0;
-	line-height: 22px;
-	font-size: 13px;
-	margin-right: 3px;
-}
-.hotelgrade{
-	position: relative;
-	top: 0;
-	padding: 0;
-	margin: 0;
-	vertical-align: middle;
-	margin-right: 10px;
-}
-.list_icon{
-	position: relative;
-	top: 0;
-	display: inline-block;
-	width: auto;
-	height: 22px;
-	font-size: 12px;
-	line-height: 22px;
-	color: #fff;
-	margin-top: 2px;
-	font-family: 'NanumSquareRound', sans-serif;
-}
-/* ico style */
-
-.list_ico01{
-	width: auto;
-	background-color:#3cb878;
-	border:solid 1px #3cb878;
-	padding:0px 3px;
-	margin-right:2px;
-	font-weight: 600;
-}
-.list_ico02{
-	width: auto;
-	background-color:#b53735;
-	border:solid 1px #b53735;
-	padding:0px 3px;
-	margin-right:2px;
-	font-weight: 600;
-}
-
-.list_ico03{
-	width: auto;
-	background-color:#173390;
-	border:solid 1px #173390;
-	padding:0px 3px;
-	margin-right:2px;
-	font-weight: 600;
-}
-
-.list_ico04{
-	width: auto;
-	/*border:solid 1px #4c3188; 2019041811069 kay */
-	background-color:#fff;
-	color:#444444;
-	padding:0px 3px;
-	margin-right:2px;
-	font-weight: 600;
-}
-
-
-/**/
-
-.list_adrs{
-	position:relative;
-	left:0;
-	width:400px;
-	height:22px;
-	font-size:13px;
-}
-
-.list_adrs p{
-	white-space:nowrap;
-	overflow:hidden;
-	text-overflow:ellipsis;
-}
-
-/* 2018.08.24 kang 호텔등급 변경 끝 */
-
-.list_review{
-	position:absolute;
-	left:0;
-	bottom:14px;
-	width:auto;
-	height:14px;
-	padding:4px 6px;
-	border-radius:3px;
-	font-size:10.5px;
-	color:#09af89;
-	float:right;
-}
-.list_review img{
-	float:left;
-	margin-right:5px;
-}
-.list_info{
-	position:absolute;
-	left:170px;
-	bottom:15px;
-	width:auto;
-	height:22px;
-	text-align:center;
-}
-.list_imgview{
-	position:absolute;
-	left:260px;
-	bottom:15px;
-	width:auto;
-	height:22px;
-	text-align:center;
-}
-.list_map{
-	position:absolute;
-	left:355px;
-	bottom:15px;
-	width:auto;
-	height:22px;
-	text-align:center;
-}
-.list_info p,.list_imgview p,.list_map p{
-	font-size:13px;
-	font-weight:500;
-	padding:2px 6px;
-	border-radius:3px;
-}
-.listbox_price{
-	position:absolute;
-	top:0;
-	left:500px;
-	width:180px;
-	height:176px;
-	color:#d11717;
-	padding:20px 25px;
-	background-color:#f5f5f5;
-	cursor:pointer;
-}
-
-.listbox_price p{
-	position:relative;
-	top:0;
-	font-size:14px;
-	text-align:right;
-}
-.listbox_price .current_coin{
-	font-size:16px;
-	font-weight:500;
-}
-
-/* 2018.08.24 kang 가격 폰트 수정 시작 */
-.listbox_price .pricevalue{
-	font-size:22px;
-	font-weight:600;
-	font-family: Tahoma, Verdana, sans-serif;
-	letter-spacing: -0.5px;
-}
-
-.hotelpage{
-	margin-top:55px;
-	position:relative;
-	width:900px;
-	height:60px;
-}
-
-/* 2018.08.24 kang 페이지 네비 레이아웃 수정 시작 */
-.page_navi{
-	position:relative;
-	left: 50%;
-	transform: translate(-50%,0);
-	bottom:0px;
-	width:auto;
-	height:22px;
-	font-weight:500;
-	color:#444444;
-	text-align: center;
-}
-/* 2018.08.24 kang 페이지 네비 레이아웃 수정 끝 */
-
-.page_navi td{
-	width:20px;
-	padding:0px 2px 0px 2px;
-	text-align:center;
-}
-.page_navi td img{
-	cursor:pointer;
-}
-.page_navi td span{
-	display:block;
-	width:20px;
-	height:20px;
-	float:left;
-	border-radius:3px;
-	cursor:pointer;
-}
-.pagenumber.active{
-	background-color:#e6e6e6;
-}
-
-.no_result{
-	position:relative;
-	width:100%;
-	height:103px;
-	text-align:center;
-	border-top:solid 1px #d8d8d8;
-	border-bottom:solid 1px #d8d8d8;
-	font-size:15px;
-	margin-bottom:1300px;
-	padding-top:70px;
-}
-
-.filter_area{
-	position:relative;
-	left:50%;
-	margin-left:-600px;
-	width:300px;
-	height:1410px;
-	float:left;
-}
-
-.filter_origin{
-	position:relative;
-	top:0;
-	left:0;
-}
-.sub_list_filter_result{
-	width:100%;
-	height:156px;
-}
-.sub_list_filter_title{
-	width:240px;
-	height:48px;
-	border-top:solid 1px #d7d7d7;
-}
-.sub_list_filter_name{
-	width:240px;
-	height:81px;
-	padding-top:10px;
-}
-.sub_list_filter_location{
-	width:240px;
-	height:76px;
-	padding-top:10px;
-	border-top:dotted 1px #d7d7d7;
-}
-.sub_list_filter_price{
-	width:240px;
-	height:180px;
-	padding-top:10px;
-	border-top:dotted 1px #d7d7d7;
-}
-.sub_list_filter_grade{
-	width:240px;
-	height:118px;
-	padding-top:10px;
-	border-top:dotted 1px #d7d7d7;
-}
-.sub_list_filter_convention{
-	width:240px;
-	height:293px;
-	padding-top:10px;
-	border-top:dotted 1px #d7d7d7;
-}
-.sub_list_filter_banner{
-	width:240px;
-	height:372px;
-	border-top:solid 1px #d7d7d7;
-}
-.sub_list_filter_nav{
-	display:none;
-	position:fixed;
-	top:80px;
-	left:50%;
-	margin-left:-600px;
-	width:200px;
-	height:30px;
-	background-color:#f4b225;
-	border:0;
-	border-radius:5px;
-	color:#fff;
-	text-align:center;
-	line-height:30px;
-	cursor:pointer;
-	box-shadow:0 3px 3px #d3d3d3;
-}
-.fitfixed{
-	position:fixed;
-	top:110px;
-	left:50%;
-	margin-left:-600px;
-	animation: fadein .5s;
-    -moz-animation: fadein .5s;
-    -webkit-animation: fadein .5s; 
-    -o-animation: fadein .5s;
-}
-@keyframes fadein {
-    from {
-        opacity:0;
-    }
-    to {
-        opacity:1;
-    }
-}
-@-moz-keyframes fadein { 
-    from {
-        opacity:0;
-    }
-    to {
-        opacity:1;
-    }
-}
-@-webkit-keyframes fadein {
-    from {
-        opacity:0;
-    }
-    to {
-        opacity:1;
-    }
-}
-@-o-keyframes fadein { 
-    from {
-        opacity:0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-.sorting_text {
-	font-size:14px;
-	color:#444444;
-	font-weight:500;
-}
-#sortprice,#sortname,#sortgrade{
-	cursor:pointer;
-}
-
-.sorting_area{
-	position:relative;
-	max-width:1400px;
-	height:40px;
-}
-
-.sub_list_sort{
-	position:absolute;
-	top:10px;
-	right:0;
-}
-
-.sortcriteria{
-	color:#454545;
-}
-.sortcriteria.active{
-	color:#4c3188;
-	font-weight:700;
-}
-.sub_list_sort {
-    position: absolute;
-    top: 10px;
-    right: 0;
-}
-.middle1 {
-    position: relative;
-    width: 100%;
-    height: auto;
-    max-width: 1400px;
-</style>
 </head>
 <body>
 	<!-- header -->
@@ -847,7 +272,7 @@ input[id*="popup2"] + label + div > label {
 				<div class="hotellist" style="min-height: 1400px;">
 					
 					<!-- 호텔 반복 s-->
-					<c:forEach var="dto" items="${list}" begin="${start }" end="${end }">
+					<c:forEach var="dto" items="${list}" begin="${start }" end="${end }" varStatus="vs">
 
 						<div class="hotel">
 							<div class="hotellist_box">
@@ -861,23 +286,23 @@ input[id*="popup2"] + label + div > label {
 								<div class="listbox_title">
 									<div class="list_name">
 										<p title="${dto.roomName}" class="hotelname" onclick="">
-											<a href="searchdetail.do?roomNumber=${dto.roomNumber }&ck_in=${param.ck_in}&ck_out=${param.ck_out}&maxGuest=${param.maxGuest}&night=${night}&fee=${fee[status.index].fee}">${dto.roomName }</a>
+											<a href="searchdetail.do?roomNumber=${dto.roomNumber }&ck_in=${param.ck_in}&ck_out=${param.ck_out}&maxGuest=${param.maxGuest}&night=${night}&fee=${dto.feestr}">${dto.roomName }</a>
 										</p>
 										<!-- 찜한숙소 -->
 										<form style="float: right;" method="post">											
-											<input type="hidden" id="roomNumber" name="roomNumber" value="${dto.roomNumber}">
-											<input type="hidden" id="roomName" name="roomName" value="${dto.roomName}">
+											<input type="hidden" id="roomNumber${vs.index}" name="roomNumber" value="${dto.roomNumber}">
+											<input type="hidden" id="roomName${vs.index}" name="roomName" value="${dto.roomName}">
 											<input type="hidden" id="guests" name="guests" value="${param.maxGuest}">
 											<input type="hidden" id="ck_in" name="ck_in" value="${param.ck_in}">
 											<input type="hidden" id="ck_out" name="ck_out" value="${param.ck_out}">
 											<input type="hidden" id="night" name="night" value="${night}">
-											<input type="hidden" id="fee" name="fee" value="${dto.fee}">
+											<input type="hidden" id="fee${vs.index}" name="fee" value="${dto.fee}">
 												
-											<input type="checkbox" id="popup">
-											<label for="popup">♡</label>
+											<input type="checkbox" id="popup${vs.index }">
+											<label for="popup${vs.index }">♡</label>
 											<div><!-- 모달창 시작(찜) -->
 												<div>
-													<label for="popup"><strong>Ⅹ</strong></label>													
+													<label for="popup${vs.index}"><strong>Ⅹ</strong></label>													
 													
 													<span style="text-align: center;"><strong>목록에 저장하기</strong></span>
 													
@@ -885,33 +310,32 @@ input[id*="popup2"] + label + div > label {
 														<tr>
 															<td width="100%">숙소목록</td>
 														</tr>
-														<c:forEach var="cartFolder" items="${cartFolders}">
+														<c:forEach var="cartFolder" items="${cartFolders}" varStatus="vas">
 															<tr>
-																<td><input type="button" id="btn_cartFolder" name="ctFolder_name" value="${cartFolder.ctFolder_name}">
-																<input type="hidden" id="ctFolder_num" name="ctFolder_num" value="${cartFolder.ctFolder_num}"></td></tr>
-														
+																<td><input type="button" id="btn_cartFolder${vas.index}" name="ctFolder_name" value="${cartFolder.ctFolder_name}" onclick="cartFolder(${vs.index}, ${vas.index})">
+																<input type="hidden" id="ctFolder_num${vas.index}" name="ctFolder_num" value="${cartFolder.ctFolder_num}"></td></tr>
 														</c:forEach>
 													</table>
 													
 													<div>
-														<input type="checkbox" id="popup2">
-														<label for="popup2">목록 추가하기</label>
+														<input type="checkbox" id="popup_${vs.index }">
+														<label for="popup_${vs.index }">목록 추가하기</label>
 														<div>
 															<div>
-																<label for="popup2"><strong>Ⅹ</strong></label>
+																<label for="popup_${vs.index }"><strong>Ⅹ</strong></label>
 																
 																<span style="text-align: center;"><strong>목록 이름 작성하기</strong></span>										
 																
 																
-																<br><input type="text" id="ctFolder_name" name="ctFolder_name" placeholder="이름" value="">
-																<br><input type="button" id="btn_ctFolder_name" value="새로 만들기">
+																<br><input type="text" id="ctFolder_name${vs.index }" name="ctFolder_name" placeholder="이름" value="">
+																<br><input type="button" id="btn_ctFolder_name" value="새로 만들기" onclick="btnctFoldername(${vs.index})">
 																
 															</div>
-															<label for="popup2"></label>
+															<label for="popup_${vs.index }"></label>
 														</div>	
 													</div>										
 												</div><!-- 모달창 끝(찜) -->
-												<label for="popup"></label>
+												<label for="popup${vs.index }"></label>
 											</div>
 										</form>
 									</div>
@@ -972,7 +396,7 @@ input[id*="popup2"] + label + div > label {
 	</main>
 <script src="./resources/js/jquery.js"></script>
 <script>
-$("#btn_ctFolder_name").click(function(){
+/* $("#btn_ctFolder_name").click(function(){
 	var params="";
 	params += "ctFolder_name=" + $("#ctFolder_name").val();
 	params += "&guests=" + $("#maxGuest").val();
@@ -991,7 +415,27 @@ $("#btn_ctFolder_name").click(function(){
 	); // post() end
 
 }); // click() end 
+ */
+ 
+function btnctFoldername(i){
+	var params="";
+	params += "ctFolder_name=" + $("#ctFolder_name"+i).val();
+	params += "&guests=" + $("#maxGuest").val();
+	params += "&ck_in=" + $("#ck_in").val();
+	params += "&ck_out=" + $("#ck_out").val();
+	params += "&night=" + $("#night").val();
+	params += "&totalFee=" + $("#fee"+i).val();
+	params += "&roomNumber=" + $("#roomNumber"+i).val();
+	params += "&roomName=" + $("#roomName"+i).val();//전달값
+	alert(params);
+	
+	$.post(
+			"addcartfolder_insert.do"  		   		  //요청명령어
+			,params 
+			, responseProc   				  //콜백함수 
+		); // post() end
 
+}
 
 function responseProc(){
 	
@@ -1002,7 +446,7 @@ function responseProc(){
 }//responseProc() end 
 
 
-
+/* 
 $("#btn_cartFolder").click(function(){
 	var params="";
 	params += "ctFolder_num=" + $("#ctFolder_num").val();
@@ -1014,7 +458,7 @@ $("#btn_cartFolder").click(function(){
 	params += "&totalFee=" + $("#fee").val();
 	params += "&roomNumber=" + $("#roomNumber").val();
 	params += "&roomName=" + $("#roomName").val();//전달값
-	//alert(params);
+	alert(params);
 	
 	$.post(
 		"cartinsert.do"  		   		  //요청명령어
@@ -1023,13 +467,31 @@ $("#btn_cartFolder").click(function(){
 	); // post() end
 
 }); // click() end 
-
+ */
 function responseProc2(){
 	
 	//팝업을 display:none 으로 바꿔야함
 	$("#popup").css("display", "none");
 }//responseProc() end 
-
+function cartFolder(i, j){
+	var params="";
+	params += "ctFolder_num=" + $("#ctFolder_num"+j).val();
+	params += "&ctFolder_name=" + $("#btn_cartFolder"+j).val();
+	params += "&guests=" + $("#maxGuest").val();
+	params += "&ck_in=" + $("#ck_in").val();
+	params += "&ck_out=" + $("#ck_out").val();
+	params += "&night=" + $("#night").val();
+	params += "&totalFee=" + $("#fee"+i).val();
+	params += "&roomNumber=" + $("#roomNumber"+i).val();
+	params += "&roomName=" + $("#roomName"+i).val();//전달값
+	alert(params);
+	
+	$.post(
+		"cartinsert.do"  		   		  //요청명령어
+		,params 
+		, responseProc   				  //콜백함수 
+	); // post() end
+}
 //페이징
 function fn_paging(curPage) {
 	var param="";

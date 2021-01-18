@@ -38,7 +38,10 @@
 
 
 <style>
-body {
+
+main {
+	margin: auto;
+    max-width: 1400px;
 }
 
 .namenphoto {
@@ -51,6 +54,8 @@ body {
 
 .book {
 	grid-area: book;
+    width: max-content;
+    margin: auto;
 }
 
 .review {
@@ -191,7 +196,7 @@ body {
 		</div>		
 		
 	</header>
-	
+	<main>
 	<div class="grid-container">
 		<div class="namenphoto">
 			<!--  방제목, 주소  -->
@@ -216,10 +221,9 @@ body {
 				<span>${dto.conv} </span>
 			</div>
 		</div>
-		<div class="book">
+		<div class="book" >
 			<div style="border: 1px solid black; border-radius: 5%; text-align: center;">
-				<table border="1px" width="300px" height="150px"
-					   style="border: 1px; border-radius: 5%; padding: 5px;">
+				<table style="border: 1px; border-radius: 5%; padding: 5px;">
 					<tr style="height: 75px;">
 						<th style="width: 150px;">
 							<span>체크인</span><br><span>${param.ck_in}</span>
@@ -246,10 +250,11 @@ body {
 	               <input type="submit" value="예약하기" style="width: 85%; padding: 10px;"
 	                        onclick="location.href='mypage.do'"><br><br>
 	            </c:if>
-	            <span>총 합계</span><span>${param.fee}원</span>
+	            <span>총 가격 : </span><span>${param.fee}원</span>
          </div>
       </div>
       <div class="review">review</div>
    </div>
+   </main>
 </body>
 <%@ include file="../footer.jsp"%>
