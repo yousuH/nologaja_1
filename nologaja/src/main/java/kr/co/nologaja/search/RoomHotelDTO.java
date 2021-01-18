@@ -16,7 +16,6 @@ public class RoomHotelDTO {
 	private String bdgType;
 	private String hotelInform;
 	private String suid;
-	private String rsavefile;
 	private String hsavefile;
 	private String conv;
 	
@@ -108,12 +107,6 @@ public class RoomHotelDTO {
 	public void setSuid(String suid) {
 		this.suid = suid;
 	}
-	public String getRsavefile() {
-		return rsavefile;
-	}
-	public void setRsavefile(String rsavefile) {
-		this.rsavefile = rsavefile;
-	}
 	public String getHsavefile() {
 		return hsavefile;
 	}
@@ -130,9 +123,9 @@ public class RoomHotelDTO {
 	@Override
 	public String toString() {
 		return "RoomHotelDTO [roomNumber=" + roomNumber + ", roomName=" + roomName + ", hotelNumber=" + hotelNumber
-				+ ", roomInform=" + roomInform + ", maxGuest=" + maxGuest + ", zipcode=" + zipcode + ", wido=" + wido
-				+ ", gyengdo=" + gyengdo + ", addr1=" + addr1 + ", addr2=" + addr2 + ", bdgType=" + bdgType
-				+ ", hotelInform=" + hotelInform + ", suid=" + suid + ", rsavefile=" + rsavefile + ", hsavefile="
+				+ ", hotelName=" + hotelName + ", roomInform=" + roomInform + ", maxGuest=" + maxGuest + ", zipcode="
+				+ zipcode + ", wido=" + wido + ", gyengdo=" + gyengdo + ", addr1=" + addr1 + ", addr2=" + addr2
+				+ ", bdgType=" + bdgType + ", hotelInform=" + hotelInform + ", suid=" + suid + ", hsavefile="
 				+ hsavefile + ", conv=" + conv + "]";
 	}
 
