@@ -1,5 +1,8 @@
 package kr.co.nologaja.search;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.http.HttpResponse;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -8,9 +11,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -20,6 +26,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.nologaja.cart.CartFolderDAO;
 import kr.co.nologaja.cart.CartFolderDTO;
+import kr.co.nologaja.cs.InquiryDAO;
+import kr.co.nologaja.cs.InquiryDTO;
 import net.utility.Pagination;
 
 
@@ -31,6 +39,12 @@ public class SearchCont {
 	
 	@Inject
 	CartFolderDAO cartFolderdao;
+	
+	@Inject
+	InquiryDAO idao;
+	
+	@Inject
+	InquiryDTO idto;
 	
 	public SearchCont() {
 		System.out.println("==SearchCont객체생성==");
@@ -311,4 +325,16 @@ public class SearchCont {
 		return mav;
 	}
 	
+	@RequestMapping(value="/inquiry_host.do")
+	public void inquiry_host(InquiryDTO dto, HttpServletResponse resp) throws IOException {
+		idao.host_insert(dto);
+		String title = idto.getTitle();
+		String content = idto.getContent();
+		resp.setContentType("text/plain; charset=UTF-8");
+		PrintWriter out = resp.getWriter();
+		out.print(title);
+		out.print(content);
+		out.flush();
+		out.close();
+	}
 }

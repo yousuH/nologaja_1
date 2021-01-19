@@ -2,6 +2,9 @@ package kr.co.nologaja.cs;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class InquiryDTO {
 	private int inquiryno;
 	private String id;
