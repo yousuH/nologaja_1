@@ -566,20 +566,25 @@
 				<p>
 					<span class="result_num">${fn:length(list) }</span>개의 호텔이 검색되었습니다.
 				</p>
+
+				<script type="text/javascript">
+				<!--
+					// 맵 이미지가 없으면 공간은 잡혀있는 상태로 보여주기 때문에 auto 처리함.
+					$(".sub_list_filter_result").height("auto");
+				//-->
+				</script>
+
 			</div>
 			<div class="fixed_filter">
 				<div class="sub_list_filter_name">
+					<!-- 료칸일 경우 호텔명 료칸명으로 나오도록 수정 by Eli 2019.01.18 2019011415165-->
 					<p>
 						&nbsp;호텔명 검색
 					</p>
 					<div class="ft_inputbox active">
-					<form onsubmit="search.do">
+					<form onsubmit="search.do?cityCode=${param.cityCode }&ck_in=${param.ck_in }&ck_out=${param.ck_out }&maxGuest=${param.maxGuest }">
 						<input class="search_name" type="text" name="namesearch" id="namesearch" placeholder="" value="">
-						<input type="hidden" id="maxGuest" name="maxGuest" value="${param.maxGuest}">
-						<input type="hidden" id="ck_in" name="ck_in" value="${param.ck_in}">
-						<input type="hidden" id="ck_out" name="ck_out" value="${param.ck_out}">
-						<input type="hidden" id="cityCode" name="cityCode" value="${param.cityCode}">
-						<input type="submit" value="검색">
+						<input type="button" value="검색">
 					</form>
 					</div>
 				</div>
@@ -587,24 +592,23 @@
 				<div class="sub_list_filter_price">
 					<form name="FrmPriceRAnge">
 						<p>
-							<span style="font-size: 15px;">₩</span>&nbsp;가격
+							<span style="font-size: 15px;">₩</span>&nbsp;가격(1박)
 						</p>
 						<ul class="price_check">
-							<li>
-							<input class="pr_checkbox" id="priceRange1" name="priceRange1"
-								type="checkbox" onclick="fnHotelSearch(10);" value="10">
+							<li><input class="pr_checkbox" id="priceRange1"
+								type="checkbox" onclick="fnHotelSearch('this')" value="10un">
 								<label for="priceRange1">₩&nbsp;100,000 미만</label></li>
-							<li><input class="pr_checkbox" id="priceRange2" name="priceRange2"
-								type="checkbox" onclick="fnHotelSearch(15);" value="15">
+							<li><input class="pr_checkbox" id="priceRange2"
+								type="checkbox" onclick="fnHotelSearch('RATING','1');">
 								<label for="priceRange2">₩&nbsp;100,000~149,999</label></li>
-							<li><input class="pr_checkbox" id="priceRange3" name="priceRange3"
-								type="checkbox" onclick="fnHotelSearch(20);" value="20">
+							<li><input class="pr_checkbox" id="priceRange3"
+								type="checkbox" onclick="fnHotelSearch('RATING','1');">
 								<label for="priceRange3">₩&nbsp;150,000~199,999</label></li>
-							<li><input class="pr_checkbox" id="priceRange4" name="priceRange4"
-								type="checkbox" onclick="fnHotelSearch(25);" value="25">
+							<li><input class="pr_checkbox" id="priceRange4"
+								type="checkbox" onclick="fnHotelSearch('RATING','1');">
 								<label for="priceRange4">₩&nbsp;200,000~249,999</label></li>
-							<li><input class="pr_checkbox" id="priceRange5" name="priceRange5"
-								type="checkbox" onclick="fnHotelSearch(99);" value="99">
+							<li><input class="pr_checkbox" id="priceRange5"
+								type="checkbox" onclick="fnHotelSearch('RATING','1');">
 								<label for="priceRange5">₩&nbsp;250,000 이상</label></li>
 						</ul>
 					</form>
@@ -612,136 +616,33 @@
 			</div>
 		</div>
 		<div class="incontents_area">
-			<div class="sub_list_hotellist">
-				<div class="hotellist" style="min-height: 1400px;">
-					
-					<!-- 호텔 반복 s-->
-					<c:forEach var="dto" items="${list}" begin="${start }" end="${end }" varStatus="vs">
-						<div class="hotel">
-							<div class="hotellist_box">
-								<div class="listbox_img">
-									<div class="list_img">
-										<!-- 이미지 불러오기 -->
-										<img style="width: 90%; height: -webkit-fill-available" src="${pageContext.request.contextPath}/resources/img/hotel/${dto.savefile}"/>
-									</div>
-								</div>
-								<!-- 방 이름 -->
-								<div class="listbox_title">
-									<div class="list_name">
-										<p title="${dto.roomName}" class="hotelname" id="hotelname">
-											<a href="searchdetail.do?roomNumber=${dto.roomNumber}&cityCode=${param.cityCode}&ck_in=${param.ck_in}&ck_out=${param.ck_out}&maxGuest=${param.maxGuest}&night=${night}&fee=${dto.feestr}">${dto.roomName}</a>
-										</p>
-										<!-- 찜한숙소 -->
-										<form style="float: right;" method="post">											
-											<input type="hidden" id="roomNumber${vs.index}" name="roomNumber" value="${dto.roomNumber}">
-											<input type="hidden" id="roomName${vs.index}" name="roomName" value="${dto.roomName}">
-											<input type="hidden" id="guests" name="guests" value="${param.maxGuest}">
-											<input type="hidden" id="ck_in" name="ck_in" value="${param.ck_in}">
-											<input type="hidden" id="ck_out" name="ck_out" value="${param.ck_out}">
-											<input type="hidden" id="night" name="night" value="${night}">
-											<input type="hidden" id="fee${vs.index}" name="fee" value="${dto.fee}">
-												
-											<input type="checkbox" id="popup${vs.index }">
-											<label for="popup${vs.index }">♡</label>
-											<div><!-- 모달창 시작(찜) -->
-												<div>
-													<label for="popup${vs.index}"><strong>Ⅹ</strong></label>													
-													
-													<span style="text-align: center;"><strong>목록에 저장하기</strong></span>
-													
-													<table>
-														<tr>
-															<td width="100%">숙소목록</td>
-														</tr>
-														<c:forEach var="cartFolder" items="${cartFolders}" varStatus="vas">
-															<tr>
-																<td><input type="button" id="btn_cartFolder${vas.index}" name="ctFolder_name" value="${cartFolder.ctFolder_name}" onclick="cartFolder(${vs.index}, ${vas.index})">
-																<input type="hidden" id="ctFolder_num${vas.index}" name="ctFolder_num" value="${cartFolder.ctFolder_num}"></td></tr>
-														</c:forEach>
-													</table>
-													
-													<div>
-														<input type="checkbox" id="popup_${vs.index }">
-														<label for="popup_${vs.index }">목록 추가하기</label>
-														<div>
-															<div>
-																<label for="popup_${vs.index }"><strong>Ⅹ</strong></label>
-																
-																<span style="text-align: center;"><strong>목록 이름 작성하기</strong></span>										
-																
-																
-																<br><input type="text" id="ctFolder_name${vs.index }" name="ctFolder_name" placeholder="이름" value="">
-																<br><input type="button" id="btn_ctFolder_name" value="새로 만들기" onclick="btnctFoldername(${vs.index})">
-																
-															</div>
-															<label for="popup_${vs.index }"></label>
-														</div>	
-													</div>										
-												</div><!-- 모달창 끝(찜) -->
-												<label for="popup${vs.index }"></label>
-											</div>
-										</form>
-									</div>
-									<!-- 별표 이미지 + 총 리뷰점수 + 총리뷰 갯수-->
-									<div class="list_grade">
-										<img>
-										<p>${dto.starAvg}(${dto.cnt })${strat }
-										<p>
-									</div>
-
-									<!-- 전체주소 -->
-									<div class="list_adrs">
-										<p class="hoteladdress">${dto.addr1 }&nbsp;&nbsp;&nbsp;</p>
-									</div>
-
-									<!-- 가격 -->
-									<div class="listbox_price">
-										<p style="color: #d11717">Price</p>
-										<p class="current_coin" style="color: #d11717">
-											KRW&nbsp;&nbsp;<span class="pricevalue" style="color: #d11717">${dto.feestr}</span>
-										</p>
-									</div>
-								</div>
-
-							</div>
-						</div>
-
-					</c:forEach>
-					
-					<!-- 호텔 반복 끝-->
-		            <div class="hotelpage">
-		                <c:if test="${pagination.curRange ne 1 }">
-		                    <a href="#" onclick="fn_paging(1)">[처음]</a> 
-		                </c:if>
-		                <c:if test="${pagination.curPage ne 1}">
-		                    <a href="#" onclick="fn_paging('${pagination.prevPage }')">[이전]</a> 
-		                </c:if>
-		                <c:forEach var="pageNum" begin="${pagination.startPage }" end="${pagination.endPage }">
-		                    <c:choose>
-		                        <c:when test="${pageNum eq  pagination.curPage}">
-		                            <span style="font-weight: bold;"><a href="#" onclick="fn_paging('${pageNum }')">${pageNum }</a></span> 
-		                        </c:when>
-		                        <c:otherwise>
-		                            <a href="#" onclick="fn_paging('${pageNum }')">${pageNum }</a> 
-		                        </c:otherwise>
-		                    </c:choose>
-		                </c:forEach>
-		                <c:if test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
-		                    <a href="#" onclick="fn_paging('${pagination.nextPage }')">[다음]</a> 
-		                </c:if>
-		                <c:if test="${pagination.curRange ne pagination.rangeCnt && pagination.rangeCnt > 0}">
-		                    <a href="#" onclick="fn_paging('${pagination.pageCnt }')">[끝]</a> 
-		                </c:if>
-						</div>
-		            </div>
-	            </div>
+			<h1>조건에 맞는 숙소가 없습니다.</h1>
             </div>
 
 	</main>
 <script src="./resources/js/jquery.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+/* $("#btn_ctFolder_name").click(function(){
+	var params="";
+	params += "ctFolder_name=" + $("#ctFolder_name").val();
+	params += "&guests=" + $("#maxGuest").val();
+	params += "&ck_in=" + $("#ck_in").val();
+	params += "&ck_out=" + $("#ck_out").val();
+	params += "&night=" + $("#night").val();
+	params += "&totalFee=" + $("#fee").val();
+	params += "&roomNumber=" + $("#roomNumber").val();
+	params += "&roomName=" + $("#roomName").val();//전달값
+	//alert(params);
+	
+	$.post(
+		"addcartfolder_insert.do"  		   		  //요청명령어
+		,params 
+		, responseProc   				  //콜백함수 
+	); // post() end
 
+}); // click() end 
+ */
+ 
 function btnctFoldername(i){
 	var params="";
 	params += "ctFolder_name=" + $("#ctFolder_name"+i).val();
@@ -770,12 +671,34 @@ function responseProc(){
 	
 }//responseProc() end 
 
+
+/* 
+$("#btn_cartFolder").click(function(){
+	var params="";
+	params += "ctFolder_num=" + $("#ctFolder_num").val();
+	params += "&ctFolder_name=" + $("#btn_cartFolder").val();
+	params += "&guests=" + $("#maxGuest").val();
+	params += "&ck_in=" + $("#ck_in").val();
+	params += "&ck_out=" + $("#ck_out").val();
+	params += "&night=" + $("#night").val();
+	params += "&totalFee=" + $("#fee").val();
+	params += "&roomNumber=" + $("#roomNumber").val();
+	params += "&roomName=" + $("#roomName").val();//전달값
+	alert(params);
+	
+	$.post(
+		"cartinsert.do"  		   		  //요청명령어
+		,params 
+		, responseProc   				  //콜백함수 
+	); // post() end
+
+}); // click() end 
+ */
 function responseProc2(){
 	
 	//팝업을 display:none 으로 바꿔야함
 	$("#popup").css("display", "none");
 }//responseProc() end 
-
 function cartFolder(i, j){
 	var params="";
 	params += "ctFolder_num=" + $("#ctFolder_num"+j).val();
@@ -795,7 +718,6 @@ function cartFolder(i, j){
 		, responseProc   				  //콜백함수 
 	); // post() end
 }
-
 //페이징
 function fn_paging(curPage) {
 	var param="";
@@ -806,27 +728,30 @@ function fn_paging(curPage) {
 	param += "&sort=${sort}";
 	location.href = "search.do?curPage=" + curPage + param;
 	}
-
-function fnHotelSearch(val){
-	var param="";
-	param += "ck_in=" + $("#ck_in").val();
-	param += "&ck_out=" + $("#ck_out").val();
-	param += "&maxGuest=" + $("#maxGuest").val();
-	param += "&cityCode=" + $("#cityCode").val();
-	param += "&checkprice=" + val;
-/* 정신혼미 나중에 생각 checked 쿠키저장? 
-if (document.priceRange1.checked == true) { // 아이디 저장을 체크 하였을때
-        setCookie_s("suid", document.priceRange1, 7); //쿠키이름을 id로 아이디입력필드값을 7일동안 저장
-    } else { // 아이디 저장을 체크 하지 않았을때
-        setCookie_s("suid", document.login_seller.suid.value, 0); //날짜를 0으로 저장하여 쿠키삭제
-
-    }
-
-
-        document.login_seller.submit();  */
-		window.document.location.href="search.do?" + param;
-   
-	return;
+	
+function fnHotelSearch(box){
+	if(box.checked==true){
+	alert(box.value);
+	}
 }
+
+//검색페이지내 호텔이름 상세검색
+/* function filter(){
+
+    var value, name, item, i;
+
+    value = document.getElementById("namesearch").value.toUpperCase();
+    item = document.getElementsByClassName("hotel");
+
+    for(i=0;i<item.length;i++){
+      name = item[i].getElementsByClassName("hotelname");
+      if(name[0].innerHTML.toUpperCase().indexOf(value) > -1){
+        item[i].style.display = "flex";
+      }else{
+        item[i].style.display = "none";
+      }
+    }
+  } */
 </script>
+
 <%@ include file="../footer.jsp"%>

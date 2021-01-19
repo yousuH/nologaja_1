@@ -1,5 +1,6 @@
 package kr.co.nologaja.search;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -49,6 +50,15 @@ public class SearchDAO implements ISearchDAO {
 		// TODO Auto-generated method stub
 		FeeListDTO fdto=sqlSession.selectOne("search.feelist", roomNumber);
 		return fdto;
+	}
+	@Override
+	public List<String> rNfindname(String cityCode, int maxGuest, String namesearch) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("code", cityCode);
+		map.put("maxGuest", maxGuest);
+		map.put("name", namesearch);
+		List<String> roomNuber = sqlSession.selectList("search.rnfindname", map);
+		return roomNuber;
 	}
 
 	
