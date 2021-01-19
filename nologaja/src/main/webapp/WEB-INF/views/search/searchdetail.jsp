@@ -144,6 +144,7 @@ main {
 														<option value="SE">서울</option>
 														<option value="BU">부산</option>
 														<option value="IN">인천</option>
+														<option value="JJ">제주</option>
 														<option value="SJ">세종</option>
 														<option value="DG">대구</option>
 														<option value="DJ">대전</option>
