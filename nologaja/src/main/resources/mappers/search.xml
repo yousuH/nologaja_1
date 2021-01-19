@@ -67,5 +67,16 @@
 		]]>
 	</select>
 	
+	<select id="rnfindname" resultType="String"
+		parameterType="HashMap">
+		<![CDATA[
+		SELECT roomNumber
+		FROM roomTable 
+				WHERE roomNumber like CONCAT('%',#{code},'%')
+		AND roomName like  CONCAT('%',#{name},'%')
+		AND maxGuest >= #{maxGuest} 
+		
+		]]>
+	</select>
 
 </mapper>
