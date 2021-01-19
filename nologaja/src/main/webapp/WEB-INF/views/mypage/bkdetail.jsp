@@ -3,16 +3,6 @@
 <%@ include file="../header.jsp" %>
 <link rel="stylesheet" href="./resources/css/mypage.css">
 
-	<script>
-	function btnno(){
-		if(confirm("정말 예약을 취소하시겠습니까?")==true){    //확인
-			document.removefrm.submit();
-		}else{   //취소
-			return false;
-		}
-	}
-	
-	</script>
 
     <!-- 메인내용 -->
 	<div class="mp_sidenav">
@@ -32,7 +22,7 @@
 	<div class="mp_main">
 		<h2>예약상세목록</h2>
 		<br>
-		<form name="bklist" id="bklist" method="post" action="bkupdate.do">
+		<form name="bkupdate" id="bkupdate" method="post" action="bkupdate.do">
 			<input type="hidden" name="roomNumber" id="roomNumber" value="${BkDTO.roomNumber}">
 			<input type="hidden" name="uid" id="uid" value="${sessionScope.uid}">
 			<input type="hidden" name="bk_num" id="bk_num" value="${dto.bk_num}">
@@ -99,7 +89,7 @@
 				
 				
 			</table>
-			<input type="submit" value="예약취소" onclick="btnno()">
+			<input type="button" value="예약취소" onclick="btn_no()">
 			
 		</form>
 	

@@ -105,16 +105,6 @@
 													<input style="border-radius: 0; height: 45px; border-color: #2493e0; background-color: transparent;"
 														   type="text" class="form-control" placeholder="   상세지역">
 												</div>
-
-												<!--
-                                                <div class="input-group input-group-lg">
-                                                    <div class="input-group-prepend">
-                                                      <span class="input-group-text" id="inputGroup-sizing-lg">Large</span>
-                                                    </div>
-                                                    <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
-                                                </div>
-                                                -->
-
 												<div class="form_colum">
 													<select class="nc_select" name="cityCode" id="cityCode">
 														<option value="" selected>도시를 선택하세요</option>
@@ -134,7 +124,7 @@
 														<option value="GB">경상북도</option>
 														<option value="GN">경상남도</option>
 														<option value="JB">전라북도</option>
-														<option value="JB">전라남도</option>
+														<option value="JN">전라남도</option>
 													</select>
 												</div>
 												<div class="form_colum">
@@ -146,12 +136,12 @@
 												<div class="form_colum">
 													<select class="nc_select" name="maxGuest" id="maxGuest">
 														<option value="0" selected>Person</option>
-														<option value="1">1</option>
-														<option value="2">2</option>
-														<option value="3">3</option>
-														<option value="4">4</option>
-														<option value="5">5</option>
-														<option value="6">6</option>
+														<option value="1">1명</option>
+														<option value="2">2명</option>
+														<option value="3">3명</option>
+														<option value="4">4명</option>
+														<option value="5">5명</option>
+														<option value="6">6명</option>
 													</select>
 												</div>
 												<div class="form_btn">

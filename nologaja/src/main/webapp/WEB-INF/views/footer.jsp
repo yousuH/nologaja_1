@@ -75,6 +75,7 @@
 <script src="./resources/js/gijgo.min.js"></script>
 <!-- contact js -->
 <script src="./resources/js/myscript.js"></script>
+<script src="./resources/js/booking.js"></script>
 
 <script src="./resources/js/jquery.ajaxchimp.min.js"></script>
 <script src="./resources/js/jquery.form.js"></script>
