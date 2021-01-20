@@ -600,8 +600,121 @@ main {
 	            <span>총 가격 : </span><span>${param.fee}원</span>
          </div>
       </div>
-      <div class="review">review</div>
+      	<div class="review">
+      	<h3>&nbsp;&nbsp;&nbsp;리뷰</h3>
+      	<h4>총평점</h4><br>
+				<table class="table table-hover text-center">
+					<thead>
+						<tr>
+							<th class="text-center">아이디</th>
+							<th class="text-center">작성일자</th>
+							<th class="text-center" style="min-width: 600px; max-width: 600px;">내용</th>
+							<th class="text-center">청결도</th>
+							<th class="text-center">접근성</th>
+							<th class="text-center">가성비</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<c:forEach var="rvdto" items="${list}" varStatus="status">
+							<tr>
+								<td>${rvdto.uid}</td>
+								<td>${rvdto.wdate}</td>
+								<td>${rvdto.content}</td>
+								<td>${rvdto.stars_clean} / 10</td>
+								<td>${rvdto.stars_location} / 10</td>
+								<td>${rvdto.stars_costeff} / 10</td>
+							</tr>
+						</c:forEach>
+						
+						       <%--  <tr id='addbtn'><td colspan="5"><div class="btns"><a href="javascript:moreList('${dto.roomNumber }', '${num }');" class="btn btn-primary">더보기</a></div></td></tr> --%>
+					</tbody>
+				</table>
+				<br>
+<!-- 				<div id="more_btn_div" align="center">
+					<hr>
+						<a id="more_btn_a" href="javascript:moreContent('more_list', 5);">
+							더보기[more]
+						</a>
+					<hr>
+				</div> -->
+			</div>
    </div>
    </main>
 </body>
+<script>
+
+/* function moreContetn(id, cnt){
+	
+	var list_length = $("#"+id+" tr").length-1;
+	var aname = id + "_btn";
+	var callLength = list_length;
+	
+	$('#startCount').val(callLength);
+	$('#viewCount').val(cnt);
+	
+	$.ajax({
+		type	:	"post",
+		url		:	"/getMoreContents_ajax.do",
+		data	:	$('#searchTxtForm').serialize(),
+		dataType:	"json",
+		success :   function(result){
+						if(result.resultCnt > 0){
+							var list = result.resultList;
+							if(rvdto.content != '') {
+								$('#' + aname).attr('href', "javascript:moreContent('"+id+"', "+cnt+");");
+									getMoreList(list);
+							}else{
+								$("#"+id+"_div").remove();
+							}//if end
+						}else{
+							}
+						}
+		});
+	
+	function getMoreList(list){
+		
+		var content = "";
+		var length = list.length;
+		for(i=0; i<list.length; i++){
+			var rvdto = list[i];
+			if(rvdto.content != ''){
+				content += "<tr>";
+				content += "<td>"+rvdto.uid+"</td>";
+				content += "<td>"+rvdto.wdate+"</td>";
+				content += "<td>"+rvdto.content+"</td>";
+				content += "<td>"+rvdto.stars_clean+"</td>";
+				content += "<td>"+rvdto.stars_location+"</td>";
+				content += "<td>"+rvdto.stars_costeff+"</td>";
+				content += "</tr>";
+			}
+		}
+		$("#more_list tr:last").after(content);
+	}
+} */
+	
+function moreList(roomNumber, num){
+	var num1 = num;
+	
+    $.ajax({
+
+        url : "json.do",
+
+        type : "POST",
+
+        cache : false,
+
+        data  : {roomNumber : roomNumber,
+        	     num : num1},
+        
+        dataType : 'json'
+    
+    });
+};
+
+</script>
+
+
+
+
 <%@ include file="../footer.jsp"%>

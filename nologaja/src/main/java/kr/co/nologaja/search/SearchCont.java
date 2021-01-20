@@ -9,17 +9,22 @@ import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.nologaja.cart.CartFolderDAO;
 import kr.co.nologaja.cart.CartFolderDTO;
+import kr.co.nologaja.hotel.ReviewDAO;
+import kr.co.nologaja.hotel.ReviewDTO;
 import net.utility.Pagination;
 
 
@@ -32,6 +37,9 @@ public class SearchCont {
 	@Inject
 	CartFolderDAO cartFolderdao;
 	
+	@Inject
+	ReviewDAO rvdao;
+	
 	public SearchCont() {
 		System.out.println("==SearchCont객체생성==");
 	}
@@ -42,6 +50,9 @@ public class SearchCont {
 			@RequestParam(defaultValue = "review") String sort, @RequestParam(defaultValue = "") String namesearch,
 			@RequestParam(defaultValue = "0") int checkprice) throws ParseException {
 		
+		if(sdto.getCityCode() == null) {
+			sdto.setCityCode("");
+		}
 		
 		List<String> rNlist = new ArrayList<String>();
 		if(!(namesearch.equals(""))) {
@@ -355,13 +366,31 @@ public class SearchCont {
 	}// search() end
 	
 	@RequestMapping(value="/searchdetail.do")
-	public ModelAndView searchdetail(String roomNumber) {
+	public ModelAndView searchdetail(String roomNumber, @RequestParam(defaultValue="1") int num) {
 		ModelAndView mav = new ModelAndView();
+		int endnum = (5*num);
 		RoomHotelDTO dto = sdao.searchdetail(roomNumber);
-		System.out.println(dto);
+		
+		List<ReviewDTO> list = rvdao.rv_list(roomNumber, endnum);
+	
+		mav.addObject("list", list);
 		mav.addObject("dto", dto);
+		mav.addObject("num", num);
 		mav.setViewName("search/searchdetail");
 		return mav;
 	}
 	
+	@RequestMapping(value = "/json.do")
+	@ResponseBody
+	public ModelAndView jsonTest(@RequestParam String roomNumber, @RequestParam int num) {
+		int endnum = (num+1)*5;
+		RoomHotelDTO dto = sdao.searchdetail(roomNumber);
+		List<ReviewDTO> list =rvdao.rv_list(roomNumber, endnum);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("num", num);
+		mav.addObject("list", list);
+		mav.addObject("dto", dto);
+		return mav;
+	}
+
 }
