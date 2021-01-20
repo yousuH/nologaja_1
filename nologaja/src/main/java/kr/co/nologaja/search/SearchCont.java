@@ -325,16 +325,5 @@ public class SearchCont {
 		return mav;
 	}
 	
-	@RequestMapping(value="/inquiry_host.do")
-	public void inquiry_host(InquiryDTO dto, HttpServletResponse resp) throws IOException {
-		idao.host_insert(dto);
-		String title = idto.getTitle();
-		String content = idto.getContent();
-		resp.setContentType("text/plain; charset=UTF-8");
-		PrintWriter out = resp.getWriter();
-		out.print(title);
-		out.print(content);
-		out.flush();
-		out.close();
-	}
+	
 }

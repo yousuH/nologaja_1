@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="inquiryHost">
+	<!-- 문의사항 작성 -->
+	<insert id="insert" parameterType="kr.co.nologaja.inquiryHost.InquiryHostDTO">
+		<![CDATA[
+		INSERT INTO inquiry_host (title, content, uid, grpno, roomNumber)
+		VALUES (#{title}, #{content}, #{uid}, (SELECT IFNULL(max(inquiryno), 0) from inquiry_host a)+1, #{roomNumber})
+		]]>
+	</insert>
+
+	<!-- inquiryno가져오기 -->
+	<select id="getinquiryno" resultType="int" parameterType="kr.co.nologaja.inquiryHost.InquiryHostDTO">
+      <![CDATA[
+      SELECT inquiryno 
+      FROM inquiry_host
+      WHERE uid = #{uid} AND roomNumber = #{roomNumber}
+      ORDER BY inquiryno DESC limit 1
+      ]]>
+   </select>
+   
+   <!-- wdate가져오기 -->
+   <select id="getwdate" resultType="Date" parameterType="int">
+      <![CDATA[
+      SELECT wdate 
+      FROM inquiry_host
+      WHERE inquiryno = #{inquiryno}
+      ]]>
+   </select>
+</mapper>

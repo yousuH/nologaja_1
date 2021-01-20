@@ -1,325 +1,3 @@
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nologaja</title>
-<link rel="icon" href="./resources/img/favicon.png">
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="./resources/css/bootstrap.min.css">
-<!-- animate CSS -->
-<link rel="stylesheet" href="./resources/css/animate.css">
-<!-- owl carousel CSS -->
-<link rel="stylesheet" href="./resources/css/owl.carousel.min.css">
-<!-- themify CSS -->
-<link rel="stylesheet" href="./resources/css/themify-icons.css">
-<!-- flaticon CSS -->
-<link rel="stylesheet" href="./resources/css/flaticon.css">
-<!-- fontawesome CSS -->
-<link rel="stylesheet" href="./resources/fontawesome/css/all.min.css">
-<!-- magnific CSS -->
-<link rel="stylesheet" href="./resources/css/magnific-popup.css">
-<link rel="stylesheet" href="./resources/css/gijgo.min.css">
-<!-- niceselect CSS -->
-<link rel="stylesheet" href="./resources/css/nice-select.css">
-<!-- slick CSS -->
-<link rel="stylesheet" href="./resources/css/slick.css">
-<!-- style CSS -->
-<link rel="stylesheet" href="./resources/css/style2.css">
-<!-- login CSS -->
-<link rel="stylesheet" href="./resources/css/login.css">
-<!-- memberjoin CSS -->
-<link rel="stylesheet" href="./resources/css/memberjoin.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-
-<style>
-body {
-}
-
-.namenphoto {
-	grid-area: namenphoto;
-}
-
-.detail {
-	grid-area: detail;
-}
-
-.book {
-	grid-area: book;
-}
-
-.review {
-	grid-area: review;
-}
-
-.grid-container {
-	display: grid;
-	grid-template-areas: 'namenphoto namenphoto namenphoto'
-		'detail detail book' 'review review review';
-	grid-gap: 10px;
-	padding-left: 40px;
-	padding-right: 40px;
-}
-
-.grid-container>div {
-	padding: 20px 0;
-}
-</style>
-<script>
-$(document).ready(function() {
-	  $(".content").hide();
-	  //content 클래스를 가진 div를 표시/숨김(토글)
-	  $(".title").click(function()
-	  {
-	    $(this).next(".content").slideToggle(10);
-	    $("i", this).toggleClass("fa-chevron-down fa-chevron-up");
-	  });
-	});
-	
-$(document).ready(function(){	
-	$("#contactForm").submit(function(event){
-		submitForm();
-		return false;
-	});
-});
-
-function submitForm(){
-	 $.get(
-		'./inquiry_host.do',
-		{
-			title:title,
-			content:content
-			
-		},
-		function(data) {
-			$('#title').text(data.title);
-			$('#content').text(data.content);
-		},
-		'json'
-	 );
-}
-</script>
-</head>
-<body>
-<!-- header -->
-	<header class="list_main_menu">
-		<div class="main_menu_iner">
-			<div class="container">
-				<div class="row align-items-center">
-					<div class="col-lg-12">
-						<nav class="navbar navbar-expand-lg navbar-light justify-content-between">
-							<a class="navbar-brand" href="home.do">
-								<img src="./resources/img/logo1.png" alt="logo">
-							</a>
-							<button class="navbar-toggler" type="button"
-									data-toggle="collapse" data-target="#navbarSupportedContent"
-									aria-controls="navbarSupportedContent" aria-expanded="false"
-									aria-label="Toggle navigation">
-								<span class="navbar-toggler-icon"></span>
-							</button>
-							<div class="collapse navbar-collapse main-menu-item justify-content-end"
-								 id="navbarSupportedContent" style="">
-								<ul class="navbar-nav">
-									<c:choose>
-										<c:when test="${sessionScope.uid == null && sessionScope.suid ==null}">
-											<li class="nav-item"><a class="nav-link" href="login.do">로그인</a></li>
-											<li class="nav-item"><a class="nav-link" href="memberform.do">회원가입</a></li>
-										</c:when>
-
-										<c:otherwise>
-											<c:choose>
-												<c:when test="${sessionScope.uid != null}">
-													<li class="nav-item">
-														<span>${sessionScope.uid}님이 로그인 중 입니다. 등급:${sessionScope.ugrd }</span>
-													</li>
-												</c:when>
-												<c:otherwise>
-													<li class="nav-item">
-														<span>${sessionScope.suid}님이 로그인 중 입니다.등급:${sessionScope.ugrd }</span>
-													</li>
-												</c:otherwise>
-											</c:choose>
-											<li class="nav-item"><a class="nav-link" href="logout.do">로그아웃</a></li>
-											<li class="nav-item"><a class="nav-link" href="mypage.do">마이페이지</a></li>
-										</c:otherwise>
-										
-									</c:choose>
-									<li class="nav-item"><a class="nav-link" href="inquiry_list.do">고객센터</a></li>
-								</ul>
-								
-							</div>
-
-						</nav>
-						<nav class="navbar navbar-expand-lg navbar-light justify-content-between">
-													<section class="list_booking_part" style="width: 1000px; margin: aut">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="booking_content">
-							<div class="tab-content" id="myTabContent">
-								<div class="tab-pane fade show active" id="hotel"
-									role="tabpanel" aria-labelledby="hotel-tab">	
-									<div class="booking_form">
-										<form action="search.do">
-											<div class="form-row">
-												<div class="form_colum" >
-													<select class="nc_select" name="cityCode" id="cityCode">
-														<option value="${param.cityCode }" selected></option>
-														<option value="SE">서울</option>
-														<option value="BU">부산</option>
-														<option value="IN">인천</option>
-														<option value="SJ">세종</option>
-														<option value="DG">대구</option>
-														<option value="DJ">대전</option>
-														<option value="GJ">광주</option>
-														<option value="UL">울산</option>
-														<option value="GG">경기도</option>
-														<option value="GW">강원도</option>
-														<option value="CB">충청북도</option>
-														<option value="CN">충청남도</option>
-														<option value="GB">경상북도</option>
-														<option value="GN">경상남도</option>
-														<option value="JB">전라북도</option>
-														<option value="JB">전라남도</option>
-													</select>
-												</div>
-												<div class="form_colum">
-													<input name="ck_in" id="datepicker_1" placeholder="Check in date" value="${param.ck_in }">
-												</div>
-												<div class="form_colum">
-													<input name= "ck_out" id="datepicker_2" placeholder="Check out date" value="${param.ck_out }">
-												</div>
-												<div class="form_colum">
-													<select class="nc_select" name="maxGuest" id="maxGuest">
-														<option value="${param.maxGuest }" selected>Person</option>
-														<option value="1">1명</option>
-														<option value="2">2명</option>
-														<option value="3">3명</option>
-														<option value="4">4명</option>
-														<option value="5">5명</option>
-														<option value="6">6명</option>
-													</select>
-												</div>
-												<div class="form_btn">
-													<button class="btn_1">search</button>
-												</div>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-						</nav>
-					</div>
-				</div>
-			</div>
-		</div>		
-		
-	</header>
-	
-	<div class="grid-container">
-		<div class="namenphoto">
-			<!--  방제목, 주소  -->
-			<div>
-				<div>
-					<h1>${dto.roomName}</h1>
-					<span><a href="" class="">${dto.addr1}</a></span><br> <br>
-				</div>
-			</div>
-			<!--호텔이미지-->
-			<img class="" alt=""
-				src="${pageContext.request.contextPath}/resources/img/hotel/${dto.hsavefile}">
-		</div>
-		<div class="detail">
-			<!--호텔정보-->
-			<div>
-				<span>${dto.hotelInform}</span>
-			</div>
-			<br>
-			<!--편의시설-->
-			<div>
-				<span>${dto.conv} </span>
-			</div>
-		</div>
-		<div class="book">
-			<div style="border: 1px solid black; border-radius: 5%; text-align: center;">
-				<table border="1px" width="300px" height="150px"
-					   style="border: 1px; border-radius: 5%; padding: 5px;">
-					<tr style="height: 75px;">
-						<th style="width: 150px;">
-							<span>체크인</span><br><span>${param.ck_in}</span>
-						</th>
-						<th style="width: 150px;">
-							<span>체크아웃</span><br><span>${param.ck_out}</span>
-						</th>
-					</tr>
-					<tr style="height: 75px;">
-						<td colspan="2">
-							<span>인원수</span><br><span>${param.maxGuest}</span>
-						</td>
-					</tr>
-				</table>
-				<c:if test="${sessionScope.uid != null }">
-	               <input type="submit" value="예약하기" style="width: 85%; padding: 10px;"
-	                        onclick="location.href='booking.do?roomNumber=${dto.roomNumber}&night=${param.night}&hotelName=${dto.hotelName}&roomName=${dto.roomName}&maxGuest=${param.maxGuest}&ck_in=${param.ck_in}&ck_out=${param.ck_out}&fee=${param.fee}&pay=${param.pay}'"><br><br>
-	            </c:if>
-	            <c:if test="${sessionScope.uid == null }">
-	               <input type="submit" value="예약하기" style="width: 85%; padding: 10px;"
-	                        onclick="location.href='login.do'"><br><br>
-	            </c:if>
-	            <c:if test="${sessionScope.suid != null }">
-	               <input type="submit" value="예약하기" style="width: 85%; padding: 10px;"
-	                        onclick="location.href='mypage.do'"><br><br>
-	            </c:if>
-	            <span>총 합계</span><span>${param.fee}원</span>
-         </div>
-      </div>
-      <div class="inquiry_host">
-	      <div class="title" style="cursor: pointer;"></div>
-	      <div class="content"></div>
-      </div>
-      <div>
-	    <div id="contact"><button type="button" class="btn" data-toggle="modal" data-target="#contact-modal">작성하기</button></div>
-	    <div id="contact-modal" class="modal fade" role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<a class="close" data-dismiss="modal">×</a>
-					<h3>Contact Form</h3>
-				</div>
-				<form id="contactForm" name="contact" role="form">
-					<div class="modal-body">				
-						<div class="form-group">
-							<label for="name">제목</label>
-							<input type="text" name="title" id="title" class="form-control">
-						</div>
-						<div class="form-group">
-							<label for="content">내용</label>
-	                        <textarea name="content" id="content" cols="50" rows="10" class="form-control"></textarea>
-						</div>					
-					</div>
-					<div class="modal-footer">					
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<input type="submit" value="등록하기" class="btn btn-success" id="submit">
-					</div>
-				</form>
-			</div>
-		</div>
-    </div>
-   </div>
-</body>
-<%@ include file="../footer.jsp"%>
- --%>
- 
  <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -384,10 +62,20 @@ main {
    grid-area: review;
 }
 
+.inquire {
+   grid-area: book;
+    width: max-content;
+    margin: auto;
+}
+
 .grid-container {
    display: grid;
-   grid-template-areas: 'namenphoto namenphoto namenphoto'
-      'detail detail book' 'review review review';
+   grid-template-areas: 
+      'namenphoto namenphoto namenphoto'
+      'detail detail book' 
+      'review review review'
+      'inquire inquire inquire'
+      ;
    grid-gap: 10px;
    padding-left: 40px;
    padding-right: 40px;
@@ -599,6 +287,7 @@ input[id*="popup"] + label + div > label {
          <div>
             <div>
                <h1>${dto.roomName}</h1>
+               <input type="hidden" id="roomNumber" value="${dto.roomNumber}">
                <span><a href="" class="">${dto.addr1}</a></span><br> <br>
             </div>
          </div>
@@ -609,7 +298,7 @@ input[id*="popup"] + label + div > label {
       <div class="detail">
          <!--호텔정보-->
          <div>
-            <span>${dto.hotelInform}</span>
+            <span>국무총리 또는 행정각부의 장은 소관사무에 관하여 법률이나 대통령령의 위임 또는 직권으로 총리령 또는 부령을 발할 수 있다. 모든 국민은 고문을 받지 아니하며, 형사상 자기에게 불리한 진술을 강요당하지 아니한다.</span>
          </div>
          <br>
          <!--편의시설-->
@@ -617,43 +306,10 @@ input[id*="popup"] + label + div > label {
             <span>${dto.conv} </span>
          </div>
          
-         
-         <!-- 호스트 문의하기  -->
-         <input type="checkbox" id ="popup">
-         <label for="popup">호스트에게 문의하기</label>
-         <div>
-            <div>
-               <label for="popup"></label>
-               <div>
-	               <form name="inquiryForm" action="inquiry_host.do">
-	               		<div style="padding: 10px">
-	               			<input style="width: 95%;" type="text" name="title" id="title" placeholder="제목">
-	               		</div>
-	               		<div style="padding: 10px">
-	               			<textarea style="width: 95%; height: 200px;" name="content" id="content" placeholder="내용"></textarea>
-	               		</div>
-	               		<div>
-	               			<input type="button" id="inquiry_submit" value="등록하기">
-	               		</div>
-	               </form>
-               </div>
-            </div>
-            <label for="popup"></label>
-         </div>
-         
-         <!-- 호스트 문의하기 게시판 -->
-		<div>
-			<table>
-				<tr>
-					<td>제목</td>
-					<td>내용</td>
-				</tr>
-				<tr>
-					<td id="returnTitle"></td>
-					<td id="returnContent"></td>
-				</tr>
-			</table>
-		</div>         
+  
+			
+			
+		
          
          
          
@@ -694,6 +350,58 @@ input[id*="popup"] + label + div > label {
          </div>
       </div>
       <div class="review">review</div>
+      
+      
+             
+         <!-- 호스트 문의하기  -->
+         <div id="">
+         <input type="checkbox" id ="popup">
+         <label for="popup">호스트에게 문의하기</label>
+         <div>
+            <div>
+               <label for="popup"></label>
+               <div>
+	               <form name="inquiryForm" action="inquiry_host.do">
+	               		<div style="padding: 10px">
+	               			<input style="width: 95%;" type="text" name="title" id="title" placeholder="제목">
+	               		</div>
+	               		<div style="padding: 10px">
+	               			<textarea style="width: 95%; height: 200px;" name="content" id="content" placeholder="내용"></textarea>
+	               		</div>
+	               		<div>
+	               			<input type="button" id="inquiry_submit" value="등록하기">
+	               		</div>
+	               </form>
+               </div>
+            </div>
+            <label for="popup"></label>
+         </div>
+         
+         <!-- 호스트 문의하기 게시판 -->
+        
+		<div>
+			<div>
+			<table class="table">
+				<thead class="table-light">
+		          	<tr>
+			            <th scope="col">답변상태</th>
+			            <th scope="col">제목</th>
+			            <th scope="col">작성자</th>
+			            <th scope="col">작성일</th>
+		          	</tr>
+	        	</thead>
+	        	<tbody>
+	        		<div id="result">
+					</div>
+				</tbody>
+      		</table>
+      		</div>
+		</div>	
+		</div>
+      
+      
+      
+      
    </div>
    </main>
 </body>
@@ -703,7 +411,8 @@ $("#inquiry_submit").click(function(){
 	var params="";
 	params += "title=" + $("#title").val();
 	params += "&content=" + $("#content").val();//전달값
-	//alert(params);
+	params += "&roomNumber=" + $("#roomNumber").val();
+	alert(params);
 	
 	$.post(
 		"inquiry_host.do"  		   		  //요청명령어
@@ -714,15 +423,13 @@ $("#inquiry_submit").click(function(){
 }); // click() end 
 
 function responseProc2(result){
+	alert(result);
 	
 	//팝업을 display:none 으로 바꿔야함
-	$("#returnTitle").empty();
-	$("#returnTitle").html(result);
-	$("#returnTitle").show();
-	
-	$("#returnContent").empty();
-	$("#returnContent").html(result);
-	$("#returnContent").show();
+	/* $("#result").empty(); */
+	$("#result").html(result);
+	$("#result").show();
 }//responseProc() end 
+
 </script>
 <%@ include file="../footer.jsp"%>
