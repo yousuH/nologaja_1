@@ -104,6 +104,26 @@
 											<div class="form-row">
 												<div class="form_colum" >
 													<select class="nc_select" name="cityCode" id="cityCode">
+													<c:if test="${param.cityCode eq ''}">
+														<option value="${param.cityCode}" selected>전체</option>
+														<option value="SE">서울</option>
+														<option value="BU">부산</option>
+														<option value="IN">인천</option>
+														<option value="JJ">제주</option>
+														<option value="SJ">세종</option>
+														<option value="DG">대구</option>
+														<option value="DJ">대전</option>
+														<option value="GJ">광주</option>
+														<option value="UL">울산</option>
+														<option value="GG">경기도</option>
+														<option value="GW">강원도</option>
+														<option value="CB">충청북도</option>
+														<option value="CN">충청남도</option>
+														<option value="GB">경상북도</option>
+														<option value="GN">경상남도</option>
+														<option value="JB">전라북도</option>
+														<option value="JN">전라남도</option>
+													</c:if>
 													<c:if test="${param.cityCode eq 'SE'}">
 														<option value="${param.cityCode}" selected>서울</option>
 														<option value="BU">부산</option>
@@ -437,6 +457,12 @@
 												</div>
 												<div class="form_colum">
 													<select class="nc_select" name="maxGuest" id="maxGuest">
+<!-- 														<option value="1" selected>1명</option>
+														<option value="2">2명</option>
+														<option value="3">3명</option>
+														<option value="4">4명</option>
+														<option value="5">5명</option>
+														<option value="6">6명</option> -->
 													<c:if test="${param.maxGuest == '1'}">
 														<option value="${param.maxGuest}" selected>1명</option>
 														<option value="2">2명</option>
@@ -629,7 +655,7 @@
 								<div class="listbox_title">
 									<div class="list_name">
 										<p title="${dto.roomName}" class="hotelname" id="hotelname">
-											<a href="searchdetail.do?roomNumber=${dto.roomNumber}&cityCode=${param.cityCode}&ck_in=${param.ck_in}&ck_out=${param.ck_out}&maxGuest=${param.maxGuest}&night=${night}&fee=${dto.feestr}">${dto.roomName}</a>
+											<a href="searchdetail.do?roomNumber=${dto.roomNumber}&cityCode=${param.cityCode}&ck_in=${param.ck_in}&ck_out=${param.ck_out}&maxGuest=${param.maxGuest}&night=${night}&fee=${dto.feestr}&stars_avg=${dto.starAvg}">${dto.roomName}</a>
 										</p>
 										<!-- 찜한숙소 -->
 										<form style="float: right;" method="post">											
@@ -685,7 +711,7 @@
 									<!-- 별표 이미지 + 총 리뷰점수 + 총리뷰 갯수-->
 									<div class="list_grade">
 										<img>
-										<p>${dto.starAvg}(${dto.cnt })${strat }
+										<p>${dto.starAvg}(${dto.cnt })
 										<p>
 									</div>
 

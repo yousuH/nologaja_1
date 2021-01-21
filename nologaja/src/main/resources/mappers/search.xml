@@ -36,9 +36,9 @@
 	
 	<select id="ablelist" resultType="kr.co.nologaja.search.SearchlistDTO">
 		<![CDATA[
-		SELECT r.roomNumber, r.roomName, avg(v.stars_avg)as starAvg, count(v.title) as cnt, h.hotelNumber, h.hotelName, h.addr1 , hi.savefile as savefile
+		SELECT r.roomNumber, r.roomName, round(avg(v.stars_avg), 2) as starAvg, count(v.content) as cnt, h.hotelNumber, h.hotelName, h.addr1 , hi.savefile as savefile
 		from roomTable r
-			left outer join review v on r.roomNumber = v.roomNumber
+			left outer join reviewTable v on r.roomNumber = v.roomNumber
 			left outer join hotelTable h on r.hotelNumber = h.hotelNumber
 			left outer join hotelimage hi on r.hotelNumber = hi.hotelNumber
 			

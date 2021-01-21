@@ -140,6 +140,26 @@ main {
 											<div class="form-row">
 												<div class="form_colum" >
 													<select class="nc_select" name="cityCode" id="cityCode">
+													<c:if test="${param.cityCode eq ''}">
+														<option value="${param.cityCode}" selected>전체</option>
+														<option value="SE">서울</option>
+														<option value="BU">부산</option>
+														<option value="IN">인천</option>
+														<option value="JJ">제주</option>
+														<option value="SJ">세종</option>
+														<option value="DG">대구</option>
+														<option value="DJ">대전</option>
+														<option value="GJ">광주</option>
+														<option value="UL">울산</option>
+														<option value="GG">경기도</option>
+														<option value="GW">강원도</option>
+														<option value="CB">충청북도</option>
+														<option value="CN">충청남도</option>
+														<option value="GB">경상북도</option>
+														<option value="GN">경상남도</option>
+														<option value="JB">전라북도</option>
+														<option value="JN">전라남도</option>
+													</c:if>
 													<c:if test="${param.cityCode eq 'SE'}">
 														<option value="${param.cityCode}" selected>서울</option>
 														<option value="BU">부산</option>
@@ -473,6 +493,15 @@ main {
 												</div>
 												<div class="form_colum">
 													<select class="nc_select" name="maxGuest" id="maxGuest">
+													<c:if test="${param.maxGuest == '0'}">
+														<option value="0">전체</option>
+														<option value="1">1명</option>
+														<option value="2">2명</option>
+														<option value="3">3명</option>
+														<option value="4">4명</option>
+														<option value="5">5명</option>
+														<option value="6">6명</option>
+													</c:if>
 													<c:if test="${param.maxGuest == '1'}">
 														<option value="${param.maxGuest}" selected>1명</option>
 														<option value="2">2명</option>
@@ -600,8 +629,124 @@ main {
 	            <span>총 가격 : </span><span>${param.fee}원</span>
          </div>
       </div>
-      <div class="review">review</div>
+      	<div class="review">
+      	<h3>&nbsp;&nbsp;&nbsp;리뷰</h3>
+      	<h4>총평점 : ${param.stars_avg }</h4><br>
+				<table class="table table-hover text-center">
+					<thead>
+						<tr>
+							<th class="text-center">아이디</th>
+							<th class="text-center">작성일자</th>
+							<th class="text-center" style="min-width: 600px; max-width: 600px;">내용</th>
+							<th class="text-center">청결도</th>
+							<th class="text-center">접근성</th>
+							<th class="text-center">가성비</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<c:forEach var="rvdto" items="${list}" varStatus="status">
+							<tr>
+								<td>${rvdto.uid}</td>
+								<td>${rvdto.wdate}</td>
+								<td>${rvdto.content}</td>
+								<td>${rvdto.stars_clean} / 10</td>
+								<td>${rvdto.stars_location} / 10</td>
+								<td>${rvdto.stars_costeff} / 10</td>
+							</tr>
+						</c:forEach>
+						<c:if test="${size }">
+						<tr><td colspan="6"><div>마지막 리뷰 입니다.</div></td></tr>
+						</c:if>
+						<tr id='addbtn'><td colspan="6"><div class="btns"><a href="searchdetail.do?roomNumber=${dto.roomNumber }&num=${num}&ck_in=${param.ck_in}&ck_out=${param.ck_out}&maxGuest=${param.maxGuest}&night=${param.night }&fee=${param.fee}&cityCode=${parma.cityCode}&stars_avg=${param.stars_avg }" class="btn btn-primary">더보기</a></div></td></tr>
+						       <%--  <tr id='addbtn'><td colspan="5"><div class="btns"><a href="javascript:moreList('${dto.roomNumber }', '${num }');" class="btn btn-primary">더보기</a></div></td></tr> --%>
+					</tbody>
+				</table>
+				<br>
+<!-- 				<div id="more_btn_div" align="center">
+					<hr>
+						<a id="more_btn_a" href="javascript:moreContent('more_list', 5);">
+							더보기[more]
+						</a>
+					<hr>
+				</div> -->
+			</div>
    </div>
    </main>
 </body>
+<script>
+
+/* function moreContetn(id, cnt){
+	
+	var list_length = $("#"+id+" tr").length-1;
+	var aname = id + "_btn";
+	var callLength = list_length;
+	
+	$('#startCount').val(callLength);
+	$('#viewCount').val(cnt);
+	
+	$.ajax({
+		type	:	"post",
+		url		:	"/getMoreContents_ajax.do",
+		data	:	$('#searchTxtForm').serialize(),
+		dataType:	"json",
+		success :   function(result){
+						if(result.resultCnt > 0){
+							var list = result.resultList;
+							if(rvdto.content != '') {
+								$('#' + aname).attr('href', "javascript:moreContent('"+id+"', "+cnt+");");
+									getMoreList(list);
+							}else{
+								$("#"+id+"_div").remove();
+							}//if end
+						}else{
+							}
+						}
+		});
+	
+	function getMoreList(list){
+		
+		var content = "";
+		var length = list.length;
+		for(i=0; i<list.length; i++){
+			var rvdto = list[i];
+			if(rvdto.content != ''){
+				content += "<tr>";
+				content += "<td>"+rvdto.uid+"</td>";
+				content += "<td>"+rvdto.wdate+"</td>";
+				content += "<td>"+rvdto.content+"</td>";
+				content += "<td>"+rvdto.stars_clean+"</td>";
+				content += "<td>"+rvdto.stars_location+"</td>";
+				content += "<td>"+rvdto.stars_costeff+"</td>";
+				content += "</tr>";
+			}
+		}
+		$("#more_list tr:last").after(content);
+	}
+} */
+	
+/* function moreList(roomNumber, num){
+	var num1 = num;
+	
+    $.ajax({
+
+        url : "json.do",
+
+        type : "POST",
+
+        cache : false,
+
+        data  : {roomNumber : roomNumber,
+        	     num : num1},
+        
+        dataType : 'json'
+    
+    });
+}; */
+
+</script>
+
+
+
+
 <%@ include file="../footer.jsp"%>

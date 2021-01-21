@@ -146,8 +146,7 @@
 												</div>
 												<div class="form_colum">
 													<select class="nc_select" name="maxGuest" id="maxGuest">
-														<option value="0" selected>Person</option>
-														<option value="1">1명</option>
+														<option value="1" selected>1명</option>
 														<option value="2">2명</option>
 														<option value="3">3명</option>
 														<option value="4">4명</option>

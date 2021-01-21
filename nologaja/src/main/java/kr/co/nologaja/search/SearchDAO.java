@@ -39,7 +39,8 @@ public class SearchDAO implements ISearchDAO {
 		SearchlistDTO rdto=sqlSession.selectOne("search.ablelist", roomNumber);
 		return rdto;
 	}
-
+	
+	@Override
 	public RoomHotelDTO searchdetail(String roomNumber) {
 		RoomHotelDTO dto = sqlSession.selectOne("search.detail", roomNumber);
 		return dto;
