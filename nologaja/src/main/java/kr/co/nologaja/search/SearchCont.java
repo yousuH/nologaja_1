@@ -369,12 +369,17 @@ public class SearchCont {
 	public ModelAndView searchdetail(String roomNumber, @RequestParam(defaultValue="1") int num) {
 		ModelAndView mav = new ModelAndView();
 		int endnum = (5*num);
+		num = num+1;
 		RoomHotelDTO dto = sdao.searchdetail(roomNumber);
 		
 		List<ReviewDTO> list = rvdao.rv_list(roomNumber, endnum);
-	
+		boolean size=true;
+		if(list.size()>=endnum) {
+			size = false;
+		}
 		mav.addObject("list", list);
 		mav.addObject("dto", dto);
+		mav.addObject("size", size);
 		mav.addObject("num", num);
 		mav.setViewName("search/searchdetail");
 		return mav;
