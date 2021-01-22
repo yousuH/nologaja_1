@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
@@ -339,7 +340,9 @@ public class SearchCont {
 			Date wdate = list.get(i).getWdate();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 			String Swdate = transFormat.format(wdate);
+			Random random = new Random();
 			list.get(i).setSwdate(Swdate);
+			list.get(i).setRandom(random.nextInt(1000));
 		}
 		
 		

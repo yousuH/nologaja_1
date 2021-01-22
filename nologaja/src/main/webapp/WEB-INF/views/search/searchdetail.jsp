@@ -553,6 +553,7 @@ a {
 
 
 			<!-- 호스트 문의하기  -->
+			<c:if test="${sessionScope.uid ne null }">
 			<div class="inquire">
 				<input type="checkbox" id="popup"> <label for="popup"
 					style="cursor: pointer;">호스트에게 문의하기</label>
@@ -577,7 +578,7 @@ a {
 					</div>
 					<label for="popup"></label>
 				</div>
-
+				</c:if>
 				<!-- 호스트 문의하기 게시판 -->
 
 				<div class="board_list_wrap">
@@ -604,9 +605,11 @@ a {
 										<c:forEach var="list" items="${list}">
 											<c:choose>
 												<c:when test="${list.rp_st eq 'N' }">
+													<div>${list.inquiryno}</div>
 													<div class="num">미답변</div>
 												</c:when>
 												<c:otherwise>
+												<div>${list.inquiryno}</div>
 													<div class="num">답변완료</div>
 												</c:otherwise>
 											</c:choose>
@@ -619,30 +622,30 @@ a {
 											<div class="iqContent" style="padding-left: 10%; min-width: 1043px; text-align: left;"><br>
 												<span>${list.content}</span>
 												<c:if test="${sessionScope.suid eq suid}">
-														<input type="checkbox" id="popup2">
-														<label for="popup2" style="cursor: pointer; position: relative; float: right;">답변쓰기</label>
-													<div id="modalClose2">
+														<input type="checkbox" id="popup2${list.random}">
+														<label for="popup2${list.random}" style="cursor: pointer; position: relative; float: right;">답변쓰기</label>
+													<div id="modalClose2${list.random}">
 														<div>
 															<div>
 																<form name="inquiryForm" action="inquiry_host_reply.do">
-																	<input type="hidden" id="grpno" name="grpno" value="${list.grpno}">
+																	<input type="hidden" id="grpno${list.random}" name="grpno" value="${list.grpno}">
 																	<input type="hidden" id="depth" name="depth" value="${list.depth}">
 																	<div style="padding: 10px">
 																		<textarea style="width: 95%; height: 200px;"
-																			name="content" id="replyContent" placeholder="답변"></textarea>
+																			name="content" id="replyContent${list.random}" placeholder="답변"></textarea>
 																	</div>
 																	<div>
-																		<input type="button" id="replyInsert" value="등록하기">
+																		<input type="button"  value="등록하기" onclick="replyInsert(${list.random})">
 																	</div>
 																</form>
 															</div>
 														</div>
-														<label for="popup2"></label>
+														<label for="popup2${list.random}"></label>
 													</div>
 												</c:if>
 											</div>
 											<br>
-											<div id="replyContent2" class="replyContent2" style="width: 1220px"></div><br>
+												<div id="replyContent2${list.random}" class="replyContent2" style="width: 1220px"></div><br>
 										</c:forEach>
 									</c:when>
 								</c:choose>
@@ -684,35 +687,35 @@ a {
 
 		//팝업을 display:none 으로 바꿔야함
 		/* $("#result").empty(); */
+		alert(result);
 		$("#result").html(result);
 		$("#result").show();
- 		$("#modalClose2").css("display", "none");
+ 		$("#modalClose").css("display", "none");
 	}//responseProc() end
 	
 	
-	$("#replyInsert").click(function(){
 		
-	
-		var params = "";
+	function replyInsert(i) {
+		
+		var params ="";
 		params += "title=reply";
-		params += "&content=" + $("#replyContent").val();//전달값
+		params += "&content=" + $("#replyContent"+i).val();//전달값
 		params += "&roomNumber=" + $("#roomNumber").val();
-		params += "&grpno=" + $("#grpno").val();
+		params += "&grpno=" + $("#grpno"+i).val();
 		params += "&depth=" + $("#depth").val();
-
-		$.post("inquiry_host_reply.do" //요청명령어
-		, params, responseProc3 //콜백함수 
-		); // post() end
-
-	}); // click() end 
+		params += "&randomno=" + i;
+		$.post("inquiry_host_reply.do", params, responseProc3, "json"); // post() end
+		
+	}
 
 	function responseProc3(result) {
 
 		//팝업을 display:none 으로 바꿔야함
 		/* $("#result").empty(); */
-		$("#replyContent2").html(result);
-		$("#replyContent2").show();
- 		$("#modalClose").css("display", "none");
+		var randomno = eval(result.randomno);
+		$("#replyContent2"+randomno).html(result.message);
+		$("#replyContent2"+randomno).show();
+ 		$("#modalClose2"+randomno).css("display", "none");
 	}//responseProc() end
 	
 	

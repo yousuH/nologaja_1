@@ -43,8 +43,8 @@
       <![CDATA[
       SELECT inquiryno, uid, suid, title, wdate, roomNumber, content, grpno, depth, open, rp_st
       FROM inquiry_host
-      WHERE roomNumber = #{roomNumber} AND depth=0
-      ORDER BY inquiryno DESC
+      WHERE roomNumber = #{roomNumber}
+      ORDER BY grpno DESC, depth;
       ]]>
    </select>
    
@@ -71,4 +71,6 @@
 		WHERE inquiryno = #{inquiryno}
 		]]>
 	</update>
+	
+	
 </mapper>

@@ -19,6 +19,7 @@ public class InquiryHostDTO {
 	private String open;
 	private String rp_st;
 	private String swdate;
+	private int random;
 	
 	public InquiryHostDTO() {
 		// TODO Auto-generated constructor stub
@@ -120,12 +121,25 @@ public class InquiryHostDTO {
 		this.swdate = swdate;
 	}
 
+	public int getRandom() {
+		return random;
+	}
+
+	public void setRandom(int random) {
+		this.random = random;
+	}
+
 	@Override
 	public String toString() {
 		return "InquiryHostDTO [inquiryno=" + inquiryno + ", uid=" + uid + ", suid=" + suid + ", title=" + title
 				+ ", content=" + content + ", wdate=" + wdate + ", roomNumber=" + roomNumber + ", grpno=" + grpno
-				+ ", depth=" + depth + ", open=" + open + ", rp_st=" + rp_st + ", swdate=" + swdate + "]";
+				+ ", depth=" + depth + ", open=" + open + ", rp_st=" + rp_st + ", swdate=" + swdate + ", random="
+				+ random + "]";
 	}
+
+	
+
+	
 
 	
 	

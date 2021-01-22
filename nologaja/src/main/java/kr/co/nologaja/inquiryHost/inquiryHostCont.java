@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -60,6 +61,7 @@ public class inquiryHostCont {
 	public void inquiry_host_reply(InquiryHostDTO dto, HttpServletRequest req, HttpServletResponse resp, HttpSession session) throws IOException {
 		String suid = (String) session.getAttribute("suid");
 		String roomNumber = (String)req.getParameter("roomNumber");
+		int randomno = Integer.parseInt(req.getParameter("randomno"));
 		dto.setSuid(suid);
 		dto.setRoomNumber(roomNumber);
 		dto.setGrpno(dto.getGrpno());
@@ -80,14 +82,20 @@ public class inquiryHostCont {
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 		String Swdate = transFormat.format(wdate);
 		
+		
+		
 		//답변상태 	제목 	작성자 	작성일
-		String message = "<div class=\"tit2\" style='width: 670px; display: inline-block; text-align: left;'>"+dto.getContent()+"</div><div class=\"writer2\" style='width: 122px; display: inline-block; '>"+suid+"</div><div class=\"date2\" style='width: 183px; display: inline-block;'>"+Swdate+"</div>";
+		String message = "<div class=\"tit2\" style='width: 670px; display: inline-block; text-align: left;'>RE:"+dto.getContent()+"</div><div class=\"writer2\" style='width: 122px; display: inline-block; '>"+suid+"</div><div class=\"date2\" style='width: 183px; display: inline-block;'>"+Swdate+"</div>";
+		JSONObject json = new JSONObject();
+		json.put("message", message);
+		json.put("randomno", randomno);
 		
 		resp.setContentType("text/plain; charset=UTF-8");
 		PrintWriter out = resp.getWriter();
-		out.print(message);
+		out.print(json.toString());
 		out.flush();
 		out.close();
+		System.out.println(json.toString());
 	}
 	
 }// class end
