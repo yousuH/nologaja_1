@@ -18,6 +18,7 @@ public class InquiryHostDTO {
 	private String depth;
 	private String open;
 	private String rp_st;
+	private String swdate;
 	
 	public InquiryHostDTO() {
 		// TODO Auto-generated constructor stub
@@ -111,12 +112,21 @@ public class InquiryHostDTO {
 		this.rp_st = rp_st;
 	}
 
+	public String getSwdate() {
+		return swdate;
+	}
+
+	public void setSwdate(String swdate) {
+		this.swdate = swdate;
+	}
+
 	@Override
 	public String toString() {
 		return "InquiryHostDTO [inquiryno=" + inquiryno + ", uid=" + uid + ", suid=" + suid + ", title=" + title
 				+ ", content=" + content + ", wdate=" + wdate + ", roomNumber=" + roomNumber + ", grpno=" + grpno
-				+ ", depth=" + depth + ", open=" + open + ", rp_st=" + rp_st + "]";
+				+ ", depth=" + depth + ", open=" + open + ", rp_st=" + rp_st + ", swdate=" + swdate + "]";
 	}
+
 	
 	
 }

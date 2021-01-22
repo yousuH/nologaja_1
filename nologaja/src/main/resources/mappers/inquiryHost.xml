@@ -19,6 +19,16 @@
       ]]>
    </select>
    
+   <!-- inquiryno가져오기 -->
+	<select id="getinquiryno2" resultType="int" parameterType="kr.co.nologaja.inquiryHost.InquiryHostDTO">
+      <![CDATA[
+      SELECT inquiryno 
+      FROM inquiry_host
+      WHERE suid = #{suid} AND roomNumber = #{roomNumber}
+      ORDER BY inquiryno DESC limit 1
+      ]]>
+   </select>
+   
    <!-- wdate가져오기 -->
    <select id="getwdate" resultType="Date" parameterType="int">
       <![CDATA[
@@ -27,4 +37,38 @@
       WHERE inquiryno = #{inquiryno}
       ]]>
    </select>
+   
+   <!-- 문의사항 리스트가져오기 -->
+   <select id="list" resultType="kr.co.nologaja.inquiryHost.InquiryHostDTO" >
+      <![CDATA[
+      SELECT inquiryno, uid, suid, title, wdate, roomNumber, content, grpno, depth, open, rp_st
+      FROM inquiry_host
+      WHERE roomNumber = #{roomNumber} AND depth=0
+      ORDER BY inquiryno DESC
+      ]]>
+   </select>
+   
+   <select id="getSuid" resultType="String" >
+      <![CDATA[
+      SELECT suid
+      FROM hoteltable
+      WHERE hotelNumber = #{hotelNumber}
+      ]]>
+   </select>
+   
+   <!-- 답변작성 -->
+	<insert id="reply" parameterType="kr.co.nologaja.inquiryHost.InquiryHostDTO">
+		<![CDATA[
+		INSERT INTO inquiry_host (title, content, suid, grpno, depth, roomNumber)
+		VALUES (#{title}, #{content}, #{suid}, #{grpno}, #{depth} ,#{roomNumber})
+		]]>
+	</insert>
+	
+	<!-- 답변상태 N에서 Y로 바꿔주기 -->
+	<update id="updateReply" parameterType="int">
+		<![CDATA[
+		UPDATE inquiry_host SET rp_st = 'Y'
+		WHERE inquiryno = #{inquiryno}
+		]]>
+	</update>
 </mapper>

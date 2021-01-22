@@ -28,12 +28,16 @@ import kr.co.nologaja.cart.CartFolderDAO;
 import kr.co.nologaja.cart.CartFolderDTO;
 import kr.co.nologaja.cs.InquiryDAO;
 import kr.co.nologaja.cs.InquiryDTO;
+import kr.co.nologaja.inquiryHost.InquiryHostDAO;
+import kr.co.nologaja.inquiryHost.InquiryHostDTO;
 import net.utility.Pagination;
 
 
 @Controller
 public class SearchCont {
 	
+	private static final int InquiryHostDTO = 0;
+
 	@Inject
 	SearchDAO sdao;
 	
@@ -45,6 +49,12 @@ public class SearchCont {
 	
 	@Inject
 	InquiryDTO idto;
+	
+	@Inject 
+	InquiryHostDAO ihDAO;
+	
+	@Inject
+	InquiryHostDTO ihDTO;
 	
 	public SearchCont() {
 		System.out.println("==SearchCont객체생성==");
@@ -319,8 +329,23 @@ public class SearchCont {
 	public ModelAndView searchdetail(String roomNumber) {
 		ModelAndView mav = new ModelAndView();
 		RoomHotelDTO dto = sdao.searchdetail(roomNumber);
-		System.out.println(dto);
+		String suid = ihDAO.inquiryHost_getSuid(roomNumber);
+		List<InquiryHostDTO> list = ihDAO.inquiryHost_list(roomNumber); 
+		
+		
+		
 		mav.addObject("dto", dto);
+		for(int i=0; i<list.size(); i++) {
+			Date wdate = list.get(i).getWdate();
+			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+			String Swdate = transFormat.format(wdate);
+			list.get(i).setSwdate(Swdate);
+		}
+		
+		
+		mav.addObject("list", list);
+		mav.addObject("suid", suid);
+		System.out.println(list);
 		mav.setViewName("search/searchdetail");
 		return mav;
 	}
