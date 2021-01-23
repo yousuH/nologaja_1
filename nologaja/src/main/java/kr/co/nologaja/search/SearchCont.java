@@ -345,6 +345,8 @@ public class SearchCont {
 			list.get(i).setRandom(random.nextInt(1000));
 		}
 		
+		System.out.println(list);
+		
 		
 		mav.addObject("list", list);
 		mav.addObject("suid", suid);

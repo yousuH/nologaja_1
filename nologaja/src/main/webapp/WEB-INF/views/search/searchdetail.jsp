@@ -146,10 +146,6 @@ input[id*="popup"]+label+div>label {
 	z-index: 1;
 }
 
-
-
-
-
 input[id*="popup2"] {
 	display: none;
 }
@@ -216,10 +212,6 @@ input[id*="popup2"]+label+div>label {
 	background: rgba(0, 0, 0, .2);
 	z-index: 1;
 }
-
-
-
-
 
 /* 문의사항 게시판 */
 a {
@@ -554,117 +546,133 @@ a {
 
 			<!-- 호스트 문의하기  -->
 			<c:if test="${sessionScope.uid ne null }">
-			<div class="inquire">
-				<input type="checkbox" id="popup"> <label for="popup"
-					style="cursor: pointer;">호스트에게 문의하기</label>
-				<div id="modalClose">
-					<div>
-						<label for="popup"></label>
+				<div class="inquire">
+					<input type="checkbox" id="popup"> <label for="popup"
+						style="cursor: pointer;">호스트에게 문의하기</label>
+					<div id="modalClose">
 						<div>
-							<form name="inquiryForm" action="inquiry_host.do">
-								<div style="padding: 10px">
-									<input style="width: 95%;" type="text" name="title" id="title"
-										placeholder="제목">
-								</div>
-								<div style="padding: 10px">
-									<textarea style="width: 95%; height: 200px;" name="content"
-										id="content" placeholder="내용"></textarea>
-								</div>
-								<div>
-									<input type="button" id="inquiry_submit" value="등록하기">
-								</div>
-							</form>
+							<label for="popup"></label>
+							<div>
+								<form name="inquiryForm" action="inquiry_host.do">
+									<div style="padding: 10px">
+										<input style="width: 95%;" type="text" name="title" id="title"
+											placeholder="제목">
+									</div>
+									<div style="padding: 10px">
+										<textarea style="width: 95%; height: 200px;" name="content"
+											id="content" placeholder="내용"></textarea>
+									</div>
+									<div>
+										<input type="button" id="inquiry_submit" value="등록하기">
+									</div>
+								</form>
+							</div>
 						</div>
+						<label for="popup"></label>
 					</div>
-					<label for="popup"></label>
 				</div>
-				</c:if>
-				<!-- 호스트 문의하기 게시판 -->
+			</c:if>
 
-				<div class="board_list_wrap">
-					<div class="board_list">
-						<div class="board_list_head">
-								<div class="num">답변상태</div>
-								<div class="tit">제목</div>
-								<div class="writer">글쓴이</div>
-								<div class="date">작성일</div>
-						</div>
-						<div class="board_list_body">
-							<div class="item" id="result"></div>
-						</div>
-						<div class="board_list_body">
-							<div class="item">
-								<c:choose>
-									<c:when test="${list eq null}">
-											<div class="num"></div>
-											<div class="tit"></div>
-											<div class="writer"></div>
-											<div class="date"></div>
-									</c:when>
-									<c:when test="${!empty list}">
-										<c:forEach var="list" items="${list}">
-											<c:choose>
-												<c:when test="${list.rp_st eq 'N' }">
-													<div>${list.inquiryno}</div>
-													<div class="num">미답변</div>
-												</c:when>
-												<c:otherwise>
-												<div>${list.inquiryno}</div>
+			<!-- 호스트 문의하기 게시판 -->
+
+			<div class="board_list_wrap">
+				<div class="board_list">
+					<div class="board_list_head">
+						<div class="num">답변상태</div>
+						<div class="tit">제목</div>
+						<div class="writer">글쓴이</div>
+						<div class="date">작성일</div>
+					</div>
+					<div class="board_list_body">
+						<div class="item" id="result"></div>
+					</div>
+					<div class="board_list_body">
+						<div class="item">
+							<c:choose>
+								<c:when test="${list eq null}">
+									<div class="num"></div>
+									<div class="tit"></div>
+									<div class="writer"></div>
+									<div class="date"></div>
+								</c:when>
+								<c:when test="${!empty list}">
+									<c:forEach var="list" items="${list}">
+										<c:choose>
+											<c:when test="${list.rp_st eq 'N' }">
+												<div class="num">미답변</div>
+											</c:when>
+											<c:otherwise>
+												<c:if test="${list.depth == 0 }">
 													<div class="num">답변완료</div>
-												</c:otherwise>
-											</c:choose>
+												</c:if>
+											</c:otherwise>
+										</c:choose>
+										<c:if test="${list.depth == 0 }">
 											<div class="tit">
 												<a href="#">${list.title}</a>
 											</div>
 											<div class="writer">${list.uid}</div>
 											<div class="date">${list.swdate}</div>
 											<br>
-											<div class="iqContent" style="padding-left: 10%; min-width: 1043px; text-align: left;"><br>
-												<span>${list.content}</span>
-												<c:if test="${sessionScope.suid eq suid}">
-														<input type="checkbox" id="popup2${list.random}">
-														<label for="popup2${list.random}" style="cursor: pointer; position: relative; float: right;">답변쓰기</label>
-													<div id="modalClose2${list.random}">
+										</c:if>
+										<div class="iqContent"
+											style="padding-left: 10%; min-width: 1043px; text-align: left;">
+											<br> <span>${list.content}</span>
+											<c:if
+												test="${sessionScope.suid eq suid && list.rp_st eq 'N'}">
+												<input type="checkbox" id="popup2${list.random}">
+												<label for="popup2${list.random}"
+													style="cursor: pointer; position: relative; float: right;">답변쓰기</label>
+												<div id="modalClose2${list.random}">
+													<div>
 														<div>
-															<div>
-																<form name="inquiryForm" action="inquiry_host_reply.do">
-																	<input type="hidden" id="grpno${list.random}" name="grpno" value="${list.grpno}">
-																	<input type="hidden" id="depth" name="depth" value="${list.depth}">
-																	<div style="padding: 10px">
-																		<textarea style="width: 95%; height: 200px;"
-																			name="content" id="replyContent${list.random}" placeholder="답변"></textarea>
-																	</div>
-																	<div>
-																		<input type="button"  value="등록하기" onclick="replyInsert(${list.random})">
-																	</div>
-																</form>
-															</div>
+															<form name="inquiryForm" action="inquiry_host_reply.do">
+																<input type="hidden" id="grpno${list.random}"
+																	name="grpno" value="${list.grpno}"> <input
+																	type="hidden" id="depth" name="depth"
+																	value="${list.depth}">
+																<div style="padding: 10px">
+																	<textarea style="width: 95%; height: 200px;"
+																		name="content" id="replyContent${list.random}"
+																		placeholder="답변"></textarea>
+																</div>
+																<div>
+																	<input type="button" value="등록하기"
+																		onclick="replyInsert(${list.random})">
+																</div>
+															</form>
 														</div>
-														<label for="popup2${list.random}"></label>
 													</div>
-												</c:if>
-											</div>
+													<label for="popup2${list.random}"></label>
+												</div>
+											</c:if>
+										</div>
+										<c:if test="${list.rp_st eq 'N'}">
 											<br>
-												<div id="replyContent2${list.random}" class="replyContent2" style="width: 1220px"></div><br>
-										</c:forEach>
-									</c:when>
-								</c:choose>
-							</div>
+
+											<div id="replyContent2${list.random}" class="replyContent2"
+												style="width: 1220px;"></div>
+										</c:if>
+										<br>
+									</c:forEach>
+								</c:when>
+							</c:choose>
 						</div>
 					</div>
-					<div class="paging">
-						<a href="#" class="bt first">처음 페이지</a> <a href="#"
-							class="bt prev">이전 페이지</a> <a href="#" class="num on">1</a> <a
-							href="#" class="num">2</a> <a href="#" class="num">3</a> <a
-							href="#" class="bt next">다음 페이지</a> <a href="#" class="bt last">마지막
-							페이지</a>
-					</div>
 				</div>
-
-
-
-
+				<div class="paging">
+					<a href="#" class="bt first">처음 페이지</a> <a href="#" class="bt prev">이전
+						페이지</a> <a href="#" class="num on">1</a> <a href="#" class="num">2</a>
+					<a href="#" class="num">3</a> <a href="#" class="bt next">다음
+						페이지</a> <a href="#" class="bt last">마지막 페이지</a>
+				</div>
 			</div>
+
+
+
+
+		</div>
+
 	</main>
 </body>
 <script src="./resources/js/jquery.js"></script>

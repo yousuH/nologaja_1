@@ -68,9 +68,22 @@
 	<update id="updateReply" parameterType="int">
 		<![CDATA[
 		UPDATE inquiry_host SET rp_st = 'Y'
-		WHERE inquiryno = #{inquiryno}
+		WHERE grpno = #{grpno}
 		]]>
 	</update>
+	
+	
+	<select id="inquiryhost_list" resultType="kr.co.nologaja.inquiryHost.InquiryHostDTO" parameterType="String">
+      <![CDATA[
+      SELECT inquiryno, uid, suid, title, wdate, roomNumber, content, grpno, depth, open, rp_st
+      FROM inquiry_host
+      WHERE roomNumber = #{roomNumber}
+      ORDER BY grpno DESC, depth;
+      ]]>
+   </select>
+	
+	
+	
 	
 	
 </mapper>

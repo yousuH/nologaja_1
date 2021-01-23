@@ -72,8 +72,10 @@ public class inquiryHostCont {
 		ihDAO.inquiryHost_reply(dto);
 		int inquiryno = ihDAO.inquiryHost_getinquiryno2(dto);
 		
+		int grpno = dto.getGrpno();
+		
 		//문의글 작성상태 Y로 업데이트 
-		ihDAO.inquiryHost_updateReply(inquiryno);
+		ihDAO.inquiryHost_updateReply(grpno);
 		
 		Date wdate = ihDAO.inquiryHost_getwdate(inquiryno);
 		dto.setInquiryno(inquiryno);

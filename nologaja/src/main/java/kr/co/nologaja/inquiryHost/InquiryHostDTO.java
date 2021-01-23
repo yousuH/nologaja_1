@@ -14,7 +14,7 @@ public class InquiryHostDTO {
 	private String content;
 	private Date wdate;
 	private String roomNumber;
-	private String grpno;
+	private int grpno;
 	private String depth;
 	private String open;
 	private String rp_st;
@@ -81,11 +81,11 @@ public class InquiryHostDTO {
 		this.roomNumber = roomNumber;
 	}
 
-	public String getGrpno() {
+	public int getGrpno() {
 		return grpno;
 	}
 
-	public void setGrpno(String grpno) {
+	public void setGrpno(int grpno) {
 		this.grpno = grpno;
 	}
 

@@ -9,6 +9,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import net.utility.HotelListDTO;
+
 @Repository
 public class InquiryHostDAO implements IInquiryHostDAO{
 	@Inject //<-사용자가 직접 만들지 않고 스프링에서 생성해서 주입을 시킴
@@ -51,7 +53,14 @@ public class InquiryHostDAO implements IInquiryHostDAO{
 	}
 	
 	@Override
-	public void inquiryHost_updateReply(int inquiryno) {
-		sqlSession.update("inquiryHost.updateReply", inquiryno);
+	public void inquiryHost_updateReply(int grpno) {
+		sqlSession.update("inquiryHost.updateReply", grpno);
 	}
+
+	public List<InquiryHostDTO> inquiryhost_list(String suid) {
+		return sqlSession.selectList("inquiryHost.inquiryhost_list", suid);
+	}
+	
+	
+	
 }
