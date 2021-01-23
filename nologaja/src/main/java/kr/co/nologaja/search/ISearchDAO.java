@@ -11,6 +11,7 @@ public interface ISearchDAO {
 	public SearchlistDTO ableList(String roomNumber);
 	public RoomHotelDTO searchdetail(String roomNumber);
 	public FeeListDTO feeList(String roomNumber);
+	public List<String> rNfindname(String cityCode, int person, String namesearch);
 
 
 }

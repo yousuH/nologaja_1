@@ -21,16 +21,23 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.nologaja.cart.CartFolderDAO;
 import kr.co.nologaja.cart.CartFolderDTO;
+
 import kr.co.nologaja.cs.InquiryDAO;
 import kr.co.nologaja.cs.InquiryDTO;
 import kr.co.nologaja.inquiryHost.InquiryHostDAO;
 import kr.co.nologaja.inquiryHost.InquiryHostDTO;
+
+import kr.co.nologaja.hotel.ReviewDAO;
+import kr.co.nologaja.hotel.ReviewDTO;
+
 import net.utility.Pagination;
 
 
@@ -56,6 +63,10 @@ public class SearchCont {
 	
 	@Inject
 	InquiryHostDTO ihDTO;
+
+  @Inject
+	ReviewDAO rvdao;
+
 	
 	public SearchCont() {
 		System.out.println("==SearchCont객체생성==");
@@ -64,10 +75,27 @@ public class SearchCont {
 	// 검색
 	@RequestMapping(value = "/search.do")
 	public ModelAndView search(SearchDTO sdto, HttpSession session, @RequestParam(defaultValue="1") int curPage,
-			@RequestParam(defaultValue = "review") String sort) throws ParseException {
-    
+			@RequestParam(defaultValue = "review") String sort, @RequestParam(defaultValue = "") String namesearch,
+			@RequestParam(defaultValue = "0") int checkprice) throws ParseException {
+		
+		if(sdto.getCityCode() == null) {
+			sdto.setCityCode("");
+		}
+		
+		List<String> rNlist = new ArrayList<String>();
+		if(!(namesearch.equals(""))) {
+			rNlist = sdao.rNfindname(sdto.getCityCode(), sdto.getMaxGuest(), namesearch);
+			if(rNlist.isEmpty()) {
+				ModelAndView mav=new ModelAndView();
+				mav.setViewName("search/searchFail");
+				mav.addObject("sdto", sdto);
+				return mav;
+			}
+		}else {
 		// 1. cityCode, maxGuest -> roomNumber list로
-		List<String> rNlist= sdao.rNfind(sdto);
+			rNlist= sdao.rNfind(sdto);
+		}
+		
 		
 		// 2_1. booktable에 없는 roomnumber if == 0 -> 바로 예약 가능한 방으로 분류
 		// 2_2. booktable에 있는 roomnumber   else  -> 날짜 비교를 위한 방으루 분류
@@ -193,7 +221,45 @@ public class SearchCont {
 			list.get(i).setFee(feeList.get(i).getFee());
 			list.get(i).setFeestr(feeList.get(i).getFeestr());
 		}
-
+		//가격범위에 따른 데이터 구분
+		if(checkprice !=0 ) {
+			if(checkprice == 10) {
+				for(int i=0; i<list.size(); i++) {
+					if(list.get(i).getFee()>=100000) {
+						list.remove(i);
+						i--;
+					}
+				}
+			}else if(checkprice == 15) {
+				for(int i=0; i<list.size(); i++) {
+					if(list.get(i).getFee()<100000 || list.get(i).getFee()>=150000) {
+						list.remove(i);
+						i--;
+					}
+				}
+			}else if(checkprice == 20) {
+				for(int i=0; i<list.size(); i++) {
+					if(list.get(i).getFee()<150000 || list.get(i).getFee()>=200000) {
+						list.remove(i);
+						i--;
+					}
+				}
+			}else if(checkprice == 25) {
+				for(int i=0; i<list.size(); i++) {
+					if(list.get(i).getFee()<200000 || list.get(i).getFee()>=250000) {
+						list.remove(i);
+						i--;
+					}
+				}
+			}else if(checkprice == 99) {
+				for(int i=0; i<list.size(); i++) {
+					if(list.get(i).getFee()<250000) {
+						list.remove(i);
+						i--;
+					}
+				}
+			}
+		}
 		//sort값에 따른 list정렬 시작
 		if(sort.equals("feeDESC")) { // 가격 내림차순 ~0
 			list.sort(new Comparator<SearchlistDTO>() {
@@ -298,7 +364,7 @@ public class SearchCont {
 
 		//curPage값에 따른 페이징 시작
 				
-		int listCnt=ableRN.size()+1;
+		int listCnt=list.size()+1;
 		  
 		Pagination pagination = new Pagination(listCnt, curPage);
 		int start=pagination.getStartIndex();
@@ -319,6 +385,7 @@ public class SearchCont {
 		mav.addObject("night", night);
 		mav.addObject("cartFolders", cartFolders);
 		mav.addObject("sort", sort);
+		mav.addObject("checkprice", checkprice);
 		mav.addObject("pagination", pagination);
 		mav.addObject("curPage",curPage);
 		mav.addObject("start", start);
@@ -327,9 +394,12 @@ public class SearchCont {
 	}// search() end
 	
 	@RequestMapping(value="/searchdetail.do")
-	public ModelAndView searchdetail(String roomNumber) {
+	public ModelAndView searchdetail(String roomNumber, @RequestParam(defaultValue="1") int num) {
 		ModelAndView mav = new ModelAndView();
+		int endnum = (5*num);
+		num = num+1;
 		RoomHotelDTO dto = sdao.searchdetail(roomNumber);
+
 		String suid = ihDAO.inquiryHost_getSuid(roomNumber);
 		List<InquiryHostDTO> list = ihDAO.inquiryHost_list(roomNumber); 
 		
@@ -351,9 +421,36 @@ public class SearchCont {
 		mav.addObject("list", list);
 		mav.addObject("suid", suid);
 		System.out.println(list);
+		
+		List<ReviewDTO> list = rvdao.rv_list(roomNumber, endnum);
+		boolean size=true;
+		if(list.size()>=endnum) {
+			size = false;
+		}
+		mav.addObject("list", list);
+		mav.addObject("dto", dto);
+		mav.addObject("size", size);
+		mav.addObject("num", num);
+
 		mav.setViewName("search/searchdetail");
 		return mav;
 	}
 	
+
 	
+
+	@RequestMapping(value = "/json.do")
+	@ResponseBody
+	public ModelAndView jsonTest(@RequestParam String roomNumber, @RequestParam int num) {
+		int endnum = (num+1)*5;
+		RoomHotelDTO dto = sdao.searchdetail(roomNumber);
+		List<ReviewDTO> list =rvdao.rv_list(roomNumber, endnum);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("num", num);
+		mav.addObject("list", list);
+		mav.addObject("dto", dto);
+		return mav;
+	}
+
+
 }
