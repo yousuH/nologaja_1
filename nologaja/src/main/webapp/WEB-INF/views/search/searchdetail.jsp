@@ -39,7 +39,6 @@
 
 
 <style>
-
 main {
 	margin: auto;
 	max-width: 1400px;
@@ -390,441 +389,446 @@ a {
 
 						</nav>
 
-						<nav class="navbar navbar-expand-lg navbar-light justify-content-between">
-													<section class="list_booking_part" style="width: 1400px; margin: aut">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="booking_content">
-							<div class="tab-content" id="myTabContent">
-								<div class="tab-pane fade show active" id="hotel"
-									role="tabpanel" aria-labelledby="hotel-tab">	
-									<div class="booking_form">
-										<form action="search.do">
-											<div class="form-row">
-												<div class="form_colum" >
-													<select class="nc_select" name="cityCode" id="cityCode">
-													<c:if test="${param.cityCode eq ''}">
-														<option value="${param.cityCode}" selected>전체</option>
-														<option value="SE">서울</option>
-														<option value="BU">부산</option>
-														<option value="IN">인천</option>
-														<option value="JJ">제주</option>
-														<option value="SJ">세종</option>
-														<option value="DG">대구</option>
-														<option value="DJ">대전</option>
-														<option value="GJ">광주</option>
-														<option value="UL">울산</option>
-														<option value="GG">경기도</option>
-														<option value="GW">강원도</option>
-														<option value="CB">충청북도</option>
-														<option value="CN">충청남도</option>
-														<option value="GB">경상북도</option>
-														<option value="GN">경상남도</option>
-														<option value="JB">전라북도</option>
-														<option value="JN">전라남도</option>
-													</c:if>
-													<c:if test="${param.cityCode eq 'SE'}">
-														<option value="${param.cityCode}" selected>서울</option>
-														<option value="BU">부산</option>
-														<option value="IN">인천</option>
-														<option value="JJ">제주</option>
-														<option value="SJ">세종</option>
-														<option value="DG">대구</option>
-														<option value="DJ">대전</option>
-														<option value="GJ">광주</option>
-														<option value="UL">울산</option>
-														<option value="GG">경기도</option>
-														<option value="GW">강원도</option>
-														<option value="CB">충청북도</option>
-														<option value="CN">충청남도</option>
-														<option value="GB">경상북도</option>
-														<option value="GN">경상남도</option>
-														<option value="JB">전라북도</option>
-														<option value="JN">전라남도</option>
-													</c:if>
-													<c:if test="${param.cityCode eq 'BU'}">
-														<option value="SE">서울</option>
-														<option value="${param.cityCode}" selected>부산</option>
-														<option value="IN">인천</option>
-														<option value="JJ">제주</option>
-														<option value="SJ">세종</option>
-														<option value="DG">대구</option>
-														<option value="DJ">대전</option>
-														<option value="GJ">광주</option>
-														<option value="UL">울산</option>
-														<option value="GG">경기도</option>
-														<option value="GW">강원도</option>
-														<option value="CB">충청북도</option>
-														<option value="CN">충청남도</option>
-														<option value="GB">경상북도</option>
-														<option value="GN">경상남도</option>
-														<option value="JB">전라북도</option>
-														<option value="JN">전라남도</option>
-													</c:if>
-													<c:if test="${param.cityCode eq 'IN'}">
-														<option value="SE">서울</option>
-														<option value="BU">부산</option>
-														<option value="${param.cityCode}" selected>인천</option>
-														<option value="JJ">제주</option>
-														<option value="SJ">세종</option>
-														<option value="DG">대구</option>
-														<option value="DJ">대전</option>
-														<option value="GJ">광주</option>
-														<option value="UL">울산</option>
-														<option value="GG">경기도</option>
-														<option value="GW">강원도</option>
-														<option value="CB">충청북도</option>
-														<option value="CN">충청남도</option>
-														<option value="GB">경상북도</option>
-														<option value="GN">경상남도</option>
-														<option value="JB">전라북도</option>
-														<option value="JN">전라남도</option>
-													</c:if>
-													<c:if test="${param.cityCode eq 'JJ'}">
-														<option value="SE">서울</option>
-														<option value="BU">부산</option>
-														<option value="IN">인천</option>
-														<option value="${param.cityCode}" selected>제주</option>
-														<option value="SJ">세종</option>
-														<option value="DG">대구</option>
-														<option value="DJ">대전</option>
-														<option value="GJ">광주</option>
-														<option value="UL">울산</option>
-														<option value="GG">경기도</option>
-														<option value="GW">강원도</option>
-														<option value="CB">충청북도</option>
-														<option value="CN">충청남도</option>
-														<option value="GB">경상북도</option>
-														<option value="GN">경상남도</option>
-														<option value="JB">전라북도</option>
-														<option value="JN">전라남도</option>
-													</c:if>
-													<c:if test="${param.cityCode eq 'SJ'}">
-														<option value="SE">서울</option>
-														<option value="BU">부산</option>
-														<option value="IN">인천</option>
-														<option value="JJ">제주</option>
-														<option value="${param.cityCode}" selected>세종</option>
-														<option value="DG">대구</option>
-														<option value="DJ">대전</option>
-														<option value="GJ">광주</option>
-														<option value="UL">울산</option>
-														<option value="GG">경기도</option>
-														<option value="GW">강원도</option>
-														<option value="CB">충청북도</option>
-														<option value="CN">충청남도</option>
-														<option value="GB">경상북도</option>
-														<option value="GN">경상남도</option>
-														<option value="JB">전라북도</option>
-														<option value="JN">전라남도</option>
-													</c:if>
-													<c:if test="${param.cityCode eq 'DG'}">
-														<option value="SE">서울</option>
-														<option value="BU">부산</option>
-														<option value="IN">인천</option>
-														<option value="JJ">제주</option>
-														<option value="SJ">세종</option>
-														<option value="${param.cityCode}" selected>대구</option>
-														<option value="DJ">대전</option>
-														<option value="GJ">광주</option>
-														<option value="UL">울산</option>
-														<option value="GG">경기도</option>
-														<option value="GW">강원도</option>
-														<option value="CB">충청북도</option>
-														<option value="CN">충청남도</option>
-														<option value="GB">경상북도</option>
-														<option value="GN">경상남도</option>
-														<option value="JB">전라북도</option>
-														<option value="JN">전라남도</option>
-													</c:if>
-													<c:if test="${param.cityCode eq 'DJ'}">
-														<option value="SE">서울</option>
-														<option value="BU">부산</option>
-														<option value="IN">인천</option>
-														<option value="JJ">제주</option>
-														<option value="SJ">세종</option>
-														<option value="DG">대구</option>
-														<option value="${param.cityCode}" selected>대전</option>
-														<option value="GJ">광주</option>
-														<option value="UL">울산</option>
-														<option value="GG">경기도</option>
-														<option value="GW">강원도</option>
-														<option value="CB">충청북도</option>
-														<option value="CN">충청남도</option>
-														<option value="GB">경상북도</option>
-														<option value="GN">경상남도</option>
-														<option value="JB">전라북도</option>
-														<option value="JN">전라남도</option>
-													</c:if>
-													<c:if test="${param.cityCode eq 'GJ'}">
-														<option value="SE">서울</option>
-														<option value="BU">부산</option>
-														<option value="IN">인천</option>
-														<option value="JJ">제주</option>
-														<option value="SJ">세종</option>
-														<option value="DG">대구</option>
-														<option value="DJ">대전</option>
-														<option value="${param.cityCode}" selected>광주</option>
-														<option value="UL">울산</option>
-														<option value="GG">경기도</option>
-														<option value="GW">강원도</option>
-														<option value="CB">충청북도</option>
-														<option value="CN">충청남도</option>
-														<option value="GB">경상북도</option>
-														<option value="GN">경상남도</option>
-														<option value="JB">전라북도</option>
-														<option value="JN">전라남도</option>
-													</c:if>
-													<c:if test="${param.cityCode eq 'UL'}">
-														<option value="SE">서울</option>
-														<option value="BU">부산</option>
-														<option value="IN">인천</option>
-														<option value="JJ">제주</option>
-														<option value="SJ">세종</option>
-														<option value="DG">대구</option>
-														<option value="DJ">대전</option>
-														<option value="GJ">광주</option>
-														<option value="${param.cityCode}" selected>울산</option>
-														<option value="GG">경기도</option>
-														<option value="GW">강원도</option>
-														<option value="CB">충청북도</option>
-														<option value="CN">충청남도</option>
-														<option value="GB">경상북도</option>
-														<option value="GN">경상남도</option>
-														<option value="JB">전라북도</option>
-														<option value="JN">전라남도</option>
-													</c:if>
-													<c:if test="${param.cityCode eq 'GG'}">
-														<option value="SE">서울</option>
-														<option value="BU">부산</option>
-														<option value="IN">인천</option>
-														<option value="JJ">제주</option>
-														<option value="SJ">세종</option>
-														<option value="DG">대구</option>
-														<option value="DJ">대전</option>
-														<option value="GJ">광주</option>
-														<option value="UL">울산</option>
-														<option value="${param.cityCode}" selected>경기도</option>
-														<option value="GW">강원도</option>
-														<option value="CB">충청북도</option>
-														<option value="CN">충청남도</option>
-														<option value="GB">경상북도</option>
-														<option value="GN">경상남도</option>
-														<option value="JB">전라북도</option>
-														<option value="JN">전라남도</option>
-													</c:if>
-													<c:if test="${param.cityCode eq 'GW'}">
-														<option value="SE">서울</option>
-														<option value="BU">부산</option>
-														<option value="IN">인천</option>
-														<option value="JJ">제주</option>
-														<option value="SJ">세종</option>
-														<option value="DG">대구</option>
-														<option value="DJ">대전</option>
-														<option value="GJ">광주</option>
-														<option value="UL">울산</option>
-														<option value="GG">경기도</option>
-														<option value="${param.cityCode}" selected>강원도</option>
-														<option value="CB">충청북도</option>
-														<option value="CN">충청남도</option>
-														<option value="GB">경상북도</option>
-														<option value="GN">경상남도</option>
-														<option value="JB">전라북도</option>
-														<option value="JN">전라남도</option>
-													</c:if>
-													<c:if test="${param.cityCode eq 'CB'}">
-														<option value="SE">서울</option>
-														<option value="BU">부산</option>
-														<option value="IN">인천</option>
-														<option value="JJ">제주</option>
-														<option value="SJ">세종</option>
-														<option value="DG">대구</option>
-														<option value="DJ">대전</option>
-														<option value="GJ">광주</option>
-														<option value="UL">울산</option>
-														<option value="GG">경기도</option>
-														<option value="GW">강원도</option>
-														<option value="${param.cityCode}" selected>충청북도</option>
-														<option value="CN">충청남도</option>
-														<option value="GB">경상북도</option>
-														<option value="GN">경상남도</option>
-														<option value="JB">전라북도</option>
-														<option value="JN">전라남도</option>
-													</c:if>
-													<c:if test="${param.cityCode eq 'CN'}">
-														<option value="SE">서울</option>
-														<option value="BU">부산</option>
-														<option value="IN">인천</option>
-														<option value="JJ">제주</option>
-														<option value="SJ">세종</option>
-														<option value="DG">대구</option>
-														<option value="DJ">대전</option>
-														<option value="GJ">광주</option>
-														<option value="UL">울산</option>
-														<option value="GG">경기도</option>
-														<option value="GW">강원도</option>
-														<option value="CB">충청북도</option>
-														<option value="${param.cityCode}" selected>충청남도</option>
-														<option value="GB">경상북도</option>
-														<option value="GN">경상남도</option>
-														<option value="JB">전라북도</option>
-														<option value="JN">전라남도</option>
-													</c:if>
-													<c:if test="${param.cityCode eq 'GB'}">
-														<option value="SE">서울</option>
-														<option value="BU">부산</option>
-														<option value="IN">인천</option>
-														<option value="JJ">제주</option>
-														<option value="SJ">세종</option>
-														<option value="DG">대구</option>
-														<option value="DJ">대전</option>
-														<option value="GJ">광주</option>
-														<option value="UL">울산</option>
-														<option value="GG">경기도</option>
-														<option value="GW">강원도</option>
-														<option value="CB">충청북도</option>
-														<option value="CN">충청남도</option>
-														<option value="${param.cityCode}" selected>경상북도</option>
-														<option value="GN">경상남도</option>
-														<option value="JB">전라북도</option>
-														<option value="JN">전라남도</option>
-													</c:if>
-													<c:if test="${param.cityCode eq 'GN'}">
-														<option value="SE">서울</option>
-														<option value="BU">부산</option>
-														<option value="IN">인천</option>
-														<option value="JJ">제주</option>
-														<option value="SJ">세종</option>
-														<option value="DG">대구</option>
-														<option value="DJ">대전</option>
-														<option value="GJ">광주</option>
-														<option value="UL">울산</option>
-														<option value="GG">경기도</option>
-														<option value="GW">강원도</option>
-														<option value="CB">충청북도</option>
-														<option value="CN">충청남도</option>
-														<option value="GB">경상북도</option>
-														<option value="${param.cityCode}" selected>경상남도</option>
-														<option value="JB">전라북도</option>
-														<option value="JN">전라남도</option>
-													</c:if>
-													<c:if test="${param.cityCode eq 'JB'}">
-														<option value="SE">서울</option>
-														<option value="BU">부산</option>
-														<option value="IN">인천</option>
-														<option value="JJ">제주</option>
-														<option value="SJ">세종</option>
-														<option value="DG">대구</option>
-														<option value="DJ">대전</option>
-														<option value="GJ">광주</option>
-														<option value="UL">울산</option>
-														<option value="GG">경기도</option>
-														<option value="GW">강원도</option>
-														<option value="CB">충청북도</option>
-														<option value="CN">충청남도</option>
-														<option value="GB">경상북도</option>
-														<option value="GN">경상남도</option>
-														<option value="${param.cityCode}" selected>전라북도</option>
-														<option value="JN">전라남도</option>
-													</c:if>
-													<c:if test="${param.cityCode eq 'JB'}">
-														<option value="SE">서울</option>
-														<option value="BU">부산</option>
-														<option value="IN">인천</option>
-														<option value="JJ">제주</option>
-														<option value="SJ">세종</option>
-														<option value="DG">대구</option>
-														<option value="DJ">대전</option>
-														<option value="GJ">광주</option>
-														<option value="UL">울산</option>
-														<option value="GG">경기도</option>
-														<option value="GW">강원도</option>
-														<option value="CB">충청북도</option>
-														<option value="CN">충청남도</option>
-														<option value="GB">경상북도</option>
-														<option value="GN">경상남도</option>
-														<option value="JB">전라북도</option>
-														<option value="${param.cityCode}" selected>전라남도</option>
-													</c:if>
-													</select>
-												</div>
-												<div class="form_colum">
-													<input name="ck_in" id="datepicker_1" placeholder="Check in date" value="${param.ck_in}">
-												</div>
-												<div class="form_colum">
-													<input name= "ck_out" id="datepicker_2" placeholder="Check out date" value="${param.ck_out}">
-												</div>
-												<div class="form_colum">
-													<select class="nc_select" name="maxGuest" id="maxGuest">
-													<c:if test="${param.maxGuest == '0'}">
-														<option value="0">전체</option>
-														<option value="1">1명</option>
-														<option value="2">2명</option>
-														<option value="3">3명</option>
-														<option value="4">4명</option>
-														<option value="5">5명</option>
-														<option value="6">6명</option>
-													</c:if>
-													<c:if test="${param.maxGuest == '1'}">
-														<option value="${param.maxGuest}" selected>1명</option>
-														<option value="2">2명</option>
-														<option value="3">3명</option>
-														<option value="4">4명</option>
-														<option value="5">5명</option>
-														<option value="6">6명</option>
-													</c:if>
-													<c:if test="${param.maxGuest == '2'}">
-														<option value="1">1명</option>
-														<option value="${param.maxGuest}" selected>2명</option>
-														<option value="3">3명</option>
-														<option value="4">4명</option>
-														<option value="5">5명</option>
-														<option value="6">6명</option>
-													</c:if>
-													<c:if test="${param.maxGuest == '3'}">
-														<option value="1">1명</option>
-														<option value="2">2명</option>
-														<option value="${param.maxGuest}" selected>3명</option>
-														<option value="4">4명</option>
-														<option value="5">5명</option>
-														<option value="6">6명</option>
-													</c:if>
-													<c:if test="${param.maxGuest == '4'}">
-														<option value="1">1명</option>
-														<option value="2">2명</option>
-														<option value="3">3명</option>
-														<option value="${param.maxGuest}" selected>4명</option>
-														<option value="5">5명</option>
-														<option value="6">6명</option>
-													</c:if>
-													<c:if test="${param.maxGuest == '5'}">
-														<option value="1">1명</option>
-														<option value="2">2명</option>
-														<option value="3">3명</option>
-														<option value="4">4명</option>
-														<option value="${param.maxGuest}" selected>5명</option>
-														<option value="6">6명</option>
-													</c:if>
-													<c:if test="${param.maxGuest == '6'}">
-														<option value="1">1명</option>
-														<option value="2">2명</option>
-														<option value="3">3명</option>
-														<option value="4">4명</option>
-														<option value="5">5명</option>
-														<option value="${param.maxGuest}" selected>6명</option>
-													</c:if>
-													</select>
-												</div>
-												<div class="form_btn">
-													<button class="btn_1">search</button>
-
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</section>
+						<nav
+							class="navbar navbar-expand-lg navbar-light justify-content-between">
+							<section class="list_booking_part" style="width: 1400px; margin: aut">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-12">
+                  <div class="booking_content">
+                     <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="hotel"
+                           role="tabpanel" aria-labelledby="hotel-tab">   
+                           <div class="booking_form">
+                              <form action="search.do">
+                                 <div class="form-row">
+                                    <div class="form_colum" >
+                                       <select class="nc_select" name="cityCode" id="cityCode">
+                                       <c:if test="${param.cityCode eq ''}">
+                                          <option value="${param.cityCode}" selected>전체</option>
+                                          <option value="SE">서울</option>
+                                          <option value="BU">부산</option>
+                                          <option value="IN">인천</option>
+                                          <option value="JJ">제주</option>
+                                          <option value="SJ">세종</option>
+                                          <option value="DG">대구</option>
+                                          <option value="DJ">대전</option>
+                                          <option value="GJ">광주</option>
+                                          <option value="UL">울산</option>
+                                          <option value="GG">경기도</option>
+                                          <option value="GW">강원도</option>
+                                          <option value="CB">충청북도</option>
+                                          <option value="CN">충청남도</option>
+                                          <option value="GB">경상북도</option>
+                                          <option value="GN">경상남도</option>
+                                          <option value="JB">전라북도</option>
+                                          <option value="JN">전라남도</option>
+                                       </c:if>
+                                       <c:if test="${param.cityCode eq 'SE'}">
+                                          <option value="${param.cityCode}" selected>서울</option>
+                                          <option value="BU">부산</option>
+                                          <option value="IN">인천</option>
+                                          <option value="JJ">제주</option>
+                                          <option value="SJ">세종</option>
+                                          <option value="DG">대구</option>
+                                          <option value="DJ">대전</option>
+                                          <option value="GJ">광주</option>
+                                          <option value="UL">울산</option>
+                                          <option value="GG">경기도</option>
+                                          <option value="GW">강원도</option>
+                                          <option value="CB">충청북도</option>
+                                          <option value="CN">충청남도</option>
+                                          <option value="GB">경상북도</option>
+                                          <option value="GN">경상남도</option>
+                                          <option value="JB">전라북도</option>
+                                          <option value="JN">전라남도</option>
+                                       </c:if>
+                                       <c:if test="${param.cityCode eq 'BU'}">
+                                          <option value="SE">서울</option>
+                                          <option value="${param.cityCode}" selected>부산</option>
+                                          <option value="IN">인천</option>
+                                          <option value="JJ">제주</option>
+                                          <option value="SJ">세종</option>
+                                          <option value="DG">대구</option>
+                                          <option value="DJ">대전</option>
+                                          <option value="GJ">광주</option>
+                                          <option value="UL">울산</option>
+                                          <option value="GG">경기도</option>
+                                          <option value="GW">강원도</option>
+                                          <option value="CB">충청북도</option>
+                                          <option value="CN">충청남도</option>
+                                          <option value="GB">경상북도</option>
+                                          <option value="GN">경상남도</option>
+                                          <option value="JB">전라북도</option>
+                                          <option value="JN">전라남도</option>
+                                       </c:if>
+                                       <c:if test="${param.cityCode eq 'IN'}">
+                                          <option value="SE">서울</option>
+                                          <option value="BU">부산</option>
+                                          <option value="${param.cityCode}" selected>인천</option>
+                                          <option value="JJ">제주</option>
+                                          <option value="SJ">세종</option>
+                                          <option value="DG">대구</option>
+                                          <option value="DJ">대전</option>
+                                          <option value="GJ">광주</option>
+                                          <option value="UL">울산</option>
+                                          <option value="GG">경기도</option>
+                                          <option value="GW">강원도</option>
+                                          <option value="CB">충청북도</option>
+                                          <option value="CN">충청남도</option>
+                                          <option value="GB">경상북도</option>
+                                          <option value="GN">경상남도</option>
+                                          <option value="JB">전라북도</option>
+                                          <option value="JN">전라남도</option>
+                                       </c:if>
+                                       <c:if test="${param.cityCode eq 'JJ'}">
+                                          <option value="SE">서울</option>
+                                          <option value="BU">부산</option>
+                                          <option value="IN">인천</option>
+                                          <option value="${param.cityCode}" selected>제주</option>
+                                          <option value="SJ">세종</option>
+                                          <option value="DG">대구</option>
+                                          <option value="DJ">대전</option>
+                                          <option value="GJ">광주</option>
+                                          <option value="UL">울산</option>
+                                          <option value="GG">경기도</option>
+                                          <option value="GW">강원도</option>
+                                          <option value="CB">충청북도</option>
+                                          <option value="CN">충청남도</option>
+                                          <option value="GB">경상북도</option>
+                                          <option value="GN">경상남도</option>
+                                          <option value="JB">전라북도</option>
+                                          <option value="JN">전라남도</option>
+                                       </c:if>
+                                       <c:if test="${param.cityCode eq 'SJ'}">
+                                          <option value="SE">서울</option>
+                                          <option value="BU">부산</option>
+                                          <option value="IN">인천</option>
+                                          <option value="JJ">제주</option>
+                                          <option value="${param.cityCode}" selected>세종</option>
+                                          <option value="DG">대구</option>
+                                          <option value="DJ">대전</option>
+                                          <option value="GJ">광주</option>
+                                          <option value="UL">울산</option>
+                                          <option value="GG">경기도</option>
+                                          <option value="GW">강원도</option>
+                                          <option value="CB">충청북도</option>
+                                          <option value="CN">충청남도</option>
+                                          <option value="GB">경상북도</option>
+                                          <option value="GN">경상남도</option>
+                                          <option value="JB">전라북도</option>
+                                          <option value="JN">전라남도</option>
+                                       </c:if>
+                                       <c:if test="${param.cityCode eq 'DG'}">
+                                          <option value="SE">서울</option>
+                                          <option value="BU">부산</option>
+                                          <option value="IN">인천</option>
+                                          <option value="JJ">제주</option>
+                                          <option value="SJ">세종</option>
+                                          <option value="${param.cityCode}" selected>대구</option>
+                                          <option value="DJ">대전</option>
+                                          <option value="GJ">광주</option>
+                                          <option value="UL">울산</option>
+                                          <option value="GG">경기도</option>
+                                          <option value="GW">강원도</option>
+                                          <option value="CB">충청북도</option>
+                                          <option value="CN">충청남도</option>
+                                          <option value="GB">경상북도</option>
+                                          <option value="GN">경상남도</option>
+                                          <option value="JB">전라북도</option>
+                                          <option value="JN">전라남도</option>
+                                       </c:if>
+                                       <c:if test="${param.cityCode eq 'DJ'}">
+                                          <option value="SE">서울</option>
+                                          <option value="BU">부산</option>
+                                          <option value="IN">인천</option>
+                                          <option value="JJ">제주</option>
+                                          <option value="SJ">세종</option>
+                                          <option value="DG">대구</option>
+                                          <option value="${param.cityCode}" selected>대전</option>
+                                          <option value="GJ">광주</option>
+                                          <option value="UL">울산</option>
+                                          <option value="GG">경기도</option>
+                                          <option value="GW">강원도</option>
+                                          <option value="CB">충청북도</option>
+                                          <option value="CN">충청남도</option>
+                                          <option value="GB">경상북도</option>
+                                          <option value="GN">경상남도</option>
+                                          <option value="JB">전라북도</option>
+                                          <option value="JN">전라남도</option>
+                                       </c:if>
+                                       <c:if test="${param.cityCode eq 'GJ'}">
+                                          <option value="SE">서울</option>
+                                          <option value="BU">부산</option>
+                                          <option value="IN">인천</option>
+                                          <option value="JJ">제주</option>
+                                          <option value="SJ">세종</option>
+                                          <option value="DG">대구</option>
+                                          <option value="DJ">대전</option>
+                                          <option value="${param.cityCode}" selected>광주</option>
+                                          <option value="UL">울산</option>
+                                          <option value="GG">경기도</option>
+                                          <option value="GW">강원도</option>
+                                          <option value="CB">충청북도</option>
+                                          <option value="CN">충청남도</option>
+                                          <option value="GB">경상북도</option>
+                                          <option value="GN">경상남도</option>
+                                          <option value="JB">전라북도</option>
+                                          <option value="JN">전라남도</option>
+                                       </c:if>
+                                       <c:if test="${param.cityCode eq 'UL'}">
+                                          <option value="SE">서울</option>
+                                          <option value="BU">부산</option>
+                                          <option value="IN">인천</option>
+                                          <option value="JJ">제주</option>
+                                          <option value="SJ">세종</option>
+                                          <option value="DG">대구</option>
+                                          <option value="DJ">대전</option>
+                                          <option value="GJ">광주</option>
+                                          <option value="${param.cityCode}" selected>울산</option>
+                                          <option value="GG">경기도</option>
+                                          <option value="GW">강원도</option>
+                                          <option value="CB">충청북도</option>
+                                          <option value="CN">충청남도</option>
+                                          <option value="GB">경상북도</option>
+                                          <option value="GN">경상남도</option>
+                                          <option value="JB">전라북도</option>
+                                          <option value="JN">전라남도</option>
+                                       </c:if>
+                                       <c:if test="${param.cityCode eq 'GG'}">
+                                          <option value="SE">서울</option>
+                                          <option value="BU">부산</option>
+                                          <option value="IN">인천</option>
+                                          <option value="JJ">제주</option>
+                                          <option value="SJ">세종</option>
+                                          <option value="DG">대구</option>
+                                          <option value="DJ">대전</option>
+                                          <option value="GJ">광주</option>
+                                          <option value="UL">울산</option>
+                                          <option value="${param.cityCode}" selected>경기도</option>
+                                          <option value="GW">강원도</option>
+                                          <option value="CB">충청북도</option>
+                                          <option value="CN">충청남도</option>
+                                          <option value="GB">경상북도</option>
+                                          <option value="GN">경상남도</option>
+                                          <option value="JB">전라북도</option>
+                                          <option value="JN">전라남도</option>
+                                       </c:if>
+                                       <c:if test="${param.cityCode eq 'GW'}">
+                                          <option value="SE">서울</option>
+                                          <option value="BU">부산</option>
+                                          <option value="IN">인천</option>
+                                          <option value="JJ">제주</option>
+                                          <option value="SJ">세종</option>
+                                          <option value="DG">대구</option>
+                                          <option value="DJ">대전</option>
+                                          <option value="GJ">광주</option>
+                                          <option value="UL">울산</option>
+                                          <option value="GG">경기도</option>
+                                          <option value="${param.cityCode}" selected>강원도</option>
+                                          <option value="CB">충청북도</option>
+                                          <option value="CN">충청남도</option>
+                                          <option value="GB">경상북도</option>
+                                          <option value="GN">경상남도</option>
+                                          <option value="JB">전라북도</option>
+                                          <option value="JN">전라남도</option>
+                                       </c:if>
+                                       <c:if test="${param.cityCode eq 'CB'}">
+                                          <option value="SE">서울</option>
+                                          <option value="BU">부산</option>
+                                          <option value="IN">인천</option>
+                                          <option value="JJ">제주</option>
+                                          <option value="SJ">세종</option>
+                                          <option value="DG">대구</option>
+                                          <option value="DJ">대전</option>
+                                          <option value="GJ">광주</option>
+                                          <option value="UL">울산</option>
+                                          <option value="GG">경기도</option>
+                                          <option value="GW">강원도</option>
+                                          <option value="${param.cityCode}" selected>충청북도</option>
+                                          <option value="CN">충청남도</option>
+                                          <option value="GB">경상북도</option>
+                                          <option value="GN">경상남도</option>
+                                          <option value="JB">전라북도</option>
+                                          <option value="JN">전라남도</option>
+                                       </c:if>
+                                       <c:if test="${param.cityCode eq 'CN'}">
+                                          <option value="SE">서울</option>
+                                          <option value="BU">부산</option>
+                                          <option value="IN">인천</option>
+                                          <option value="JJ">제주</option>
+                                          <option value="SJ">세종</option>
+                                          <option value="DG">대구</option>
+                                          <option value="DJ">대전</option>
+                                          <option value="GJ">광주</option>
+                                          <option value="UL">울산</option>
+                                          <option value="GG">경기도</option>
+                                          <option value="GW">강원도</option>
+                                          <option value="CB">충청북도</option>
+                                          <option value="${param.cityCode}" selected>충청남도</option>
+                                          <option value="GB">경상북도</option>
+                                          <option value="GN">경상남도</option>
+                                          <option value="JB">전라북도</option>
+                                          <option value="JN">전라남도</option>
+                                       </c:if>
+                                       <c:if test="${param.cityCode eq 'GB'}">
+                                          <option value="SE">서울</option>
+                                          <option value="BU">부산</option>
+                                          <option value="IN">인천</option>
+                                          <option value="JJ">제주</option>
+                                          <option value="SJ">세종</option>
+                                          <option value="DG">대구</option>
+                                          <option value="DJ">대전</option>
+                                          <option value="GJ">광주</option>
+                                          <option value="UL">울산</option>
+                                          <option value="GG">경기도</option>
+                                          <option value="GW">강원도</option>
+                                          <option value="CB">충청북도</option>
+                                          <option value="CN">충청남도</option>
+                                          <option value="${param.cityCode}" selected>경상북도</option>
+                                          <option value="GN">경상남도</option>
+                                          <option value="JB">전라북도</option>
+                                          <option value="JN">전라남도</option>
+                                       </c:if>
+                                       <c:if test="${param.cityCode eq 'GN'}">
+                                          <option value="SE">서울</option>
+                                          <option value="BU">부산</option>
+                                          <option value="IN">인천</option>
+                                          <option value="JJ">제주</option>
+                                          <option value="SJ">세종</option>
+                                          <option value="DG">대구</option>
+                                          <option value="DJ">대전</option>
+                                          <option value="GJ">광주</option>
+                                          <option value="UL">울산</option>
+                                          <option value="GG">경기도</option>
+                                          <option value="GW">강원도</option>
+                                          <option value="CB">충청북도</option>
+                                          <option value="CN">충청남도</option>
+                                          <option value="GB">경상북도</option>
+                                          <option value="${param.cityCode}" selected>경상남도</option>
+                                          <option value="JB">전라북도</option>
+                                          <option value="JN">전라남도</option>
+                                       </c:if>
+                                       <c:if test="${param.cityCode eq 'JB'}">
+                                          <option value="SE">서울</option>
+                                          <option value="BU">부산</option>
+                                          <option value="IN">인천</option>
+                                          <option value="JJ">제주</option>
+                                          <option value="SJ">세종</option>
+                                          <option value="DG">대구</option>
+                                          <option value="DJ">대전</option>
+                                          <option value="GJ">광주</option>
+                                          <option value="UL">울산</option>
+                                          <option value="GG">경기도</option>
+                                          <option value="GW">강원도</option>
+                                          <option value="CB">충청북도</option>
+                                          <option value="CN">충청남도</option>
+                                          <option value="GB">경상북도</option>
+                                          <option value="GN">경상남도</option>
+                                          <option value="${param.cityCode}" selected>전라북도</option>
+                                          <option value="JN">전라남도</option>
+                                       </c:if>
+                                       <c:if test="${param.cityCode eq 'JB'}">
+                                          <option value="SE">서울</option>
+                                          <option value="BU">부산</option>
+                                          <option value="IN">인천</option>
+                                          <option value="JJ">제주</option>
+                                          <option value="SJ">세종</option>
+                                          <option value="DG">대구</option>
+                                          <option value="DJ">대전</option>
+                                          <option value="GJ">광주</option>
+                                          <option value="UL">울산</option>
+                                          <option value="GG">경기도</option>
+                                          <option value="GW">강원도</option>
+                                          <option value="CB">충청북도</option>
+                                          <option value="CN">충청남도</option>
+                                          <option value="GB">경상북도</option>
+                                          <option value="GN">경상남도</option>
+                                          <option value="JB">전라북도</option>
+                                          <option value="${param.cityCode}" selected>전라남도</option>
+                                       </c:if>
+                                       </select>
+                                    </div>
+                                    <div class="form_colum">
+                                       <input name="ck_in" id="datepicker_1" placeholder="Check in date" value="${param.ck_in}">
+                                    </div>
+                                    <div class="form_colum">
+                                       <input name= "ck_out" id="datepicker_2" placeholder="Check out date" value="${param.ck_out}">
+                                    </div>
+                                    <div class="form_colum">
+                                       <select class="nc_select" name="maxGuest" id="maxGuest">
+                                       <c:if test="${param.maxGuest == '0'}">
+                                          <option value="0">전체</option>
+                                          <option value="1">1명</option>
+                                          <option value="2">2명</option>
+                                          <option value="3">3명</option>
+                                          <option value="4">4명</option>
+                                          <option value="5">5명</option>
+                                          <option value="6">6명</option>
+                                       </c:if>
+                                       <c:if test="${param.maxGuest == '1'}">
+                                          <option value="${param.maxGuest}" selected>1명</option>
+                                          <option value="2">2명</option>
+                                          <option value="3">3명</option>
+                                          <option value="4">4명</option>
+                                          <option value="5">5명</option>
+                                          <option value="6">6명</option>
+                                       </c:if>
+                                       <c:if test="${param.maxGuest == '2'}">
+                                          <option value="1">1명</option>
+                                          <option value="${param.maxGuest}" selected>2명</option>
+                                          <option value="3">3명</option>
+                                          <option value="4">4명</option>
+                                          <option value="5">5명</option>
+                                          <option value="6">6명</option>
+                                       </c:if>
+                                       <c:if test="${param.maxGuest == '3'}">
+                                          <option value="1">1명</option>
+                                          <option value="2">2명</option>
+                                          <option value="${param.maxGuest}" selected>3명</option>
+                                          <option value="4">4명</option>
+                                          <option value="5">5명</option>
+                                          <option value="6">6명</option>
+                                       </c:if>
+                                       <c:if test="${param.maxGuest == '4'}">
+                                          <option value="1">1명</option>
+                                          <option value="2">2명</option>
+                                          <option value="3">3명</option>
+                                          <option value="${param.maxGuest}" selected>4명</option>
+                                          <option value="5">5명</option>
+                                          <option value="6">6명</option>
+                                       </c:if>
+                                       <c:if test="${param.maxGuest == '5'}">
+                                          <option value="1">1명</option>
+                                          <option value="2">2명</option>
+                                          <option value="3">3명</option>
+                                          <option value="4">4명</option>
+                                          <option value="${param.maxGuest}" selected>5명</option>
+                                          <option value="6">6명</option>
+                                       </c:if>
+                                       <c:if test="${param.maxGuest == '6'}">
+                                          <option value="1">1명</option>
+                                          <option value="2">2명</option>
+                                          <option value="3">3명</option>
+                                          <option value="4">4명</option>
+                                          <option value="5">5명</option>
+                                          <option value="${param.maxGuest}" selected>6명</option>
+                                       </c:if>
+                                       </select>
+                                    </div>
+                                    <div class="form_btn">
+                                       <button class="btn_1">search</button>
+                                    </div>
+                                 </div>
+                              </form>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
 						</nav>
 					</div>
 				</div>
@@ -872,254 +876,234 @@ a {
 
 
 
-			<!-- ㅇㅖ약하기 -->
-			<div class="book">
-				<div
-					style="border: 1px solid black; border-radius: 5%; text-align: center;">
-					<table style="border: 1px; border-radius: 5%; padding: 5px;">
-						<tr style="height: 75px;">
-							<th style="width: 150px;"><span>체크인</span><br> <span>${param.ck_in}</span></th>
-							<th style="width: 150px;"><span>체크아웃</span><br> <span>${param.ck_out}</span></th>
-						</tr>
-						<tr style="height: 75px;">
-							<td colspan="2"><span>인원수</span><br> <span>${param.maxGuest}</span></td>
-						</tr>
-					</table>
-					<c:if test="${sessionScope.uid != null }">
-						<input type="submit" value="예약하기"
-							style="width: 85%; padding: 10px;"
-							onclick="location.href='booking.do?roomNumber=${dto.roomNumber}&night=${param.night}&hotelName=${dto.hotelName}&roomName=${dto.roomName}&maxGuest=${param.maxGuest}&ck_in=${param.ck_in}&ck_out=${param.ck_out}&fee=${param.fee}&pay=${param.pay}'">
-						<br>
-						<br>
-					</c:if>
-					<c:if test="${sessionScope.uid == null }">
-						<input type="submit" value="예약하기"
-							style="width: 85%; padding: 10px;"
-							onclick="location.href='login.do'">
-						<br>
-						<br>
-					</c:if>
-					<c:if test="${sessionScope.suid != null }">
-						<input type="submit" value="예약하기"
-							style="width: 85%; padding: 10px;"
-							onclick="location.href='mypage.do'">
-						<br>
-						<br>
-					</c:if>
-					<span>총 가격 : </span><span>${param.fee}원</span>
-				</div>
-			</div>
-			<div class="review">review</div>
 
 
-
-			<!-- 호스트 문의하기  -->
-			<c:if test="${sessionScope.uid ne null }">
-				<div class="inquire">
-					<input type="checkbox" id="popup"> <label for="popup"
-						style="cursor: pointer;">호스트에게 문의하기</label>
-					<div id="modalClose">
-						<div>
-							<label for="popup"></label>
-							<div>
-								<form name="inquiryForm" action="inquiry_host.do">
-									<div style="padding: 10px">
-										<input style="width: 95%;" type="text" name="title" id="title"
-											placeholder="제목">
-									</div>
-									<div style="padding: 10px">
-										<textarea style="width: 95%; height: 200px;" name="content"
-											id="content" placeholder="내용"></textarea>
-									</div>
-									<div>
-										<input type="button" id="inquiry_submit" value="등록하기">
-									</div>
-								</form>
-							</div>
-						</div>
-						<label for="popup"></label>
-					</div>
-				</div>
-			</c:if>
-
-			<!-- 호스트 문의하기 게시판 -->
-
-			<div class="board_list_wrap">
-				<div class="board_list">
-					<div class="board_list_head">
-						<div class="num">답변상태</div>
-						<div class="tit">제목</div>
-						<div class="writer">글쓴이</div>
-						<div class="date">작성일</div>
-					</div>
-					<div class="board_list_body">
-						<div class="item" id="result"></div>
-					</div>
-					<div class="board_list_body">
-						<div class="item">
-							<c:choose>
-								<c:when test="${list eq null}">
-									<div class="num"></div>
-									<div class="tit"></div>
-									<div class="writer"></div>
-									<div class="date"></div>
-								</c:when>
-								<c:when test="${!empty list}">
-									<c:forEach var="list" items="${list}">
-										<c:choose>
-											<c:when test="${list.rp_st eq 'N' }">
-												<div class="num">미답변</div>
-											</c:when>
-											<c:otherwise>
-												<c:if test="${list.depth == 0 }">
-													<div class="num">답변완료</div>
-												</c:if>
-											</c:otherwise>
-										</c:choose>
-										<c:if test="${list.depth == 0 }">
-											<div class="tit">
-												<a href="#">${list.title}</a>
-											</div>
-											<div class="writer">${list.uid}</div>
-											<div class="date">${list.swdate}</div>
-											<br>
-										</c:if>
-										<div class="iqContent"
-											style="padding-left: 10%; min-width: 1043px; text-align: left;">
-											<br> <span>${list.content}</span>
-											<c:if
-												test="${sessionScope.suid eq suid && list.rp_st eq 'N'}">
-												<input type="checkbox" id="popup2${list.random}">
-												<label for="popup2${list.random}"
-													style="cursor: pointer; position: relative; float: right;">답변쓰기</label>
-												<div id="modalClose2${list.random}">
-													<div>
-														<div>
-															<form name="inquiryForm" action="inquiry_host_reply.do">
-																<input type="hidden" id="grpno${list.random}"
-																	name="grpno" value="${list.grpno}"> <input
-																	type="hidden" id="depth" name="depth"
-																	value="${list.depth}">
-																<div style="padding: 10px">
-																	<textarea style="width: 95%; height: 200px;"
-																		name="content" id="replyContent${list.random}"
-																		placeholder="답변"></textarea>
-																</div>
-																<div>
-																	<input type="button" value="등록하기"
-																		onclick="replyInsert(${list.random})">
-																</div>
-															</form>
-														</div>
-													</div>
-													<label for="popup2${list.random}"></label>
-												</div>
-											</c:if>
-										</div>
-										<c:if test="${list.rp_st eq 'N'}">
-											<br>
-
-											<div id="replyContent2${list.random}" class="replyContent2"
-												style="width: 1220px;"></div>
-										</c:if>
-										<br>
-									</c:forEach>
-								</c:when>
-							</c:choose>
-						</div>
-					</div>
-				</div>
-				<div class="paging">
-					<a href="#" class="bt first">처음 페이지</a> <a href="#" class="bt prev">이전
-						페이지</a> <a href="#" class="num on">1</a> <a href="#" class="num">2</a>
-					<a href="#" class="num">3</a> <a href="#" class="bt next">다음
-						페이지</a> <a href="#" class="bt last">마지막 페이지</a>
-				</div>
-			</div>
 
 
 
 
 		</div>
-		<div class="book" >
-			<div style="border: 1px solid black; border-radius: 5%; text-align: center;">
+		<div class="book">
+			<div
+				style="border: 1px solid black; border-radius: 5%; text-align: center;">
 				<table style="border: 1px; border-radius: 5%; padding: 5px;">
 					<tr style="height: 75px;">
-						<th style="width: 150px;">
-							<span>체크인</span><br><span>${param.ck_in}</span>
-						</th>
-						<th style="width: 150px;">
-							<span>체크아웃</span><br><span>${param.ck_out}</span>
-						</th>
+						<th style="width: 150px;"><span>체크인</span><br>
+						<span>${param.ck_in}</span></th>
+						<th style="width: 150px;"><span>체크아웃</span><br>
+						<span>${param.ck_out}</span></th>
 					</tr>
 					<tr style="height: 75px;">
-						<td colspan="2">
-							<span>인원수</span><br><span>${param.maxGuest}</span>
-						</td>
+						<td colspan="2"><span>인원수</span><br>
+						<span>${param.maxGuest}</span></td>
 					</tr>
 				</table>
 				<c:if test="${sessionScope.uid != null }">
-	               <input type="submit" value="예약하기" style="width: 85%; padding: 10px;"
-	                        onclick="location.href='booking.do?roomNumber=${dto.roomNumber}&night=${param.night}&hotelName=${dto.hotelName}&roomName=${dto.roomName}&cityCode=${param.cityCode}&maxGuest=${param.maxGuest}&ck_in=${param.ck_in}&ck_out=${param.ck_out}&fee=${param.fee}&pay=${param.pay}'"><br><br>
-	            </c:if>
-	            <c:if test="${sessionScope.uid == null }">
-	               <input type="submit" value="예약하기" style="width: 85%; padding: 10px;"
-	                        onclick="location.href='login.do'"><br><br>
-	            </c:if>
-	            <c:if test="${sessionScope.suid != null }">
-	               <input type="submit" value="예약하기" style="width: 85%; padding: 10px;"
-	                        onclick="location.href='mypage.do'"><br><br>
-	            </c:if>
-	            <span>총 가격 : </span><span>${param.fee}원</span>
-         </div>
-      </div>
-      	<div class="review">
-      	<h3>&nbsp;&nbsp;&nbsp;리뷰</h3>
-      	<h4>총평점 : ${param.stars_avg }</h4><br>
-				<table class="table table-hover text-center">
-					<thead>
-						<tr>
-							<th class="text-center">아이디</th>
-							<th class="text-center">작성일자</th>
-							<th class="text-center" style="min-width: 600px; max-width: 600px;">내용</th>
-							<th class="text-center">청결도</th>
-							<th class="text-center">접근성</th>
-							<th class="text-center">가성비</th>
-						</tr>
-					</thead>
+					<input type="submit" value="예약하기"
+						style="width: 85%; padding: 10px;"
+						onclick="location.href='booking.do?roomNumber=${dto.roomNumber}&night=${param.night}&hotelName=${dto.hotelName}&roomName=${dto.roomName}&cityCode=${param.cityCode}&maxGuest=${param.maxGuest}&ck_in=${param.ck_in}&ck_out=${param.ck_out}&fee=${param.fee}&pay=${param.pay}'">
+					<br>
+					<br>
+				</c:if>
+				<c:if test="${sessionScope.uid == null }">
+					<input type="submit" value="예약하기"
+						style="width: 85%; padding: 10px;"
+						onclick="location.href='login.do'">
+					<br>
+					<br>
+				</c:if>
+				<c:if test="${sessionScope.suid != null }">
+					<input type="submit" value="예약하기"
+						style="width: 85%; padding: 10px;"
+						onclick="location.href='mypage.do'">
+					<br>
+					<br>
+				</c:if>
+				<span>총 가격 : </span><span>${param.fee}원</span>
+			</div>
+		</div>
+		<div class="review">
+			<h3>&nbsp;&nbsp;&nbsp;리뷰</h3>
+			<h4>총평점 : ${param.stars_avg }</h4>
+			<br>
+			<table class="table table-hover text-center">
+				<thead>
+					<tr>
+						<th class="text-center">아이디</th>
+						<th class="text-center">작성일자</th>
+						<th class="text-center"
+							style="min-width: 600px; max-width: 600px;">내용</th>
+						<th class="text-center">청결도</th>
+						<th class="text-center">접근성</th>
+						<th class="text-center">가성비</th>
+					</tr>
+				</thead>
 
-					<tbody>
-						<c:forEach var="rvdto" items="${list}" varStatus="status">
-							<tr>
-								<td>${rvdto.uid}</td>
-								<td>${rvdto.wdate}</td>
-								<td>${rvdto.content}</td>
-								<td>${rvdto.stars_clean} / 10</td>
-								<td>${rvdto.stars_location} / 10</td>
-								<td>${rvdto.stars_costeff} / 10</td>
-							</tr>
-						</c:forEach>
-						<c:if test="${size }">
-						<tr><td colspan="6"><div>마지막 리뷰 입니다.</div></td></tr>
-						</c:if>
-						<tr id='addbtn'><td colspan="6"><div class="btns"><a href="searchdetail.do?roomNumber=${dto.roomNumber }&num=${num}&ck_in=${param.ck_in}&ck_out=${param.ck_out}&maxGuest=${param.maxGuest}&night=${param.night }&fee=${param.fee}&cityCode=${parma.cityCode}&stars_avg=${param.stars_avg }" class="btn btn-primary">더보기</a></div></td></tr>
-						       <%--  <tr id='addbtn'><td colspan="5"><div class="btns"><a href="javascript:moreList('${dto.roomNumber }', '${num }');" class="btn btn-primary">더보기</a></div></td></tr> --%>
-					</tbody>
-				</table>
-				<br>
-<!-- 				<div id="more_btn_div" align="center">
+				<tbody>
+					<c:forEach var="rvdto" items="${list}" varStatus="status">
+						<tr>
+							<td>${rvdto.uid}</td>
+							<td>${rvdto.wdate}</td>
+							<td>${rvdto.content}</td>
+							<td>${rvdto.stars_clean}/ 10</td>
+							<td>${rvdto.stars_location}/ 10</td>
+							<td>${rvdto.stars_costeff}/ 10</td>
+						</tr>
+					</c:forEach>
+					<c:if test="${size }">
+						<tr>
+							<td colspan="6"><div>마지막 리뷰 입니다.</div></td>
+						</tr>
+					</c:if>
+					<tr id='addbtn'>
+						<td colspan="6"><div class="btns">
+								<a
+									href="searchdetail.do?roomNumber=${dto.roomNumber }&num=${num}&ck_in=${param.ck_in}&ck_out=${param.ck_out}&maxGuest=${param.maxGuest}&night=${param.night }&fee=${param.fee}&cityCode=${parma.cityCode}&stars_avg=${param.stars_avg }"
+									class="btn btn-primary">더보기</a>
+							</div></td>
+					</tr>
+					<%--  <tr id='addbtn'><td colspan="5"><div class="btns"><a href="javascript:moreList('${dto.roomNumber }', '${num }');" class="btn btn-primary">더보기</a></div></td></tr> --%>
+				</tbody>
+			</table>
+			<br>
+			<!-- 				<div id="more_btn_div" align="center">
 					<hr>
 						<a id="more_btn_a" href="javascript:moreContent('more_list', 5);">
 							더보기[more]
 						</a>
 					<hr>
 				</div> -->
+		</div>
+
+
+
+
+		<!-- 호스트 문의하기  -->
+		<c:if test="${sessionScope.uid ne null }">
+			<div class="inquire">
+				<input type="checkbox" id="popup"> <label for="popup"
+					style="cursor: pointer;">호스트에게 문의하기</label>
+				<div id="modalClose">
+					<div>
+						<label for="popup"></label>
+						<div>
+							<form name="inquiryForm" action="inquiry_host.do">
+								<div style="padding: 10px">
+									<input style="width: 95%;" type="text" name="title" id="title"
+										placeholder="제목">
+								</div>
+								<div style="padding: 10px">
+									<textarea style="width: 95%; height: 200px;" name="content"
+										id="content" placeholder="내용"></textarea>
+								</div>
+								<div>
+									<input type="button" id="inquiry_submit" value="등록하기">
+								</div>
+							</form>
+						</div>
+					</div>
+					<label for="popup"></label>
+				</div>
 			</div>
-   </div>
-   </main>
+		</c:if>
+
+		<!-- 호스트 문의하기 게시판 -->
+
+		<div class="board_list_wrap">
+			<div class="board_list">
+				<div class="board_list_head">
+					<div class="num">답변상태</div>
+					<div class="tit">제목</div>
+					<div class="writer">글쓴이</div>
+					<div class="date">작성일</div>
+				</div>
+				<div class="board_list_body">
+					<div class="item" id="result"></div>
+				</div>
+				<div class="board_list_body">
+					<div class="item">
+						<c:choose>
+							<c:when test="${list1 eq null}">
+								<div class="num"></div>
+								<div class="tit"></div>
+								<div class="writer"></div>
+								<div class="date"></div>
+							</c:when>
+							<c:when test="${!empty list1}">
+								<c:forEach var="list1" items="${list1}">
+									<c:choose>
+										<c:when test="${list1.rp_st eq 'N' }">
+											<div class="num">미답변</div>
+										</c:when>
+										<c:otherwise>
+											<c:if test="${list1.depth == 0 }">
+												<div class="num">답변완료</div>
+											</c:if>
+										</c:otherwise>
+									</c:choose>
+									<c:if test="${list1.depth == 0 }">
+										<div class="tit">
+											<a href="#">${list1.title}</a>
+										</div>
+										<div class="writer">${list1.uid}</div>
+										<div class="date">${list1.swdate}</div>
+										<br>
+									</c:if>
+									<div class="iqContent"
+										style="padding-left: 10%; min-width: 1043px; text-align: left;">
+										<br> <span>${list1.content}</span>
+										<c:if
+											test="${sessionScope.suid eq suid && list1.rp_st eq 'N'}">
+											<input type="checkbox" id="popup2${list1.random}">
+											<label for="popup2${list1.random}"
+												style="cursor: pointer; position: relative; float: right;">답변쓰기</label>
+											<div id="modalClose2${list1.random}">
+												<div>
+													<div>
+														<form name="inquiryForm" action="inquiry_host_reply.do">
+															<input type="hidden" id="grpno${list1.random}"
+																name="grpno" value="${list1.grpno}"> <input
+																type="hidden" id="depth" name="depth"
+																value="${list1.depth}">
+															<div style="padding: 10px">
+																<textarea style="width: 95%; height: 200px;"
+																	name="content" id="replyContent${list1.random}"
+																	placeholder="답변"></textarea>
+															</div>
+															<div>
+																<input type="button" value="등록하기"
+																	onclick="replyInsert(${list1.random})">
+															</div>
+														</form>
+													</div>
+												</div>
+												<label for="popup2${list1.random}"></label>
+											</div>
+										</c:if>
+									</div>
+									<c:if test="${list1.rp_st eq 'N'}">
+										<br>
+
+										<div id="replyContent2${list1.random}" class="replyContent2"
+											style="width: 1220px;"></div>
+									</c:if>
+									<br>
+								</c:forEach>
+							</c:when>
+						</c:choose>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+
+
+
+	</main>
 </body>
 <script src="./resources/js/jquery.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script>
 
 /* function moreContetn(id, cnt){
@@ -1267,4 +1251,3 @@ a {
 
 
 <%@ include file="../footer.jsp"%>
-
