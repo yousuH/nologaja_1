@@ -10,11 +10,16 @@ public class InquiryDTO {
 	private Date wdate;
 	private int grpno;
 	private int depth;
+	private int totalCount;
+	private int page;
+	private int countPage;
+	private int countList;
+	private int totalPage;
+	
 	
 	public InquiryDTO() {
 		// TODO Auto-generated constructor stub
 	}
-	
 	public int getInquiryno() {
 		return inquiryno;
 	}
@@ -57,12 +62,43 @@ public class InquiryDTO {
 	public void setDepth(int depth) {
 		this.depth = depth;
 	}
+	public int getTotalCount() {
+		return totalCount;
+	}
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
+	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
+	public int getCountPage() {
+		return countPage;
+	}
+	public void setCountPage(int countPage) {
+		this.countPage = countPage;
+	}
+	public int getCountList() {
+		return countList;
+	}
+	public void setCountList(int countList) {
+		this.countList = countList;
+	}
+	public int getTotalPage() {
+		return totalPage;
+	}
+	public void setTotalPage(int totalPage) {
+		this.totalPage = totalPage;
+	}
 	@Override
 	public String toString() {
 		return "InquiryDTO [inquiryno=" + inquiryno + ", id=" + id + ", title=" + title + ", content=" + content
-				+ ", wdate=" + wdate + ", grpno=" + grpno + ", depth=" + depth + "]";
+				+ ", wdate=" + wdate + ", grpno=" + grpno + ", depth=" + depth + ", totalCount=" + totalCount
+				+ ", page=" + page + ", countPage=" + countPage + ", countList=" + countList + ", totalPage="
+				+ totalPage + "]";
 	}
-	
 	
 	
 	

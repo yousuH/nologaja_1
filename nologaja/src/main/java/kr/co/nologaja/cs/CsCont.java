@@ -38,6 +38,35 @@ public class CsCont {
 	public String inquiry_main(Model model) {
 		List<InquiryDTO> list = idao.list();
 		model.addAttribute("list",list);
+		int page = 1;
+		int countList = 10;
+		int countPage = 5;
+		int totalCount = idao.totalCount();
+		int totalPage = totalCount / countList;
+		
+		if (totalCount % countList > 0) {
+		    totalPage++;
+		}
+
+		if (totalPage < page) {
+		    page = totalPage;
+		}
+
+		int startPage = ((page - 1) / 10) * 10 + 1;
+		
+		int endPage = startPage + countPage - 1;
+
+		if (endPage > totalPage) {
+		    endPage = totalPage;
+		}
+		
+		if (startPage > 1) {
+		    System.out.print("<a href=\"?page=1\">처음</a>");
+		}
+		
+		
+		
+		
 		return "cs/inquiry_list";
 	}//insert() end
 	
@@ -77,7 +106,7 @@ public class CsCont {
 		mav.addObject("title", dto.getTitle());
 		mav.addObject("inquiryno", dto.getInquiryno());
 		mav.addObject("wdate", dto.getWdate());
-		
+		mav.addObject("depth", dto.getDepth());
 		//content에 담겨져 있는 내용 변환
 		String content = dto.getContent();
 		content = content.replaceAll(" ", "&nbsp;");//공백
@@ -113,11 +142,9 @@ public class CsCont {
 		
 	//문의사항 수정하기
 	@RequestMapping(value = "/inquiry_updateproc.do")
-	public ModelAndView inquiry_updateproc(@ModelAttribute InquiryDTO dto) {
-		ModelAndView mav = new ModelAndView();
+	public String inquiry_updateproc(@ModelAttribute InquiryDTO dto) {
 		idao.update(dto);
-		mav.setViewName("cs/inquiry_list");
-		return mav;
+		return "redirect:/inquiry_list.do";
 	}//insert() end
 	
 	//문의사항 삭제하기

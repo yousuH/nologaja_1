@@ -18,33 +18,58 @@
 	</div>
 	
 	<div class="mp_main">
-		<h3>문의사항리스트</h3>
+		<h3 style="padding-left: 37%">문의사항 목록</h3>
 		<div class="container">
 			<div class="col-lg-2"></div>
-			<div class="col-lg-8">
+			<div class="col-lg-10">
 				<div style="background: #f8f8f8 !important" class="jumbotron"
 					style="padding-top:20px;'">
-					<table class="table table-bordered">
-						<tr class="head">
-							<td style="width: 12%">번호</td>
-							<td style="width: 43%">제목</a></td>
-							<td style="width: 25%">작성자</td>
-							<td style="width: 20%">작성일</td>
-						</tr>
-						<c:forEach var="dto" items="${list}">
-							<tr>
-								<td>${dto.inquiryno}</td>
-								<td><a href="inquiry_detail.do?inquiryno=${dto.inquiryno}">${dto.title}</a></td>
-								<td>${dto.id}</td>
-								<td><fmt:formatDate value="${dto.wdate}"
-										pattern="yyyy-MM-dd HH:mm" /></td>
+					<table class="table table-bordered" style="text-align: center;">
+							<tr class="head table-secondary">
+								<th scope="col" style="width: 10%" scope="col">번호</th>
+								<th scope="col" style="width: 55%" scope="col">제목</a></th>
+								<th scope="col" style="width: 15%" scope="col">작성자</th>
+								<th scope="col" style="width: 20%" scope="col">작성일</th>
 							</tr>
-						</c:forEach>
+							<c:forEach var="dto" items="${list}">
+									<tr>
+										<td>${dto.inquiryno}</td>
+										<td style="text-align: left;"><a href="inquiry_detail.do?inquiryno=${dto.inquiryno}">${dto.title}</a></td>
+										<td>${dto.id}</td>
+										<td><fmt:formatDate value="${dto.wdate}"
+												pattern="yyyy-MM-dd HH:mm" /></td>
+									</tr>
+							</c:forEach>
+							<tr>
+								<%-- <c:if test="${startPage > 1}">
+									<a href=?page=1\">처음</a>
+								</c:if>
+								<c:if test="${page > 1}">
+									<a href=\"?page=" + (page - 1)  + "\">이전</a>
+								</c:if>
+								<c:if test=""></c:if>
+								<c:if test=""></c:if>
+								<td colspan="4">
+									<c:if test="${startPage > 1}">
+										<a href=?inquiry_list.do?page=1">처음</a>
+									</c:if>
+									<c:if test="${page > 1}">
+										<a href="inquiry_list.do?page="+${page-1}>이전</a>
+									</c:if>	
+									<c:forEach>
+									
+									</c:forEach>
+								</td> --%>
+							</tr>
 					</table>
-				<a href="inquiry_form.do">작성하기</a>
+					
+						
+					<c:if test="${sessionScope.uid ne 'admin'}">
+						<input type="button" class="btn btn-secondary" onclick="location='inquiry_form.do'" value="작성하기">
+					</c:if>
 				</div>
 			</div>
-			<div class="col-lg-2"></div>
+			<div class="col-lg-1"></div>
 		</div>
 	</div>
 <%@ include file="../footer.jsp"%>

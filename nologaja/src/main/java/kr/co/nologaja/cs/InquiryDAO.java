@@ -49,4 +49,9 @@ public class InquiryDAO implements IInquiryDAO{
 		
 	}
 	
+	@Override
+	public int totalCount() {
+		return sqlSession.selectOne("inquiry.totalCount");
+	}
+	
 }

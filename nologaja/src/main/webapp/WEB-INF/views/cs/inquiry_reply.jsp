@@ -11,9 +11,9 @@
 	</div>
    	
    	<div class="mp_main">
-	   	<h3>문의사항 작성</h3>
+	   	<h3 style="padding-left: 37%">문의사항 답변 입력</h3>
 		<div class="container">
-	  		<form class="form-horizontal" name="inquiryForm" action="inquiry_replyproc.do" method="post">
+	  		<form class="form-horizontal" name="inquiryForm" action="inquiry_replyproc.do" method="post" onsubmit="return inuqiryCheck(this)">
 	  			<input type="hidden" name="grpno" value="${grpno}">
 	  			<input type="hidden" name="depth" value="${depth}">
 	    		<div class="form-group">
@@ -36,12 +36,33 @@
 	    		</div>
 	    		<div class="form-group">        
 	    			<div class="col-sm-offset-2 col-sm-10">
-	        			<button type="submit" class="btn btn-default">입력</button>
-	        			<button type="reset" class="btn btn-default">초기화</button>
-	        			<button class="btn btn-default" type="button" onclick="location.href='cs.do'">목록</button>
+	        			<button type="submit" class="btn btn-secondary">입력</button>
+	        			<button type="reset" class="btn btn-secondary">초기화</button>
+	        			<button class="btn btn-secondary" type="button" onclick="location.href='cs.do'">목록</button>
 	      			</div>
 	    		</div>
 	  		</form>
 		</div>
-	<div class="mp_main">
+	</div>
+	
+	<script>
+		function inuqiryCheck(check){
+				var title = check.title.value;
+				title = title.trim();
+				if(title.length<5){
+					alert("제목 5글자 이상 입력");
+					check.title.focus();
+					return false;
+				}
+				
+				var content = check.content.value;
+				content = content.trim();
+				if(content.length<10){
+					alert("내용 10글자 이상 입력");
+					check.content.focus();
+					return false;
+				}
+				return true;
+		}
+	</script>
 <%@ include file="../footer.jsp" %>
