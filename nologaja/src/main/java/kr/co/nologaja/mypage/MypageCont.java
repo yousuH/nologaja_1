@@ -24,6 +24,7 @@ import kr.co.nologaja.hotel.RoomDAO;
 import kr.co.nologaja.hotel.RoomDTO;
 import kr.co.nologaja.inquiryHost.InquiryHostDAO;
 import kr.co.nologaja.inquiryHost.InquiryHostDTO;
+import kr.co.nologaja.search.RoomHotelDTO;
 import net.utility.HotelListDTO;
 import net.utility.RoomImageDTO;
 import net.utility.imageDAO;
@@ -171,17 +172,18 @@ public class MypageCont {
 		mav.addObject("list", list);
 		return mav;
 	}
-
-	@RequestMapping(value = "/inquirylist.do")
-	public ModelAndView inquirylist(HttpSession session) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("mypage/inquirylist");
-
-		String suid = (String) session.getAttribute("suid");
-
-		List<InquiryHostDTO> list = ihdao.inquiryhost_list(suid);
-
-		return mav;
-	}
+	/*
+	 * @RequestMapping(value = "/inquirylist.do") public ModelAndView
+	 * inquirylist(HttpSession session) { ModelAndView mav = new ModelAndView();
+	 * mav.setViewName("mypage/inquirylist");
+	 * 
+	 * String suid = (String) session.getAttribute("suid");
+	 * 
+	 * //suid 가 가지고 있는 숙소들 모두 조회
+	 * 
+	 * //숙소명 포함한 모든 방 조회 dto
+	 * 
+	 * return mav; }
+	 */
 
 }// class
