@@ -1,8 +1,19 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%
+	Date today = new Date ( );
+	Date tomorrow = new Date ( today.getTime ( ) + (long) ( 1000 * 60 * 60 * 24 ) );
+	DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+	String ckin = df.format(today);
+	String ckout = df.format(tomorrow);
+
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -103,24 +114,15 @@
 											<div class="form-row">
 												<div class="input-group input-group-sm mb-3">
 													<input style="border-radius: 0; height: 45px; border-color: #2493e0; background-color: transparent;"
-														   type="text" class="form-control" placeholder="   상세지역">
+														   type="text" class="form-control" placeholder="   상세지역" name="namesearch" id="namesearch">
 												</div>
-
-												<!--
-                                                <div class="input-group input-group-lg">
-                                                    <div class="input-group-prepend">
-                                                      <span class="input-group-text" id="inputGroup-sizing-lg">Large</span>
-                                                    </div>
-                                                    <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
-                                                </div>
-                                                -->
-
 												<div class="form_colum">
 													<select class="nc_select" name="cityCode" id="cityCode">
 														<option value="" selected>도시를 선택하세요</option>
 														<option value="SE">서울</option>
 														<option value="BU">부산</option>
 														<option value="IN">인천</option>
+														<option value="JJ">제주</option>
 														<option value="SJ">세종</option>
 														<option value="DG">대구</option>
 														<option value="DJ">대전</option>
@@ -133,24 +135,23 @@
 														<option value="GB">경상북도</option>
 														<option value="GN">경상남도</option>
 														<option value="JB">전라북도</option>
-														<option value="JB">전라남도</option>
+														<option value="JN">전라남도</option>
 													</select>
 												</div>
 												<div class="form_colum">
-													<input name="ck_in" id="datepicker_1" placeholder="Check in date">
+													<input name="ck_in" id="datepicker_1" placeholder="Check in date" value="<%=ckin %>">
 												</div>
 												<div class="form_colum">
-													<input name= "ck_out" id="datepicker_2" placeholder="Check out date">
+													<input name= "ck_out" id="datepicker_2" placeholder="Check out date" value="<%=ckout %>">
 												</div>
 												<div class="form_colum">
 													<select class="nc_select" name="maxGuest" id="maxGuest">
-														<option value="0" selected>Person</option>
-														<option value="1">1</option>
-														<option value="2">2</option>
-														<option value="3">3</option>
-														<option value="4">4</option>
-														<option value="5">5</option>
-														<option value="6">6</option>
+														<option value="1" selected>1명</option>
+														<option value="2">2명</option>
+														<option value="3">3명</option>
+														<option value="4">4명</option>
+														<option value="5">5명</option>
+														<option value="6">6명</option>
 													</select>
 												</div>
 												<div class="form_btn">
@@ -173,7 +174,7 @@
 			<div class="row justify-content-center">
 				<div class="col-xl-6">
 					<div class="section_tittle text-center">
-						<h2>Top Destination</h2>
+						<h2>추천 숙소</h2>
 					</div>
 				</div>
 			</div>
@@ -418,9 +419,10 @@
 					<div class="single-footer-widget footer_icon">
 						<h4>Contact Us</h4>
 						<p>
-							강문수<br>
+							강문수 고현정
+							유수현 조유민
 						</p>
-						<span>contact@martine.com</span>
+						<span>nologaja@gmail.com</span>
 					</div>
 				</div>
 			</div>

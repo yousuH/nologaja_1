@@ -54,4 +54,11 @@ public class InquiryDAO implements IInquiryDAO{
 		return sqlSession.selectOne("inquiry.totalCount");
 	}
 	
+	@Override
+	public void host_insert(InquiryDTO dto) {
+		sqlSession.insert("inquiry.host_insert", dto);
+		
+
+	}
+	
 }

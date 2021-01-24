@@ -11,4 +11,5 @@ public interface IInquiryDAO {
 	public InquiryDTO reply(int inquiryno);
 	public void replyproc(InquiryDTO dto);
 	public int totalCount();
+	public void host_insert(InquiryDTO dto);
 }

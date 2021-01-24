@@ -28,11 +28,12 @@
 			</div>
 			<div class="col-sm-6 col-md-4">
 				<div class="single-footer-widget footer_icon">
-					<h4>Contact Us</h4>
-					<p>
-						강문수<br>
-					</p>
-					<span>contact@martine.com</span>
+											<h4>Contact Us</h4>
+						<p>
+							강문수 고현정
+							유수현 조유민
+						</p>
+						<span>nologaja@gmail.com</span>
 				</div>
 			</div>
 		</div>
@@ -74,6 +75,7 @@
 <script src="./resources/js/gijgo.min.js"></script>
 <!-- contact js -->
 <script src="./resources/js/myscript.js"></script>
+<script src="./resources/js/booking.js"></script>
 
 <script src="./resources/js/jquery.ajaxchimp.min.js"></script>
 <script src="./resources/js/jquery.form.js"></script>

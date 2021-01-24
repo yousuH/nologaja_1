@@ -25,8 +25,20 @@ public class CartFolderDAO implements ICartFolderDAO{
 	@Override
 	public void addcartfolder(CartFolderDTO dto) {
 		sqlSession.insert("cart.addcartfolder", dto);
+	}
+
+
+	public int getctfoldernum(CartFolderDTO cartfolderdto) {
+		int ctFolder_num = sqlSession.selectOne("cart.getctfoldernum", cartfolderdto);
+		return ctFolder_num;
+	}
+
+
+	public void cartfolderdel(int ctFolder_num) {
+		sqlSession.delete("cart.cartfolderdel", ctFolder_num);
 		
 	}
+	
 	
 	
 	

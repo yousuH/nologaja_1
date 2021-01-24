@@ -1,5 +1,6 @@
 package kr.co.nologaja.booking;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -14,8 +15,8 @@ public class BkDAO implements IBkDAO {
 	SqlSession sqlSession;
 	
 	@Override
-	public List<BkDTO> list() {
-		return sqlSession.selectList("booking.bklist");
+	public List<BkDTO> list(String uid) {
+		return sqlSession.selectList("booking.bklist", uid);
 	}
 
 	@Override
@@ -24,8 +25,11 @@ public class BkDAO implements IBkDAO {
 	}
 
 	@Override
-	public BkDTO detail(String bk_num) {
-		return sqlSession.selectOne("booking.bkdetail", bk_num);
+	public BkDTO detail(String bk_num, String uid) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("bk_num", bk_num);
+		map.put("uid", uid);
+		return sqlSession.selectOne("booking.bkdetail", map);
 	}
 	
 	@Override
@@ -34,13 +38,21 @@ public class BkDAO implements IBkDAO {
 	}
 
 	@Override
-	public void delete(String bk_num) {
-		sqlSession.delete("member.bkdelete", bk_num);
-	}
-
-	@Override
 	public void update(BkDTO dto) {
-		sqlSession.update("member.bkupdate", dto);
+		sqlSession.update("booking.bkupdate", dto);
+	}
+	
+	@Override
+	public List<BkDTO> s_list(String suid) {
+		return sqlSession.selectList("booking.s_bklist", suid);
+	}
+	
+	@Override
+	public BkDTO s_detail(String bk_num, String suid) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("bk_num", bk_num);
+		map.put("suid", suid);
+		return sqlSession.selectOne("booking.s_bkdetail", map);
 	}
 	
 }

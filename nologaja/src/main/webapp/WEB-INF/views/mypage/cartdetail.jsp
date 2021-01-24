@@ -19,33 +19,30 @@
 
 <div class="mp_main">
 	<div>
-
-		<table border="1px">
+		
+		<table class="table table-hover text-center">
 			<tr>
-				<td>ct_num</td>
-				<td>roomNumber</td>
-				<td>guests</td>
-				<td>ck_in</td>
-				<td>ck_out</td>
-				<td>night</td>
-				<td>totalFee</td>
-				<td>ctFolder_name</td>
-				<td>ctFolder_num</td>
+				<td>숙소명</td>
+				<td>인원</td>
+				<td>체크인</td>
+				<td>체크아웃</td>
+				<td>박수</td>
+				<td>총금액</td>
+				<td>삭제</td>
 			</tr>
-
+			
 			<c:forEach var="cartitem" items="${cartitems}">
 				<tr>
-					<td>${cartitem.ct_num}</td>
-					<td>${cartitem.roomNumber}</td>
+					<td><a href="searchdetail.do?roomNumber=${cartitem.roomNumber}&ck_in=${cartitem.ck_in}&ck_out=${cartitem.ck_out}&maxGuest=${cartitem.guests}&night=${cartitem.night}&fee=${cartitem.totalFee}">${cartitem.roomName}</td>
 					<td>${cartitem.guests}</td>
 					<td>${cartitem.ck_in}</td>
 					<td>${cartitem.ck_out}</td>
 					<td>${cartitem.night}</td>
 					<td>${cartitem.totalFee}</td>
-					<td>${cartitem.ctFolder_name}</td>
-					<td>${cartitem.ctFolder_num}</td>
+					<td><input type="button" value="삭제" onclick="location.href='cartdelete.do?ct_num=${cartitem.ct_num}&ctFolder_num=${param.ctFolder_num}'"></td>
 				</tr>
 			</c:forEach>
+			
 		</table>
 	</div>
 

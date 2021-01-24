@@ -7,6 +7,7 @@
 		<![CDATA[
 		SELECT bk_num, ck_in, ck_out, night, hotelName, roomNumber, roomName, maxGuest, fee, uid, request, pay, pay_st
 		FROM bookTable
+		WHERE uid = #{uid}
 		ORDER BY bk_num DESC
 		]]>
 	</select>
@@ -21,28 +22,44 @@
 	</insert>
 
 
-	<select id="bkdetail" resultType="kr.co.nologaja.booking.BkDTO">
+	<select id="bkdetail" resultType="kr.co.nologaja.booking.BkDTO" parameterType="HashMap">
 		<![CDATA[
 		SELECT bk_num, ck_in, ck_out, night, hotelName, roomNumber, roomName, maxGuest, fee, uid, request, pay, pay_st
 		FROM bookTable
-		WHERE bk_num = #{bk_num}
+		WHERE bk_num = #{bk_num} AND uid = #{uid}
 		]]>
 	</select>
 
 
-	<select id="bkdelete" resultType="kr.co.nologaja.booking.BkDTO">
-		<![CDATA[
-		DELETE FROM bookTable
-        WHERE bk_num = #{bk_num}
-		]]>
-	</select>
-
-
-	<select id="bkupdate" resultType="kr.co.nologaja.booking.BkDTO">
+	<update id="bkupdate" 
+	        parameterType="kr.co.nologaja.booking.BkDTO">
 		<![CDATA[
 		UPDATE bookTable
 	    SET pay_st='C'
-	    WHERE bk_num = #{bk_num} AND uid = #{uid}
+	    WHERE bk_num = #{bk_num}
+		]]>
+	</update>
+	
+	
+	<select id="s_bklist" resultType="kr.co.nologaja.booking.BkDTO">
+		<![CDATA[
+		SELECT ht.hotelNumber, ht.hotelName, ht.suid, rt.roomNumber, rt.roomName, bt.bk_num, bt.ck_in, bt.ck_out, bt.night, bt.roomName, bt.maxGuest, bt.fee, bt.uid, bt.request, bt.pay, bt.pay_st
+		FROM roomTable AS rt
+			LEFT OUTER JOIN hotelTable AS ht ON rt.hotelNumber = ht.hotelNumber
+			LEFT OUTER JOIN bookTable AS bt ON rt.roomNumber = bt.roomNumber
+		WHERE suid = #{suid}
+		ORDER BY bt.bk_num DESC
+		]]>
+	</select>
+	
+	
+	<select id="s_bkdetail" resultType="kr.co.nologaja.booking.BkDTO" parameterType="HashMap">
+		<![CDATA[
+		SELECT ht.hotelNumber, ht.hotelName, ht.suid, rt.roomNumber, rt.roomName, bt.bk_num, bt.ck_in, bt.ck_out, bt.night, bt.roomName, bt.maxGuest, bt.fee, bt.uid, bt.request, bt.pay, bt.pay_st
+		FROM roomTable AS rt
+			LEFT OUTER JOIN hotelTable AS ht ON rt.hotelNumber = ht.hotelNumber
+			LEFT OUTER JOIN bookTable AS bt ON rt.roomNumber = bt.roomNumber
+		WHERE bt.bk_num = #{bk_num} AND ht.suid = #{suid};
 		]]>
 	</select>
 

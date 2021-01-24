@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="booking">
+
+
+	<select id="bklist" resultType="kr.co.nologaja.booking.BkDTO">
+		<![CDATA[
+		SELECT bk_num, ck_in, ck_out, night, hotelName, roomNumber, roomName, maxGuest, fee, uid, request, pay, pay_st
+		FROM bookTable
+		ORDER BY bk_num DESC
+		]]>
+	</select>
+
+
+	<insert id="bkinsert"
+		parameterType="kr.co.nologaja.booking.BkDTO">
+		<![CDATA[
+		INSERT INTO bookTable (bk_num, ck_in, ck_out, night, hotelName, roomNumber, roomName, maxGuest, fee, uid, request, pay)
+		VALUES ((SELECT DATE_FORMAT(NOW(),'%Y%m%d%H%i%s') AS DATE FROM DUAL), #{ck_in}, #{ck_out}, #{night}, #{hotelName}, #{roomNumber}, #{roomName}, #{maxGuest}, #{fee}, #{uid}, #{request}, #{pay})
+		]]>
+	</insert>
+
+
+	<select id="bkdetail" resultType="kr.co.nologaja.booking.BkDTO" parameterType="HashMap">
+		<![CDATA[
+		SELECT bk_num, ck_in, ck_out, night, hotelName, roomNumber, roomName, maxGuest, fee, uid, request, pay, pay_st
+		FROM bookTable
+		WHERE bk_num = #{bk_num} AND uid = #{uid}
+		]]>
+	</select>
+
+
+	<update id="bkupdate" 
+	        parameterType="kr.co.nologaja.booking.BkDTO">
+		<![CDATA[
+		UPDATE bookTable
+	    SET pay_st='C'
+	    WHERE bk_num = #{bk_num}
+		]]>
+	</update>
+
+</mapper>

@@ -76,4 +76,23 @@
             WHERE roomNumber=#{roomNumber}
         ]]>
 	</select>
+	
+	<!-- 리뷰 리스트 -->
+	<select id="rvlist" resultType="kr.co.nologaja.hotel.ReviewDTO" parameterType="HashMap">
+	    <![CDATA[
+	         SELECT content, uid, roomNumber, wdate, stars_clean, stars_location, stars_costeff, stars_avg
+	         FROM reviewTable
+	         WHERE roomNumber=#{roomNumber}
+	         limit #{num};
+	    ]]>
+	</select>
+	
+	<!-- 리뷰 인서트 -->
+	<insert id="rvins" parameterType="kr.co.nologaja.hotel.ReviewDTO">
+	    <![CDATA[
+		   INSERT INTO reviewTable (content, uid, roomNumber, stars_clean, stars_location, stars_costeff, stars_avg)
+		   VALUES (#{content}, #{uid}, #{roomNumber}, #{stars_clean}, #{stars_location}, #{stars_costeff}, round((stars_clean+stars_location+stars_costeff)/3.0 ,1))
+	    ]]>
+	</insert>
+
 </mapper>

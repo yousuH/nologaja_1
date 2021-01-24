@@ -10,7 +10,7 @@ public class BkDTO {
 	private String roomNumber;
 	private String roomName;
 	private int maxGuest;
-	private int fee;
+	private String fee;
 	private String uid;
 	private String request;
 	private String pay;
@@ -78,11 +78,11 @@ public class BkDTO {
 		this.maxGuest = maxGuest;
 	}
 
-	public int getFee() {
+	public String getFee() {
 		return fee;
 	}
 
-	public void setFee(int fee) {
+	public void setFee(String fee) {
 		this.fee = fee;
 	}
 

@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -29,6 +31,9 @@ public class HotelCont {
 	@Inject
 	imageDAO imdao;
 
+	@Inject
+	ReviewDAO rvdao;
+	
 	public HotelCont() {
 		System.out.println("==HotelCont()==");
 	}
@@ -68,7 +73,7 @@ public class HotelCont {
 		
 		//경로는 각자 변경해줘야됨
 		//ctrl+h 개인작업 ex)조씨
-        String path = "/Users/moon/git/nologaja_1/nologaja/src/main/webapp/resources/img/hotel/";
+        String path = "D:/java0812/git/nologaja_1/nologaja_1/nologaja/src/main/webapp/resources/img/hotel/";
         String originFileName = mf.getOriginalFilename(); // 원본 파일 명
         String safeFile = path + System.currentTimeMillis() + originFileName;
         	//저장 될 파일 명
@@ -123,8 +128,8 @@ public class HotelCont {
 		
 		List<MultipartFile> fileList = mtfRequest.getFiles("roomIMG");
 
-		//ctrl+h 개인작업 ex)조씨
-        String path = "/Users/moon/git/nologaja_1/nologaja/src/main/webapp/resources/img/room/";
+		//ctrl+h 개인작업 ex)조씨   D:/java0812/git/nologaja_1/nologaja_1/nologaja/src/main/webapp/resources/img/room/
+        String path = "D:/java0812/git/nologaja_1/nologaja_1/nologaja/src/main/webapp/resources/img/room/";
 
         for (MultipartFile mf : fileList) {
             String originFileName = mf.getOriginalFilename(); // 원본 파일 명
@@ -155,6 +160,30 @@ public class HotelCont {
 		imdao.hotel_insert(hotelimagedto);
 		
 		return mav;
+	}
+
+	//리뷰 리스트
+	@RequestMapping(value = "/rvlist.do")
+	public ModelAndView rvlist(Model model) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("search/searchdetail");
+		return mav;
+	}
+
+	//리뷰 등록페이지로 이동
+	@RequestMapping(value = "/rvinsert.do")
+	public ModelAndView rvinsert(String roomNumber) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mypage/rvinsert");
+		mav.addObject("roomNumber", roomNumber);
+		return mav;
+	}
+	
+	//리뷰 작성
+	@RequestMapping(value = "/rvinsertproc.do")
+	public String rvinsertproc(ReviewDTO rvdto) {
+		rvdao.rvins(rvdto);
+		return "redirect:/mypage.do";
 	}
 
 }// class end

@@ -68,4 +68,13 @@
 		VALUES (#{title}, #{content}, #{id}, #{grpno}, #{depth} )
 		]]>
 	</insert>
+	
+	<!-- 문의사항 작성 -->
+	<insert id="host_insert" parameterType="kr.co.nologaja.cs.InquiryDTO">
+		<![CDATA[
+		INSERT INTO inquiry_host (title, content)
+		VALUES (#{title}, #{content})
+		]]>
+	</insert>
+	
 </mapper>

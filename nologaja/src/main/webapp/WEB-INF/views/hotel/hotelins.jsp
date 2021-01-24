@@ -25,7 +25,7 @@
 		<input type="hidden" name="wido" id="wido" value="">
 		<input type="hidden" name="gyengdo" id="gyengdo" value="">
 		<input type="hidden" name="CityCode" id="CityCode" value="">
-		<input type="hidden" name="hotelNumber" id="hotelNumber" value="1234">
+		<input type="hidden" name="hotelNumber" id="hotelNumber" value="">
 		<h2>숙소등록</h2>
 		<br>
 		<table>
