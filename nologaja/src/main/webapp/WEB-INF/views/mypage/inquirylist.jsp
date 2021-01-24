@@ -24,6 +24,7 @@
 
 			
  	<select name="jump" onchange="location.href=this.value" class="form-select" aria-label="Default select example">
+ 	<option selected="selected">선택하세요</option>
  	<c:forEach var="list" items="${list}">
  		<option value="inquirylist.do?hotelNumber=${list.hotelNumber}">${list.hotelName}</option>
  	</c:forEach>
