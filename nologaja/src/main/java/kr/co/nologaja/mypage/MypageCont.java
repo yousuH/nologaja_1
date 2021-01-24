@@ -2,7 +2,10 @@ package kr.co.nologaja.mypage;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -68,9 +71,19 @@ public class MypageCont {
 
 	// 마이페이지(배너 상의 마이페이지 버튼)
 	@RequestMapping(value = "/mypage.do")
-	public String list(Model model) {
-		List<BkDTO> list = dao.list();
-		model.addAttribute("list", list);
+	public String list(HttpServletRequest req, Model model) {
+		HttpSession session = req.getSession();
+		String suid = (String)session.getAttribute("suid");
+		String uid  = (String)session.getAttribute("uid");
+		
+		if(uid != null) {
+			List<BkDTO> list = dao.list(uid);
+			model.addAttribute("list", list);
+		} else if(suid != null) {
+			List<BkDTO> list = dao.s_list(suid);
+			model.addAttribute("list", list);
+		}
+		
 		return "mypage/mypage(bookinglist)";
 	}
 
@@ -181,10 +194,51 @@ public class MypageCont {
 	 	String suid = (String) session.getAttribute("suid");
 	 	List<HotelDTO> list = ihdao.inquiryHost_hotelNumber(suid);
 	 	List<InquiryHostDTO> list2 = ihdao.inquiryHost_getInquiry(hotelNumber);
+    
+    String uid = (String) session.getAttribute("uid");
+    List<InquiryHostDTO> IHlist = ihdao.inquiryhost_list2(uid);
+    for (int i = 0; i < IHlist.size(); i++) {
+
+			String roomNumber = IHlist.get(i).getRoomNumber();
+			String roomName = ihdao.getRoomName(roomNumber);
+			System.out.println(roomName);
+			IHlist.get(i).setRoomName(roomName);
+
+			Date wdate = IHlist.get(i).getWdate();
+			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+			String Swdate = transFormat.format(wdate);
+			IHlist.get(i).setSwdate(Swdate);
+
+		}
+     
 	 	mav.addObject("list",list);
 	 	mav.addObject("list2", list2);
+    mav.addObject("IHlist", IHlist);
+
 	 	return mav; 
 	 }
-	
+  
+	@RequestMapping(value = "/ihdetail.do")
+	public ModelAndView ihdetail(int grpno) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mypage/ihdetail");
 
+		List<InquiryHostDTO> IHlist = ihdao.getIHset(grpno);
+
+		String roomNumber = IHlist.get(0).getRoomNumber();
+		String roomName = ihdao.getRoomName(roomNumber);
+		System.out.println(roomName);
+		IHlist.get(0).setRoomName(roomName);
+
+		for (int i = 0; i < IHlist.size(); i++) {
+			Date wdate = IHlist.get(i).getWdate();
+			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+			String Swdate = transFormat.format(wdate);
+			IHlist.get(i).setSwdate(Swdate);
+		}
+
+		mav.addObject("IHlist", IHlist);
+		System.out.println(IHlist);
+		return mav;
+	}
 }// class

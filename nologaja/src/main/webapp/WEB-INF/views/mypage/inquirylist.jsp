@@ -22,7 +22,7 @@
 	<h2>문의내역</h2>
 	<br>
 
-			
+	<c:if test="${sessionScope.suid !=null }">
  	<select name="jump" onchange="location.href=this.value" class="form-select" aria-label="Default select example">
  	<option selected="selected">선택하세요</option>
  	<c:forEach var="list" items="${list}">
@@ -59,10 +59,44 @@
 						</tr>
 						</c:forEach>
 				</tbody>
+			</table>		
+	</c:if>
+	<c:if test="${sessionScope.uid !=null }">
+		<form name="inquiryhost_list" id="inquiryhost_list" method="post" action="**">
+
+			<table class="table table-hover text-center">
+				<thead>
+					<tr>
+						<th class="text-center">숙소명</th>
+						<th class="text-center">답변상태</th>
+						<th class="text-center">제목</th>
+						<th class="text-center">작성일</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<c:forEach var="IHlist" items="${IHlist}">
+						<tr>
+							<td>${IHlist.roomName}</td>
+							<c:choose>
+								<c:when test="${IHlist.rp_st eq 'Y'}">
+									<td>답변완료</td>
+								</c:when>
+								<c:when test="${IHlist.rp_st eq 'N'}">
+									<td>미답변</td>
+								</c:when>
+							</c:choose>
+							<td><a href="ihdetail.do?grpno=${IHlist.grpno}">${IHlist.title}</td>
+							<td>${IHlist.swdate}</td>
+							
+						</tr>
+					</c:forEach>
+				</tbody>
 			</table>
-	
-	
-	
+
+		</form>
+	</c:if>
+
 </div>
 
 

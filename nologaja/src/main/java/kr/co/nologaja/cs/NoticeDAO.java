@@ -19,8 +19,8 @@ public class NoticeDAO implements INoticeDAO{
 	}
 	
 	@Override
-	public List<NoticeDTO> list() {
-		return sqlSession.selectList("notice.list");
+	public List<NoticeDTO> list(int currentPage) {
+		return sqlSession.selectList("notice.list", currentPage);
 	}
 	
 	@Override
@@ -40,4 +40,8 @@ public class NoticeDAO implements INoticeDAO{
 		
 	}
 	
+	@Override
+	public int totalCount() {
+		return sqlSession.selectOne("notice.totalCount");
+	}
 }

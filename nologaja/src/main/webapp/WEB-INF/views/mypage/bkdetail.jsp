@@ -34,6 +34,10 @@
 						<td>${dto.bk_num}</td>
 					</tr>
 					<tr>
+						<th>아이디</th>
+						<td>${dto.uid}</td>
+					</tr>
+					<tr>
 						<th class="text-center">숙소명/방이름</th>
 						<td>${dto.hotelName}/${dto.roomName}</td>
 					</tr>
@@ -86,10 +90,19 @@
 							</c:when>
 						</c:choose>
 					</tr>
+					<tr>
+						<th class="text-center">요청사항</th>
+						<td><strong>${BkDTO.request}</strong></td>
+					</tr>
 				
 				
 			</table>
-			<input type="button" value="예약취소" onclick="btn_no()">
+			<c:if test="${sessionScope.uid != null}">
+				<input type="button" value="예약취소" onclick="btn_no()">
+			</c:if>
+			<c:if test="${sessionScope.suid != null}">
+				<input type="button" value="예약안받기" onclick="btn_no()">
+			</c:if>
 			
 		</form>
 	
