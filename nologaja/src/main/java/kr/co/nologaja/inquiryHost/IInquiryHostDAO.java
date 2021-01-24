@@ -3,6 +3,8 @@ package kr.co.nologaja.inquiryHost;
 import java.util.Date;
 import java.util.List;
 
+import kr.co.nologaja.hotel.HotelDTO;
+
 public interface IInquiryHostDAO {
 	public void inquiryHost_insert(InquiryHostDTO dto);
 	public int inquiryHost_getinquiryno(InquiryHostDTO dto);
@@ -12,4 +14,6 @@ public interface IInquiryHostDAO {
 	public void inquiryHost_reply(InquiryHostDTO dto);
 	public int inquiryHost_getinquiryno2(InquiryHostDTO dto);
 	public void inquiryHost_updateReply(int inquiryno);
+	public List<HotelDTO> inquiryHost_hotelNumber(String suid);
+	public List<InquiryHostDTO> inquiryHost_getInquiry(String hotelNumber);
 }

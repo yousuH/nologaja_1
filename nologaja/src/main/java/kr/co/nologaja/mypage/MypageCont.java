@@ -185,16 +185,19 @@ public class MypageCont {
 		mav.addObject("list", list);
 		return mav;
 	}
-
-	@RequestMapping(value = "/inquirylist.do")
-	public ModelAndView inquirylist(HttpSession session) {
+	
+	 @RequestMapping(value = "/inquirylist.do") 
+	 public ModelAndView inquirylist(HttpSession session, HttpServletRequest req) { 
+		String hotelNumber = req.getParameter("hotelNumber");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("mypage/inquirylist");
-
-		String uid = (String) session.getAttribute("uid");
-
-		List<InquiryHostDTO> IHlist = ihdao.inquiryhost_list2(uid);
-		for (int i = 0; i < IHlist.size(); i++) {
+	 	mav.setViewName("mypage/inquirylist");
+	 	String suid = (String) session.getAttribute("suid");
+	 	List<HotelDTO> list = ihdao.inquiryHost_hotelNumber(suid);
+	 	List<InquiryHostDTO> list2 = ihdao.inquiryHost_getInquiry(hotelNumber);
+    
+    String uid = (String) session.getAttribute("uid");
+    List<InquiryHostDTO> IHlist = ihdao.inquiryhost_list2(uid);
+    for (int i = 0; i < IHlist.size(); i++) {
 
 			String roomNumber = IHlist.get(i).getRoomNumber();
 			String roomName = ihdao.getRoomName(roomNumber);
@@ -207,12 +210,14 @@ public class MypageCont {
 			IHlist.get(i).setSwdate(Swdate);
 
 		}
+     
+	 	mav.addObject("list",list);
+	 	mav.addObject("list2", list2);
+    mav.addObject("IHlist", IHlist);
 
-		mav.addObject("IHlist", IHlist);
-
-		return mav;
-	}
-
+	 	return mav; 
+	 }
+  
 	@RequestMapping(value = "/ihdetail.do")
 	public ModelAndView ihdetail(int grpno) {
 		ModelAndView mav = new ModelAndView();
@@ -236,5 +241,4 @@ public class MypageCont {
 		System.out.println(IHlist);
 		return mav;
 	}
-
 }// class

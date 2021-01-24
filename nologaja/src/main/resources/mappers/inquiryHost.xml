@@ -81,8 +81,26 @@
       ORDER BY grpno DESC, depth;
       ]]>
    </select>
-	
-	
+
+   <!-- 호텔넘버 가져오기 -->
+	<select id="inquiryhost_hotelNumber" resultType="kr.co.nologaja.hotel.HotelDTO" parameterType="String">
+      <![CDATA[
+      SELECT hotelNumber, hotelName
+      FROM hotelTable
+      WHERE suid = #{suid}
+      ]]>
+   </select>
+   
+   <!-- 문의내역 가져오기 -->
+	<select id="inquiryhost_getInquiry" resultType="kr.co.nologaja.inquiryHost.InquiryHostDTO" parameterType="String">
+      <![CDATA[
+      SELECT inquiryno, uid, suid, title, wdate, roomNumber, content, grpno, depth, open, rp_st
+      FROM inquiry_host
+      WHERE roomNumber LIKE CONCAT('%', #{hotelNumber},'%') AND depth=0
+
+      ]]>
+   </select>
+			
 	<!-- 구매자 로그인 _ 마이페이지 내 문의내역 리스트-->
 	<select id="inquiryhost_list2" resultType="kr.co.nologaja.inquiryHost.InquiryHostDTO" parameterType="String">
       <![CDATA[
@@ -113,9 +131,5 @@
       ORDER BY depth;
       ]]>
    </select>
-	
-	
-	
-	
 	
 </mapper>
