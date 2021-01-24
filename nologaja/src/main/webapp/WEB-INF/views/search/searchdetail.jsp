@@ -62,14 +62,14 @@ main {
 	grid-area: review;
 }
 
-.inquire {
-	grid-area: inquire;
+.inquire_host {
+	grid-area: inquire_host;
 }
 
 .grid-container {
 	display: grid;
 	grid-template-areas: 'namenphoto namenphoto namenphoto'
-		'detail detail book' 'review review review' 'inquire inquire inquire';
+		'detail detail book' 'review review review' 'inquire_host inquire_host inquire_host';
 	grid-gap: 10px;
 	padding-left: 40px;
 	padding-right: 40px;
@@ -848,41 +848,65 @@ a {
 					</div>
 				</div>
 				<!--호텔이미지-->
-				<img class="" alt=""
-					src="${pageContext.request.contextPath}/resources/img/hotel/${dto.hsavefile}">
+				<c:forEach var="rilist" items="${roomimage}" varStatus="vs">
+					<c:choose>
+					<c:when test="${vs.index==0 }">
+						<img style="height: 50%; float: left; cursor: pointer;" src="${pageContext.request.contextPath}/resources/img/room/${rilist.saveFile}" onclick="big()" name="pic" id="pic"/>
+					</c:when>
+					<c:otherwise>
+						<img style="width: 29%; float: left; cursor: pointer;" src="${pageContext.request.contextPath}/resources/img/room/${rilist.saveFile}" onclick="big()" name="pic" id="pic"/>
+					</c:otherwise>
+					</c:choose>
+				</c:forEach>
 			</div>
 
 			<div class="detail">
 				<!--호텔정보-->
 
 				<div>
-					<span>국무총리 또는 행정각부의 장은 소관사무에 관하여 법률이나 대통령령의 위임 또는 직권으로 총리령
-						또는 부령을 발할 수 있다. 모든 국민은 고문을 받지 아니하며, 형사상 자기에게 불리한 진술을 강요당하지 아니한다.</span>
+					<pre>${dto.roomInform }</pre>
 				</div>
 				<br>
-				<!--편의시설-->
 				<div>
-					<span>${dto.conv} </span>
+				<!--편의시설-->
+				<a><strong>편의시설</strong></a>
+				<c:if test="${dto.conv eq 'KC'}">
+					<div>
+						<span>주방</span>
+					</div>
+				</c:if>
+				<c:if test="${dto.conv eq 'HT'}">
+					<div>
+						<span>난방</span>
+					</div>
+				</c:if>
+				<c:if test="${dto.conv eq 'WS'}">
+					<div>
+						<span>세탁기</span>
+					</div>
+				</c:if>
+				<c:if test="${dto.conv eq 'KC,HT'}">
+					<div>
+						<span>주방, 난방</span>
+					</div>
+				</c:if>
+				<c:if test="${dto.conv eq 'KC,WS'}">
+					<div>
+						<span>주방, 세탁기</span>
+					</div>
+				</c:if>
+				<c:if test="${dto.conv eq 'HT,WS'}">
+					<div>
+						<span>난방, 세탁기</span>
+					</div>
+				</c:if>
+				<c:if test="${dto.conv eq 'KC,HT,WS'}">
+					<div>
+						<span>주방, 난방, 세탁기</span>
+					</div>
+				</c:if>
 				</div>
 			</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		</div>
 		<div class="book">
 			<div
 				style="border: 1px solid black; border-radius: 5%; text-align: center;">
@@ -898,28 +922,30 @@ a {
 						<span>${param.maxGuest}</span></td>
 					</tr>
 				</table>
-				<c:if test="${sessionScope.uid != null }">
-					<input type="submit" value="예약하기"
-						style="width: 85%; padding: 10px;"
-						onclick="location.href='booking.do?roomNumber=${dto.roomNumber}&night=${param.night}&hotelName=${dto.hotelName}&roomName=${dto.roomName}&cityCode=${param.cityCode}&maxGuest=${param.maxGuest}&ck_in=${param.ck_in}&ck_out=${param.ck_out}&fee=${param.fee}&pay=${param.pay}'">
-					<br>
-					<br>
-				</c:if>
-				<c:if test="${sessionScope.uid == null }">
-					<input type="submit" value="예약하기"
-						style="width: 85%; padding: 10px;"
-						onclick="location.href='login.do'">
-					<br>
-					<br>
-				</c:if>
-				<c:if test="${sessionScope.suid != null }">
-					<input type="submit" value="예약하기"
-						style="width: 85%; padding: 10px;"
-						onclick="location.href='mypage.do'">
-					<br>
-					<br>
-				</c:if>
-				<span>총 가격 : </span><span>${param.fee}원</span>
+					<c:if test="${sessionScope.uid != null }">
+						<input type="submit" value="예약하기"
+							style="width: 85%; padding: 10px;"
+							onclick="location.href='booking.do?roomNumber=${dto.roomNumber}&night=${param.night}&hotelName=${dto.hotelName}&roomName=${dto.roomName}&cityCode=${param.cityCode}&maxGuest=${param.maxGuest}&ck_in=${param.ck_in}&ck_out=${param.ck_out}&fee=${param.fee}&pay=${param.pay}'">
+						<br>
+						<br>
+					</c:if>
+					<c:if test="${sessionScope.uid == null }">
+						<c:if test="${sessionScope.suid == null }">
+							<input type="submit" value="예약하기"
+								style="width: 85%; padding: 10px;"
+								onclick="location.href='login.do'">
+							<br>
+							<br>
+						</c:if>
+					</c:if>
+					<c:if test="${sessionScope.suid != null }">
+						<input type="submit" value="예약하기"
+							style="width: 85%; padding: 10px;"
+							onclick="location.href='mypage.do'">
+						<br>
+						<br>
+					</c:if>
+					<span>총 가격 : </span><span>${param.fee}원</span>
 			</div>
 		</div>
 		<div class="review">
@@ -979,6 +1005,7 @@ a {
 
 
 		<!-- 호스트 문의하기  -->
+		<div class="inquire_host">
 		<c:if test="${sessionScope.uid ne null }">
 			<div class="inquire">
 				<input type="checkbox" id="popup"> <label for="popup"
@@ -1094,9 +1121,9 @@ a {
 					</div>
 				</div>
 			</div>
-			
 		</div>
-
+	</div>
+</div>
 
 
 	</main>
@@ -1190,7 +1217,6 @@ a {
 
 		//팝업을 display:none 으로 바꿔야함
 		/* $("#result").empty(); */
-		alert(result);
 		$("#result").html(result);
 		$("#result").show();
  		$("#modalClose").css("display", "none");
@@ -1244,7 +1270,12 @@ a {
             return false;
         });
     });
-
+	function big(){
+		var width = document.getElementById("pic").naturalWidth;
+		var height = document.getElementById("pic").naturalHeight;
+		var src = document.getElementById("pic").src;
+		window.open(src,"","width="+width+",height="+height);
+	}
 </script>
 
 

@@ -39,12 +39,17 @@ import kr.co.nologaja.hotel.ReviewDAO;
 import kr.co.nologaja.hotel.ReviewDTO;
 
 import net.utility.Pagination;
+import net.utility.RoomImageDTO;
+import net.utility.imageDAO;
 
 @Controller
 public class SearchCont {
 
 	private static final int InquiryHostDTO = 0;
-
+	
+	@Inject
+	imageDAO imdao;
+	
 	@Inject
 	SearchDAO sdao;
 
@@ -394,7 +399,11 @@ public class SearchCont {
 		int endnum = (5 * num);
 		num = num + 1;
 		RoomHotelDTO dto = sdao.searchdetail(roomNumber);
-
+		
+		//방 이미지 리스트
+		List<RoomImageDTO> roomImagelist=imdao.room_get_image(roomNumber);
+		mav.addObject("roomimage", roomImagelist);
+		
 		String suid = ihDAO.inquiryHost_getSuid(roomNumber);
 		List<InquiryHostDTO> list1 = ihDAO.inquiryHost_list(roomNumber);
 
