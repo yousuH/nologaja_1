@@ -73,7 +73,7 @@ public class HotelCont {
 		
 		//경로는 각자 변경해줘야됨
 		//ctrl+h 개인작업 ex)조씨
-        String path = "/Users/조씨/git/nologaja_1/nologaja/src/main/webapp/resources/img/hotel/";
+        String path = "D:/java0812/git/nologaja_1/nologaja_1/nologaja/src/main/webapp/resources/img/hotel/";
         String originFileName = mf.getOriginalFilename(); // 원본 파일 명
         String safeFile = path + System.currentTimeMillis() + originFileName;
         	//저장 될 파일 명
@@ -128,8 +128,8 @@ public class HotelCont {
 		
 		List<MultipartFile> fileList = mtfRequest.getFiles("roomIMG");
 
-		//ctrl+h 개인작업 ex)조씨
-        String path = "/Users/조씨/git/nologaja_1/nologaja/src/main/webapp/resources/img/room/";
+		//ctrl+h 개인작업 ex)조씨   D:/java0812/git/nologaja_1/nologaja_1/nologaja/src/main/webapp/resources/img/room/
+        String path = "D:/java0812/git/nologaja_1/nologaja_1/nologaja/src/main/webapp/resources/img/room/";
 
         for (MultipartFile mf : fileList) {
             String originFileName = mf.getOriginalFilename(); // 원본 파일 명

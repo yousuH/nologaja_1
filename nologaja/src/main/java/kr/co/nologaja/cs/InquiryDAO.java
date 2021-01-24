@@ -49,4 +49,10 @@ public class InquiryDAO implements IInquiryDAO{
 		
 	}
 	
+	@Override
+	public void host_insert(InquiryDTO dto) {
+		sqlSession.insert("inquiry.host_insert", dto);
+		
+	}
+	
 }

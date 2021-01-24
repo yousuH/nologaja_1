@@ -44,6 +44,7 @@
 			
 		where
 			r.roomNumber = #{roomNumber}
+		GROUP BY hi.savefile	
 		]]>
 	</select>
 

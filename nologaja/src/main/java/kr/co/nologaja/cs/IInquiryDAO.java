@@ -10,4 +10,5 @@ public interface IInquiryDAO {
 	public void delete(int inquiryno);
 	public InquiryDTO reply(int inquiryno);
 	public void replyproc(InquiryDTO dto);
+	public void host_insert(InquiryDTO dto);
 }
