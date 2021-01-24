@@ -14,7 +14,16 @@
         <![CDATA[
             SELECT faqno, title, content
             FROM faq
-            ORDER BY faqno
+            ORDER BY faqno desc
+            LIMIT #{currentPage}, 10
+        ]]>
+	</select>
+
+	<!-- 전체 글 갯수 가져오기 -->
+	<select id="totalCount" resultType="int">
+        <![CDATA[
+            SELECT count(faqno) as totalCount
+            FROM faq
         ]]>
 	</select>
 

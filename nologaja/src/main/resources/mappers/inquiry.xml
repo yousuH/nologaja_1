@@ -15,13 +15,22 @@
             SELECT inquiryno, id, title, wdate
             FROM inquiry_admin
             ORDER BY grpno desc
+            LIMIT #{currentPage}, 10
         ]]>
     </select>
+    
+    <!-- 전체 글 갯수 가져오기 -->
+	<select id="totalCount" resultType="int">
+        <![CDATA[
+            SELECT count(inquiryno) as totalCount
+            FROM inquiry_admin
+        ]]>
+	</select>
     
     <!-- 문의사항 상세보기 -->
 	<select id="detail" resultType="kr.co.nologaja.cs.InquiryDTO">
         <![CDATA[
-            SELECT inquiryno, id, title, wdate, content
+            SELECT inquiryno, id, title, wdate, content, depth
             FROM inquiry_admin
             WHERE inquiryno=#{inquiryno}
         ]]>
