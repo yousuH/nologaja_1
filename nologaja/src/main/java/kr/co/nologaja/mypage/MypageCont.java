@@ -2,7 +2,10 @@ package kr.co.nologaja.mypage;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -172,18 +175,56 @@ public class MypageCont {
 		mav.addObject("list", list);
 		return mav;
 	}
-	/*
-	 * @RequestMapping(value = "/inquirylist.do") public ModelAndView
-	 * inquirylist(HttpSession session) { ModelAndView mav = new ModelAndView();
-	 * mav.setViewName("mypage/inquirylist");
-	 * 
-	 * String suid = (String) session.getAttribute("suid");
-	 * 
-	 * //suid 가 가지고 있는 숙소들 모두 조회
-	 * 
-	 * //숙소명 포함한 모든 방 조회 dto
-	 * 
-	 * return mav; }
-	 */
+
+	@RequestMapping(value = "/inquirylist.do")
+	public ModelAndView inquirylist(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mypage/inquirylist");
+
+		String uid = (String) session.getAttribute("uid");
+
+		List<InquiryHostDTO> IHlist = ihdao.inquiryhost_list2(uid);
+		for (int i = 0; i < IHlist.size(); i++) {
+
+			String roomNumber = IHlist.get(i).getRoomNumber();
+			String roomName = ihdao.getRoomName(roomNumber);
+			System.out.println(roomName);
+			IHlist.get(i).setRoomName(roomName);
+
+			Date wdate = IHlist.get(i).getWdate();
+			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+			String Swdate = transFormat.format(wdate);
+			IHlist.get(i).setSwdate(Swdate);
+
+		}
+
+		mav.addObject("IHlist", IHlist);
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/ihdetail.do")
+	public ModelAndView ihdetail(int grpno) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mypage/ihdetail");
+
+		List<InquiryHostDTO> IHlist = ihdao.getIHset(grpno);
+
+		String roomNumber = IHlist.get(0).getRoomNumber();
+		String roomName = ihdao.getRoomName(roomNumber);
+		System.out.println(roomName);
+		IHlist.get(0).setRoomName(roomName);
+
+		for (int i = 0; i < IHlist.size(); i++) {
+			Date wdate = IHlist.get(i).getWdate();
+			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+			String Swdate = transFormat.format(wdate);
+			IHlist.get(i).setSwdate(Swdate);
+		}
+
+		mav.addObject("IHlist", IHlist);
+		System.out.println(IHlist);
+		return mav;
+	}
 
 }// class

@@ -61,6 +61,18 @@ public class InquiryHostDAO implements IInquiryHostDAO{
 		return sqlSession.selectList("inquiryHost.inquiryhost_list", suid);
 	}
 	
+	public List<InquiryHostDTO> inquiryhost_list2(String uid) {
+		return sqlSession.selectList("inquiryHost.inquiryhost_list2", uid);
+	}
+
+	public String getRoomName(String roomNumber) {
+		return sqlSession.selectOne("inquiryHost.getRoomName", roomNumber);
+	}
+
+	public List<InquiryHostDTO> getIHset(int grpno) {
+		return sqlSession.selectList("inquiryHost.getIHset", grpno);
+	}
+
 	
 	
 }

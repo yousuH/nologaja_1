@@ -83,6 +83,38 @@
    </select>
 	
 	
+	<!-- 구매자 로그인 _ 마이페이지 내 문의내역 리스트-->
+	<select id="inquiryhost_list2" resultType="kr.co.nologaja.inquiryHost.InquiryHostDTO" parameterType="String">
+      <![CDATA[
+      SELECT inquiryno, uid, suid, title, wdate, roomNumber, content, grpno, depth, open, rp_st
+      FROM inquiry_host
+      WHERE uid = #{uid}
+      ORDER BY grpno DESC;
+      ]]>
+   </select>
+   
+   
+   
+   <select id="getRoomName" resultType="String" parameterType="String">
+      <![CDATA[
+      SELECT roomName 
+      FROM roomTable
+      WHERE roomNumber = #{roomNumber}
+      ]]>
+   </select>
+   
+   
+   
+   <select id="getIHset" resultType="kr.co.nologaja.inquiryHost.InquiryHostDTO" parameterType="int">
+      <![CDATA[
+      SELECT inquiryno, uid, suid, title, wdate, roomNumber, content, grpno, depth, open, rp_st
+      FROM inquiry_host
+      WHERE grpno = #{grpno}
+      ORDER BY depth;
+      ]]>
+   </select>
+	
+	
 	
 	
 	

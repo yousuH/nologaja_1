@@ -20,10 +20,21 @@ public class InquiryHostDTO {
 	private String rp_st;
 	private String swdate;
 	private int random;
+	private String roomName;
 	
+
 	public InquiryHostDTO() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public String getRoomName() {
+		return roomName;
+	}
+
+	public void setRoomName(String roomName) {
+		this.roomName = roomName;
+	}
+
 
 	public int getInquiryno() {
 		return inquiryno;
@@ -134,9 +145,12 @@ public class InquiryHostDTO {
 		return "InquiryHostDTO [inquiryno=" + inquiryno + ", uid=" + uid + ", suid=" + suid + ", title=" + title
 				+ ", content=" + content + ", wdate=" + wdate + ", roomNumber=" + roomNumber + ", grpno=" + grpno
 				+ ", depth=" + depth + ", open=" + open + ", rp_st=" + rp_st + ", swdate=" + swdate + ", random="
-				+ random + "]";
+				+ random + ", roomName=" + roomName + "]";
 	}
 
+	
+	
+	
 	
 
 	
