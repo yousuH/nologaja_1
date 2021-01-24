@@ -59,9 +59,19 @@ public class MypageCont {
 	
 	//마이페이지(배너 상의 마이페이지 버튼)
 	@RequestMapping(value = "/mypage.do")
-	public String list(Model model) {
-		List<BkDTO> list = dao.list();
-		model.addAttribute("list", list);
+	public String list(HttpServletRequest req, Model model) {
+		HttpSession session = req.getSession();
+		String suid = (String)session.getAttribute("suid");
+		String uid  = (String)session.getAttribute("uid");
+		
+		if(uid != null) {
+			List<BkDTO> list = dao.list(uid);
+			model.addAttribute("list", list);
+		} else if(suid != null) {
+			List<BkDTO> list = dao.s_list(suid);
+			model.addAttribute("list", list);
+		}
+		
 		return "mypage/mypage(bookinglist)";
 	}
 	
