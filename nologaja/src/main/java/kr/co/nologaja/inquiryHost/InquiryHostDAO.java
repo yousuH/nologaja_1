@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import kr.co.nologaja.hotel.HotelDTO;
 import net.utility.HotelListDTO;
 
 @Repository
@@ -61,6 +62,14 @@ public class InquiryHostDAO implements IInquiryHostDAO{
 		return sqlSession.selectList("inquiryHost.inquiryhost_list", suid);
 	}
 	
+	@Override
+	public List<HotelDTO> inquiryHost_hotelNumber(String suid) {
+		return sqlSession.selectList("inquiryHost.inquiryhost_hotelNumber", suid);
+	}
 	
+	@Override
+	public List<InquiryHostDTO> inquiryHost_getInquiry(String hotelNumber) {
+		return sqlSession.selectList("inquiryHost.inquiryhost_getInquiry", hotelNumber);
+	}
 	
 }

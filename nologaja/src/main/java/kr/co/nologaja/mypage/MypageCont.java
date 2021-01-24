@@ -172,18 +172,19 @@ public class MypageCont {
 		mav.addObject("list", list);
 		return mav;
 	}
-	/*
-	 * @RequestMapping(value = "/inquirylist.do") public ModelAndView
-	 * inquirylist(HttpSession session) { ModelAndView mav = new ModelAndView();
-	 * mav.setViewName("mypage/inquirylist");
-	 * 
-	 * String suid = (String) session.getAttribute("suid");
-	 * 
-	 * //suid 가 가지고 있는 숙소들 모두 조회
-	 * 
-	 * //숙소명 포함한 모든 방 조회 dto
-	 * 
-	 * return mav; }
-	 */
+	
+	 @RequestMapping(value = "/inquirylist.do") 
+	 public ModelAndView inquirylist(HttpSession session, HttpServletRequest req) { 
+		String hotelNumber = req.getParameter("hotelNumber");
+		ModelAndView mav = new ModelAndView();
+	 	mav.setViewName("mypage/inquirylist");
+	 	String suid = (String) session.getAttribute("suid");
+	 	List<HotelDTO> list = ihdao.inquiryHost_hotelNumber(suid);
+	 	List<InquiryHostDTO> list2 = ihdao.inquiryHost_getInquiry(hotelNumber);
+	 	mav.addObject("list",list);
+	 	mav.addObject("list2", list2);
+	 	return mav; 
+	 }
+	
 
 }// class

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>	
 <%@ include file="../header.jsp"%>
 <link rel="stylesheet" href="./resources/css/mypage.css">
 
@@ -20,121 +21,47 @@
 <div class="mp_main" style="min-height: 500px">
 	<h2>문의내역</h2>
 	<br>
-	<c:if test="${sessionScope.suid !=null }">
-		<form name="inquiryhost_list" id="inquiryhost_list" method="post"
-			action="**">
 
-			<select name="myRoom" id="myRoom">
-				<option value="" selected>내 숙소를 선택하세요</option>
-				<c:forEach var="myRoom" items="${myRoom}">
-					<option value="${myRoom.roomNumber}">${myRoom.roomName}</option>
-				</c:forEach>
-			</select>
-			</form>
-
-			<table class="table table-hover text-center">
+			
+ 	<select name="jump" onchange="location.href=this.value" class="form-select" aria-label="Default select example">
+ 	<c:forEach var="list" items="${list}">
+ 		<option value="inquirylist.do?hotelNumber=${list.hotelNumber}">${list.hotelName}</option>
+ 	</c:forEach>
+	</select>				
+ 		<table class="table table-hover text-center">
 				<thead>
 					<tr>
-						<th>문의번호</th>
-						<th class="text-center">숙소명/방이름</th>
-						<th class="text-center">인원수</th>
-						<th class="text-center">체크인</th>
-						<th class="text-center">체크아웃</th>
-						<th class="text-center">총가격</th>
-						<th class="text-center">결제수단</th>
-						<th class="text-center">결제상태</th>
+						<th class="text-center">문의자</th>
+						<th class="text-center">제목</th>
+						<th class="text-center">작성일</th>
+						<th class="text-center">답변상태</th>
 					</tr>
 				</thead>
-
+				
 				<tbody>
-					<c:forEach var="BkDTO" items="${list}">
+						<c:forEach var="list2" items="${list2}">
 						<tr>
-							<td><a href="bkdetail.do?bk_num=${BkDTO.bk_num}">${BkDTO.bk_num}</td>
-							<td>${BkDTO.hotelName}/${BkDTO.roomName}</td>
-							<td>${BkDTO.maxGuest}</td>
-							<td>${BkDTO.ck_in}</td>
-							<td>${BkDTO.ck_out}</td>
-							<td>${BkDTO.fee}원</td>
-							<c:choose>
-								<c:when test="${BkDTO.pay == '1'}">
-									<td>무통장입금</td>
-								</c:when>
-								<c:when test="${BkDTO.pay == '2'}">
-									<td>카드결제</td>
-								</c:when>
-							</c:choose>
-							<c:choose>
-								<c:when test="${BkDTO.pay_st == 'A'}">
-									<td>결제대기</td>
-								</c:when>
-								<c:when test="${BkDTO.pay_st == 'B'}">
-									<td>결제완료</td>
-								</c:when>
-								<c:when test="${BkDTO.pay_st == 'C'}">
-									<td>예약취소완료</td>
-								</c:when>
-							</c:choose>
+								<td>${list2.uid}</td>
+								<td>
+									${list2.title}
+								</td>
+								<td><fmt:formatDate value="${list2.wdate}"
+									pattern="yyyy-MM-dd HH:mm" /></td>
+								<c:choose>
+									<c:when test="${list2.rp_st eq 'Y'}">
+										<th class="text-center">답변O&nbsp;&nbsp;<a href="searchdetail.do?roomNumber=${list2.roomNumber}">이동하기</a></th>
+									</c:when>
+									<c:when test="${list2.rp_st eq 'N'}">
+										<th class="text-center">답변X&nbsp;&nbsp;<a href="searchdetail.do?roomNumber=${list2.roomNumber}">이동하기</a></th>
+									</c:when>
+								</c:choose>
 						</tr>
-					</c:forEach>
+						</c:forEach>
 				</tbody>
 			</table>
-
-		
-	</c:if>
-	<c:if test="${sessionScope.uid !=null }">
-		<form name="inquiryhost_list" id="inquiryhost_list" method="post"
-			action="**">
-
-			<table class="table table-hover text-center">
-				<thead>
-					<tr>
-						<th>문의번호</th>
-						<th class="text-center">숙소명/방이름</th>
-						<th class="text-center">인원수</th>
-						<th class="text-center">체크인</th>
-						<th class="text-center">체크아웃</th>
-						<th class="text-center">총가격</th>
-						<th class="text-center">결제수단</th>
-						<th class="text-center">결제상태</th>
-					</tr>
-				</thead>
-
-				<tbody>
-					<c:forEach var="BkDTO" items="${list}">
-						<tr>
-							<td><a href="bkdetail.do?bk_num=${BkDTO.bk_num}">${BkDTO.bk_num}</td>
-							<td>${BkDTO.hotelName}/${BkDTO.roomName}</td>
-							<td>${BkDTO.maxGuest}</td>
-							<td>${BkDTO.ck_in}</td>
-							<td>${BkDTO.ck_out}</td>
-							<td>${BkDTO.fee}원</td>
-							<c:choose>
-								<c:when test="${BkDTO.pay == '1'}">
-									<td>무통장입금</td>
-								</c:when>
-								<c:when test="${BkDTO.pay == '2'}">
-									<td>카드결제</td>
-								</c:when>
-							</c:choose>
-							<c:choose>
-								<c:when test="${BkDTO.pay_st == 'A'}">
-									<td>결제대기</td>
-								</c:when>
-								<c:when test="${BkDTO.pay_st == 'B'}">
-									<td>결제완료</td>
-								</c:when>
-								<c:when test="${BkDTO.pay_st == 'C'}">
-									<td>예약취소완료</td>
-								</c:when>
-							</c:choose>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-
-		</form>
-	</c:if>
-
+	
+	
+	
 </div>
 
 
