@@ -20,8 +20,8 @@ public class FaqDAO implements IFaqDAO {
 	}
 	
 	@Override
-	public List<FaqDTO> list() {
-		return sqlSession.selectList("faq.list");
+	public List<FaqDTO> list(int currentPage) {
+		return sqlSession.selectList("faq.list", currentPage);
 	}
 
 	@Override
@@ -38,5 +38,10 @@ public class FaqDAO implements IFaqDAO {
 	public void delete(int faqno) {
 		sqlSession.delete("faq.delete", faqno);
 		
+	}
+	
+	@Override
+	public int totalCount() {
+		return sqlSession.selectOne("faq.totalCount");
 	}
 }

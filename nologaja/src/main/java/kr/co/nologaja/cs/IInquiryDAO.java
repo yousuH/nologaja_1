@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface IInquiryDAO {
 	public void insert(InquiryDTO dto);
-	public List<InquiryDTO> list();
+	public List<InquiryDTO> list(int currentPage);
 	public InquiryDTO detail(int inquiryno);
 	public void update(InquiryDTO dto);
 	public void delete(int inquiryno);

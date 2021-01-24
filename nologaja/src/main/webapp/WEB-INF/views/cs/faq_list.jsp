@@ -14,29 +14,55 @@
 	</div>
 
 	<div class="mp_main">
-		<h3>FAQ리스트</h3>
+		<h3 style="padding-left: 37%">FAQ리스트</h3>
 		<div class="container">
 			<div class="col-lg-2"></div>
-			<div class="col-lg-8">
+			<div class="col-lg-10">
 				<div style="background: #f8f8f8 !important" class="jumbotron"
 					style="padding-top:20px;'">
 					<table class="table table-bordered">
 						<tr class="head">
-							<td style="width: 30%">질문</td>
-							<td style="width: 70%">답변</td>
+							<th scope="col" style="text-align: center;">Nologaja! 자주 하는 질문</th>
 						</tr>
 						<c:forEach var="dto" items="${list}">
 							<tr>
-								<td>${dto.title}</td>
-								<td>${dto.content}</td>
-								<td><a href="faq_update.do?faqno=${dto.faqno}">수정</a></td>
-								<td><a href="faq_delete.do?faqno=${dto.faqno}">삭제</a></td>
+								<td><a href="faq_detail.do?faqno=${dto.faqno}">Q.${dto.title}</a></td>
 							</tr>
 						</c:forEach>
+						<tr>
+							<td style="text-align: center;">
+								<c:if test="${startPage > 1}">
+									<a href=?page=1">처음</a>
+								</c:if>
+								<c:if test="${page > 1}">
+									<a href="?page=${page-1}">이전</a>
+								</c:if>	
+								<c:forEach var="listPage" items="${listPage}">
+									<c:choose>
+										<c:when test="${listPage eq page}">
+											<span><b>${listPage}</b></span>
+										</c:when>
+										<c:otherwise>
+											<span>${listPage}</span>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+								<c:if test="${page < totalPage}">
+									<a href="?page=${page+1}">다음</a>
+								</c:if>
+								<c:if test="${endPage < totalPage}">
+									<a href="?page=${totalPage}">끝</a>
+								</c:if>
+							</td>
+						</tr>
 					</table>
+					<c:if test="${sessionScope.ugrd eq 'A1' }">
+						<input class="btn btn-secondary" type="button" value="작성하기"	
+								onclick="location.href='faq_form.do'">
+					</c:if>
 				</div>
 			</div>
-			<div class="col-lg-2"></div>
+			<div class="col-lg-1"></div>
 		</div>
 	</div>
 <%@ include file="../footer.jsp"%>

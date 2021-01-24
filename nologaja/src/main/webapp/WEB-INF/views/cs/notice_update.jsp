@@ -11,7 +11,7 @@
 	</div>
    	
    	<div class="mp_main">
-	   	<h3>공지사항 작성</h3>
+	   	<h3 style="padding-left: 37%">공지사항 수정</h3>
 	   	<div class="container">
 	  		<form class="form-horizontal" name="noticeForm" action="notice_updateproc.do" method="post">
 	  		<input type="hidden" name="noticeno" value="${noticeno}">
@@ -29,12 +29,12 @@
 	    		</div>
 	    		<div class="form-group">        
 	    			<div class="col-sm-offset-2 col-sm-10">
-	        			<button type="submit" class="btn btn-default">입력</button>
-	        			<button type="reset" class="btn btn-default">초기화</button>
-	        			<button type="button" class="btn btn-default" onclick="location.href='noticeList.jsp'">목록</button>
+	        			<button type="submit" class="btn btn-secondary">입력</button>
+	        			<button type="reset" class="btn btn-secondary">초기화</button>
+	        			<button type="button" class="btn btn-secondary" onclick="location.href='noticeList.do'">목록</button>
 	      			</div>
 	    		</div>
 	  		</form>
 		</div>
-	<div class="mp_main">
+	</div>
 <%@ include file="../footer.jsp" %>

@@ -22,23 +22,23 @@
 					style="padding-top:20px;'">
 					<table class="table table-bordered">
 						<tr>
-							<th style="text-align: center;" scope="col">작성자</th>
+							<th class="table-secondary" style="text-align: center;" scope="col">작성자</th>
 							<td style="text-align: left;">${id}</td>
 						</tr>
 						<tr>
-							<th style="text-align: center;" scope="col">번호</th>
+							<th class="table-secondary" style="text-align: center;" scope="col">번호</th>
 							<td style="text-align: left;">${inquiryno}</td>
 						</tr>
 						<tr>
-							<th style="text-align: center;" scope="col">제목</th>
+							<th class="table-secondary" style="text-align: center;" scope="col">제목</th>
 							<td style="text-align: left;">${title}</td>
 						</tr>
 						<tr>
-							<th style="vertical-align: middle; height: 300px; text-align: center;" class="head" scope="col">내용</th>
+							<th class="table-secondary" style="vertical-align: middle; height: 300px; text-align: center;" scope="col">내용</th>
 							<td style="text-align: left;">${content}</td>
 						</tr>
 						<tr>
-							<th style="text-align: center;" scope="col">작성일</th>
+							<th class="table-secondary" style="text-align: center;" scope="col">작성일</th>
 							<td><fmt:formatDate value="${wdate}"
 										pattern="yyyy-MM-dd HH:mm" /></td>
 							

@@ -12,7 +12,7 @@
    	
    	 -->
    	<div class="mp_main">
-	   	<h3>FAQ 작성</h3>
+	   	<h3 style="padding-left: 37%">FAQ 작성</h3>
 	   	<div class="container">
 	  		<form class="form-horizontal" action="faq_insert.do" method="post">
 	    		<div class="form-group">
@@ -29,9 +29,9 @@
 	    		</div>
 	    		<div class="form-group">        
 	    			<div class="col-sm-offset-2 col-sm-10">
-	        			<button type="submit" class="btn btn-default">입력</button>
-	        			<button type="reset" class="btn btn-default">초기화</button>
-	        			<button type="button" class="btn btn-default" onclick="location.href='noticeList.jsp'">목록</button>
+	        			<button type="submit" class="btn btn-secondary">입력</button>
+	        			<button type="reset" class="btn btn-secondary">초기화</button>
+	        			<button type="button" class="btn btn-secondary" onclick="location.href='faq_list.do'">목록</button>
 	      			</div>
 	    		</div>
 	  		</form>

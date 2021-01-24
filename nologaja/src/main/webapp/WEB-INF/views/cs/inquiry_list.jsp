@@ -26,10 +26,10 @@
 					style="padding-top:20px;'">
 					<table class="table table-bordered" style="text-align: center;">
 							<tr class="head table-secondary">
-								<th scope="col" style="width: 10%" scope="col">번호</th>
-								<th scope="col" style="width: 55%" scope="col">제목</a></th>
-								<th scope="col" style="width: 15%" scope="col">작성자</th>
-								<th scope="col" style="width: 20%" scope="col">작성일</th>
+								<th scope="col" style="width: 10%">번호</th>
+								<th scope="col" style="width: 55%">제목</a></th>
+								<th scope="col" style="width: 15%">작성자</th>
+								<th scope="col" style="width: 20%">작성일</th>
 							</tr>
 							<c:forEach var="dto" items="${list}">
 									<tr>
@@ -41,32 +41,40 @@
 									</tr>
 							</c:forEach>
 							<tr>
-								<%-- <c:if test="${startPage > 1}">
-									<a href=?page=1\">처음</a>
-								</c:if>
-								<c:if test="${page > 1}">
-									<a href=\"?page=" + (page - 1)  + "\">이전</a>
-								</c:if>
-								<c:if test=""></c:if>
-								<c:if test=""></c:if>
 								<td colspan="4">
 									<c:if test="${startPage > 1}">
-										<a href=?inquiry_list.do?page=1">처음</a>
+										<a href="?page=1">처음</a>
 									</c:if>
 									<c:if test="${page > 1}">
-										<a href="inquiry_list.do?page="+${page-1}>이전</a>
+										<a href="?page=${page-1}">이전</a>
 									</c:if>	
-									<c:forEach>
-									
+									<c:forEach var="listPage" items="${listPage}">
+										<c:choose>
+											<c:when test="${listPage eq page}">
+												<span><b>${listPage}</b></span>
+											</c:when>
+											<c:otherwise>
+												<span>${listPage}</span>
+											</c:otherwise>
+										</c:choose>
 									</c:forEach>
-								</td> --%>
+									<c:if test="${page < totalPage}">
+										<a href="?page=${page+1}">다음</a>
+										<!-- <input type="button" onclick="location='inquiry_list.do?page=2'"> -->
+										
+									</c:if>
+									<c:if test="${endPage < totalPage}">
+										<a href="?page=${totalPage}">끝</a>
+									</c:if>
+								</td>
 							</tr>
 					</table>
 					
-						
-					<c:if test="${sessionScope.uid ne 'admin'}">
-						<input type="button" class="btn btn-secondary" onclick="location='inquiry_form.do'" value="작성하기">
-					</c:if>
+					<c:choose>
+						<c:when test="${sessionScope.ugrd eq 'C1' or sessionScope.ugrd eq 'B1'}">
+							<input type="button" class="btn btn-secondary" onclick="location='inquiry_form.do'" value="작성하기">
+						</c:when>
+					</c:choose>
 				</div>
 			</div>
 			<div class="col-lg-1"></div>

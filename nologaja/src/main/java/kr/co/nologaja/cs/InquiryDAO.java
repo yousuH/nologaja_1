@@ -19,8 +19,8 @@ public class InquiryDAO implements IInquiryDAO{
 	}
 	
 	@Override
-	public List<InquiryDTO> list() {
-		return sqlSession.selectList("inquiry.list");
+	public List<InquiryDTO> list(int currentPage) {
+		return sqlSession.selectList("inquiry.list", currentPage);
 	}
 
 	@Override

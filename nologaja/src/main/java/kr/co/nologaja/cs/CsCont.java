@@ -1,5 +1,6 @@
 package kr.co.nologaja.cs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -33,40 +34,46 @@ public class CsCont {
 		System.out.println("==Cs객체생성==");
 	}
 	
-	//고객센터 이동
+	
 	@RequestMapping(value = "/inquiry_list.do")
-	public String inquiry_main(Model model) {
-		List<InquiryDTO> list = idao.list();
-		model.addAttribute("list",list);
+	public String inquiry_main(Model model, HttpServletRequest req) {
 		int page = 1;
+		if (req.getParameter("page")!=null) {
+			page = Integer.parseInt(req.getParameter("page"));
+		}
 		int countList = 10;
 		int countPage = 5;
 		int totalCount = idao.totalCount();
-		int totalPage = totalCount / countList;
-		
+		int totalPage = totalCount / countList; //0 10
+		ArrayList<Integer> listPage = new ArrayList<>();
 		if (totalCount % countList > 0) {
 		    totalPage++;
 		}
 
-		if (totalPage < page) {
+		if (totalPage < page && totalPage != 0) {
 		    page = totalPage;
 		}
 
-		int startPage = ((page - 1) / 10) * 10 + 1;
+		int startPage = ((page - 1) / 10) * 10 + 1; //1
 		
-		int endPage = startPage + countPage - 1;
+		int endPage = startPage + countPage - 1; //
 
 		if (endPage > totalPage) {
 		    endPage = totalPage;
 		}
 		
-		if (startPage > 1) {
-		    System.out.print("<a href=\"?page=1\">처음</a>");
+		for(int iCount=startPage; iCount <= endPage; iCount++) {
+			listPage.add(iCount);
 		}
+		model.addAttribute("page", page);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("listPage", listPage);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
 		
-		
-		
-		
+		int currentPage = (page-1)*10;
+		List<InquiryDTO> list = idao.list(currentPage);
+		model.addAttribute("list",list);
 		return "cs/inquiry_list";
 	}//insert() end
 	
@@ -193,8 +200,45 @@ public class CsCont {
 		
 	//공지사항 목록가져오기
 	@RequestMapping(value = "/notice_list.do")
-	public String notice_list(Model model) {
-		List<NoticeDTO> list = ndao.list();
+	public String notice_list(Model model, HttpServletRequest req) {
+		int page = 1;
+		if (req.getParameter("page")!=null) {
+			page = Integer.parseInt(req.getParameter("page"));
+		}
+		int countList = 10;
+		int countPage = 5;
+		int totalCount = ndao.totalCount();
+		int totalPage = totalCount / countList;
+		ArrayList<Integer> listPage = new ArrayList<>();
+		
+		if (totalCount % countList > 0) {
+		    totalPage++;
+		}
+
+		//작성된 글이 아무것도 없을 때 page값이 0이됨
+		//if 조건에 totalPage가 0이 아닐때라는 조건을 추가해줬음
+		if (totalPage < page && totalPage != 0) {
+		    page = totalPage;
+		}
+
+		int startPage = ((page - 1) / 10) * 10 + 1; //1
+		
+		int endPage = startPage + countPage - 1; //
+
+		if (endPage > totalPage) {
+		    endPage = totalPage;
+		}
+		
+		for(int iCount=startPage; iCount <= endPage; iCount++) {
+			listPage.add(iCount);
+		}
+		model.addAttribute("page", page);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("listPage", listPage);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		int currentPage = (page-1)*10;
+		List<NoticeDTO> list = ndao.list(currentPage);
 		model.addAttribute("list",list);
 		return "cs/notice_list";
 	}//insert() end
@@ -258,8 +302,45 @@ public class CsCont {
 
 	//FAQ 이동
 	@RequestMapping(value = "/faq_list.do")
-	public String faq_list(Model model) {
-		List<FaqDTO> list = fdao.list();
+	public String faq_list(Model model, HttpServletRequest req) {
+		int page = 1;
+		if (req.getParameter("page")!=null) {
+			page = Integer.parseInt(req.getParameter("page"));
+		}
+		int countList = 10;
+		int countPage = 5;
+		int totalCount = fdao.totalCount();
+		int totalPage = totalCount / countList;
+		ArrayList<Integer> listPage = new ArrayList<>();
+		
+		if (totalCount % countList > 0) {
+		    totalPage++;
+		}
+
+		//작성된 글이 아무것도 없을 때 page값이 0이됨
+		//if 조건에 totalPage가 0이 아닐때라는 조건을 추가해줬음
+		if (totalPage < page && totalPage != 0) {
+		    page = totalPage;
+		}
+
+		int startPage = ((page - 1) / 10) * 10 + 1; //1
+		
+		int endPage = startPage + countPage - 1; //
+
+		if (endPage > totalPage) {
+		    endPage = totalPage;
+		}
+		
+		for(int iCount=startPage; iCount <= endPage; iCount++) {
+			listPage.add(iCount);
+		}
+		model.addAttribute("page", page);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("listPage", listPage);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		int currentPage = (page-1)*10;
+		List<FaqDTO> list = fdao.list(currentPage); 
 		model.addAttribute("list",list);
 		return "cs/faq_list";
 	}//insert() end
@@ -272,11 +353,9 @@ public class CsCont {
 	
 	//FAQ 작성하기
 	@RequestMapping(value = "/faq_insert.do")
-	public ModelAndView faq_insert(@ModelAttribute FaqDTO dto, HttpServletRequest req) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("cs/faq_list");
+	public String faq_insert(@ModelAttribute FaqDTO dto, HttpServletRequest req) {
 		fdao.insert(dto);
-		return mav;
+		return "redirect:/faq_list.do";
 	}//insert() end
 	
 	//FAQ 수정폼 가져오기
@@ -290,19 +369,36 @@ public class CsCont {
 	
 	//FAQ 수정하기
 		@RequestMapping(value = "/faq_updateproc.do")
-		public ModelAndView faq_updateproc(@ModelAttribute FaqDTO dto) {
-			ModelAndView mav = new ModelAndView();
+		public String faq_updateproc(@ModelAttribute FaqDTO dto) {
 			fdao.update(dto);
-			mav.setViewName("cs/faq_list");
-			return mav;
+			return "redirect:/faq_list.do";
 		}//insert() end
 	
 	//FAQ 삭제하기
 		@RequestMapping(value = "/faq_delete.do")
-		public ModelAndView faq_delete(int faqno) {
-			ModelAndView mav = new ModelAndView();
+		public String faq_delete(int faqno) {
 			fdao.delete(faqno);
-			mav.setViewName("cs/faq_list");
-			return mav;
+			return "redirect:/faq_list.do";
 		}//insert() end
+		
+		
+		//FAQ 상세보기
+		@RequestMapping(value = "/faq_detail.do")
+		public ModelAndView faq_detail(int faqno) {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("cs/faq_detail");
+			FaqDTO dto = fdao.detail(faqno);
+			mav.addObject("title", dto.getTitle());
+			mav.addObject("faqno", dto.getFaqno());
+			//content에 담겨져 있는 내용 변환
+			String content = dto.getContent();
+			content = content.replaceAll(" ", "&nbsp;");//공백
+			content = content.replaceAll("\"", "&quot;");
+			content = content.replaceAll("'", "&apos;");
+			content = content.replaceAll("<", "&lt;");
+			content = content.replaceAll(">", "&gt;");
+			content = content.replaceAll("\r\n", "<br>");//줄바꿈
+			mav.addObject("content", content);
+			return mav;
+		}//insert() end	
 }

@@ -15,89 +15,161 @@ public class InquiryDTO {
 	private int countPage;
 	private int countList;
 	private int totalPage;
+	private int startPage;
+	private int endPage;
 	
 	
 	public InquiryDTO() {
 		// TODO Auto-generated constructor stub
 	}
+
+
 	public int getInquiryno() {
 		return inquiryno;
 	}
+
+
 	public void setInquiryno(int inquiryno) {
 		this.inquiryno = inquiryno;
 	}
+
+
 	public String getId() {
 		return id;
 	}
+
+
 	public void setId(String id) {
 		this.id = id;
 	}
+
+
 	public String getTitle() {
 		return title;
 	}
+
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
+
 	public String getContent() {
 		return content;
 	}
+
+
 	public void setContent(String content) {
 		this.content = content;
 	}
+
+
 	public Date getWdate() {
 		return wdate;
 	}
+
+
 	public void setWdate(Date wdate) {
 		this.wdate = wdate;
 	}
+
+
 	public int getGrpno() {
 		return grpno;
 	}
+
+
 	public void setGrpno(int grpno) {
 		this.grpno = grpno;
 	}
+
+
 	public int getDepth() {
 		return depth;
 	}
+
+
 	public void setDepth(int depth) {
 		this.depth = depth;
 	}
+
+
 	public int getTotalCount() {
 		return totalCount;
 	}
+
+
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
 	}
+
+
 	public int getPage() {
 		return page;
 	}
+
+
 	public void setPage(int page) {
 		this.page = page;
 	}
+
+
 	public int getCountPage() {
 		return countPage;
 	}
+
+
 	public void setCountPage(int countPage) {
 		this.countPage = countPage;
 	}
+
+
 	public int getCountList() {
 		return countList;
 	}
+
+
 	public void setCountList(int countList) {
 		this.countList = countList;
 	}
+
+
 	public int getTotalPage() {
 		return totalPage;
 	}
+
+
 	public void setTotalPage(int totalPage) {
 		this.totalPage = totalPage;
 	}
+
+
+	public int getStartPage() {
+		return startPage;
+	}
+
+
+	public void setStartPage(int startPage) {
+		this.startPage = startPage;
+	}
+
+
+	public int getEndPage() {
+		return endPage;
+	}
+
+
+	public void setEndPage(int endPage) {
+		this.endPage = endPage;
+	}
+
+
 	@Override
 	public String toString() {
 		return "InquiryDTO [inquiryno=" + inquiryno + ", id=" + id + ", title=" + title + ", content=" + content
 				+ ", wdate=" + wdate + ", grpno=" + grpno + ", depth=" + depth + ", totalCount=" + totalCount
 				+ ", page=" + page + ", countPage=" + countPage + ", countList=" + countList + ", totalPage="
-				+ totalPage + "]";
+				+ totalPage + ", startPage=" + startPage + ", endPage=" + endPage + "]";
 	}
 	
 	

@@ -15,6 +15,7 @@
             SELECT inquiryno, id, title, wdate
             FROM inquiry_admin
             ORDER BY grpno desc
+            LIMIT #{currentPage}, 10
         ]]>
     </select>
     

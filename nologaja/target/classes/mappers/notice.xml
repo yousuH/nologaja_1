@@ -14,8 +14,17 @@
             SELECT noticeno, title, wdate
             FROM notice
             ORDER BY noticeno desc
+            LIMIT #{currentPage}, 10
         ]]>
     </select>
+    
+     <!-- 전체 글 갯수 가져오기 -->
+	<select id="totalCount" resultType="int">
+        <![CDATA[
+            SELECT count(noticeno) as totalCount
+            FROM notice
+        ]]>
+	</select>
     
     <!-- 공지사항 상세보기 -->
 	<select id="detail" resultType="kr.co.nologaja.cs.NoticeDTO">
