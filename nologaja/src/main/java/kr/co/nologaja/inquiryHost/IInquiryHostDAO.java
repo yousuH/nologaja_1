@@ -16,4 +16,8 @@ public interface IInquiryHostDAO {
 	public void inquiryHost_updateReply(int inquiryno);
 	public List<HotelDTO> inquiryHost_hotelNumber(String suid);
 	public List<InquiryHostDTO> inquiryHost_getInquiry(String hotelNumber);
+	public List<InquiryHostDTO> inquiryhost_list(String suid);
+	public List<InquiryHostDTO> inquiryhost_list2(String uid);
+	public String getRoomName(String roomNumber);
+	public List<InquiryHostDTO> getIHset(int grpno);
 }
